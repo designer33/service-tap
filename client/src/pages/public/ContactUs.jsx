@@ -36,8 +36,8 @@ const ContactUs = () => {
     {
       emoji: '✉️', icon: Mail,
       title: t('emailUs'),
-      line1: 'irfanrashidkhan@gmail.com',
-      link: 'mailto:irfanrashidkhan@gmail.com',
+      line1: 'support@serviceknock.com',
+      link: 'mailto:support@serviceknock.com',
       line2: t('replyWithin24'),
       color: 'text-secondary-600', bg: 'bg-secondary-50', border: 'border-secondary-100',
     },

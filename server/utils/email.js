@@ -35,7 +35,7 @@ const sendEmail = async (options) => {
 // ─── HTML Email Templates ─────────────────────────────────────────────────────
 
 const BRAND_COLOR = '#0ea5e9';
-const ADMIN_EMAIL = 'irfanrashidkhan@gmail.com';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'support@serviceknock.com';
 
 const baseTemplate = (content) => `
 <!DOCTYPE html>
