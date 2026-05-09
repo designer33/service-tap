@@ -4,16 +4,16 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const connectDB = require('./server/config/db');
-const errorHandler = require('./server/middleware/errorHandler');
+const connectDB = require('./config/db');
+const errorHandler = require('./middleware/errorHandler');
 
 // Route imports
-const authRoutes = require('./server/routes/authRoutes');
-const bookingRoutes = require('./server/routes/bookingRoutes');
-const workerRoutes = require('./server/routes/workerRoutes');
-const adminRoutes = require('./server/routes/adminRoutes');
-const notificationRoutes = require('./server/routes/notificationRoutes');
-const contactRoutes = require('./server/routes/contactRoutes');
+const authRoutes = require('./routes/authRoutes');
+const bookingRoutes = require('./routes/bookingRoutes');
+const workerRoutes = require('./routes/workerRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+const notificationRoutes = require('./routes/notificationRoutes');
+const contactRoutes = require('./routes/contactRoutes');
 
 // Connect to MongoDB Atlas
 connectDB();
@@ -34,7 +34,6 @@ app.all('/api/deploy', (req, res) => {
 
   console.log('🔄 Deployment triggered by GitHub...');
   
-  // Note: path is relative to this app.js file
   exec('bash deploy.sh', (error, stdout, stderr) => {
     if (error) {
       console.error(`❌ Deployment Error: ${error}`);
@@ -69,14 +68,14 @@ app.use('/api/contact', contactRoutes);
 
 // Serve Static Files (for production)
 const path = require('path');
-app.use(express.static(path.join(__dirname, 'server', 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Handle React routing, return all requests to React app
 app.get('*', (req, res, next) => {
   if (req.path.startsWith('/api')) {
     return next();
   }
-  res.sendFile(path.join(__dirname, 'server', 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // 404 handler for API
