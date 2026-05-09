@@ -182,21 +182,21 @@ const Profile = () => {
       <div className="page-container max-w-4xl">
         {/* Profile Header Card */}
         <div className="card mb-8 overflow-hidden">
-          <div className="h-32 bg-gradient-to-r from-primary-500 to-primary-700"></div>
-          <div className="px-8 pb-8">
-            <div className="relative -mt-12 mb-4 flex items-end justify-between">
-              <div className="w-24 h-24 bg-white rounded-2xl shadow-lg border-4 border-white flex items-center justify-center text-primary-600 overflow-hidden">
+          <div className="h-32 sm:h-48 bg-gradient-to-r from-primary-500 to-primary-700"></div>
+          <div className="px-4 sm:px-8 pb-8">
+            <div className="relative -mt-12 sm:-mt-16 mb-4 flex flex-col sm:flex-row items-center sm:items-end justify-between gap-4">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-2xl shadow-xl border-4 border-white flex items-center justify-center text-primary-600 overflow-hidden shrink-0">
                 {user.profilePic ? (
                   <img src={user.profilePic} alt={user.name} className="w-full h-full object-cover" />
                 ) : (
                   <UserIcon size={48} />
                 )}
               </div>
-              <div className="flex gap-2 mb-2">
+              <div className="flex flex-wrap justify-center sm:justify-end gap-2 mb-2">
                 {(currentUser?._id === data?.user?._id || currentUser?.slug === id) && (
                   <button 
                     onClick={() => setEditModal(true)}
-                    className="flex items-center gap-1.5 bg-white border border-slate-200 text-slate-600 px-3 py-1.5 rounded-full text-xs font-bold hover:bg-slate-50 transition-colors"
+                    className="flex items-center gap-1.5 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-bold hover:bg-slate-50 shadow-sm transition-all active:scale-95"
                   >
                     <Edit size={14} /> {t('editProfile')}
                   </button>
@@ -205,20 +205,20 @@ const Profile = () => {
                   <button 
                     onClick={handleReport}
                     disabled={user.reportedBy?.includes(currentUser._id)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-colors ${user.reportedBy?.includes(currentUser._id) ? 'bg-red-50 text-red-400 cursor-not-allowed' : 'bg-white border border-red-100 text-red-500 hover:bg-red-50'}`}
+                    className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold shadow-sm transition-all active:scale-95 ${user.reportedBy?.includes(currentUser._id) ? 'bg-red-50 text-red-400 cursor-not-allowed' : 'bg-white border border-red-100 text-red-500 hover:bg-red-50'}`}
                   >
                     <AlertTriangle size={14} /> {user.reportedBy?.includes(currentUser._id) ? t('reported') : t('reportProfile')}
                   </button>
                 )}
-                <div className="bg-primary-50 text-primary-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                <div className="bg-primary-50 text-primary-700 px-4 py-2 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-widest flex items-center">
                   {user.role === 'worker' ? (t(user.serviceType) || t('worker')) : t(user.role)}
                 </div>
               </div>
             </div>
             
-            <div className={language === 'ur' ? 'text-right' : 'text-left'}>
-              <h1 className={`text-2xl font-bold text-dark mb-1 flex items-center gap-2 ${language === 'ur' ? 'flex-row-reverse justify-end' : ''}`}>
-                <span>
+            <div className={`${language === 'ur' ? 'text-center sm:text-right' : 'text-center sm:text-left'}`}>
+              <h1 className={`text-2xl sm:text-3xl font-black text-dark mb-2 flex items-center gap-2 ${language === 'ur' ? 'flex-row-reverse justify-center sm:justify-end' : 'justify-center sm:justify-start'}`}>
+                <span className={language === 'ur' ? 'font-urdu' : ''}>
                   {language === 'ur' ? (
                     user.urduName || 
                     (() => {
@@ -234,28 +234,28 @@ const Profile = () => {
                   <ShieldCheck size={20} className="text-emerald-500 shrink-0" title={t('verified')} />
                 )}
               </h1>
-              <div className="flex items-center gap-4 text-slate-500 text-sm mb-4">
-                <div className="flex items-center gap-1">
-                  <Star size={16} className={`text-accent-500 fill-accent-500 ${language === 'ur' ? 'mt-[7px]' : ''}`} />
-                  <span className="font-bold text-dark">{user.rating || '0'}</span>
-                  <span>({user.totalRatings || 0} {t('reviews')})</span>
+              <div className={`flex flex-wrap items-center justify-center sm:justify-start gap-x-6 gap-y-3 text-slate-500 text-sm mb-4 ${language === 'ur' ? 'sm:flex-row-reverse' : ''}`}>
+                <div className="flex items-center gap-1.5">
+                  <Star size={18} className={`text-accent-500 fill-accent-500 ${language === 'ur' ? 'mt-1' : ''}`} />
+                  <span className="font-black text-dark text-base">{user.rating || '0'}</span>
+                  <span className="text-slate-400">({user.totalRatings || 0} {t('reviews')})</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <Calendar size={16} className={language === 'ur' ? 'mt-[7px]' : ''} />
-                  <span>{t('joined')} {formatDate(user.createdAt)}</span>
+                <div className="flex items-center gap-1.5">
+                  <Calendar size={18} className={language === 'ur' ? 'mt-1' : 'text-primary-400'} />
+                  <span className="whitespace-nowrap">{t('joined')} {formatDate(user.createdAt)}</span>
                 </div>
                 {user.role === 'customer' ? (
-                  <div className="flex items-center gap-1">
-                    <Briefcase size={16} className={`text-secondary-500 ${language === 'ur' ? 'mt-[7px]' : ''}`} />
-                    <span className="font-bold text-dark">
-                      {t('spendingTotal')}: Rs.{formatCurrency(stats.totalSpending)}
+                  <div className="flex items-center gap-1.5">
+                    <Briefcase size={18} className={`text-secondary-500 ${language === 'ur' ? 'mt-1' : ''}`} />
+                    <span className="font-bold text-dark whitespace-nowrap">
+                      {t('spendingTotal')}: <span className="text-primary-600">Rs.{formatCurrency(stats.totalSpending)}</span>
                     </span>
                   </div>
                 ) : (
-                  <div className="flex items-center gap-1">
-                    <Briefcase size={16} className={`text-secondary-500 ${language === 'ur' ? 'mt-[7px]' : ''}`} />
-                    <span className="font-bold text-dark">
-                      {t('earningsTotal')}: Rs.{formatCurrency(stats.totalEarnings)}
+                  <div className="flex items-center gap-1.5">
+                    <Briefcase size={18} className={`text-secondary-500 ${language === 'ur' ? 'mt-1' : ''}`} />
+                    <span className="font-bold text-dark whitespace-nowrap">
+                      {t('earningsTotal')}: <span className="text-secondary-600">Rs.{formatCurrency(stats.totalEarnings)}</span>
                     </span>
                   </div>
                 )}
@@ -266,15 +266,15 @@ const Profile = () => {
 
         {/* Verification Guidance Alert */}
         {currentUser?._id === user._id && !user.isVerified && (
-          <div className={`bg-amber-50 border-2 border-amber-200 rounded-3xl p-6 mb-8 flex flex-col md:flex-row items-center gap-6 ${language === 'ur' ? 'md:flex-row-reverse' : ''}`}>
-            <div className="w-16 h-16 bg-amber-500 rounded-2xl flex items-center justify-center text-white shrink-0 shadow-lg animate-bounce">
-              <ShieldAlert size={32} />
+          <div className={`bg-amber-50 border-2 border-amber-200 rounded-3xl p-5 sm:p-6 mb-8 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 ${language === 'ur' ? 'sm:flex-row-reverse' : ''}`}>
+            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-amber-500 rounded-2xl flex items-center justify-center text-white shrink-0 shadow-lg animate-bounce sm:animate-none">
+              <ShieldAlert size={28} className="sm:w-8 sm:h-8" />
             </div>
-            <div className={`flex-1 text-center md:text-left ${language === 'ur' ? 'md:text-right' : ''}`}>
-              <h3 className="text-xl font-bold text-amber-800 mb-1">
+            <div className={`flex-1 text-center sm:text-left ${language === 'ur' ? 'sm:text-right' : ''}`}>
+              <h3 className="text-lg sm:text-xl font-bold text-amber-800 mb-1">
                 {language === 'ur' ? 'شناختی تصدیق مکمل کریں' : 'Verify Your Identity'}
               </h3>
-              <p className="text-amber-700 text-sm leading-relaxed">
+              <p className="text-amber-700 text-xs sm:text-sm leading-relaxed">
                 {language === 'ur' 
                   ? 'اپنے اکاؤنٹ کی مکمل سہولیات استعمال کرنے اور اعتماد بڑھانے کے لیے اپنی شناختی دستاویز (CNIC) اپ لوڈ کریں۔ نیچے دیے گئے "شناختی تصدیق" کارڈ پر جائیں اور اپنی تصویر اپ لوڈ کریں۔' 
                   : 'To enjoy full platform features and build trust, please upload your identity document (CNIC). Scroll down to the "Identity Verification" section below to upload your photo.'}
@@ -295,12 +295,12 @@ const Profile = () => {
                 <p className="text-slate-400 italic">{t('noReviewsYet')}</p>
               </div>
             ) : (
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {currentReviews.map((rev) => (
-                  <div key={rev._id} className="card p-6 border-l-4 border-l-primary-500 hover:shadow-lg transition-all duration-300">
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4">
+                  <div key={rev._id} className="card p-4 sm:p-6 border-l-4 border-l-primary-500 hover:shadow-lg transition-all duration-300">
+                    <div className="flex flex-col xs:flex-row justify-between items-start gap-4 mb-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 font-bold overflow-hidden border border-slate-200">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-slate-100 flex items-center justify-center text-slate-400 font-bold overflow-hidden border border-slate-200 shadow-sm">
                           {(() => {
                             const reviewer = rev.reviewerRole === 'customer' ? rev.customerId : rev.workerId?.userId;
                             return reviewer?.profilePic ? (
@@ -337,13 +337,13 @@ const Profile = () => {
                           </p>
                         </div>
                       </div>
-                      <div className="flex flex-col items-end gap-1">
+                      <div className="flex flex-row xs:flex-col items-center xs:items-end justify-between xs:justify-start w-full xs:w-auto gap-2">
                         <div className="flex gap-0.5 bg-slate-50 px-2.5 py-1 rounded-full border border-slate-100">
                           {[1, 2, 3, 4, 5].map((n) => (
-                            <Star key={n} size={12} className={`${n <= rev.rating ? 'text-accent-500 fill-accent-500' : 'text-slate-200'}`} />
+                            <Star key={n} size={10} className={`sm:w-[12px] sm:h-[12px] ${n <= rev.rating ? 'text-accent-500 fill-accent-500' : 'text-slate-200'}`} />
                           ))}
                         </div>
-                        <span className="text-[10px] text-slate-400">{formatDate(rev.createdAt)}</span>
+                        <span className="text-[10px] font-bold text-slate-300 tracking-tighter uppercase">{formatDate(rev.createdAt)}</span>
                       </div>
                     </div>
                     <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
@@ -376,52 +376,54 @@ const Profile = () => {
             )}
           </div>
 
-          {/* Right Column: Mini History */}
-          <div className={language === 'ur' ? 'text-right' : 'text-left'}>
-            <h2 className={`text-xl font-bold text-dark mb-6 flex items-center gap-2 ${language === 'ur' ? 'justify-start' : ''}`}>
-              <CheckCircle className={`text-secondary-500 ${language === 'ur' ? 'mt-[10px]' : ''}`} /> {t('recentJobs')}
-            </h2>
-            <div className="space-y-3">
-              {bookings.slice(0, 5).map((job) => (
-                <div key={job._id} className="card p-4 border-l-4 border-l-secondary-500 text-sm">
-                  <h3 className="font-bold text-dark mb-1 truncate">{job.title}</h3>
-                  <div className="flex items-center gap-2 text-[10px] text-slate-400">
-                    <Calendar size={10} /> {formatDate(job.completedAt)}
+          {/* Right Column: Mini History & Verification */}
+          <div className={`space-y-8 ${language === 'ur' ? 'text-right' : 'text-left'}`}>
+            <section>
+              <h2 className={`text-xl font-bold text-dark mb-6 flex items-center gap-2 ${language === 'ur' ? 'justify-start' : ''}`}>
+                <CheckCircle className={`text-secondary-500 ${language === 'ur' ? 'mt-1' : ''}`} /> {t('recentJobs')}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
+                {bookings.slice(0, 5).map((job) => (
+                  <div key={job._id} className="card p-4 border-l-4 border-l-secondary-500 text-sm hover:bg-slate-50 transition-colors shadow-sm">
+                    <h3 className="font-bold text-dark mb-1 truncate">{job.title}</h3>
+                    <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
+                      <Calendar size={12} /> {formatDate(job.completedAt)}
+                    </div>
                   </div>
-                </div>
-              ))}
-              {bookings.length === 0 && (
-                <p className="text-xs text-slate-400 italic">{t('noJobHistory')}</p>
-              )}
-            </div>
+                ))}
+                {bookings.length === 0 && (
+                  <p className="text-xs text-slate-400 italic bg-slate-50 p-4 rounded-xl border border-dashed border-slate-200">{t('noJobHistory')}</p>
+                )}
+              </div>
+            </section>
 
             {/* Identity Verification Section (Only for own profile) */}
             {(currentUser?._id === user._id || currentUser?.slug === id) && (
-              <div className={`mt-8 ${language === 'ur' ? 'text-right' : 'text-left'}`}>
+              <section className={language === 'ur' ? 'text-right' : 'text-left'}>
                 <h2 className={`text-xl font-bold text-dark mb-6 flex items-center gap-2 ${language === 'ur' ? 'justify-start' : ''}`}>
-                  <ShieldCheck className={`text-emerald-500 ${language === 'ur' ? 'mt-[10px]' : ''}`} /> {t('identityVerification')}
+                  <ShieldCheck className={`text-emerald-500 ${language === 'ur' ? 'mt-1' : ''}`} /> {t('identityVerification')}
                 </h2>
-                <div className={`card p-6 border-t-4 ${currentUser?.requiresVerification ? 'border-t-red-500 bg-red-50/30 animate-pulse' : 'border-t-emerald-500'}`}>
+                <div className={`card p-5 sm:p-6 border-t-4 shadow-md ${currentUser?.requiresVerification ? 'border-t-red-500 bg-red-50/10' : 'border-t-emerald-500'}`}>
                   {currentUser?.requiresVerification && !user.isVerified && (
-                    <div className="flex items-center gap-2 text-red-600 font-bold text-sm mb-4">
+                    <div className="flex items-center gap-2 text-red-600 font-black text-xs sm:text-sm mb-4 bg-red-50 p-2 rounded-lg border border-red-100">
                       <ShieldAlert size={18} />
-                      {language === 'ur' ? 'کاروائی جاری رکھنے کے لیے تصدیق ضروری ہے' : 'Action Required: Verification Mandatory'}
+                      {language === 'ur' ? 'کاروائی جاری رکھنے کے لیے تصدیق ضروری ہے' : 'VERIFICATION MANDATORY'}
                     </div>
                   )}
                   {user.isVerified ? (
-                    <div className="flex items-center gap-3 text-emerald-600">
-                      <CheckCircle size={24} />
-                      <span className="font-bold">{t('verified')}</span>
+                    <div className="flex items-center gap-3 text-emerald-600 bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
+                      <CheckCircle size={28} />
+                      <span className="font-black text-lg">{t('verified')}</span>
                     </div>
                   ) : user.verificationStatus === 'pending' ? (
                     <div className="space-y-3 bg-amber-50 p-5 rounded-2xl border border-amber-100">
                       <div className="flex items-center gap-3 text-amber-600">
                         <Clock size={28} className="animate-pulse" />
                         <span className="font-bold text-lg">
-                          {language === 'ur' ? 'شناختی تصدیق جاری ہے' : 'Verification in Progress'}
+                          {language === 'ur' ? 'شناختی تصدیق جاری ہے' : 'In Progress'}
                         </span>
                       </div>
-                      <p className="text-sm text-amber-800 leading-relaxed font-medium">
+                      <p className="text-xs sm:text-sm text-amber-800 leading-relaxed font-medium">
                         {language === 'ur' 
                           ? 'آپ کی شناختی دستاویز (CNIC) جمع کرانے کے لیے شکریہ۔ براہ کرم منظوری کے لیے 24 سے 48 گھنٹے انتظار کریں۔' 
                           : 'Thank you for submitting your ID. Please wait 24 to 48 hours for approval. Our team is reviewing your submission.'}
@@ -430,14 +432,14 @@ const Profile = () => {
                   ) : (
                     <div className="space-y-4">
                       {user.verificationStatus === 'rejected' && (
-                        <div className="bg-red-50 p-3 rounded-xl border border-red-100 mb-4">
+                        <div className="bg-red-50 p-4 rounded-2xl border border-red-100 mb-4">
                           <div className="flex items-center gap-2 text-red-600 font-bold text-sm mb-1">
                             <ShieldAlert size={16} /> {t('verificationRejected')}
                           </div>
-                          <p className="text-xs text-red-500">{t('verificationRejectedReason')} {user.verificationNote}</p>
+                          <p className="text-xs text-red-500 leading-relaxed font-medium">{t('verificationRejectedReason')} {user.verificationNote}</p>
                         </div>
                       )}
-                      <p className="text-sm text-slate-500">{t('verifyIdentityDesc')}</p>
+                      <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">{t('verifyIdentityDesc')}</p>
                       
                       <form onSubmit={handleVerificationSubmit} className="space-y-4">
                         <div className="space-y-4">
@@ -449,20 +451,23 @@ const Profile = () => {
                               className="hidden" 
                               id="cnic-upload" 
                             />
-                            <label htmlFor="cnic-upload" className="w-full btn-outline py-3 text-sm cursor-pointer flex items-center justify-center gap-2 border-2 border-dashed border-slate-300 hover:border-primary-400 hover:bg-primary-50 transition-all">
-                              <Upload size={18} className="text-primary-500" /> {t('uploadCNIC')}
+                            <label htmlFor="cnic-upload" className="w-full btn-outline py-4 text-xs sm:text-sm cursor-pointer flex flex-col items-center justify-center gap-2 border-2 border-dashed border-slate-300 hover:border-primary-400 hover:bg-primary-50 transition-all rounded-2xl">
+                              <div className="w-10 h-10 bg-primary-50 rounded-full flex items-center justify-center">
+                                <Upload size={20} className="text-primary-500" />
+                              </div>
+                              <span className="font-bold">{t('uploadCNIC')}</span>
                             </label>
                           </div>
                           
                           {cnicPreview && (
                             <div className="space-y-2 animate-fade-in">
-                              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t('preview')}</p>
+                              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">{t('preview')}</p>
                               <div className="w-full h-48 rounded-2xl bg-slate-100 overflow-hidden border-2 border-slate-200 shadow-inner relative group">
                                 <img src={cnicPreview} alt="CNIC Preview" className="w-full h-full object-contain" />
                                 <button 
                                   type="button" 
                                   onClick={() => setCnicPreview('')}
-                                  className="absolute top-2 right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                                  className="absolute top-2 right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-red-600 transition-colors"
                                 >
                                   <X size={14} />
                                 </button>
@@ -474,16 +479,16 @@ const Profile = () => {
                           <button 
                             type="submit" 
                             disabled={verifying}
-                            className="w-full btn-primary py-2.5 flex items-center justify-center gap-2"
+                            className="w-full btn-primary py-3.5 flex items-center justify-center gap-2 shadow-lg shadow-primary-100"
                           >
-                            {verifying ? <Loader2 size={18} className="animate-spin" /> : t('submitForVerification')}
+                            {verifying ? <Loader2 size={20} className="animate-spin" /> : <><ShieldCheck size={20}/> {t('submitForVerification')}</>}
                           </button>
                         )}
                       </form>
                     </div>
                   )}
                 </div>
-              </div>
+              </section>
             )}
           </div>
         </div>
@@ -492,7 +497,7 @@ const Profile = () => {
       {/* Edit Profile Modal */}
       {editModal && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden animate-slide-up">
+          <div className="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden animate-slide-up max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-slate-100 flex items-center justify-between">
               <h2 className="text-xl font-bold text-dark">{t('editProfile')}</h2>
               <button onClick={() => setEditModal(false)} className="p-2 hover:bg-slate-50 rounded-full text-slate-400">
