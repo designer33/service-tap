@@ -26,6 +26,7 @@ git pull origin main >> $LOG_FILE 2>&1
 # Copy pre-built files to server's public folder
 echo "Updating public folder from client/dist..." >> $LOG_FILE
 cp -r client/dist/* public/ >> $LOG_FILE 2>&1
+cp -r client/public/* public/ >> $LOG_FILE 2>&1
 
 echo "Deployment finished at: $(date)" >> $LOG_FILE
 echo "------------------------------------------" >> $LOG_FILE
