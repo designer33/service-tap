@@ -118,7 +118,7 @@ const Home = () => {
               {/* Main image */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10">
                 <img
-                  src="/favicon.png"
+                  src="/hero-worker.jpg"
                   alt="Professional home service worker"
                   className="w-full h-[420px] object-cover object-center"
                 />
