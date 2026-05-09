@@ -199,8 +199,8 @@ const Home = () => {
             <p className="section-subtitle max-w-xl mx-auto">{t('servicesSubtitle')}</p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-9 gap-4 max-w-6xl mx-auto">
-            {services.map(({ emoji, icon: Icon, label, color, bg, text, border }) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-4 max-w-5xl mx-auto">
+            {services.slice(0, 6).map(({ emoji, icon: Icon, label, color, bg, text, border }) => (
               <Link to="/register" key={label}
                 className={`group card border ${border} flex flex-col items-center text-center py-6 px-3 hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}>
                 {/* Gradient icon circle */}
