@@ -54,7 +54,7 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Service Knock API is running 🚀' });
+  res.json({ status: 'ok', version: '1.0.5', message: 'Service Knock API is running 🚀' });
 });
 
 // API Routes
