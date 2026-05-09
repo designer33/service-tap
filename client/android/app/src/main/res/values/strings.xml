@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ServiceTap</string>
+    <string name="title_activity_main">ServiceTap</string>
+    <string name="package_name">com.serviceknock.app</string>
+    <string name="custom_url_scheme">com.serviceknock.app</string>
+</resources>

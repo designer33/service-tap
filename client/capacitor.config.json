@@ -1,0 +1,9 @@
+{
+  "appId": "com.serviceknock.app",
+  "appName": "ServiceTap",
+  "webDir": "dist",
+  "server": {
+    "cleartext": true,
+    "allowNavigation": ["192.168.1.5:5000"]
+  }
+}
