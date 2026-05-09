@@ -132,21 +132,16 @@ const register = async (req, res, next) => {
 // =============================================================
 const login = async (req, res, next) => {
   try {
-    const schema = Joi.object({
-      email: Joi.string().required().messages({
-        'any.required': 'Identifier is required (v2)',
-        'string.empty': 'Identifier cannot be empty (v2)'
-      }),
-      password: Joi.string().required(),
-    });
-
-    const { error, value } = schema.validate(req.body);
-    if (error) return res.status(400).json({ message: error.details[0].message });
+    const { email, password } = req.body;
+    
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Email/Phone and password are required' });
+    }
 
     const user = await User.findOne({ 
       $or: [
-        { email: value.email.toLowerCase() },
-        { phone: value.email }
+        { email: email.toLowerCase() },
+        { phone: email }
       ]
     }).select('+password +profilePic');
 
