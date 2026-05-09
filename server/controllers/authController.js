@@ -133,16 +133,25 @@ const register = async (req, res, next) => {
 const login = async (req, res, next) => {
   try {
     const schema = Joi.object({
-      email: Joi.string().email().required(),
+      email: Joi.string().required().messages({
+        'any.required': 'Identifier is required (v2)',
+        'string.empty': 'Identifier cannot be empty (v2)'
+      }),
       password: Joi.string().required(),
     });
 
     const { error, value } = schema.validate(req.body);
     if (error) return res.status(400).json({ message: error.details[0].message });
 
-    const user = await User.findOne({ email: value.email }).select('+password +profilePic');
+    const user = await User.findOne({ 
+      $or: [
+        { email: value.email.toLowerCase() },
+        { phone: value.email }
+      ]
+    }).select('+password +profilePic');
+
     if (!user || !(await user.matchPassword(value.password))) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+      return res.status(401).json({ message: 'Invalid email/phone or password' });
     }
 
     let serviceTypes = [];
