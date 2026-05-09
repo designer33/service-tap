@@ -23,6 +23,20 @@ const Profile = () => {
   const [cnicPreview, setCnicPreview] = useState(null);
   const [imageToCrop, setImageToCrop] = useState(null);
   const reviewsPerPage = 5;
+  const [resetting, setResetting] = useState(false);
+
+  const handleResetPassword = async () => {
+    if (!currentUser?.email) return;
+    setResetting(true);
+    try {
+      await api.post('/auth/forgot-password', { email: currentUser.email });
+      toast.success(language === 'ur' ? 'پاس ورڈ ری سیٹ لنک ای میل کر دیا گیا ہے۔' : 'Password reset link sent to your email!');
+    } catch (err) {
+      toast.error(err.response?.data?.message || t('actionFailed'));
+    } finally {
+      setResetting(false);
+    }
+  };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -194,12 +208,22 @@ const Profile = () => {
               </div>
               <div className="flex flex-wrap justify-center sm:justify-end gap-2 mb-2">
                 {(currentUser?._id === data?.user?._id || currentUser?.slug === id) && (
-                  <button 
-                    onClick={() => setEditModal(true)}
-                    className="flex items-center gap-1.5 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-bold hover:bg-slate-50 shadow-sm transition-all active:scale-95"
-                  >
-                    <Edit size={14} /> {t('editProfile')}
-                  </button>
+                  <>
+                    <button 
+                      onClick={() => setEditModal(true)}
+                      className="flex items-center gap-1.5 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-bold hover:bg-slate-50 shadow-sm transition-all active:scale-95"
+                    >
+                      <Edit size={14} /> {t('editProfile')}
+                    </button>
+                    <button 
+                      onClick={handleResetPassword}
+                      disabled={resetting}
+                      className="flex items-center gap-1.5 bg-white border border-slate-200 text-primary-600 px-4 py-2 rounded-full text-xs font-bold hover:bg-slate-50 shadow-sm transition-all active:scale-95"
+                    >
+                      {resetting ? <Loader2 size={14} className="animate-spin" /> : <Lock size={14} />} 
+                      {language === 'ur' ? 'پاس ورڈ ری سیٹ' : 'Reset Password'}
+                    </button>
+                  </>
                 )}
                 {currentUser && currentUser._id !== user._id && (
                   <button 

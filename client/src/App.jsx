@@ -15,6 +15,8 @@ import TermsAndConditions from './pages/public/TermsAndConditions';
 import FAQs from './pages/public/FAQs';
 import Blog from './pages/public/Blog';
 import Welcome from './pages/public/Welcome';
+import ForgotPassword from './pages/public/ForgotPassword';
+import ResetPassword from './pages/public/ResetPassword';
 
 // Customer pages
 import BookService from './pages/customer/BookService';
@@ -98,6 +100,8 @@ const AppRoutes = () => {
             path="/register"
             element={user ? <Navigate to={getDashboard(user.role)} replace /> : <Register />}
           />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/profile/:id" element={<Profile />} />
 
           {/* Customer */}

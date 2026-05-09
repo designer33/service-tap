@@ -71,6 +71,12 @@ const Login = () => {
                   {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
+              <div className={`mt-2 ${language === 'ur' ? 'text-right' : 'text-right'}`}>
+                <Link to="/forgot-password" title="reset password"
+                  className="text-xs font-semibold text-primary-600 hover:text-primary-700 hover:underline">
+                  {language === 'ur' ? 'پاس ورڈ بھول گئے؟' : 'Forgot Password?'}
+                </Link>
+              </div>
             </div>
 
             <button id="login-submit" type="submit" disabled={loading} className="btn-primary w-full py-3 text-base">
