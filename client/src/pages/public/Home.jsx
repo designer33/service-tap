@@ -118,7 +118,7 @@ const Home = () => {
               {/* Main image */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10">
                 <img
-                  src="https://images.unsplash.com/photo-1581578731522-745d05ad9a2d?auto=format&fit=crop&w=800&q=80"
+                  src="https://placehold.co/800x420/003366/white?text=Professional+Service+Worker"
                   alt="Professional home service worker"
                   className="w-full h-[420px] object-cover object-center"
                 />
