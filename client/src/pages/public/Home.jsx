@@ -27,9 +27,6 @@ const Home = () => {
     { emoji: '🔨', icon: Hammer,    label: t('carpenter'),      color: 'from-orange-400 to-red-500',    bg: 'bg-orange-50',  text: 'text-orange-600', border: 'border-orange-100' },
     { emoji: '🎨', icon: Paintbrush,label: t('painter'),        color: 'from-pink-400 to-rose-500',     bg: 'bg-pink-50',    text: 'text-pink-600',   border: 'border-pink-100' },
     { emoji: '🧱', icon: Building2, label: t('mason'),          color: 'from-slate-400 to-slate-600',   bg: 'bg-slate-50',   text: 'text-slate-600',  border: 'border-slate-200' },
-    { emoji: '🏗️', icon: HardHat,  label: t('steel_fixer'),    color: 'from-gray-500 to-gray-700',     bg: 'bg-gray-50',    text: 'text-gray-600',   border: 'border-gray-100' },
-    { emoji: '👷', icon: Users,     label: t('labour'),         color: 'from-teal-400 to-teal-600',     bg: 'bg-teal-50',    text: 'text-teal-600',   border: 'border-teal-100' },
-    { emoji: '🟦', icon: Layers,    label: t('tile_fixer'),     color: 'from-indigo-400 to-violet-600', bg: 'bg-indigo-50',  text: 'text-indigo-600', border: 'border-indigo-100' },
   ];
 
   const steps = [
@@ -199,7 +196,7 @@ const Home = () => {
             <p className="section-subtitle max-w-xl mx-auto">{t('servicesSubtitle')}</p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-9 gap-4 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-6xl mx-auto">
             {services.map(({ emoji, icon: Icon, label, color, bg, text, border }) => (
               <Link to="/register" key={label}
                 className={`group card border ${border} flex flex-col items-center text-center py-6 px-3 hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}>
