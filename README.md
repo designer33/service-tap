@@ -23,7 +23,7 @@ cd server
 npm install
 cp .env.example .env
 # Fill in your MONGODB_URI and JWT_SECRET in .env
-npm run seed      # Creates admin@serviceknock.com / Admin@1234
+npm run seed      # Creates initial admin user
 npm run dev       # Starts on http://localhost:5000
 ```
 
@@ -36,14 +36,6 @@ npm run dev       # Starts on http://localhost:5173
 ```
 
 ---
-
-## Default Credentials
-
-| Role  | Email                    | Password    |
-|-------|--------------------------|-------------|
-| Admin | admin@serviceknock.com     | Admin@1234  |
-
-Register new accounts for customer and worker roles.
 
 ---
 

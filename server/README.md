@@ -18,7 +18,6 @@
    ```bash
    npm run seed
    ```
-   Default credentials: `admin@serviceknock.com` / `Admin@1234`
 
 4. Start the dev server:
    ```bash
