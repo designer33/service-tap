@@ -5,7 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 
 const MobileNav = () => {
   const { user } = useAuth();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const location = useLocation();
 
   if (!user) return null;

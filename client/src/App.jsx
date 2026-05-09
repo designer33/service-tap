@@ -14,6 +14,7 @@ import PrivacyPolicy from './pages/public/PrivacyPolicy';
 import TermsAndConditions from './pages/public/TermsAndConditions';
 import FAQs from './pages/public/FAQs';
 import Blog from './pages/public/Blog';
+import Welcome from './pages/public/Welcome';
 
 // Customer pages
 import BookService from './pages/customer/BookService';
@@ -81,7 +82,7 @@ const AppRoutes = () => {
       <main className="flex-1">
         <Routes>
           {/* Public */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={user ? <Navigate to={getDashboard(user.role)} replace /> : (isNative ? <Welcome /> : <Home />)} />
           <Route path="/services" element={<Services />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<ContactUs />} />

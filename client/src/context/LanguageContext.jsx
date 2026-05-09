@@ -237,8 +237,8 @@ const translations = {
     fullName: 'Full Name',
     phone: 'Phone Number',
     registerAs: 'Register As',
-    alreadyHaveAccount: 'Already have an account?',
-    dontHaveAccount: 'Don\'t have an account?',
+    alreadyHaveAccount: 'Already have an account? Sign In',
+    dontHaveAccount: "Don't have an account?",
     forgotPassword: 'Forgot Password?',
     
     // Common
@@ -451,6 +451,9 @@ const translations = {
     resubmitID: 'Resubmit ID',
     submitForVerification: 'Submit for Verification',
     verificationSuccess: 'Verification submitted successfully!',
+    cropProfilePicture: 'Crop Profile Picture',
+    reset: 'Reset',
+    apply: 'Apply',
   },
   ur: {
     // Navbar
@@ -706,7 +709,7 @@ const translations = {
     fullName: 'پورا نام',
     phone: 'فون نمبر',
     registerAs: 'بطور رجسٹر ہوں',
-    alreadyHaveAccount: 'پہلے سے اکاؤنٹ ہے؟',
+    alreadyHaveAccount: 'پہلے سے اکاؤنٹ ہے؟ لاگ ان کریں',
     dontHaveAccount: 'اکاؤنٹ نہیں ہے؟',
     forgotPassword: 'پاس ورڈ بھول گئے؟',
     

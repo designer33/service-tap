@@ -22,7 +22,12 @@ api.interceptors.response.use(
     if (error.response?.status === 401 && !error.config.url.includes('/auth/login')) {
       localStorage.removeItem('st_token');
       localStorage.removeItem('st_user');
-      window.location.href = '/login?expired=true';
+      // Use hash-based navigation for Capacitor/Mobile compatibility to avoid white screen
+      if (window.location.pathname.includes('index.html') || window.location.hash) {
+        window.location.hash = '#/login?expired=true';
+      } else {
+        window.location.href = '/login?expired=true';
+      }
     }
     return Promise.reject(error);
   }
