@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../api/axios';
 import toast from 'react-hot-toast';
-import { User, Mail, Phone, Lock, Eye, EyeOff, Wrench, Fingerprint, Camera, AlertCircle, ShieldAlert, MapPin } from 'lucide-react';
+import { User, Mail, Phone, Lock, Eye, EyeOff, Wrench, Fingerprint, Camera, AlertCircle, ShieldAlert, MapPin, CheckCircle } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import ImageCropModal from '../../components/ImageCropModal';
 
