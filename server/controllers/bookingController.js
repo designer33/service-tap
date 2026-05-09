@@ -109,7 +109,7 @@ const createBooking = async (req, res, next) => {
       const matchingUserIds = matchingUsers.map(u => u._id);
 
       const workers = await Worker.find({ 
-        serviceType: value.serviceType,
+        serviceTypes: value.serviceType,
         userId: { $in: matchingUserIds }
       });
       
@@ -208,7 +208,7 @@ const getMyBookings = async (req, res, next) => {
   try {
     const bookings = await Booking.find({ customerId: req.user._id })
       .select('+media')
-      .populate('workerId', 'serviceType rating verified')
+      .populate('workerId', 'serviceTypes rating verified')
       .populate({
         path: 'workerId',
         populate: { path: 'userId', select: 'name phone slug urduName' },
@@ -386,7 +386,7 @@ const getAvailableJobs = async (req, res, next) => {
     
     const bookings = await Booking.find({
       status: 'pending',
-      serviceType: worker.serviceType,
+      serviceType: { $in: worker.serviceTypes },
       city: user.city, // Only show jobs in the same city as the worker
       _id: { $nin: offeredBookingIds }, 
     })
@@ -398,7 +398,7 @@ const getAvailableJobs = async (req, res, next) => {
     // Get counts for all tabs (also filtered by city)
     const [counts, stats] = await Promise.all([
       (async () => ({
-        available: await Booking.countDocuments({ status: 'pending', serviceType: worker.serviceType, city: user.city, _id: { $nin: offeredBookingIds } }),
+        available: await Booking.countDocuments({ status: 'pending', serviceType: { $in: worker.serviceTypes }, city: user.city, _id: { $nin: offeredBookingIds } }),
         offers: await Offer.countDocuments({ workerId: worker._id, status: 'pending' }),
         active: await Booking.countDocuments({ workerId: worker._id, status: 'accepted' }),
         completed: await Booking.countDocuments({ workerId: worker._id, status: 'completed' }),
@@ -436,7 +436,7 @@ const getMyOffers = async (req, res, next) => {
     const offeredBookingIds = await Offer.find({ workerId: worker._id }).distinct('bookingId');
     const user = await User.findById(req.user._id).select('city');
     const counts = {
-      available: await Booking.countDocuments({ status: 'pending', serviceType: worker.serviceType, city: user.city, _id: { $nin: offeredBookingIds } }),
+      available: await Booking.countDocuments({ status: 'pending', serviceType: { $in: worker.serviceTypes }, city: user.city, _id: { $nin: offeredBookingIds } }),
       offers: await Offer.countDocuments({ workerId: worker._id, status: 'pending' }),
       active: await Booking.countDocuments({ workerId: worker._id, status: 'accepted' }),
       completed: await Booking.countDocuments({ workerId: worker._id, status: 'completed' }),
@@ -470,7 +470,7 @@ const getActiveJobs = async (req, res, next) => {
     const offeredBookingIds = await Offer.find({ workerId: worker._id }).distinct('bookingId');
     const user = await User.findById(req.user._id).select('city');
     const counts = {
-      available: await Booking.countDocuments({ status: 'pending', serviceType: worker.serviceType, city: user.city, _id: { $nin: offeredBookingIds } }),
+      available: await Booking.countDocuments({ status: 'pending', serviceType: { $in: worker.serviceTypes }, city: user.city, _id: { $nin: offeredBookingIds } }),
       offers: await Offer.countDocuments({ workerId: worker._id, status: 'pending' }),
       active: await Booking.countDocuments({ workerId: worker._id, status: 'accepted' }),
       completed: await Booking.countDocuments({ workerId: worker._id, status: 'completed' }),
@@ -653,7 +653,7 @@ const getCompletedJobs = async (req, res, next) => {
     // Get counts for all tabs
     const offeredBookingIds = await Offer.find({ workerId: worker._id }).distinct('bookingId');
     const counts = {
-      available: await Booking.countDocuments({ status: 'pending', serviceType: worker.serviceType, _id: { $nin: offeredBookingIds } }),
+      available: await Booking.countDocuments({ status: 'pending', serviceType: { $in: worker.serviceTypes }, _id: { $nin: offeredBookingIds } }),
       offers: await Offer.countDocuments({ workerId: worker._id, status: 'pending' }),
       active: await Booking.countDocuments({ workerId: worker._id, status: 'accepted' }),
       completed: await Booking.countDocuments({ workerId: worker._id, status: 'completed' }),
@@ -698,7 +698,8 @@ const getProfileDetails = async (req, res, next) => {
       const worker = await Worker.findOne({ userId: user._id });
       userObj.rating = worker?.rating || 0;
       userObj.totalRatings = worker?.totalRatings || 0;
-      userObj.serviceType = worker?.serviceType;
+      userObj.serviceTypes = worker?.serviceTypes || [];
+      userObj.serviceType = userObj.serviceTypes[0] || null;
 
       bookings = await Booking.find({ workerId: worker?._id, status: 'completed' })
         .select('title completedAt priceEstimate customerId +media')

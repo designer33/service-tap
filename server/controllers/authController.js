@@ -33,11 +33,11 @@ const register = async (req, res, next) => {
       role: Joi.string().valid('customer', 'worker').default('customer'),
       profilePic: Joi.string().optional(),
       // Worker-specific fields (optional)
-      serviceType: Joi.string().valid(
+      serviceTypes: Joi.array().items(Joi.string().valid(
         'electrician', 'plumber', 'ac_fridge_repair',
         'carpenter', 'painter', 'mason',
         'steel_fixer', 'labour', 'tile_fixer'
-      ).when('role', {
+      )).min(1).max(2).when('role', {
         is: 'worker',
         then: Joi.required(),
         otherwise: Joi.optional(),
@@ -85,7 +85,7 @@ const register = async (req, res, next) => {
     if (value.role === 'worker') {
       await Worker.create({
         userId: user._id,
-        serviceType: value.serviceType,
+        serviceTypes: value.serviceTypes,
         experience: value.experience || 0,
       });
     }
@@ -95,7 +95,7 @@ const register = async (req, res, next) => {
     // Send email notifications (non-blocking)
     try {
       if (value.role === 'worker') {
-        await sendEmail(templates.workerRegistered({ ...value, serviceType: value.serviceType }));
+        await sendEmail(templates.workerRegistered({ ...value, serviceType: value.serviceTypes.join(', ') }));
       } else {
         await sendEmail(templates.customerRegistered(value));
       }
@@ -113,7 +113,8 @@ const register = async (req, res, next) => {
         profilePic: user.profilePic,
         urduName: user.urduName,
         slug: user.slug,
-        serviceType: value.role === 'worker' ? value.serviceType : null,
+        serviceType: value.role === 'worker' ? value.serviceTypes[0] : null,
+        serviceTypes: value.role === 'worker' ? value.serviceTypes : [],
         isVerified: user.isVerified,
         verificationStatus: user.verificationStatus,
         requiresProfilePic: !user.profilePic,
@@ -144,10 +145,12 @@ const login = async (req, res, next) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
+    let serviceTypes = [];
     let serviceType = null;
     if (user.role === 'worker') {
       const profile = await Worker.findOne({ userId: user._id });
-      serviceType = profile?.serviceType;
+      serviceTypes = profile?.serviceTypes || [];
+      serviceType = serviceTypes[0] || null;
     }
 
     const token = generateToken(user._id);
@@ -165,6 +168,7 @@ const login = async (req, res, next) => {
         urduName: user.urduName,
         slug: user.slug,
         serviceType,
+        serviceTypes,
         isVerified: user.isVerified,
         verificationStatus: user.verificationStatus,
         requiresProfilePic: !user.profilePic,
@@ -187,7 +191,8 @@ const getMe = async (req, res, next) => {
 
     if (user.role === 'worker') {
       workerProfile = await Worker.findOne({ userId: user._id });
-      user.serviceType = workerProfile?.serviceType;
+      user.serviceTypes = workerProfile?.serviceTypes || [];
+      user.serviceType = user.serviceTypes[0] || null;
     }
 
     // Logic for mandatory verification - Block all until verified
@@ -205,6 +210,7 @@ const getMe = async (req, res, next) => {
         urduName: user.urduName,
         slug: user.slug,
         serviceType: user.serviceType,
+        serviceTypes: user.serviceTypes,
         isVerified: user.isVerified,
         verificationStatus: user.verificationStatus,
         verificationNote: user.verificationNote,

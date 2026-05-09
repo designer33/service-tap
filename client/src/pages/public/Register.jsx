@@ -13,7 +13,7 @@ const Register = () => {
   const { t, language } = useLanguage();
   const [form, setForm] = useState({
     name: '', phone: '', cnic: '', email: '', password: '',
-    role: 'customer', serviceType: 'electrician', experience: '',
+    role: 'customer', serviceTypes: [], experience: '',
     profilePic: '',
     address: '', city: '', state: '', zipCode: '', country: 'Pakistan',
   });
@@ -45,7 +45,21 @@ const Register = () => {
     setLoading(true);
     try {
       const payload = { ...form };
-      if (form.role !== 'worker') { delete payload.serviceType; delete payload.experience; }
+      if (form.role === 'worker') {
+        if (form.serviceTypes.length === 0) {
+          toast.error(language === 'ur' ? 'براہ کرم کم از کم ایک سروس منتخب کریں۔' : 'Please select at least 1 service.');
+          setLoading(false);
+          return;
+        }
+        if (form.serviceTypes.length > 2) {
+          toast.error(language === 'ur' ? 'آپ زیادہ سے زیادہ 2 سروسز منتخب کر سکتے ہیں۔' : 'You can select a maximum of 2 services.');
+          setLoading(false);
+          return;
+        }
+      } else {
+        delete payload.serviceTypes;
+        delete payload.experience;
+      }
       const { data } = await api.post('/auth/register', payload);
       login(data.user, data.token);
       toast.success(language === 'ur' ? `اکاؤنٹ بن گیا! خوش آمدید، ${data.user.name}!` : `Account created! Welcome, ${data.user.name}!`);
@@ -236,20 +250,50 @@ const Register = () => {
                 <p className="text-xs font-semibold text-secondary-700 flex items-center gap-1.5">
                   <Wrench size={13} /> {language === 'ur' ? 'ورکر کی تفصیلات' : 'Worker Details'}
                 </p>
-                <div>
-                  <label className={`form-label ${language === 'en' ? 'uppercase tracking-wide text-[11px]' : ''}`} htmlFor="reg-service">{language === 'ur' ? 'سروس کی قسم' : 'Service Type'}</label>
-                  <select id="reg-service" name="serviceType" value={form.serviceType}
-                    onChange={handleChange} className="form-select">
-                    <option value="electrician">{t('electrician')}</option>
-                    <option value="plumber">{t('plumber')}</option>
-                    <option value="ac_fridge_repair">{t('ac_fridge_repair')}</option>
-                    <option value="carpenter">{t('carpenter')}</option>
-                    <option value="painter">{t('painter')}</option>
-                    <option value="mason">{t('mason')}</option>
-                    <option value="steel_fixer">{t('steel_fixer')}</option>
-                    <option value="labour">{t('labour')}</option>
-                    <option value="tile_fixer">{t('tile_fixer')}</option>
-                  </select>
+                <div className="space-y-3">
+                  <label className={`form-label ${language === 'en' ? 'uppercase tracking-wide text-[11px]' : ''}`}>
+                    {language === 'ur' ? 'سروسز منتخب کریں (زیادہ سے زیادہ 2)' : 'Select Services (Max 2)'}
+                  </label>
+                  <div className="grid grid-cols-2 gap-2">
+                    {[
+                      { id: 'electrician', label: t('electrician') },
+                      { id: 'plumber', label: t('plumber') },
+                      { id: 'ac_fridge_repair', label: t('ac_fridge_repair') },
+                      { id: 'carpenter', label: t('carpenter') },
+                      { id: 'painter', label: t('painter') },
+                      { id: 'mason', label: t('mason') },
+                      { id: 'steel_fixer', label: t('steel_fixer') },
+                      { id: 'labour', label: t('labour') },
+                      { id: 'tile_fixer', label: t('tile_fixer') },
+                    ].map((service) => {
+                      const isSelected = form.serviceTypes.includes(service.id);
+                      return (
+                        <button
+                          key={service.id}
+                          type="button"
+                          onClick={() => {
+                            if (isSelected) {
+                              setForm({ ...form, serviceTypes: form.serviceTypes.filter(s => s !== service.id) });
+                            } else if (form.serviceTypes.length < 2) {
+                              setForm({ ...form, serviceTypes: [...form.serviceTypes, service.id] });
+                            } else {
+                              toast.error(language === 'ur' ? 'آپ صرف 2 سروسز منتخب کر سکتے ہیں۔' : 'You can only select up to 2 services.');
+                            }
+                          }}
+                          className={`flex items-center gap-2 px-3 py-2.5 rounded-xl border-2 transition-all text-xs font-bold text-left ${
+                            isSelected 
+                              ? 'border-secondary-500 bg-secondary-50 text-secondary-700' 
+                              : 'border-slate-100 bg-white text-slate-500 hover:border-slate-200'
+                          }`}
+                        >
+                          <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${isSelected ? 'border-secondary-500 bg-secondary-500' : 'border-slate-300'}`}>
+                            {isSelected && <CheckCircle size={10} className="text-white" />}
+                          </div>
+                          {service.label}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
                 <div>
                   <label className={`form-label ${language === 'en' ? 'uppercase tracking-wide text-[11px]' : ''}`} htmlFor="reg-exp">{language === 'ur' ? 'تجربہ (سال)' : 'Years of Experience'}</label>

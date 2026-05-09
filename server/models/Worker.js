@@ -8,9 +8,15 @@ const workerSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    serviceType: {
-      type: String,
+    serviceTypes: {
+      type: [String],
       enum: ['electrician', 'plumber', 'ac_fridge_repair', 'carpenter', 'painter', 'mason', 'steel_fixer', 'labour', 'tile_fixer'],
+      validate: {
+        validator: function(v) {
+          return v && v.length >= 1 && v.length <= 2;
+        },
+        message: 'A worker must have at least 1 and at most 2 service types.'
+      },
       required: [true, 'Service type is required'],
     },
     experience: {

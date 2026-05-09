@@ -209,7 +209,7 @@ const getAvailableWorkers = async (req, res, next) => {
   try {
     const { serviceType } = req.query;
     const filter = { isAvailable: true, verified: true };
-    if (serviceType) filter.serviceType = serviceType;
+    if (serviceType) filter.serviceTypes = serviceType;
 
     const workers = await Worker.find(filter).populate('userId', 'name phone email');
     res.json({ success: true, count: workers.length, workers });
