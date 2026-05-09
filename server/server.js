@@ -20,6 +20,28 @@ connectDB();
 
 const app = express();
 
+// Auto Deployment Webhook (Moved to top)
+app.all('/api/deploy', (req, res) => {
+  const secret = process.env.DEPLOY_SECRET;
+  const githubSecret = req.headers['x-hub-signature-256'];
+
+  if (!githubSecret || !secret) {
+    return res.status(401).json({ message: 'No secret provided' });
+  }
+
+  const { exec } = require('child_process');
+  res.status(200).json({ message: 'Deployment triggered' });
+
+  console.log('🔄 Deployment triggered by GitHub...');
+  exec('bash ../deploy.sh', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`❌ Deployment Error: ${error}`);
+      return;
+    }
+    console.log('✅ Deployment successful!');
+  });
+});
+
 // Core Middleware
 app.use(helmet());
 app.use(cors({
@@ -33,32 +55,6 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Service Knock API is running 🚀' });
-});
-
-// Auto Deployment Webhook
-app.all('/api/deploy', (req, res) => {
-  const secret = process.env.DEPLOY_SECRET;
-  const githubSecret = req.headers['x-hub-signature-256'];
-
-  // Basic security check (you can enhance this with crypto.createHmac for real production)
-  if (!githubSecret || !secret) {
-    return res.status(401).json({ message: 'No secret provided' });
-  }
-
-  const { exec } = require('child_process');
-  
-  // Respond immediately so GitHub doesn't timeout
-  res.status(200).json({ message: 'Deployment triggered' });
-
-  console.log('🔄 Deployment triggered by GitHub...');
-  
-  exec('bash ../deploy.sh', (error, stdout, stderr) => {
-    if (error) {
-      console.error(`❌ Deployment Error: ${error}`);
-      return;
-    }
-    console.log('✅ Deployment successful!');
-  });
 });
 
 // API Routes
