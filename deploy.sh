@@ -10,6 +10,9 @@ echo "Deployment started at: $(date)" >> $LOG_FILE
 # Navigate to project directory
 cd $PROJECT_DIR || { echo "Failed to navigate to project directory" >> $LOG_FILE; exit 1; }
 
+# Activate cPanel Node.js Environment
+source /home/irfanras/nodevenv/service-tap/20/bin/activate && cd $PROJECT_DIR
+
 # Pull latest changes
 echo "Pulling latest changes from main..." >> $LOG_FILE
 git pull origin main >> $LOG_FILE 2>&1
