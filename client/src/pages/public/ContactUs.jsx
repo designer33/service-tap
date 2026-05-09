@@ -28,21 +28,23 @@ const ContactUs = () => {
     {
       emoji: '📞', icon: Phone,
       title: t('callUs'),
-      line1: '+92 300 1234567',
+      line1: '03438485818',
+      link: 'tel:03438485818',
       line2: t('monFri'),
       color: 'text-primary-600', bg: 'bg-primary-50', border: 'border-primary-100',
     },
     {
       emoji: '✉️', icon: Mail,
       title: t('emailUs'),
-      line1: 'support@serviceknock.com',
+      line1: 'irfanrashidkhan@gmail.com',
+      link: 'mailto:irfanrashidkhan@gmail.com',
       line2: t('replyWithin24'),
       color: 'text-secondary-600', bg: 'bg-secondary-50', border: 'border-secondary-100',
     },
     {
       emoji: '📍', icon: MapPin,
       title: t('visitUs'),
-      line1: language === 'ur' ? 'کراچی، لاہور، اسلام آباد' : 'Karachi, Lahore, Islamabad',
+      line1: '6th Road, Rawalpindi',
       line2: language === 'ur' ? 'پاکستان بھر میں دستیاب' : 'Available across Pakistan',
       color: 'text-accent-600', bg: 'bg-accent-50', border: 'border-accent-100',
     },
@@ -74,17 +76,30 @@ const ContactUs = () => {
 
         {/* ── Contact Cards ── */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {contactCards.map(({ emoji, title, line1, line2, color, bg, border }) => (
-            <div key={title} className={`card border ${border} p-6 flex items-start gap-4 hover:shadow-lg transition-all group`}>
-              <div className={`w-14 h-14 ${bg} rounded-2xl flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform`}>
-                {emoji}
+          {contactCards.map(({ emoji, title, line1, line2, color, bg, border, link }) => (
+            link ? (
+              <a key={title} href={link} className={`card border ${border} p-6 flex items-start gap-4 hover:shadow-lg transition-all group cursor-pointer active:scale-95`}>
+                <div className={`w-14 h-14 ${bg} rounded-2xl flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform`}>
+                  {emoji}
+                </div>
+                <div>
+                  <h3 className={`font-extrabold ${color} mb-1`}>{title}</h3>
+                  <p className="text-sm font-black text-dark" dir="ltr">{line1}</p>
+                  <p className="text-xs text-slate-400 mt-0.5">{line2}</p>
+                </div>
+              </a>
+            ) : (
+              <div key={title} className={`card border ${border} p-6 flex items-start gap-4 hover:shadow-lg transition-all group`}>
+                <div className={`w-14 h-14 ${bg} rounded-2xl flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform`}>
+                  {emoji}
+                </div>
+                <div>
+                  <h3 className={`font-extrabold ${color} mb-1`}>{title}</h3>
+                  <p className="text-sm font-semibold text-dark" dir="ltr">{line1}</p>
+                  <p className="text-xs text-slate-400 mt-0.5">{line2}</p>
+                </div>
               </div>
-              <div>
-                <h3 className={`font-extrabold ${color} mb-1`}>{title}</h3>
-                <p className="text-sm font-semibold text-dark" dir="ltr">{line1}</p>
-                <p className="text-xs text-slate-400 mt-0.5">{line2}</p>
-              </div>
-            </div>
+            )
           ))}
         </div>
 

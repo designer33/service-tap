@@ -117,7 +117,7 @@ const AboutUs = () => {
             <div className="flex-1">
               <div className="relative">
                 <img
-                  src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  src="/about-us.jpg"
                   alt="Professional home service worker"
                   className="rounded-3xl shadow-2xl w-full object-cover"
                 />
