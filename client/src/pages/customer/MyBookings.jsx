@@ -236,9 +236,10 @@ const MyBookings = () => {
                 <div className="text-center py-10 text-slate-500 italic">{t('noOffersYet')}</div>
               ) : (
                 <div className="space-y-4">
-                  {offers.map((offer) => {
+                   {offers.map((offer) => {
                     const worker = offer.workerId;
-                    const user = worker.userId;
+                    const user = worker?.userId;
+                    if (!user) return null;
                     return (
                       <div key={offer._id} className="p-4 border border-slate-100 rounded-2xl bg-slate-50 flex items-center justify-between gap-4">
                         <div className="flex items-center gap-3">
@@ -246,7 +247,7 @@ const MyBookings = () => {
                             {user.profilePic ? (
                                 <img src={user.profilePic} alt={user.name} className="w-full h-full object-cover" />
                             ) : (
-                                user.name.charAt(0)
+                                (user.name || '?').charAt(0)
                             )}
                           </div>
                           <div>
@@ -256,7 +257,7 @@ const MyBookings = () => {
                                 (() => {
                                   const trans = t(user.name);
                                   if (trans !== user.name) return trans;
-                                  const key = user.name?.split(' ').map((s, i) => i === 0 ? s.toLowerCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()).join('');
+                                  const key = (user.name || '').split(' ').map((s, i) => i === 0 ? s.toLowerCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()).join('');
                                   const transKey = t(key);
                                   return transKey !== key ? transKey : user.name;
                                 })()

@@ -60,7 +60,20 @@ const PageWrapper = ({ children }) => (
 );
 
 const AppRoutes = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-surface">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-primary-200 border-t-primary-500 rounded-full animate-spin"></div>
+          <p className="text-slate-500 font-medium animate-pulse">
+            {window.location.pathname === '/login' || window.location.pathname === '/register' ? 'Connecting...' : 'Verifying Session...'}
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`flex flex-col min-h-screen ${isNative ? 'pb-20' : ''}`}>

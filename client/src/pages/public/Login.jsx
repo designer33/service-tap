@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../api/axios';
 import toast from 'react-hot-toast';
-import { Mail, Lock, Eye, EyeOff, Zap } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 const Login = () => {
@@ -36,11 +36,15 @@ const Login = () => {
     <div className="min-h-[calc(100vh-64px)] bg-surface flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md animate-slide-up">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-500 rounded-2xl shadow-lg mb-4">
-            <Zap size={30} className="text-white" />
+          <div className="flex justify-center mb-5">
+            <img
+              src="/favicon.png"
+              alt="Service Knock"
+              className="h-16 w-16 object-contain drop-shadow-sm"
+            />
           </div>
           <h1 className="text-2xl font-bold text-dark">{t('welcomeBack')}</h1>
-          <p className="text-slate-500 mt-1 text-sm">{language === 'ur' ? 'اپنے سروس ٹیپ اکاؤنٹ میں لاگ ان کریں' : 'Sign in to your Service Knock account'}</p>
+          <p className="text-slate-500 mt-1 text-sm">{language === 'ur' ? 'اپنے سروس ناک اکاؤنٹ میں لاگ ان کریں' : 'Sign in to your Service Knock account'}</p>
         </div>
 
         <div className="card shadow-md">
@@ -79,9 +83,6 @@ const Login = () => {
             <Link to="/register" className="text-primary-600 font-semibold hover:underline">{t('getStarted')}</Link>
           </p>
 
-          <div className="mt-4 p-3 bg-amber-50 border border-amber-100 rounded-xl text-xs text-amber-700">
-            <strong>{language === 'ur' ? 'ایڈمن ڈیمو:' : 'Admin demo:'}</strong> admin@servicetap.com / Admin@1234
-          </div>
         </div>
       </div>
     </div>

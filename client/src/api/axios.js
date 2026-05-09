@@ -18,10 +18,10 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
+    if (error.response?.status === 401 && !error.config.url.includes('/auth/login')) {
       localStorage.removeItem('st_token');
       localStorage.removeItem('st_user');
-      window.location.href = '/';
+      window.location.href = '/login?expired=true';
     }
     return Promise.reject(error);
   }

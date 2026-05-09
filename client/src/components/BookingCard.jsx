@@ -20,7 +20,7 @@ const StatusBadge = ({ status }) => {
 };
 
 const BookingCard = ({ booking, actions, onImageClick }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const worker = booking.workerId;
   const workerUser = worker?.userId;
   const customer = booking.customerId;
@@ -108,7 +108,7 @@ const BookingCard = ({ booking, actions, onImageClick }) => {
                   (() => {
                     const trans = t(workerUser.name);
                     if (trans !== workerUser.name) return trans;
-                    const key = workerUser.name?.split(' ').map((s, i) => i === 0 ? s.toLowerCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()).join('');
+                    const key = (workerUser.name || '').split(' ').map((s, i) => i === 0 ? s.toLowerCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()).join('');
                     const transKey = t(key);
                     return transKey !== key ? transKey : workerUser.name;
                   })()
@@ -146,7 +146,7 @@ const BookingCard = ({ booking, actions, onImageClick }) => {
                   (() => {
                     const trans = t(customer.name);
                     if (trans !== customer.name) return trans;
-                    const key = customer.name?.split(' ').map((s, i) => i === 0 ? s.toLowerCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()).join('');
+                    const key = (customer.name || '').split(' ').map((s, i) => i === 0 ? s.toLowerCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()).join('');
                     const transKey = t(key);
                     return transKey !== key ? transKey : customer.name;
                   })()

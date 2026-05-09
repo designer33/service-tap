@@ -62,11 +62,15 @@ const Register = () => {
     <div className="min-h-[calc(100vh-64px)] bg-surface flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md animate-slide-up">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-secondary-500 rounded-2xl shadow-lg mb-4">
-            <User size={28} className="text-white" />
+          <div className="flex justify-center mb-5">
+            <img
+              src="/favicon.png"
+              alt="Service Knock"
+              className="h-16 w-16 object-contain drop-shadow-sm"
+            />
           </div>
           <h1 className="text-2xl font-bold text-dark">{t('getStarted')}</h1>
-          <p className="text-slate-500 mt-1 text-sm">{language === 'ur' ? 'آج ہی سروس ٹیپ میں شامل ہوں' : "Join Service Knock today — it's free"}</p>
+          <p className="text-slate-500 mt-1 text-sm">{language === 'ur' ? 'آج ہی سروس ناک میں شامل ہوں' : "Join Service Knock today — it's free"}</p>
         </div>
 
         <div className="card shadow-md">

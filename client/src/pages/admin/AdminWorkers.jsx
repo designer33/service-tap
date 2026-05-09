@@ -63,7 +63,7 @@ const AdminWorkers = () => {
             <table className="w-full bg-white text-sm">
               <thead className="bg-slate-50 border-b border-slate-100">
                 <tr>
-                  {['Worker', 'Service', 'Experience', 'Rating', 'Status', 'Availability'].map((h) => (
+                  {['Worker', 'Contact', 'Service', 'Experience', 'Rating', 'Status', 'Availability'].map((h) => (
                     <th key={h} className="text-left px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">{h}</th>
                   ))}
                 </tr>
@@ -78,9 +78,12 @@ const AdminWorkers = () => {
                         </div>
                         <div>
                           <p className="font-medium text-dark">{w.userId?.name}</p>
-                          <p className="text-xs text-slate-400">{w.userId?.phone}</p>
                         </div>
                       </div>
+                    </td>
+                    <td className="px-4 py-3">
+                      <p className="text-sm font-medium text-slate-600">{w.userId?.email}</p>
+                      <p className="text-xs text-slate-400">{w.userId?.phone}</p>
                     </td>
                     <td className="px-4 py-3 text-slate-600">{SERVICE_LABELS[w.serviceType]}</td>
                     <td className="px-4 py-3 text-slate-600">{w.experience} yr{w.experience !== 1 ? 's' : ''}</td>

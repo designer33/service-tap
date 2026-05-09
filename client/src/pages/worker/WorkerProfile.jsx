@@ -92,7 +92,7 @@ const WorkerProfile = () => {
                   (() => {
                     const trans = t(user.name);
                     if (trans !== user.name) return trans;
-                    const key = user.name?.split(' ').map((s, i) => i === 0 ? s.toLowerCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()).join('');
+                    const key = (user.name || '').split(' ').map((s, i) => i === 0 ? s.toLowerCase() : s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()).join('');
                     const transKey = t(key);
                     return transKey !== key ? transKey : user.name;
                   })()

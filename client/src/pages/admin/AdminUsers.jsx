@@ -3,8 +3,10 @@ import api from '../../api/axios';
 import toast from 'react-hot-toast';
 import { User, Shield, ShieldOff, Trash2, Loader2, Search, Filter, CheckCircle } from 'lucide-react';
 import { formatDate } from '../../utils/formatDate';
+import { useLanguage } from '../../context/LanguageContext';
 
 const AdminUsers = () => {
+  const { t, language } = useLanguage();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
@@ -107,6 +109,7 @@ const AdminUsers = () => {
                 <thead>
                   <tr className="bg-slate-50 border-b border-slate-100">
                     <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">User</th>
+                    <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Contact</th>
                     <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Role</th>
                     <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Joined</th>
                     <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Reports</th>
@@ -119,19 +122,21 @@ const AdminUsers = () => {
                     <tr key={u._id} className={`hover:bg-slate-50/50 transition-colors ${u.isBlocked ? 'bg-red-50/30' : ''}`}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center gap-3">
-                          <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shrink-0 ${u.role === 'admin' ? 'bg-indigo-500' : u.role === 'worker' ? 'bg-slate-600' : 'bg-primary-500'}`}>
+                          <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shrink-0 ${(u.role === 'admin' || u.isAdmin) ? 'bg-indigo-500' : u.role === 'worker' ? 'bg-slate-600' : 'bg-primary-500'}`}>
                             {u.profilePic ? (
                               <img src={u.profilePic} alt={u.name} className="w-full h-full object-cover rounded-full" />
                             ) : (
-                              u.name.charAt(0)
+                              (u.name || '?').charAt(0)
                             )}
                           </div>
                           <div>
                             <p className="text-sm font-bold text-dark">{u.name}</p>
-                            <p className="text-[11px] text-slate-400">{u.email}</p>
-                            <p className="text-[11px] text-slate-400">{u.phone}</p>
                           </div>
                         </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <p className="text-sm font-medium text-slate-600">{u.email}</p>
+                        <p className="text-[11px] text-slate-400">{u.phone}</p>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${u.role === 'worker' ? 'bg-slate-100 text-slate-600' : 'bg-primary-50 text-primary-600'}`}>
