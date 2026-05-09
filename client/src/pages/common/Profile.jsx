@@ -8,6 +8,8 @@ import { formatDate } from '../../utils/formatDate';
 import { useLanguage } from '../../context/LanguageContext';
 import { formatCurrency } from '../../utils/formatCurrency';
 import ImageCropModal from '../../components/ImageCropModal';
+import { pickImage } from '../../utils/imagePicker';
+import { Capacitor } from '@capacitor/core';
 
 const Profile = () => {
   const { id } = useParams();
@@ -52,6 +54,17 @@ const Profile = () => {
       setImageToCrop(reader.result);
     };
     reader.readAsDataURL(file);
+  };
+
+  const handleCapturePhoto = async (target) => {
+    const photo = await pickImage('PROMPT');
+    if (photo) {
+      if (target === 'profile') {
+        setImageToCrop(photo);
+      } else if (target === 'cnic') {
+        setCnicPreview(photo);
+      }
+    }
   };
 
   const handleCropComplete = (croppedImage) => {
@@ -468,6 +481,16 @@ const Profile = () => {
                       <form onSubmit={handleVerificationSubmit} className="space-y-4">
                         <div className="space-y-4">
                           <div className="w-full">
+                            <button 
+                              type="button" 
+                              onClick={() => handleCapturePhoto('cnic')}
+                              className="w-full btn-outline py-4 text-xs sm:text-sm flex flex-col items-center justify-center gap-2 border-2 border-dashed border-slate-300 hover:border-primary-400 hover:bg-primary-50 transition-all rounded-2xl"
+                            >
+                              <div className="w-10 h-10 bg-primary-50 rounded-full flex items-center justify-center">
+                                <Camera size={20} className="text-primary-500" />
+                              </div>
+                              <span className="font-bold">{language === 'ur' ? 'شناختی کارڈ (CNIC) کی تصویر لیں یا منتخب کریں' : 'Take or Choose CNIC Photo'}</span>
+                            </button>
                             <input 
                               type="file" 
                               accept="image/*" 
@@ -475,12 +498,6 @@ const Profile = () => {
                               className="hidden" 
                               id="cnic-upload" 
                             />
-                            <label htmlFor="cnic-upload" className="w-full btn-outline py-4 text-xs sm:text-sm cursor-pointer flex flex-col items-center justify-center gap-2 border-2 border-dashed border-slate-300 hover:border-primary-400 hover:bg-primary-50 transition-all rounded-2xl">
-                              <div className="w-10 h-10 bg-primary-50 rounded-full flex items-center justify-center">
-                                <Upload size={20} className="text-primary-500" />
-                              </div>
-                              <span className="font-bold">{t('uploadCNIC')}</span>
-                            </label>
                           </div>
                           
                           {cnicPreview && (
@@ -580,6 +597,13 @@ const Profile = () => {
                     )}
                   </div>
                   <div className="flex-1">
+                    <button 
+                      type="button" 
+                      onClick={() => handleCapturePhoto('profile')}
+                      className="btn-outline py-2.5 text-xs font-bold flex items-center gap-2"
+                    >
+                      <Camera size={14} /> {language === 'ur' ? 'تصویر تبدیل کریں' : 'Change Photo'}
+                    </button>
                     <input 
                       type="file" 
                       accept="image/*"
@@ -587,9 +611,6 @@ const Profile = () => {
                       className="hidden"
                       id="profile-upload"
                     />
-                    <label htmlFor="profile-upload" className="btn-outline py-2 text-xs cursor-pointer inline-flex items-center gap-2">
-                      <Camera size={14} /> {t('choosePhoto')}
-                    </label>
                     <p className="text-[10px] text-slate-400 mt-1">{t('fileTypeLimit')}</p>
                   </div>
                 </div>

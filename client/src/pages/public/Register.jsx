@@ -6,6 +6,8 @@ import toast from 'react-hot-toast';
 import { User, Mail, Phone, Lock, Eye, EyeOff, Wrench, Fingerprint, Camera, AlertCircle, ShieldAlert, MapPin, CheckCircle } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import ImageCropModal from '../../components/ImageCropModal';
+import { pickImage } from '../../utils/imagePicker';
+import { Capacitor } from '@capacitor/core';
 
 const Register = () => {
   const { login } = useAuth();
@@ -33,6 +35,17 @@ const Register = () => {
     const reader = new FileReader();
     reader.onloadend = () => setImageToCrop(reader.result);
     reader.readAsDataURL(file);
+  };
+
+  const handleCapturePhoto = async (target) => {
+    const photo = await pickImage('PROMPT');
+    if (photo) {
+      if (target === 'profile') {
+        setImageToCrop(photo);
+      } else if (target === 'cnic') {
+        setCnicPreview(photo);
+      }
+    }
   };
 
   const handleCropComplete = (croppedImage) => {
@@ -120,23 +133,25 @@ const Register = () => {
                     <Camera size={24} className="text-slate-300" />
                   )}
                 </div>
-                <div className="flex-1">
-                  <input 
-                    type="file" 
-                    accept="image/*"
-                    onChange={handleFileChange}
-                    className="hidden"
-                    id="profile-upload-reg"
-                  />
-                  <label htmlFor="profile-upload-reg" className="btn-outline py-2 text-xs cursor-pointer inline-flex items-center gap-2 bg-white">
-                    {language === 'ur' ? null : <Camera size={14} />}
-                    {t('choosePhoto')}
-                    {language === 'ur' && <Camera size={14} />}
-                  </label>
-                  <p className="text-[10px] text-slate-400 mt-1.5 leading-tight italic">
-                    {language === 'ur' ? 'اپنی اصل تصویر اپ لوڈ کریں' : 'Upload a clear, real photo of yourself'}
-                  </p>
-                </div>
+                  <div className="flex-1 flex flex-col gap-2">
+                    <button 
+                      type="button" 
+                      onClick={() => handleCapturePhoto('profile')}
+                      className="btn-outline py-2.5 text-xs font-bold flex items-center justify-center gap-2 bg-white"
+                    >
+                      <Camera size={14} /> {language === 'ur' ? 'تصویر لیں یا منتخب کریں' : 'Take or Choose Photo'}
+                    </button>
+                    <input 
+                      type="file" 
+                      accept="image/*"
+                      onChange={handleFileChange}
+                      className="hidden"
+                      id="profile-upload-reg"
+                    />
+                    <p className="text-[10px] text-slate-400 leading-tight italic">
+                      {language === 'ur' ? 'اپنی اصل تصویر اپ لوڈ کریں' : 'Upload a clear, real photo of yourself'}
+                    </p>
+                  </div>
               </div>
             </div>
 
