@@ -3,6 +3,7 @@ const Booking = require('../models/Booking');
 const Worker = require('../models/Worker');
 const User = require('../models/User');
 const Notification = require('../models/Notification');
+const { sendEmail, templates } = require('../utils/email');
 
 // =============================================================
 // @route   GET /api/admin/stats
@@ -251,11 +252,7 @@ const toggleUserBlock = async (req, res, next) => {
     // Send email if blocked
     if (user.isBlocked) {
       try {
-        await sendEmail({
-          email: user.email,
-          subject: 'Your account has been blocked - Service Knock',
-          message: `Dear ${user.name},\n\nYour account on Service Knock has been blocked by the administrator. As a result, you will not be able to post or accept any jobs.\n\nPlease contact our customer support for further details and to resolve this issue.\n\nBest regards,\nService Knock Team`,
-        });
+        await sendEmail(templates.accountBlocked(user));
       } catch (err) {
         console.error('Failed to send block email:', err);
       }
@@ -341,14 +338,9 @@ async function approveVerification(req, res, next) {
       await Worker.findOneAndUpdate({ userId: user._id }, { verified: true });
     }
 
-    // Send email notification
-    const { sendEmail } = require('../utils/email');
+    // Send verification approved email
     try {
-      await sendEmail({
-        email: user.email,
-        subject: 'Identity Verified ✓ - Service Knock',
-        message: `Dear ${user.name},\n\nCongratulations! Your identity has been successfully verified on Service Knock. A verified badge now appears on your profile.\n\nThank you for helping us maintain a trusted community.\n\nBest regards,\nService Knock Team`,
-      });
+      await sendEmail(templates.verificationApproved(user));
     } catch (e) { console.error('Verification email failed:', e); }
 
     res.json({ success: true, message: 'User verified successfully', user });
@@ -375,13 +367,9 @@ async function rejectVerification(req, res, next) {
       await Worker.findOneAndUpdate({ userId: user._id }, { verified: false });
     }
 
-    const { sendEmail } = require('../utils/email');
+    // Send verification rejected email
     try {
-      await sendEmail({
-        email: user.email,
-        subject: 'Identity Verification Update - Service Knock',
-        message: `Dear ${user.name},\n\nWe were unable to verify your identity document. Reason: ${user.verificationNote}\n\nPlease log in and resubmit a clear photo of your CNIC to complete verification.\n\nBest regards,\nService Knock Team`,
-      });
+      await sendEmail(templates.verificationRejected(user, user.verificationNote));
     } catch (e) { console.error('Rejection email failed:', e); }
 
     res.json({ success: true, message: 'Verification rejected', user });

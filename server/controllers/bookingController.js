@@ -6,6 +6,7 @@ const Review = require('../models/Review');
 const User = require('../models/User');
 const Offer = require('../models/Offer');
 const Notification = require('../models/Notification');
+const { sendEmail, templates } = require('../utils/email');
 
 const getRecentCompletedJobs = async (req, res, next) => {
   try {
@@ -271,17 +272,18 @@ const submitReview = async (req, res, next) => {
 
     res.status(201).json({ success: true, review });
 
-    // Notify worker that they received a review
+    // Notify worker + send email
     try {
-      const worker = await Worker.findById(booking.workerId).populate('userId', 'slug');
+      const worker = await Worker.findById(booking.workerId).populate('userId', 'name email slug');
       if (worker) {
         await Notification.create({
-          userId: worker.userId,
+          userId: worker.userId._id,
           title: 'New Review Received',
           message: `A customer has left a ${value.rating}-star review for your work on "${booking.title}".`,
           type: 'review_received',
           link: '/job-requests?tab=completed'
         });
+        await sendEmail(templates.reviewReceived(worker.userId, booking, value.rating));
       }
     } catch (err) {
       console.error('Failed to send review notification to worker:', err);
@@ -338,15 +340,19 @@ const submitCustomerReview = async (req, res, next) => {
 
     res.status(201).json({ success: true, review });
 
-    // Notify customer that they received a review
+    // Notify customer + send email
     try {
-      await Notification.create({
-        userId: booking.customerId,
-        title: 'New Review Received',
-        message: `The worker has left a ${value.rating}-star review for you regarding the job "${booking.title}".`,
-        type: 'review_received',
-        link: '/my-bookings'
-      });
+      const customer = await User.findById(booking.customerId).select('name email');
+      if (customer) {
+        await Notification.create({
+          userId: booking.customerId,
+          title: 'New Review Received',
+          message: `The worker has left a ${value.rating}-star review for you regarding the job "${booking.title}".`,
+          type: 'review_received',
+          link: '/my-bookings'
+        });
+        await sendEmail(templates.customerReviewReceived(customer, booking, value.rating));
+      }
     } catch (err) {
       console.error('Failed to send review notification to customer:', err);
     }
@@ -589,25 +595,24 @@ const acceptOffer = async (req, res, next) => {
     offer.status = 'accepted';
     await offer.save();
 
-    // Notify worker that their offer was accepted
+    // Notify worker that their offer was accepted + send email
     try {
-      const winningWorker = await Worker.findById(offer.workerId);
+      const winningWorker = await Worker.findById(offer.workerId).populate('userId', 'name email');
       if (winningWorker) {
         await Notification.create({
-          userId: winningWorker.userId,
+          userId: winningWorker.userId._id,
           title: 'Offer Accepted!',
           message: `Your offer for "${booking.title}" has been accepted. You can now see the customer's contact details!`,
           type: 'offer_accepted',
           link: '/active-jobs'
         });
+        await sendEmail(templates.offerAccepted(winningWorker.userId, booking));
       }
     } catch (err) {
       console.error('Failed to send offer acceptance notification:', err);
     }
 
-    // TODO: Send email notification to worker (mocked)
-    console.log(`[EMAIL NOTIFICATION] To Worker ${offer.workerId}: Your offer for "${booking.title}" has been accepted!`);
-
+    // Remove old console.log mock
     // Notify customer that the offer was successfully accepted
     try {
       await Notification.create({
@@ -817,14 +822,22 @@ const completeJob = async (req, res, next) => {
 
     res.json({ success: true, booking });
 
-    // Create Notification for Customer
-    await Notification.create({
-      userId: booking.customerId,
-      title: 'Job Completed',
-      message: `The job "${booking.title}" has been marked as completed. Please leave a review!`,
-      type: 'job_completed',
-      link: '/my-bookings'
-    });
+    // Notify customer + send email that job is complete
+    try {
+      const customer = await User.findById(booking.customerId).select('name email');
+      await Notification.create({
+        userId: booking.customerId,
+        title: 'Job Completed',
+        message: `The job "${booking.title}" has been marked as completed. Please leave a review!`,
+        type: 'job_completed',
+        link: '/my-bookings'
+      });
+      if (customer) {
+        await sendEmail(templates.jobCompleted(customer, booking));
+      }
+    } catch (err) {
+      console.error('Failed to send job completion notifications:', err);
+    }
   } catch (err) {
     next(err);
   }
@@ -862,14 +875,22 @@ const instantAccept = async (req, res, next) => {
 
     res.json({ success: true, message: 'Job accepted successfully!', booking });
 
-    // Create Notification for Customer
-    await Notification.create({
-      userId: booking.customerId,
-      title: 'Worker Hired!',
-      message: `A worker has instantly accepted your job request: "${booking.title}".`,
-      type: 'offer_accepted',
-      link: '/my-bookings'
-    });
+    // Notify customer + send email for instant accept
+    try {
+      const customer = await User.findById(booking.customerId).select('name email');
+      await Notification.create({
+        userId: booking.customerId,
+        title: 'Worker Hired!',
+        message: `A worker has instantly accepted your job request: "${booking.title}".`,
+        type: 'offer_accepted',
+        link: '/my-bookings'
+      });
+      if (customer) {
+        await sendEmail(templates.workerInstantAccepted(customer, booking));
+      }
+    } catch (err) {
+      console.error('Failed to send instant accept notifications:', err);
+    }
   } catch (err) {
     next(err);
   }

@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 const crypto = require('crypto');
-const { sendEmail } = require('../utils/email');
+const { sendEmail, templates } = require('../utils/email');
 const User = require('../models/User');
 const Worker = require('../models/Worker');
 const Booking = require('../models/Booking');
@@ -91,6 +91,15 @@ const register = async (req, res, next) => {
     }
 
     const token = generateToken(user._id);
+
+    // Send email notifications (non-blocking)
+    try {
+      if (value.role === 'worker') {
+        await sendEmail(templates.workerRegistered({ ...value, serviceType: value.serviceType }));
+      } else {
+        await sendEmail(templates.customerRegistered(value));
+      }
+    } catch (e) { console.error('Registration email failed:', e.message); }
 
     res.status(201).json({
       success: true,
@@ -342,11 +351,7 @@ const reportUser = async (req, res, next) => {
     if (user.reportedBy.length >= 3) {
       user.isBlocked = true;
       try {
-        await sendEmail({
-          email: user.email,
-          subject: 'Account Blocked due to multiple reports - Service Knock',
-          message: `Dear ${user.name},\n\nYour account on Service Knock has been automatically blocked after receiving multiple reports from other users.\n\nPlease contact our customer support for review and to resolve this issue.\n\nBest regards,\nService Knock Team`,
-        });
+        await sendEmail(templates.accountBlocked(user));
       } catch (err) {
         console.error('Failed to send auto-block email:', err);
       }
@@ -378,13 +383,9 @@ const submitVerification = async (req, res, next) => {
     user.verificationNote = null;
     await user.save();
 
-    // Send email to Admin
+    // Notify admin of new verification request
     try {
-      await sendEmail({
-        email: process.env.ADMIN_EMAIL || 'admin@serviceknock.com',
-        subject: 'New ID Verification Request - Service Knock',
-        message: `Hello Admin,\n\nA new ID verification request has been submitted by:\n\nName: ${user.name}\nEmail: ${user.email}\nRole: ${user.role}\n\nPlease log in to the admin dashboard to review the submission.\n\nBest regards,\nService Knock System`,
-      });
+      await sendEmail(templates.verificationSubmitted(user));
     } catch (err) {
       console.error('Failed to notify admin of verification:', err);
     }
