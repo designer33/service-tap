@@ -20,8 +20,8 @@ git pull origin main >> $LOG_FILE 2>&1
 # Build Client
 echo "Building client..." >> $LOG_FILE
 cd client || exit 1
-npm install >> $LOG_FILE 2>&1
-npx vite build >> $LOG_FILE 2>&1
+npm install --include=dev >> $LOG_FILE 2>&1
+npx -y vite build >> $LOG_FILE 2>&1
 
 # Copy build to server's public folder
 echo "Updating public folder..." >> $LOG_FILE
