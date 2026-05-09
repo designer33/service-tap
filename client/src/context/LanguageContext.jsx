@@ -34,7 +34,7 @@ const translations = {
     newsletterPlaceholder: 'Your email',
     allRightsReserved: 'All rights reserved.',
     footerDesc: 'Service Knock is your premier hyper-local service booking platform, dedicated to connecting you with highly skilled and trusted professionals in your area. We provide reliable solutions for all your home and business needs, ensuring quality service is just a few clicks away.',
-    addressFull: '123 Service Lane, Tech City, 10001',
+    addressFull: '6th Road, Rawalpindi',
     ac_fridge_repair: 'AC / Fridge Repair',
     steel_fixer: 'Steel Fixer',
     tile_fixer: 'Tile Fixer',
@@ -486,7 +486,7 @@ const translations = {
     newsletterPlaceholder: 'آپ کا ای میل',
     allRightsReserved: 'تمام حقوق محفوظ ہیں۔',
     footerDesc: 'سروس ناک آپ کا بہترین مقامی سروس بکنگ پلیٹ فارم ہے، جو آپ کو آپ کے علاقے میں انتہائی ماہر اور قابل اعتماد پیشہ ور افراد سے جوڑنے کے لیے وقف ہے۔ ہم آپ کے گھر اور کاروبار کی تمام ضروریات کے لیے قابل اعتماد حل فراہم کرتے ہیں، اس بات کو یقینی بناتے ہوئے کہ معیاری سروس صرف چند کلکس کے فاصلے پر ہو۔',
-    addressFull: '123 سروس لین، ٹیک سٹی، 10001',
+    addressFull: 'سکسٹھ روڈ، راولپنڈی',
 
     // Hero Section
     heroTitle: 'پیشہ ورانہ گھریلو خدمات آپ کی دہلیز پر',

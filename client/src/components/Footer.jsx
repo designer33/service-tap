@@ -114,11 +114,11 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone size={15} className={`text-primary-400 shrink-0 ${language === 'ur' ? 'mt-[10px]' : ''}`} />
-                <a href="tel:+1234567890" className="hover:text-primary-400 transition-colors" dir="ltr">+1 (234) 567-890</a>
+                <a href="tel:03438485818" className="hover:text-primary-400 transition-colors" dir="ltr">03438485818</a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail size={15} className={`text-primary-400 shrink-0 ${language === 'ur' ? 'mt-[10px]' : ''}`} />
-                <a href="mailto:support@serviceknock.com" className="hover:text-primary-400 transition-colors">support@serviceknock.com</a>
+                <a href="mailto:irfanrashidkhan@gmail.com" className="hover:text-primary-400 transition-colors">irfanrashidkhan@gmail.com</a>
               </li>
             </ul>
             
