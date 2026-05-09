@@ -36,7 +36,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // Auto Deployment Webhook
-app.post('/api/deploy', (req, res) => {
+app.all('/api/deploy', (req, res) => {
   const secret = process.env.DEPLOY_SECRET;
   const githubSecret = req.headers['x-hub-signature-256'];
 
