@@ -118,7 +118,7 @@ const Home = () => {
               {/* Main image */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10">
                 <img
-                  src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  src="https://img.freepik.com/free-photo/plumber-working-client-s-home_23-2148111956.jpg?t=st=1715257600~exp=1715261200~hmac=a660a9f5d3f5d5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5&w=800"
                   alt="Professional home service worker"
                   className="w-full h-[420px] object-cover object-center"
                 />
@@ -199,8 +199,8 @@ const Home = () => {
             <p className="section-subtitle max-w-xl mx-auto">{t('servicesSubtitle')}</p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-4 max-w-5xl mx-auto">
-            {services.slice(0, 6).map(({ emoji, icon: Icon, label, color, bg, text, border }) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-9 gap-4 max-w-6xl mx-auto">
+            {services.map(({ emoji, icon: Icon, label, color, bg, text, border }) => (
               <Link to="/register" key={label}
                 className={`group card border ${border} flex flex-col items-center text-center py-6 px-3 hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}>
                 {/* Gradient icon circle */}
