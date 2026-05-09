@@ -4,16 +4,16 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const connectDB = require('./config/db');
-const errorHandler = require('./middleware/errorHandler');
+const connectDB = require('./server/config/db');
+const errorHandler = require('./server/middleware/errorHandler');
 
 // Route imports
-const authRoutes = require('./routes/authRoutes');
-const bookingRoutes = require('./routes/bookingRoutes');
-const workerRoutes = require('./routes/workerRoutes');
-const adminRoutes = require('./routes/adminRoutes');
-const notificationRoutes = require('./routes/notificationRoutes');
-const contactRoutes = require('./routes/contactRoutes');
+const authRoutes = require('./server/routes/authRoutes');
+const bookingRoutes = require('./server/routes/bookingRoutes');
+const workerRoutes = require('./server/routes/workerRoutes');
+const adminRoutes = require('./server/routes/adminRoutes');
+const notificationRoutes = require('./server/routes/notificationRoutes');
+const contactRoutes = require('./server/routes/contactRoutes');
 
 // Connect to MongoDB Atlas
 connectDB();
