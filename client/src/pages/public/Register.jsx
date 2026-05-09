@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../api/axios';
 import toast from 'react-hot-toast';
-import { User, Mail, Phone, Lock, Eye, EyeOff, Wrench, Fingerprint, Camera, AlertCircle, ShieldAlert, MapPin, CheckCircle } from 'lucide-react';
+import { User, Mail, Phone, Lock, Eye, EyeOff, Wrench, Fingerprint, Camera, AlertCircle, ShieldAlert, MapPin, CheckCircle, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import ImageCropModal from '../../components/ImageCropModal';
 import { pickImage } from '../../utils/imagePicker';
@@ -320,8 +320,21 @@ const Register = () => {
             )}
 
             <button id="register-submit" type="submit" disabled={loading}
-              className="btn-secondary w-full py-3 text-base mt-1">
-              {loading ? (language === 'ur' ? 'اکاؤنٹ بن رہا ہے...' : 'Creating account...') : t('getStarted')}
+              className={`btn-secondary w-full py-4 text-lg mt-2 flex items-center justify-center gap-3 shadow-lg shadow-secondary-100 hover:shadow-secondary-200 transition-all active:scale-[0.98] ${language === 'ur' ? 'flex-row-reverse' : ''}`}
+            >
+              {loading ? (
+                <div className="flex items-center gap-2">
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <span>{language === 'ur' ? 'اکاؤنٹ بن رہا ہے...' : 'Creating account...'}</span>
+                </div>
+              ) : (
+                <>
+                  <span className={language === 'ur' ? 'font-urdu text-xl' : 'font-bold'}>{t('getStarted')}</span>
+                  <div className={`bg-white/20 p-1 rounded-lg ${language === 'ur' ? 'rotate-180' : ''}`}>
+                    <ArrowRight size={20} />
+                  </div>
+                </>
+              )}
             </button>
           </form>
 

@@ -13,7 +13,7 @@ const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const { t, language } = useLanguage();
-  const [form, setForm] = useState({ email: '', password: '' });
+  const [form, setForm] = useState({ identifier: '', password: '' });
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
   const [canBiometric, setCanBiometric] = useState(false);
@@ -35,12 +35,15 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const { data } = await api.post('/auth/login', form);
+      const { data } = await api.post('/auth/login', {
+        email: form.identifier,
+        password: form.password
+      });
       login(data.user, data.token);
       
       // Check for biometric enrollment
       if (Capacitor.isNativePlatform()) {
-        await checkEnableBiometrics(form.email, form.password);
+        await checkEnableBiometrics(form.identifier, form.password);
       }
 
       toast.success(language === 'ur' ? `خوش آمدید، ${data.user.name}!` : `Welcome back, ${data.user.name}!`);
@@ -101,7 +104,7 @@ const Login = () => {
               <label className="form-label" htmlFor="login-email">{language === 'ur' ? 'ای میل یا فون نمبر' : 'Email or Phone Number'}</label>
               <div className="relative">
                 <Mail size={16} className={`absolute ${language === 'ur' ? 'right-3.5' : 'left-3.5'} top-1/2 -translate-y-1/2 text-slate-400`} />
-                <input id="login-email" type="text" name="email" value={form.email}
+                <input id="login-email" type="text" name="identifier" value={form.identifier}
                   onChange={handleChange} placeholder={language === 'ur' ? 'ای میل یا فون درج کریں' : "you@example.com / 03001234567"} required
                   className={`form-input ${language === 'ur' ? 'pr-10' : 'pl-10'}`} autoComplete="username" />
               </div>
