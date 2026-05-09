@@ -44,9 +44,17 @@ app.all('/api/deploy', (req, res) => {
 });
 
 // Core Middleware
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false, // Disable CSP for mobile compatibility
+}));
 app.use(cors({
-  origin: true,
+  origin: [
+    'https://serviceknock.com.irfanrashid.net',
+    'http://localhost',
+    'http://localhost:5173',
+    'capacitor://localhost',
+    'http://localhost:5000'
+  ],
   credentials: true,
 }));
 app.use(morgan('dev'));
