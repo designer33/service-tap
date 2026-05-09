@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configuration
-PROJECT_DIR="/var/www/service-tap" # Update this to your actual project path on the server
+PROJECT_DIR="/home/irfanras/service-tap"
 LOG_FILE="$PROJECT_DIR/deployment.log"
 
 echo "------------------------------------------" >> $LOG_FILE
