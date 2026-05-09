@@ -3,8 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../api/axios';
 import toast from 'react-hot-toast';
-import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, Fingerprint } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
+import { isBiometricAvailable, hasBiometricCredentials, getBiometricCredentials, saveBiometricCredentials } from '../../utils/biometricHelper';
+import { Capacitor } from '@capacitor/core';
+import { useEffect } from 'react';
 
 const Login = () => {
   const { login } = useAuth();
@@ -13,6 +16,18 @@ const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [canBiometric, setCanBiometric] = useState(false);
+  const [hasStored, setHasStored] = useState(false);
+
+  useEffect(() => {
+    const checkBiometrics = async () => {
+      const available = await isBiometricAvailable();
+      const stored = await hasBiometricCredentials();
+      setCanBiometric(available);
+      setHasStored(stored);
+    };
+    checkBiometrics();
+  }, []);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -22,6 +37,12 @@ const Login = () => {
     try {
       const { data } = await api.post('/auth/login', form);
       login(data.user, data.token);
+      
+      // Check for biometric enrollment
+      if (Capacitor.isNativePlatform()) {
+        await checkEnableBiometrics(form.email, form.password);
+      }
+
       toast.success(language === 'ur' ? `خوش آمدید، ${data.user.name}!` : `Welcome back, ${data.user.name}!`);
       const redirectMap = { admin: '/admin', worker: '/job-requests', customer: '/my-bookings' };
       navigate(redirectMap[data.user.role] || '/');
@@ -29,6 +50,33 @@ const Login = () => {
       toast.error(err.response?.data?.message || (language === 'ur' ? 'لاگ ان ناکام رہا۔ براہ کرم دوبارہ کوشش کریں۔' : 'Login failed. Please try again.'));
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleBiometricLogin = async () => {
+    setLoading(true);
+    try {
+      const credentials = await getBiometricCredentials();
+      if (credentials) {
+        const { data } = await api.post('/auth/login', credentials);
+        login(data.user, data.token);
+        toast.success(language === 'ur' ? `خوش آمدید، ${data.user.name}!` : `Welcome back, ${data.user.name}!`);
+        const redirectMap = { admin: '/admin', worker: '/job-requests', customer: '/my-bookings' };
+        navigate(redirectMap[data.user.role] || '/');
+      }
+    } catch (err) {
+      toast.error(language === 'ur' ? 'بائیومیٹرک لاگ ان ناکام رہا۔' : 'Biometric login failed.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const checkEnableBiometrics = async (email, password) => {
+    if (canBiometric && !hasStored) {
+      if (window.confirm(language === 'ur' ? 'کیا آپ اگلی بار کے لیے فیس آئی ڈی/فنگر پرنٹ فعال کرنا چاہتے ہیں؟' : 'Enable Face ID/Fingerprint for next time?')) {
+        await saveBiometricCredentials(email, password);
+        setHasStored(true);
+      }
     }
   };
 
@@ -50,12 +98,12 @@ const Login = () => {
         <div className="card shadow-md">
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div>
-              <label className="form-label" htmlFor="login-email">{t('email')}</label>
+              <label className="form-label" htmlFor="login-email">{language === 'ur' ? 'ای میل یا فون نمبر' : 'Email or Phone Number'}</label>
               <div className="relative">
                 <Mail size={16} className={`absolute ${language === 'ur' ? 'right-3.5' : 'left-3.5'} top-1/2 -translate-y-1/2 text-slate-400`} />
-                <input id="login-email" type="email" name="email" value={form.email}
-                  onChange={handleChange} placeholder={language === 'ur' ? 'ای میل درج کریں' : "you@example.com"} required
-                  className={`form-input ${language === 'ur' ? 'pr-10' : 'pl-10'}`} autoComplete="email" />
+                <input id="login-email" type="text" name="email" value={form.email}
+                  onChange={handleChange} placeholder={language === 'ur' ? 'ای میل یا فون درج کریں' : "you@example.com / 03001234567"} required
+                  className={`form-input ${language === 'ur' ? 'pr-10' : 'pl-10'}`} autoComplete="username" />
               </div>
             </div>
 
@@ -82,6 +130,17 @@ const Login = () => {
             <button id="login-submit" type="submit" disabled={loading} className="btn-primary w-full py-3 text-base">
               {loading ? (language === 'ur' ? 'لاگ ان ہو رہا ہے...' : 'Signing in...') : t('login')}
             </button>
+
+            {canBiometric && hasStored && (
+              <button 
+                type="button" 
+                onClick={handleBiometricLogin}
+                className="flex items-center justify-center gap-2 py-3 bg-slate-50 border border-slate-200 rounded-xl text-dark font-bold hover:bg-slate-100 transition-all"
+              >
+                <Fingerprint size={20} className="text-primary-500" />
+                {language === 'ur' ? 'بائیومیٹرک لاگ ان' : 'Biometric Login'}
+              </button>
+            )}
           </form>
 
           <p className="text-center text-sm text-slate-500 mt-5">
