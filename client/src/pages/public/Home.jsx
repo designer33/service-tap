@@ -118,7 +118,7 @@ const Home = () => {
               {/* Main image */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10">
                 <img
-                  src="https://img.freepik.com/free-photo/plumber-working-client-s-home_23-2148111956.jpg?t=st=1715257600~exp=1715261200~hmac=a660a9f5d3f5d5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5&w=800"
+                  src="https://images.unsplash.com/photo-1581578731522-745d05ad9a2d?auto=format&fit=crop&w=800&q=80"
                   alt="Professional home service worker"
                   className="w-full h-[420px] object-cover object-center"
                 />
