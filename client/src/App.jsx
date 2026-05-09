@@ -67,9 +67,7 @@ const AppRoutes = () => {
       <div className="flex items-center justify-center min-h-screen bg-white">
         <div className="flex flex-col items-center gap-4">
           <div className="w-10 h-10 border-4 border-slate-200 border-t-primary-500 rounded-full animate-spin"></div>
-          <p className="text-slate-500 font-medium text-sm">
-            Service Knock
-          </p>
+          <p className="text-slate-500 font-medium text-sm">Service Knock</p>
         </div>
       </div>
     );
@@ -81,53 +79,51 @@ const AppRoutes = () => {
       <VerificationBanner />
       <VerificationPopup />
       <main className="flex-1">
-        <AnimatePresence mode="wait">
-          <Routes>
-            {/* Public */}
-            <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
-            <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
-            <Route path="/about" element={<PageWrapper><AboutUs /></PageWrapper>} />
-            <Route path="/contact" element={<PageWrapper><ContactUs /></PageWrapper>} />
-            <Route path="/privacy" element={<PageWrapper><PrivacyPolicy /></PageWrapper>} />
-            <Route path="/terms" element={<PageWrapper><TermsAndConditions /></PageWrapper>} />
-            <Route path="/faqs" element={<PageWrapper><FAQs /></PageWrapper>} />
-            <Route path="/blog" element={<PageWrapper><Blog /></PageWrapper>} />
-            <Route
-              path="/login"
-              element={user ? <Navigate to={getDashboard(user.role)} replace /> : <PageWrapper><Login /></PageWrapper>}
-            />
-            <Route
-              path="/register"
-              element={user ? <Navigate to={getDashboard(user.role)} replace /> : <PageWrapper><Register /></PageWrapper>}
-            />
-            <Route path="/profile/:id" element={<PageWrapper><Profile /></PageWrapper>} />
+        <Routes>
+          {/* Public */}
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
+          <Route path="/faqs" element={<FAQs />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route
+            path="/login"
+            element={user ? <Navigate to={getDashboard(user.role)} replace /> : <Login />}
+          />
+          <Route
+            path="/register"
+            element={user ? <Navigate to={getDashboard(user.role)} replace /> : <Register />}
+          />
+          <Route path="/profile/:id" element={<Profile />} />
 
-            {/* Customer */}
-            <Route element={<ProtectedRoute allowedRoles={['customer']} />}>
-              <Route path="/book" element={<PageWrapper><BookService /></PageWrapper>} />
-              <Route path="/my-bookings" element={<PageWrapper><MyBookings /></PageWrapper>} />
-            </Route>
+          {/* Customer */}
+          <Route element={<ProtectedRoute allowedRoles={['customer']} />}>
+            <Route path="/book" element={<BookService />} />
+            <Route path="/my-bookings" element={<MyBookings />} />
+          </Route>
 
-            {/* Worker */}
-            <Route element={<ProtectedRoute allowedRoles={['worker']} />}>
-              <Route path="/job-requests" element={<PageWrapper><JobRequests /></PageWrapper>} />
-              <Route path="/active-jobs" element={<PageWrapper><ActiveJobs /></PageWrapper>} />
-              <Route path="/worker-profile" element={<PageWrapper><WorkerProfile /></PageWrapper>} />
-            </Route>
+          {/* Worker */}
+          <Route element={<ProtectedRoute allowedRoles={['worker']} />}>
+            <Route path="/job-requests" element={<JobRequests />} />
+            <Route path="/active-jobs" element={<ActiveJobs />} />
+            <Route path="/worker-profile" element={<WorkerProfile />} />
+          </Route>
 
-            {/* Admin */}
-            <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
-              <Route path="/admin" element={<PageWrapper><AdminDashboard /></PageWrapper>} />
-              <Route path="/admin/bookings" element={<PageWrapper><AdminBookings /></PageWrapper>} />
-              <Route path="/admin/workers" element={<PageWrapper><AdminWorkers /></PageWrapper>} />
-              <Route path="/admin/users" element={<PageWrapper><AdminUsers /></PageWrapper>} />
-              <Route path="/admin/verifications" element={<PageWrapper><AdminVerifications /></PageWrapper>} />
-            </Route>
+          {/* Admin */}
+          <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/bookings" element={<AdminBookings />} />
+            <Route path="/admin/workers" element={<AdminWorkers />} />
+            <Route path="/admin/users" element={<AdminUsers />} />
+            <Route path="/admin/verifications" element={<AdminVerifications />} />
+          </Route>
 
-            {/* Fallback */}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </AnimatePresence>
+          {/* Fallback */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
       {!isNative && <Footer />}
       {isNative && <MobileNav />}
@@ -149,17 +145,7 @@ export default function App() {
       <AuthProvider>
         <NotificationProvider>
           <Router>
-            <Toaster
-              position="top-right"
-              toastOptions={{
-                duration: 3500,
-                style: {
-                  borderRadius: '12px',
-                  fontFamily: 'Inter, sans-serif',
-                  fontSize: '14px',
-                },
-              }}
-            />
+            <Toaster position="top-right" />
             <AppRoutes />
           </Router>
         </NotificationProvider>
