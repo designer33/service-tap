@@ -74,7 +74,7 @@ const Register = () => {
 
   return (
     <div className="min-h-[calc(100vh-64px)] bg-surface flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md animate-slide-up">
+      <div className="w-full max-w-xl animate-slide-up">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-5">
             <img
