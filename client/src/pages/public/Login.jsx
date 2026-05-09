@@ -35,10 +35,7 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const { data } = await api.post('/auth/login', {
-        email: form.identifier,
-        password: form.password
-      });
+      const { data } = await api.post('/auth/login', form);
       login(data.user, data.token);
       
       // Check for biometric enrollment
