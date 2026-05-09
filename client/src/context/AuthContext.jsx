@@ -12,11 +12,22 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Safety timeout to prevent infinite loading on mobile
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+
     if (token) {
-      refreshUser().finally(() => setLoading(false));
+      refreshUser().finally(() => {
+        clearTimeout(timeout);
+        setLoading(false);
+      });
     } else {
+      clearTimeout(timeout);
       setLoading(false);
     }
+
+    return () => clearTimeout(timeout);
   }, [token]);
 
   const login = (userData, tokenValue) => {

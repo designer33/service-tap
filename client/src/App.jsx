@@ -64,11 +64,11 @@ const AppRoutes = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-surface">
+      <div className="flex items-center justify-center min-h-screen bg-white">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-primary-200 border-t-primary-500 rounded-full animate-spin"></div>
-          <p className="text-slate-500 font-medium animate-pulse">
-            {window.location.pathname === '/login' || window.location.pathname === '/register' ? 'Connecting...' : 'Verifying Session...'}
+          <div className="w-10 h-10 border-4 border-slate-200 border-t-primary-500 rounded-full animate-spin"></div>
+          <p className="text-slate-500 font-medium text-sm">
+            Service Knock
           </p>
         </div>
       </div>
