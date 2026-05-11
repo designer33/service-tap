@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import api from '../../api/axios';
 import toast from 'react-hot-toast';
 import { Briefcase, Users, CheckCircle, Clock, TrendingUp, ArrowRight, Loader2, ShieldCheck } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 
 const StatCard = ({ icon: Icon, label, value, color, sub }) => (
   <div className="card flex items-center gap-4">
@@ -18,6 +19,7 @@ const StatCard = ({ icon: Icon, label, value, color, sub }) => (
 );
 
 const AdminDashboard = () => {
+  const { t } = useLanguage();
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -81,6 +83,18 @@ const AdminDashboard = () => {
               <div>
                 <h3 className="font-bold text-dark mb-1">ID Verifications</h3>
                 <p className="text-slate-500 text-sm">Review CNIC submissions and verify user identities.</p>
+              </div>
+            </div>
+            <ArrowRight size={20} className="text-primary-400 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link to="/admin/support" className="card-hover flex items-center justify-between group">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center shrink-0">
+                <Briefcase size={20} className="text-blue-600" />
+              </div>
+              <div>
+                <h3 className="font-bold text-dark mb-1">{t('supportChats')}</h3>
+                <p className="text-slate-500 text-sm">{t('respondToQueries')}</p>
               </div>
             </div>
             <ArrowRight size={20} className="text-primary-400 group-hover:translate-x-1 transition-transform" />

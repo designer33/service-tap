@@ -64,6 +64,7 @@ app.use('/api/workers', workerRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/chat', require('./routes/chatRoutes'));
 
 // Serve Static Files (for production)
 const path = require('path');

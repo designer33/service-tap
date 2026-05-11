@@ -36,6 +36,7 @@ import AdminBookings from './pages/admin/AdminBookings';
 import AdminWorkers from './pages/admin/AdminWorkers';
 import AdminUsers from './pages/admin/AdminUsers';
 import AdminVerifications from './pages/admin/AdminVerifications';
+import AdminSupport from './pages/admin/AdminSupport';
 
 // Components
 import ProtectedRoute from './components/ProtectedRoute';
@@ -43,6 +44,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import VerificationPopup from './components/VerificationPopup';
 import VerificationBanner from './components/VerificationBanner';
+import ChatWidget from './components/ChatWidget';
 
 import { LanguageProvider } from './context/LanguageContext';
 import { Capacitor } from '@capacitor/core';
@@ -124,6 +126,7 @@ const AppRoutes = () => {
             <Route path="/admin/workers" element={<AdminWorkers />} />
             <Route path="/admin/users" element={<AdminUsers />} />
             <Route path="/admin/verifications" element={<AdminVerifications />} />
+            <Route path="/admin/support" element={<AdminSupport />} />
           </Route>
 
           {/* Fallback */}
@@ -132,6 +135,7 @@ const AppRoutes = () => {
       </main>
       {!isNative && <Footer />}
       {isNative && <MobileNav />}
+      <ChatWidget />
     </div>
   );
 };

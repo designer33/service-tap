@@ -145,7 +145,7 @@ const login = async (req, res, next) => {
       ]
     }).select('+password +profilePic');
 
-    if (!user || !(await user.matchPassword(value.password))) {
+    if (!user || !(await user.matchPassword(password))) {
       return res.status(401).json({ message: 'Invalid email/phone or password' });
     }
 
