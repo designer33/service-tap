@@ -36,6 +36,7 @@ const ChatWidget = () => {
   useEffect(scrollToBottom, [messages]);
 
   const [hasNew, setHasNew] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
   const audioRef = useRef(new Audio('https://assets.mixkit.co/active_storage/sfx/2357/2357-preview.mp3'));
   const prevMsgCount = useRef(0);
 
@@ -44,9 +45,11 @@ const ChatWidget = () => {
     try {
       const { data } = await api.get('/chat/messages');
       if (data.success) {
-        // Trigger sound if new messages from admin/bot arrived
-        const unreadFromAdmin = data.messages.filter(m => !m.isRead && (m.isAdmin || m.isBot));
-        if (unreadFromAdmin.length > 0 && data.messages.length > prevMsgCount.current) {
+        // Find unread messages from admin or bot
+        const unreadFromSupport = data.messages.filter(m => !m.isRead && (m.isAdmin || m.isBot));
+        setUnreadCount(unreadFromSupport.length);
+
+        if (unreadFromSupport.length > 0 && data.messages.length > prevMsgCount.current) {
           if (!isOpen) {
             setHasNew(true);
             audioRef.current.play().catch(() => {});
@@ -188,8 +191,10 @@ const ChatWidget = () => {
         }`}
       >
         {isOpen ? <FiX className="text-2xl" /> : <FiMessageCircle className="text-2xl" />}
-        {(!isOpen && (hasNew || messages.some(m => !m.isRead && (m.isAdmin || m.isBot)))) && (
-          <span className="absolute top-0 right-0 w-4 h-4 bg-red-500 border-2 border-white rounded-full"></span>
+        {(!isOpen && (hasNew || unreadCount > 0)) && (
+          <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white">
+            {unreadCount > 0 ? unreadCount : '!'}
+          </span>
         )}
       </motion.button>
     </div>

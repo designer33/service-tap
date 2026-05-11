@@ -12,10 +12,11 @@ const AdminSupport = () => {
   const [newMessage, setNewMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [fetchingConvs, setFetchingConvs] = useState(true);
-  const [shouldScroll, setShouldScroll] = useState(false);
   const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null);
   const audioRef = useRef(new Audio('https://assets.mixkit.co/active_storage/sfx/2357/2357-preview.mp3'));
   const prevMsgCount = useRef(0);
+  const isInitialLoad = useRef(true);
 
   useEffect(() => {
     fetchConversations();
@@ -23,22 +24,28 @@ const AdminSupport = () => {
 
   useEffect(() => {
     if (selectedConv) {
-      setMessages([]); // Clear messages when switching conversations
-      setShouldScroll(true); // Ensure we scroll to bottom on first load
+      setMessages([]); 
+      prevMsgCount.current = 0;
+      isInitialLoad.current = true;
       fetchMessages(selectedConv._id);
-      const interval = setInterval(() => {
-        setShouldScroll(false); // Don't snap to bottom on auto-refresh
-        fetchMessages(selectedConv._id);
-      }, 5000);
+      const interval = setInterval(() => fetchMessages(selectedConv._id), 5000);
       return () => clearInterval(interval);
     }
   }, [selectedConv]);
 
   useEffect(() => {
-    if (shouldScroll) {
-      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (messages.length > 0) {
+      const container = messagesContainerRef.current;
+      if (container) {
+        const isNearBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 100;
+        
+        if (isInitialLoad.current || isNearBottom) {
+          messagesEndRef.current?.scrollIntoView({ behavior: isInitialLoad.current ? 'auto' : 'smooth' });
+          isInitialLoad.current = false;
+        }
+      }
     }
-  }, [messages, shouldScroll]);
+  }, [messages]);
 
   const fetchConversations = async () => {
     try {
@@ -85,7 +92,7 @@ const AdminSupport = () => {
         isAdmin: true 
       });
       setNewMessage('');
-      setShouldScroll(true);
+      isInitialLoad.current = true; // Force scroll to bottom for our own message
       fetchMessages(selectedConv._id);
     } catch (err) {
       toast.error('Failed to send message');
@@ -173,7 +180,10 @@ const AdminSupport = () => {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50/30">
+            <div 
+              ref={messagesContainerRef}
+              className="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50/30"
+            >
               {messages.map((msg) => {
                 const isFromAdmin = msg.isAdmin;
                 return (
