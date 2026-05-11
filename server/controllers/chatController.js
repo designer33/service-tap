@@ -108,6 +108,22 @@ exports.sendMessage = async (req, res, next) => {
       }
     }
 
+    // Notify User if admin is sending
+    if (isAdmin || req.user.role === 'admin') {
+      try {
+        // Create in-app notification for the user
+        await Notification.create({
+          userId: receiver,
+          title: 'New Support Response',
+          message: `Admin: "${content.substring(0, 100)}${content.length > 100 ? '...' : ''}"`,
+          type: 'support_reply',
+          link: '/', // Support widget is usually on home or everywhere
+        });
+      } catch (err) {
+        console.error('[CHAT ERROR] Failed to notify user of admin response:', err);
+      }
+    }
+
 
     // Check for bot trigger (only if user is sending)
     if (!isAdmin && req.user.role !== 'admin') {
