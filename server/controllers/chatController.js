@@ -98,8 +98,12 @@ exports.getConversations = async (req, res, next) => {
 
     // Populate user info (conversationId is userId)
     const populatedConversations = await Promise.all(conversations.map(async (conv) => {
-      const user = await User.findById(conv._id).select('name email role profilePic');
-      return { ...conv, user };
+      try {
+        const user = await User.findById(conv._id).select('name email role urduName profilePic');
+        return { ...conv, user: user || { name: 'Deleted User', role: 'unknown' } };
+      } catch (err) {
+        return { ...conv, user: { name: 'Invalid User', role: 'unknown' } };
+      }
     }));
 
     res.json({ success: true, conversations: populatedConversations });
