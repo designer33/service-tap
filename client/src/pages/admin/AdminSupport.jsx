@@ -14,19 +14,21 @@ const AdminSupport = () => {
   const [fetchingConvs, setFetchingConvs] = useState(true);
   const messagesEndRef = useRef(null);
   const messagesContainerRef = useRef(null);
-  const audioRef = useRef(new Audio('https://assets.mixkit.co/active_storage/sfx/2357/2357-preview.mp3'));
+  const audioRef = useRef(new Audio('https://www.soundjay.com/button/sounds/button-3.mp3'));
   const prevMsgCount = useRef(0);
   const isInitialLoad = useRef(true);
 
   useEffect(() => {
     fetchConversations();
+    const interval = setInterval(fetchConversations, 10000); // Refresh conversation list every 10s
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     if (selectedConv) {
-      setMessages([]); 
-      prevMsgCount.current = 0;
+      // Don't clear messages to prevent layout jump, just mark as initial load for the new conversation
       isInitialLoad.current = true;
+      prevMsgCount.current = 0;
       fetchMessages(selectedConv._id);
       const interval = setInterval(() => fetchMessages(selectedConv._id), 5000);
       return () => clearInterval(interval);
@@ -37,7 +39,8 @@ const AdminSupport = () => {
     if (messages.length > 0) {
       const container = messagesContainerRef.current;
       if (container) {
-        const isNearBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 100;
+        // Only scroll if we are very close to the bottom (within 50px) or it's the first load of this chat
+        const isNearBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 50;
         
         if (isInitialLoad.current || isNearBottom) {
           messagesEndRef.current?.scrollIntoView({ behavior: isInitialLoad.current ? 'auto' : 'smooth' });

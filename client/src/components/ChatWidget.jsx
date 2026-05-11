@@ -37,7 +37,7 @@ const ChatWidget = () => {
 
   const [hasNew, setHasNew] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
-  const audioRef = useRef(new Audio('https://assets.mixkit.co/active_storage/sfx/2357/2357-preview.mp3'));
+  const audioRef = useRef(new Audio('https://www.soundjay.com/button/sounds/button-3.mp3'));
   const prevMsgCount = useRef(0);
 
   const fetchMessages = async () => {

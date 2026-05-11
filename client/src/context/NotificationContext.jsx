@@ -14,7 +14,7 @@ export const NotificationProvider = ({ children }) => {
   const [jobRequestCount, setJobRequestCount] = useState(0);
   const [supportUnreadCount, setSupportUnreadCount] = useState(0);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
-  const audioRef = useRef(new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3'));
+  const audioRef = useRef(new Audio('https://www.soundjay.com/button/sounds/button-3.mp3'));
   const prevUnreadRef = useRef(0);
 
   const fetchNotifications = useCallback(async () => {
