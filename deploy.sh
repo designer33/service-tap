@@ -19,7 +19,7 @@ git pull origin main >> $LOG_FILE 2>&1
 
 # Copy pre-built files to server's public folder
 echo "Updating public folder from client/dist..." >> $LOG_FILE
-cp -r client/dist/* server/public/ >> $LOG_FILE 2>&1
+cp -r client/dist/* public/ >> $LOG_FILE 2>&1
 
 # Install any new server dependencies
 echo "Installing server dependencies..." >> $LOG_FILE
