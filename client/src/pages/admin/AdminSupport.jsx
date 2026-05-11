@@ -39,11 +39,14 @@ const AdminSupport = () => {
     if (messages.length > 0) {
       const container = messagesContainerRef.current;
       if (container) {
-        // Only scroll if we are very close to the bottom (within 50px) or it's the first load of this chat
-        const isNearBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 50;
+        const isNearBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 100;
         
         if (isInitialLoad.current || isNearBottom) {
-          messagesEndRef.current?.scrollIntoView({ behavior: isInitialLoad.current ? 'auto' : 'smooth' });
+          // Use targeted scrollTop instead of scrollIntoView to prevent whole page jumping
+          container.scrollTo({
+            top: container.scrollHeight,
+            behavior: isInitialLoad.current ? 'auto' : 'smooth'
+          });
           isInitialLoad.current = false;
         }
       }

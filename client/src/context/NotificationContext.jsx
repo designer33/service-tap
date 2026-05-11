@@ -65,8 +65,9 @@ export const NotificationProvider = ({ children }) => {
     
     const poll = async () => {
       if (user) {
+        console.log('[DEBUG] Polling notifications...');
         await fetchNotifications();
-        timeoutId = setTimeout(poll, 8000); // Increased polling frequency to 8s
+        timeoutId = setTimeout(poll, 5000); // Poll every 5s
       }
     };
 
