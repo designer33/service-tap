@@ -102,33 +102,48 @@ const createBooking = async (req, res, next) => {
       ...value,
     });
 
-    // Notify only workers in the same city about the new job
+    // Notify matching workers via in-app notification + SMS
     try {
-      // Find workers whose user profile city matches the booking city
-      const matchingUsers = await User.find({ city: value.city, role: 'worker', _id: { $ne: req.user._id } }).select('_id');
-      const matchingUserIds = matchingUsers.map(u => u._id);
+      const { sendSMS } = require('../utils/sms');
 
-      const workers = await Worker.find({ 
+      // Find verified workers whose serviceTypes include this job's serviceType
+      const matchingWorkers = await Worker.find({
         serviceTypes: value.serviceType,
-        userId: { $in: matchingUserIds }
+        verified: true,
+      }).populate({
+        path: 'userId',
+        match: { city: value.city }, // Same city as the job
+        select: 'name phone city',
       });
-      
-      console.log(`[DEBUG] Found ${workers.length} eligible workers for service type: ${value.serviceType}`);
-      
-      if (workers.length > 0) {
-        const notificationData = workers.map(w => ({
-          userId: w.userId,
+
+      // Filter out workers where city didn't match (populate returns null for non-matching)
+      const eligibleWorkers = matchingWorkers.filter(w => w.userId);
+
+      console.log(`[DEBUG] Found ${eligibleWorkers.length} eligible workers for service type: ${value.serviceType} in ${value.city}`);
+
+      if (eligibleWorkers.length > 0) {
+        // Create in-app notifications
+        const notificationData = eligibleWorkers.map(w => ({
+          userId: w.userId._id,
           title: 'New Job Available',
-          message: `A new ${value.serviceType.replace('_', ' ')} job is available: "${value.title}"`,
+          message: `A new ${value.serviceType.replace(/_/g, ' ')} job is available in ${value.city}: "${value.title}"`,
           type: 'new_job',
-          link: '/job-requests'
+          link: '/job-requests',
         }));
-        
-        // Use create instead of insertMany for better validation/hooks reliability in some environments
         await Notification.create(notificationData);
-        console.log(`[DEBUG] Successfully created notifications for ${notificationData.length} workers.`);
+        console.log(`[DEBUG] Created notifications for ${notificationData.length} workers.`);
+
+        // Fire-and-forget SMS to each worker
+        for (const w of eligibleWorkers) {
+          if (w.userId && w.userId.phone) {
+            sendSMS(
+              w.userId.phone,
+              `Hi ${w.userId.name}! New ${value.serviceType.replace(/_/g, ' ')} job in ${value.city}: "${value.title}". Open the Service Knock app to apply!`
+            ).catch(err => console.error('[SMS ERROR] Worker notification failed:', err.message));
+          }
+        }
       } else {
-        console.log('[DEBUG] No workers found to notify.');
+        console.log('[DEBUG] No eligible workers found to notify.');
       }
     } catch (err) {
       console.error('[ERROR] Failed to send job notifications:', err);

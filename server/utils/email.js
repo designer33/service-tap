@@ -270,6 +270,24 @@ const templates = {
       <a class="btn" href="https://serviceknock.com.irfanrashid.net/contact">Contact Support</a>
     `),
   }),
+
+  // To admin — new support chat message
+  supportMessageReceived: (user, content) => ({
+    to: ADMIN_EMAIL,
+    subject: `New Support Message from ${user.name}`,
+    html: baseTemplate(`
+      <h2>New Support Chat Message</h2>
+      <p>A user has sent a message to the support chat.</p>
+      <div class="info-box">
+        <p><strong>Name:</strong> ${user.name}</p>
+        <p><strong>Phone:</strong> ${user.phone}</p>
+        <p><strong>Role:</strong> ${user.role}</p>
+      </div>
+      <p><strong>Message:</strong></p>
+      <p>"${content}"</p>
+      <a class="btn" href="https://serviceknock.com.irfanrashid.net/admin/support">Reply to Chat</a>
+    `),
+  }),
 };
 
 module.exports = { sendEmail, templates };

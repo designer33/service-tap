@@ -86,7 +86,7 @@ const assignWorker = async (req, res, next) => {
       return res.status(400).json({ message: 'Cannot assign worker to this booking' });
     }
 
-    const worker = await Worker.findById(workerId);
+    const worker = await Worker.findById(workerId).populate('userId', 'phone name');
     if (!worker) return res.status(404).json({ message: 'Worker not found' });
 
     booking.workerId = workerId;
@@ -97,15 +97,20 @@ const assignWorker = async (req, res, next) => {
 
     // Notify worker about the assignment
     try {
+      const { sendSMS } = require('../utils/sms');
       await Notification.create({
-        userId: worker.userId,
+        userId: worker.userId._id,
         title: 'New Job Assigned',
         message: `Admin has assigned you a new job: "${booking.title}". Please review and respond.`,
         type: 'new_job',
         link: '/job-requests'
       });
+      
+      if (worker.userId && worker.userId.phone) {
+        await sendSMS(worker.userId.phone, `Hi ${worker.userId.name}, Admin has assigned you a new job: "${booking.title}". Please check Job Requests in your app.`);
+      }
     } catch (err) {
-      console.error('Failed to send assignment notification:', err);
+      console.error('Failed to send assignment notifications:', err);
     }
   } catch (err) {
     next(err);

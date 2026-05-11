@@ -1,5 +1,7 @@
 const Message = require('../models/Message');
 const User = require('../models/User');
+const Notification = require('../models/Notification');
+const { sendEmail, templates } = require('../utils/email');
 
 // @desc    Get chat messages for a user
 // @route   GET /api/chat/messages
@@ -56,15 +58,49 @@ exports.sendMessage = async (req, res, next) => {
       isAdmin: req.user.role === 'admin' && isAdmin,
     });
 
+    // Notify Admin (Email + SMS + In-App Notification) if user is sending
+    if (!isAdmin && req.user.role !== 'admin') {
+      try {
+        const { sendSMS } = require('../utils/sms');
+
+        // Find admin user for DB notification & dynamic phone lookup
+        const admin = await User.findOne({ role: 'admin' }).select('_id phone');
+
+        // 1. Email to admin
+        await sendEmail(templates.supportMessageReceived(req.user, content));
+
+        // 2. In-app DB notification for admin
+        if (admin) {
+          await Notification.create({
+            userId: admin._id,
+            title: 'New Support Message',
+            message: `${req.user.name} (${req.user.role}): "${content.substring(0, 100)}${content.length > 100 ? '...' : ''}"`,
+            type: 'system',
+            link: '/admin/support',
+          });
+
+          // 3. SMS to admin (use DB phone or fallback)
+          const adminPhone = admin.phone || process.env.ADMIN_PHONE || '+923438485818';
+          await sendSMS(adminPhone, `New support msg from ${req.user.name}: "${content.substring(0, 60)}..."`);
+        } else {
+          // Fallback SMS if admin not found in DB
+          await sendSMS(process.env.ADMIN_PHONE || '+923438485818', `New Support Message from ${req.user.name}: "${content.substring(0, 50)}..."`);
+        }
+      } catch (err) {
+        console.error('Failed to notify admin of support message:', err);
+      }
+    }
+
     // Check for bot trigger (only if user is sending)
     if (!isAdmin && req.user.role !== 'admin') {
       const botResponse = getBotResponse(content);
       if (botResponse) {
         await Message.create({
-          sender: req.user._id, 
+          sender: null, // Bot sender
           content: botResponse,
           conversationId,
           isBot: true,
+          isAdmin: true,
         });
       }
     }
