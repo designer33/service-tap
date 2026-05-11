@@ -63,33 +63,51 @@ exports.sendMessage = async (req, res, next) => {
       try {
         const { sendSMS } = require('../utils/sms');
 
-        // Find admin user for DB notification & dynamic phone lookup
-        const admin = await User.findOne({ role: 'admin' }).select('_id phone');
+        // Find all admin users for DB notification & dynamic phone lookup
+        const admins = await User.find({ role: 'admin' }).select('_id phone email');
 
-        // 1. Email to admin
-        await sendEmail(templates.supportMessageReceived(req.user, content));
+        // 1. Email to admin (using the defined template)
+        try {
+          await sendEmail(templates.supportMessageReceived(req.user, content));
+        } catch (emailErr) {
+          console.error('[EMAIL ERROR] Support message alert failed:', emailErr.message);
+        }
 
-        // 2. In-app DB notification for admin
-        if (admin) {
-          await Notification.create({
-            userId: admin._id,
-            title: 'New Support Message',
-            message: `${req.user.name} (${req.user.role}): "${content.substring(0, 100)}${content.length > 100 ? '...' : ''}"`,
-            type: 'system',
-            link: '/admin/support',
-          });
+        if (admins.length > 0) {
+          for (const admin of admins) {
+            // 2. In-app DB notification for each admin
+            try {
+              await Notification.create({
+                userId: admin._id,
+                title: 'New Support Message',
+                message: `${req.user.name} (${req.user.role}): "${content.substring(0, 100)}${content.length > 100 ? '...' : ''}"`,
+                type: 'system',
+                link: '/admin/support',
+              });
+            } catch (dbErr) {
+              console.error(`[DB ERROR] Notification failed for ${admin.email}:`, dbErr.message);
+            }
 
-          // 3. SMS to admin (use DB phone or fallback)
-          const adminPhone = admin.phone || process.env.ADMIN_PHONE || '+923438485818';
-          await sendSMS(adminPhone, `New support msg from ${req.user.name}: "${content.substring(0, 60)}..."`);
+            // 3. SMS to admin
+            try {
+              const adminPhone = admin.phone || process.env.ADMIN_PHONE;
+              if (adminPhone) {
+                await sendSMS(adminPhone, `New support msg from ${req.user.name}: "${content.substring(0, 60)}..."`);
+              }
+            } catch (smsErr) {
+              console.error(`[SMS ERROR] Failed for ${admin.phone}:`, smsErr.message);
+            }
+          }
         } else {
-          // Fallback SMS if admin not found in DB
-          await sendSMS(process.env.ADMIN_PHONE || '+923438485818', `New Support Message from ${req.user.name}: "${content.substring(0, 50)}..."`);
+          // Fallback SMS if no admins found in DB
+          const fallbackPhone = process.env.ADMIN_PHONE || '+923438485818';
+          await sendSMS(fallbackPhone, `New Support Message from ${req.user.name}: "${content.substring(0, 50)}..."`);
         }
       } catch (err) {
-        console.error('Failed to notify admin of support message:', err);
+        console.error('[CHAT ERROR] Global notification failure:', err);
       }
     }
+
 
     // Check for bot trigger (only if user is sending)
     if (!isAdmin && req.user.role !== 'admin') {

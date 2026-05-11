@@ -12,6 +12,7 @@ const AdminSupport = () => {
   const [newMessage, setNewMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [fetchingConvs, setFetchingConvs] = useState(true);
+  const [shouldScroll, setShouldScroll] = useState(false);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -20,15 +21,22 @@ const AdminSupport = () => {
 
   useEffect(() => {
     if (selectedConv) {
+      setMessages([]); // Clear messages when switching conversations
+      setShouldScroll(true); // Ensure we scroll to bottom on first load
       fetchMessages(selectedConv._id);
-      const interval = setInterval(() => fetchMessages(selectedConv._id), 5000);
+      const interval = setInterval(() => {
+        setShouldScroll(false); // Don't snap to bottom on auto-refresh
+        fetchMessages(selectedConv._id);
+      }, 5000);
       return () => clearInterval(interval);
     }
   }, [selectedConv]);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+    if (shouldScroll) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages, shouldScroll]);
 
   const fetchConversations = async () => {
     try {
@@ -69,6 +77,7 @@ const AdminSupport = () => {
         isAdmin: true 
       });
       setNewMessage('');
+      setShouldScroll(true);
       fetchMessages(selectedConv._id);
     } catch (err) {
       toast.error('Failed to send message');
