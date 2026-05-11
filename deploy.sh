@@ -15,7 +15,8 @@ source /home/irfanras/nodevenv/service-tap/20/bin/activate && cd $PROJECT_DIR
 
 # Pull latest changes
 echo "Pulling latest changes from main..." >> $LOG_FILE
-git pull origin main >> $LOG_FILE 2>&1
+git fetch --all >> $LOG_FILE 2>&1
+git reset --hard origin/main >> $LOG_FILE 2>&1
 
 # Copy pre-built files to server's public folder
 echo "Updating public folder from client/dist..." >> $LOG_FILE
