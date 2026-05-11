@@ -138,14 +138,25 @@ const login = async (req, res, next) => {
       return res.status(400).json({ message: 'Email/Phone and password are required' });
     }
 
-    const user = await User.findOne({ 
+    const users = await User.find({ 
       $or: [
         { email: email.toLowerCase() },
         { phone: email }
       ]
     }).select('+password +profilePic');
 
-    if (!user || !(await user.matchPassword(password))) {
+    let user = null;
+    if (users.length > 0) {
+      // Check each user's password until we find a match
+      for (const candidate of users) {
+        if (await candidate.matchPassword(password)) {
+          user = candidate;
+          break;
+        }
+      }
+    }
+
+    if (!user) {
       return res.status(401).json({ message: 'Invalid email/phone or password' });
     }
 
