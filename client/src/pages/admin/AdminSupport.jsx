@@ -98,7 +98,11 @@ const AdminSupport = () => {
         isAdmin: true 
       });
       setNewMessage('');
-      isInitialLoad.current = true; // Force scroll to bottom for our own message
+      // Force targeted scroll to bottom for our own message
+      const container = messagesContainerRef.current;
+      if (container) {
+        container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+      }
       fetchMessages(selectedConv._id);
     } catch (err) {
       toast.error('Failed to send message');
