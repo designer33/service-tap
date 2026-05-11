@@ -26,10 +26,11 @@ router.get('/workers', getAllWorkers);
 router.get('/workers/available', getAvailableWorkers);
 
 // User Management
-const { getUsers, toggleUserBlock, deleteUser, getVerifications, approveVerification, rejectVerification } = require('../controllers/adminController');
+const { getUsers, toggleUserBlock, deleteUser, getVerifications, approveVerification, rejectVerification, restartServer } = require('../controllers/adminController');
 router.get('/users', getUsers);
 router.patch('/users/:id/block', toggleUserBlock);
 router.delete('/users/:id', deleteUser);
+router.post('/restart', restartServer);
 
 // ID Verifications
 router.get('/verifications', getVerifications);

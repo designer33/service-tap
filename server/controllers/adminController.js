@@ -304,6 +304,7 @@ module.exports = {
   getVerifications,
   approveVerification,
   rejectVerification,
+  restartServer,
 };
 
 // =============================================================
@@ -374,4 +375,34 @@ async function rejectVerification(req, res, next) {
 
     res.json({ success: true, message: 'Verification rejected', user });
   } catch (err) { next(err); }
+}
+
+// =============================================================
+// @route   POST /api/admin/restart
+// @access  Admin
+// =============================================================
+async function restartServer(req, res, next) {
+  try {
+    const { exec } = require('child_process');
+    const path = require('path');
+    
+    res.json({ 
+      success: true, 
+      message: 'Restart command triggered. The server will pull latest code and restart. Please wait 10-20 seconds.' 
+    });
+
+    // Execute the deployment script
+    // Note: The path might need adjustment depending on where the script is relative to the server
+    const scriptPath = path.join(__dirname, '../../deploy.sh');
+    
+    exec(`bash ${scriptPath}`, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`❌ Restart/Deploy Error: ${error}`);
+        return;
+      }
+      console.log('✅ Server restart/deployment triggered successfully');
+    });
+  } catch (err) {
+    next(err);
+  }
 }

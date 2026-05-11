@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api/axios';
 import toast from 'react-hot-toast';
-import { Briefcase, Users, CheckCircle, Clock, TrendingUp, ArrowRight, Loader2, ShieldCheck } from 'lucide-react';
+import { Briefcase, Users, CheckCircle, Clock, TrendingUp, ArrowRight, Loader2, ShieldCheck, RefreshCw } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 const StatCard = ({ icon: Icon, label, value, color, sub }) => (
@@ -22,6 +22,7 @@ const AdminDashboard = () => {
   const { t } = useLanguage();
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [restarting, setRestarting] = useState(false);
 
   useEffect(() => {
     api.get('/admin/stats')
@@ -29,6 +30,21 @@ const AdminDashboard = () => {
       .catch(() => toast.error('Failed to load stats.'))
       .finally(() => setLoading(false));
   }, []);
+
+  const handleRestart = async () => {
+    if (!window.confirm(t('restartConfirm'))) return;
+    setRestarting(true);
+    try {
+      const { data } = await api.post('/admin/restart');
+      if (data.success) {
+        toast.success(data.message, { duration: 10000 });
+      }
+    } catch (err) {
+      toast.error('Failed to trigger restart.');
+    } finally {
+      setRestarting(false);
+    }
+  };
 
   if (loading) return (
     <div className="flex justify-center py-20"><Loader2 size={32} className="animate-spin text-primary-400" /></div>
@@ -40,6 +56,18 @@ const AdminDashboard = () => {
         <div className="mb-8">
           <h1 className="section-title">Admin Dashboard</h1>
           <p className="text-slate-500 mt-1">Overview of Service Knock platform activity.</p>
+        </div>
+
+        {/* Restart Button */}
+        <div className="mb-8 flex justify-end">
+          <button 
+            onClick={handleRestart}
+            disabled={restarting}
+            className="btn-outline flex items-center gap-2 text-red-600 border-red-200 hover:bg-red-50"
+          >
+            {restarting ? <Loader2 size={18} className="animate-spin" /> : <RefreshCw size={18} />}
+            {restarting ? t('restarting') : t('restartLiveServer')}
+          </button>
         </div>
 
         {/* Stats */}

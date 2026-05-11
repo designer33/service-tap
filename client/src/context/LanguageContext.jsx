@@ -463,6 +463,9 @@ const translations = {
     selectConversation: 'Select a conversation to start chatting',
     respondToQueries: 'Respond to user queries and view chat history.',
     typeAResponse: 'Type a response...',
+    restartLiveServer: 'Restart Live Server',
+    restartConfirm: 'Are you sure you want to pull latest changes and restart the live server?',
+    restarting: 'Restarting...',
   },
   ur: {
     // Navbar
@@ -816,13 +819,14 @@ const translations = {
     selectConversation: 'بات چیت شروع کرنے کے لیے ایک گفتگو منتخب کریں',
     respondToQueries: 'صارف کے سوالات کے جوابات دیں اور چیٹ کی تاریخ دیکھیں۔',
     typeAResponse: 'جواب لکھیں...',
+    restartLiveServer: 'لائیو سرور دوبارہ شروع کریں',
+    restartConfirm: 'کیا آپ واقعی تازہ ترین تبدیلیاں حاصل کرنا اور لائیو سرور کو دوبارہ شروع کرنا چاہتے ہیں؟',
+    restarting: 'دوبارہ شروع ہو رہا ہے...',
     selectServiceType: 'براہ کرم سروس کی قسم منتخب کریں',
     bookingSubmittedToast: 'بکنگ جمع ہو گئی! ہم جلد ہی ایک ورکر مقرر کریں گے۔',
     suggestionsTitle: 'تجاویز (صرف پاکستان)',
     fileTooLarge: 'فائل بہت بڑی ہے۔ زیادہ سے زیادہ 5MB کی اجازت ہے۔',
     selectService: 'سروس منتخب کریں',
-
-    // Profile Page
     editProfile: 'پروفائل میں ترمیم کریں',
     joined: 'شامل ہوئے',
     userReviews: 'صارفین کے ریویوز',
