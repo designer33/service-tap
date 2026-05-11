@@ -25,7 +25,7 @@ const NotificationDropdown = () => {
     <div className="relative" ref={dropdownRef}>
       <button 
         onClick={() => setOpen(!open)}
-        className="relative p-2 rounded-full hover:bg-slate-100 transition-colors text-slate-600"
+        className={`relative p-2 rounded-full hover:bg-slate-100 transition-colors ${unreadCount > 0 ? 'text-primary-600 animate-pulse' : 'text-slate-600'}`}
       >
         <Bell size={20} />
         {unreadCount > 0 && (

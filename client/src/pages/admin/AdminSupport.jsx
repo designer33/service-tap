@@ -14,6 +14,8 @@ const AdminSupport = () => {
   const [fetchingConvs, setFetchingConvs] = useState(true);
   const [shouldScroll, setShouldScroll] = useState(false);
   const messagesEndRef = useRef(null);
+  const audioRef = useRef(new Audio('https://assets.mixkit.co/active_storage/sfx/2357/2357-preview.mp3'));
+  const prevMsgCount = useRef(0);
 
   useEffect(() => {
     fetchConversations();
@@ -53,11 +55,17 @@ const AdminSupport = () => {
 
   const fetchMessages = async (userId) => {
     try {
-      // For admin, we might need a specific endpoint or just use the same one if we pass userId
-      // Let's assume we can fetch by conversationId (which is userId)
       const { data } = await api.get(`/chat/messages?userId=${userId}`);
       if (data.success) {
+        // Trigger sound if new messages from customer arrived
+        if (data.messages.length > prevMsgCount.current) {
+          const lastMsg = data.messages[data.messages.length - 1];
+          if (lastMsg && !lastMsg.isAdmin && !lastMsg.isBot) {
+            audioRef.current.play().catch(() => {});
+          }
+        }
         setMessages(data.messages);
+        prevMsgCount.current = data.messages.length;
       }
     } catch (err) {
       console.error('Failed to fetch messages');

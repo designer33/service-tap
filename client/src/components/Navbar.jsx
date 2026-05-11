@@ -3,12 +3,12 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useNotifications } from '../context/NotificationContext';
 import { useLanguage } from '../context/LanguageContext';
-import { LogOut, Menu, X, Zap, User, Briefcase, LayoutDashboard, Bell, ChevronDown, Globe, ShieldOff } from 'lucide-react';
+import { LogOut, Menu, X, Zap, User, Briefcase, LayoutDashboard, Bell, ChevronDown, Globe, ShieldOff, MessageSquare } from 'lucide-react';
 import NotificationDropdown from './NotificationDropdown';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
-  const { jobRequestCount } = useNotifications();
+  const { jobRequestCount, supportUnreadCount, unreadCount } = useNotifications();
   const { language, toggleLanguage, t } = useLanguage();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -31,6 +31,7 @@ const Navbar = () => {
       { to: '/admin', label: t('dashboard'), icon: LayoutDashboard },
       { to: '/admin/bookings', label: t('myBookings'), icon: Briefcase },
       { to: '/admin/workers', label: t('workers'), icon: User },
+      { to: '/admin/support', label: t('support'), icon: MessageSquare },
     ],
   };
 
@@ -89,6 +90,11 @@ const Navbar = () => {
                   {to === '/job-requests' && jobRequestCount > 0 && (
                     <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white animate-bounce">
                       {jobRequestCount}
+                    </span>
+                  )}
+                  {to === '/admin/support' && supportUnreadCount > 0 && (
+                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white animate-pulse">
+                      {supportUnreadCount}
                     </span>
                   )}
                 </NavLink>

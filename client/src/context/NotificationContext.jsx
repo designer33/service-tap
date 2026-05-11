@@ -12,6 +12,7 @@ export const NotificationProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [jobRequestCount, setJobRequestCount] = useState(0);
+  const [supportUnreadCount, setSupportUnreadCount] = useState(0);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const audioRef = useRef(new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3'));
   const prevUnreadRef = useRef(0);
@@ -23,40 +24,37 @@ export const NotificationProvider = ({ children }) => {
       const unreadOnly = data.notifications.filter(n => !n.isRead);
       const newUnreadCount = unreadOnly.length;
       
-      console.log(`[DEBUG] Fetched ${data.notifications.length} notifications. Unread: ${newUnreadCount}`);
+      // Specifically count support messages for admin
+      if (user.role === 'admin') {
+        const supportNotifs = unreadOnly.filter(n => n.link === '/admin/support' || n.title.toLowerCase().includes('support'));
+        setSupportUnreadCount(supportNotifs.length);
+      }
+
+      // Specifically count job requests for workers
+      if (user.role === 'worker') {
+        const jobNotifications = unreadOnly.filter(n => 
+          n.type === 'new_job' || n.title.toLowerCase().includes('job') || n.title.toLowerCase().includes('booking')
+        );
+        setJobRequestCount(jobNotifications.length);
+      }
 
       // Play sound and show toast if unread count increased
       if (newUnreadCount > prevUnreadRef.current) {
         const latest = unreadOnly[0];
         if (latest) {
-          console.log(`[DEBUG] New notification: ${latest.title}`);
           toast.success(latest.title + ': ' + latest.message, {
             icon: '🔔',
             duration: 5000
           });
         }
         
-        audioRef.current.play().catch(e => {
-          console.warn('[DEBUG] Audio play blocked by browser.');
-        });
-        
+        audioRef.current.play().catch(() => {});
         setRefreshTrigger(prev => prev + 1);
       }
       
       setNotifications(data.notifications);
       setUnreadCount(newUnreadCount);
       prevUnreadRef.current = newUnreadCount;
-
-      // Specifically count job requests for workers
-      if (user.role === 'worker') {
-        const jobNotifications = data.notifications.filter(n => 
-          !n.isRead && (n.type === 'new_job' || n.title.toLowerCase().includes('job') || n.title.toLowerCase().includes('booking'))
-        );
-        setJobRequestCount(jobNotifications.length);
-        if (jobNotifications.length > 0) {
-          console.log(`[DEBUG] Worker has ${jobNotifications.length} unread job requests.`);
-        }
-      }
     } catch (err) {
       console.error('Failed to fetch notifications');
     }
@@ -109,6 +107,7 @@ export const NotificationProvider = ({ children }) => {
       notifications, 
       unreadCount, 
       jobRequestCount, 
+      supportUnreadCount,
       refreshTrigger,
       fetchNotifications, 
       markAsRead, 

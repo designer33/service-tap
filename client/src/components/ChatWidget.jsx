@@ -35,12 +35,25 @@ const ChatWidget = () => {
 
   useEffect(scrollToBottom, [messages]);
 
+  const [hasNew, setHasNew] = useState(false);
+  const audioRef = useRef(new Audio('https://assets.mixkit.co/active_storage/sfx/2357/2357-preview.mp3'));
+  const prevMsgCount = useRef(0);
+
   const fetchMessages = async () => {
     if (!user) return;
     try {
       const { data } = await api.get('/chat/messages');
       if (data.success) {
+        // Trigger sound if new messages from admin/bot arrived
+        const unreadFromAdmin = data.messages.filter(m => !m.isRead && (m.isAdmin || m.isBot));
+        if (unreadFromAdmin.length > 0 && data.messages.length > prevMsgCount.current) {
+          if (!isOpen) {
+            setHasNew(true);
+            audioRef.current.play().catch(() => {});
+          }
+        }
         setMessages(data.messages);
+        prevMsgCount.current = data.messages.length;
       }
     } catch (err) {
       console.error('Failed to fetch messages:', err);
@@ -166,11 +179,16 @@ const ChatWidget = () => {
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 bg-primary-600 text-white rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-shadow relative"
+        onClick={() => {
+          setIsOpen(!isOpen);
+          setHasNew(false);
+        }}
+        className={`w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-shadow relative ${
+          hasNew && !isOpen ? 'bg-primary-600 animate-pulse ring-4 ring-primary-500/30' : 'bg-primary-600'
+        }`}
       >
         {isOpen ? <FiX className="text-2xl" /> : <FiMessageCircle className="text-2xl" />}
-        {!isOpen && messages.some(m => !m.isRead && (m.isAdmin || m.isBot)) && (
+        {(!isOpen && (hasNew || messages.some(m => !m.isRead && (m.isAdmin || m.isBot)))) && (
           <span className="absolute top-0 right-0 w-4 h-4 bg-red-500 border-2 border-white rounded-full"></span>
         )}
       </motion.button>
