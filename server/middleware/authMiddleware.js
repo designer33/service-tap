@@ -32,7 +32,7 @@ const protect = async (req, res, next) => {
     const now = new Date();
     const lastActiveAge = req.user.lastActive ? (now - req.user.lastActive) : Infinity;
     if (lastActiveAge > 60000) {
-      User.findByIdAndUpdate(req.user._id, { lastActive: now }).exec();
+      User.findByIdAndUpdate(req.user._id, { lastActive: now }).exec().catch(() => {});
     }
 
     next();
