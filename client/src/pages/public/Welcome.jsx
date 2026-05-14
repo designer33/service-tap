@@ -113,7 +113,7 @@ const Welcome = () => {
           className="w-full py-5 bg-primary-600 text-white rounded-3xl font-black text-lg flex items-center justify-center gap-3 shadow-xl shadow-primary-200 hover:scale-[1.02] active:scale-[0.98] transition-all"
         >
           {language === 'ur' && <ArrowLeft size={22} />}
-          <span className="mt-[30px]">{t('getStarted')}</span>
+          <span>{t('getStarted')}</span>
           {language !== 'ur' && <ArrowRight size={22} />}
         </Link>
         
