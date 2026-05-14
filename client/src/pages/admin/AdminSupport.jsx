@@ -134,7 +134,7 @@ const AdminSupport = () => {
   );
 
   return (
-    <div className="bg-slate-50 min-h-[calc(100vh-64px)] flex">
+    <div className="bg-slate-50 h-[calc(100vh-64px)] flex overflow-hidden">
       {/* Sidebar */}
       <div className="w-80 bg-white border-r border-slate-200 flex flex-col">
         <div className="p-4 border-b border-slate-200">
