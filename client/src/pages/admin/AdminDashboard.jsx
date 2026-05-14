@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api/axios';
 import toast from 'react-hot-toast';
-import { Briefcase, Users, CheckCircle, Clock, TrendingUp, ArrowRight, Loader2, ShieldCheck, RefreshCw } from 'lucide-react';
+import { Briefcase, Users, CheckCircle, Clock, TrendingUp, ArrowRight, Loader2, ShieldCheck, RefreshCw, Inbox } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 const StatCard = ({ icon: Icon, label, value, color, sub }) => (
@@ -123,6 +123,18 @@ const AdminDashboard = () => {
               <div>
                 <h3 className="font-bold text-dark mb-1">{t('supportChats')}</h3>
                 <p className="text-slate-500 text-sm">{t('respondToQueries')}</p>
+              </div>
+            </div>
+            <ArrowRight size={20} className="text-primary-400 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link to="/admin/inbox" className="card-hover flex items-center justify-between group">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-violet-100 rounded-xl flex items-center justify-center shrink-0">
+                <Inbox size={20} className="text-violet-600" />
+              </div>
+              <div>
+                <h3 className="font-bold text-dark mb-1">Inbox</h3>
+                <p className="text-slate-500 text-sm">View contact form submissions and newsletter subscribers.</p>
               </div>
             </div>
             <ArrowRight size={20} className="text-primary-400 group-hover:translate-x-1 transition-transform" />

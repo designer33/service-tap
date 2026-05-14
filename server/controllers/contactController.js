@@ -1,6 +1,7 @@
-const { sendEmail, templates } = require('../utils/email');
+const ContactSubmission = require('../models/ContactSubmission');
+const Newsletter = require('../models/Newsletter');
 
-// @route   POST /api/contact
+// @route   POST /api/contact/contact
 // @access  Public
 exports.sendContactMessage = async (req, res, next) => {
   try {
@@ -10,7 +11,7 @@ exports.sendContactMessage = async (req, res, next) => {
       return res.status(400).json({ message: 'Please provide name, email and message' });
     }
 
-    await sendEmail(templates.contactForm(name, email, subject, message));
+    await ContactSubmission.create({ name, email, subject, message });
 
     res.status(200).json({ success: true, message: 'Message sent successfully' });
   } catch (err) {
@@ -28,7 +29,14 @@ exports.subscribeNewsletter = async (req, res, next) => {
       return res.status(400).json({ message: 'Please provide an email address' });
     }
 
-    await sendEmail(templates.newsletter(email));
+    try {
+      await Newsletter.create({ email });
+    } catch (err) {
+      if (err.code === 11000) {
+        return res.status(200).json({ success: true, message: 'Already subscribed!' });
+      }
+      throw err;
+    }
 
     res.status(200).json({ success: true, message: 'Subscribed successfully' });
   } catch (err) {

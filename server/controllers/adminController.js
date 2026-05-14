@@ -3,6 +3,8 @@ const Booking = require('../models/Booking');
 const Worker = require('../models/Worker');
 const User = require('../models/User');
 const Notification = require('../models/Notification');
+const ContactSubmission = require('../models/ContactSubmission');
+const Newsletter = require('../models/Newsletter');
 const { sendEmail, templates } = require('../utils/email');
 
 // =============================================================
@@ -295,6 +297,61 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
+// =============================================================
+// @route   GET /api/admin/contact-submissions
+// @access  Admin
+// =============================================================
+const getContactSubmissions = async (req, res, next) => {
+  try {
+    const submissions = await ContactSubmission.find().sort({ createdAt: -1 });
+    res.json({ success: true, submissions });
+  } catch (err) { next(err); }
+};
+
+// =============================================================
+// @route   PATCH /api/admin/contact-submissions/:id/read
+// @access  Admin
+// =============================================================
+const markContactRead = async (req, res, next) => {
+  try {
+    await ContactSubmission.findByIdAndUpdate(req.params.id, { isRead: true });
+    res.json({ success: true });
+  } catch (err) { next(err); }
+};
+
+// =============================================================
+// @route   DELETE /api/admin/contact-submissions/:id
+// @access  Admin
+// =============================================================
+const deleteContactSubmission = async (req, res, next) => {
+  try {
+    await ContactSubmission.findByIdAndDelete(req.params.id);
+    res.json({ success: true, message: 'Deleted successfully' });
+  } catch (err) { next(err); }
+};
+
+// =============================================================
+// @route   GET /api/admin/newsletter
+// @access  Admin
+// =============================================================
+const getNewsletterSubscribers = async (req, res, next) => {
+  try {
+    const subscribers = await Newsletter.find().sort({ createdAt: -1 });
+    res.json({ success: true, subscribers });
+  } catch (err) { next(err); }
+};
+
+// =============================================================
+// @route   DELETE /api/admin/newsletter/:id
+// @access  Admin
+// =============================================================
+const deleteNewsletterSubscriber = async (req, res, next) => {
+  try {
+    await Newsletter.findByIdAndDelete(req.params.id);
+    res.json({ success: true, message: 'Subscriber removed' });
+  } catch (err) { next(err); }
+};
+
 module.exports = {
   getStats,
   getAllBookings,
@@ -310,6 +367,11 @@ module.exports = {
   approveVerification,
   rejectVerification,
   restartServer,
+  getContactSubmissions,
+  markContactRead,
+  deleteContactSubmission,
+  getNewsletterSubscribers,
+  deleteNewsletterSubscriber,
 };
 
 // =============================================================

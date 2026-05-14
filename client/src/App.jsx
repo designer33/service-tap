@@ -38,6 +38,7 @@ import AdminWorkers from './pages/admin/AdminWorkers';
 import AdminUsers from './pages/admin/AdminUsers';
 import AdminVerifications from './pages/admin/AdminVerifications';
 import AdminSupport from './pages/admin/AdminSupport';
+import AdminInbox from './pages/admin/AdminInbox';
 
 // Components
 import ProtectedRoute from './components/ProtectedRoute';
@@ -129,6 +130,7 @@ const AppRoutes = () => {
             <Route path="/admin/users" element={<AdminUsers />} />
             <Route path="/admin/verifications" element={<AdminVerifications />} />
             <Route path="/admin/support" element={<AdminSupport />} />
+            <Route path="/admin/inbox" element={<AdminInbox />} />
           </Route>
 
           {/* Fallback */}

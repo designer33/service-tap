@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useNotifications } from '../context/NotificationContext';
 import { useLanguage } from '../context/LanguageContext';
-import { LogOut, Menu, X, Zap, User, Briefcase, LayoutDashboard, Bell, ChevronDown, Globe, ShieldOff, MessageSquare } from 'lucide-react';
+import { LogOut, Menu, X, Zap, User, Briefcase, LayoutDashboard, Bell, ChevronDown, Globe, ShieldOff, MessageSquare, Inbox } from 'lucide-react';
 import NotificationDropdown from './NotificationDropdown';
 
 const Navbar = () => {
@@ -32,6 +32,7 @@ const Navbar = () => {
       { to: '/admin/workers', label: t('workers'), icon: User },
       { to: '/admin/users', label: 'Users', icon: User },
       { to: '/admin/support', label: t('support'), icon: MessageSquare },
+      { to: '/admin/inbox', label: 'Inbox', icon: Inbox },
     ],
   };
 
