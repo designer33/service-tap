@@ -18,6 +18,10 @@ const contactRoutes = require('./server/routes/contactRoutes');
 // Connect to MongoDB Atlas
 connectDB();
 
+// Start chat email scheduler (emails unread support messages after 15s)
+const { startChatEmailScheduler } = require('./server/utils/chatEmailScheduler');
+startChatEmailScheduler();
+
 const app = express();
 
 // Auto Deployment Webhook

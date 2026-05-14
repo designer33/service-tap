@@ -3,8 +3,6 @@ const User = require('../models/User');
 const Notification = require('../models/Notification');
 const { sendEmail, templates } = require('../utils/email');
 
-const EMAIL_DELAY_MS = 15 * 1000; // 15 seconds — email sent if message still unread
-
 // @desc    Get chat messages for a user
 // @route   GET /api/chat/messages
 // @access  Protected
@@ -60,7 +58,7 @@ exports.sendMessage = async (req, res, next) => {
 
     // ── User → Admin ─────────────────────────────────────────────────────────
     if (req.user.role !== 'admin') {
-      // Always create in-app notifications for all admins
+      // In-app notifications for all admins
       try {
         const admins = await User.find({ role: 'admin' }).select('_id');
         for (const admin of admins) {
@@ -76,27 +74,11 @@ exports.sendMessage = async (req, res, next) => {
         console.error('[CHAT] User→Admin notification error:', err.message);
       }
 
-      // Email admin if message is still unread after 15s
-      const senderInfo = { name: req.user.name, role: req.user.role, phone: req.user.phone };
-      const msgId = message._id;
-      setTimeout(async () => {
-        try {
-          const msg = await Message.findById(msgId).select('isRead');
-          console.log(`[CHAT] 15s check (user→admin) msg=${msgId} isRead=${msg?.isRead}`);
-          if (msg && !msg.isRead) {
-            console.log(`[CHAT] Sending delayed email to admin for msg from ${senderInfo.name}`);
-            await sendEmail(templates.supportMessageReceived(senderInfo, content));
-          }
-        } catch (err) {
-          console.error('[CHAT] setTimeout (user→admin) error:', err.message);
-        }
-      }, EMAIL_DELAY_MS);
-
       // Bot auto-reply
       const botResponse = getBotResponse(content);
       if (botResponse) {
         await Message.create({
-          sender: null,
+          sender: req.user._id,
           content: botResponse,
           conversationId,
           isBot: true,
@@ -109,9 +91,7 @@ exports.sendMessage = async (req, res, next) => {
     if (req.user.role === 'admin' && receiver) {
       try {
         const targetUser = await User.findById(receiver).select('name email');
-
         if (targetUser) {
-          // Always create in-app notification for the user
           await Notification.create({
             userId: receiver,
             title: 'New Support Reply',
@@ -119,22 +99,6 @@ exports.sendMessage = async (req, res, next) => {
             type: 'support_reply',
             link: '/',
           }).catch(err => console.error('[DB] User notification failed:', err.message));
-
-          // Email user if message is still unread after 15s
-          const recipientInfo = { name: targetUser.name, email: targetUser.email };
-          const msgId = message._id;
-          setTimeout(async () => {
-            try {
-              const msg = await Message.findById(msgId).select('isRead');
-              console.log(`[CHAT] 15s check (admin→user) msg=${msgId} isRead=${msg?.isRead} to=${recipientInfo.email}`);
-              if (msg && !msg.isRead) {
-                console.log(`[CHAT] Sending delayed email to ${recipientInfo.email}`);
-                await sendEmail(templates.supportReplyToUser(recipientInfo, content));
-              }
-            } catch (err) {
-              console.error('[CHAT] setTimeout (admin→user) error:', err.message);
-            }
-          }, EMAIL_DELAY_MS);
         }
       } catch (err) {
         console.error('[CHAT] Admin→User notification error:', err.message);

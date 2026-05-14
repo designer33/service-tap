@@ -29,6 +29,10 @@ const messageSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    emailSent: {
+      type: Boolean,
+      default: false,
+    },
     conversationId: {
       type: String,
       required: true, // Use user ID as conversation ID for support chat
