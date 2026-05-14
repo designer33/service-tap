@@ -238,13 +238,15 @@ const ChatWidget = () => {
           )}
         </AnimatePresence>
 
-        {/* FAB positioned above MobileNav */}
-        <div
-          className="fixed right-4 z-[1100]"
-          style={{ bottom: 'calc(4.5rem + env(safe-area-inset-bottom) + 12px)' }}
-        >
-          {toggleBtn}
-        </div>
+        {/* FAB positioned above MobileNav — hidden when chat is open */}
+        {!isOpen && (
+          <div
+            className="fixed right-4 z-[1100]"
+            style={{ bottom: 'calc(4.5rem + env(safe-area-inset-bottom) + 12px)' }}
+          >
+            {toggleBtn}
+          </div>
+        )}
       </>
     );
   }

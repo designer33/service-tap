@@ -221,7 +221,7 @@ const Register = () => {
                   className="form-input" />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="form-label text-[11px] uppercase tracking-wide" htmlFor="reg-city">{language === 'ur' ? 'شہر' : 'City'}</label>
                   <input id="reg-city" type="text" name="city" value={form.city} onChange={handleChange}
@@ -244,7 +244,7 @@ const Register = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="form-label text-[11px] uppercase tracking-wide" htmlFor="reg-zip">{language === 'ur' ? 'زپ کوڈ' : 'Zip Code'}</label>
                   <input id="reg-zip" type="text" name="zipCode" value={form.zipCode} onChange={handleChange}

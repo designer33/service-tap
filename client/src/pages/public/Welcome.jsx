@@ -102,11 +102,11 @@ const Welcome = () => {
       </div>
 
       {/* Bottom Section: Actions */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, type: "spring", stiffness: 100 }}
-        className="relative z-10 p-8 pt-0 flex flex-col gap-4"
+        className="relative z-10 p-8 pt-8 flex flex-col gap-4"
       >
         <Link 
           to="/register" 

@@ -271,7 +271,7 @@ const BookService = () => {
                   className="form-input" />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="form-label text-[11px] uppercase tracking-wide" htmlFor="book-city">{language === 'ur' ? 'شہر' : 'City'}</label>
                   <input id="book-city" type="text" name="city" value={form.city} onChange={handleChange}
@@ -294,7 +294,7 @@ const BookService = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="form-label text-[11px] uppercase tracking-wide" htmlFor="book-zip">{language === 'ur' ? 'زپ کوڈ' : 'Zip Code'}</label>
                   <input id="book-zip" type="text" name="zipCode" value={form.zipCode} onChange={handleChange}

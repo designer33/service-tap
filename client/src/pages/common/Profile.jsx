@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../../api/axios';
-import { Loader2, Star, Calendar, MapPin, CheckCircle, User as UserIcon, Briefcase, Edit, Camera, X, Phone, AlertTriangle, ShieldCheck, ShieldAlert, Upload, Clock, Lock } from 'lucide-react';
+import { Loader2, Star, Calendar, MapPin, CheckCircle, User as UserIcon, Briefcase, Edit, Camera, X, Phone, AlertTriangle, ShieldCheck, ShieldAlert, Upload, Clock, Lock, LogOut } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../context/AuthContext';
 import { formatDate } from '../../utils/formatDate';
@@ -13,7 +13,8 @@ import { Capacitor } from '@capacitor/core';
 
 const Profile = () => {
   const { id } = useParams();
-  const { user: currentUser, updateUser } = useAuth();
+  const { user: currentUser, updateUser, logout } = useAuth();
+  const isNative = Capacitor.isNativePlatform();
   const { t, language } = useLanguage();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -222,20 +223,28 @@ const Profile = () => {
               <div className="flex flex-wrap justify-center sm:justify-end gap-2 mb-2">
                 {(currentUser?._id === data?.user?._id || currentUser?.slug === id) && (
                   <>
-                    <button 
+                    <button
                       onClick={() => setEditModal(true)}
                       className="flex items-center gap-1.5 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-bold hover:bg-slate-50 shadow-sm transition-all active:scale-95"
                     >
                       <Edit size={14} /> {t('editProfile')}
                     </button>
-                    <button 
+                    <button
                       onClick={handleResetPassword}
                       disabled={resetting}
                       className="flex items-center gap-1.5 bg-white border border-slate-200 text-primary-600 px-4 py-2 rounded-full text-xs font-bold hover:bg-slate-50 shadow-sm transition-all active:scale-95"
                     >
-                      {resetting ? <Loader2 size={14} className="animate-spin" /> : <Lock size={14} />} 
+                      {resetting ? <Loader2 size={14} className="animate-spin" /> : <Lock size={14} />}
                       {language === 'ur' ? 'پاس ورڈ ری سیٹ' : 'Reset Password'}
                     </button>
+                    {isNative && (
+                      <button
+                        onClick={logout}
+                        className="flex items-center gap-1.5 bg-white border border-red-100 text-red-500 px-4 py-2 rounded-full text-xs font-bold hover:bg-red-50 shadow-sm transition-all active:scale-95"
+                      >
+                        <LogOut size={14} /> {t('signOut')}
+                      </button>
+                    )}
                   </>
                 )}
                 {currentUser && currentUser._id !== user._id && (
