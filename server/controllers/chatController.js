@@ -3,12 +3,7 @@ const User = require('../models/User');
 const Notification = require('../models/Notification');
 const { sendEmail, templates } = require('../utils/email');
 
-const OFFLINE_THRESHOLD_MS = 60 * 1000; // 1 minute — user gets email/SMS if inactive for 1 min
-
-function isOffline(user) {
-  if (!user || !user.lastActive) return true;
-  return (Date.now() - new Date(user.lastActive).getTime()) > OFFLINE_THRESHOLD_MS;
-}
+const EMAIL_DELAY_MS = 15 * 1000; // 15 seconds — email sent if message still unread
 
 // @desc    Get chat messages for a user
 // @route   GET /api/chat/messages
@@ -65,12 +60,10 @@ exports.sendMessage = async (req, res, next) => {
 
     // ── User → Admin ─────────────────────────────────────────────────────────
     if (req.user.role !== 'admin') {
+      // Always create in-app notifications for all admins
       try {
-        const { sendSMS } = require('../utils/sms');
-        const admins = await User.find({ role: 'admin' }).select('_id phone email lastActive');
-
+        const admins = await User.find({ role: 'admin' }).select('_id');
         for (const admin of admins) {
-          // Always create in-app notification
           await Notification.create({
             userId: admin._id,
             title: 'New Support Message',
@@ -78,31 +71,23 @@ exports.sendMessage = async (req, res, next) => {
             type: 'system',
             link: '/admin/support',
           }).catch(err => console.error('[DB] Notification failed:', err.message));
-
-          // Only send email/SMS if admin is offline
-          if (isOffline(admin)) {
-            sendEmail(templates.supportMessageReceived(req.user, content))
-              .catch(err => console.error('[EMAIL] Admin alert failed:', err.message));
-
-            const adminPhone = admin.phone || process.env.ADMIN_PHONE;
-            if (adminPhone) {
-              sendSMS(adminPhone, `[Service Knock] New support msg from ${req.user.name}: "${content.substring(0, 60)}"`)
-                .catch(err => console.error('[SMS] Admin alert failed:', err.message));
-            }
-          }
-        }
-
-        // Fallback if no admins in DB
-        if (admins.length === 0) {
-          sendEmail(templates.supportMessageReceived(req.user, content)).catch(() => {});
-          const fallbackPhone = process.env.ADMIN_PHONE;
-          if (fallbackPhone) {
-            sendSMS(fallbackPhone, `[Service Knock] Support msg from ${req.user.name}: "${content.substring(0, 60)}"`).catch(() => {});
-          }
         }
       } catch (err) {
         console.error('[CHAT] User→Admin notification error:', err.message);
       }
+
+      // Email admin if message is still unread after 15s
+      const senderInfo = { name: req.user.name, role: req.user.role, phone: req.user.phone };
+      const msgId = message._id;
+      setTimeout(async () => {
+        try {
+          const msg = await Message.findById(msgId).select('isRead');
+          if (msg && !msg.isRead) {
+            sendEmail(templates.supportMessageReceived(senderInfo, content))
+              .catch(err => console.error('[EMAIL] Admin delayed alert failed:', err.message));
+          }
+        } catch (_) {}
+      }, EMAIL_DELAY_MS);
 
       // Bot auto-reply
       const botResponse = getBotResponse(content);
@@ -120,11 +105,10 @@ exports.sendMessage = async (req, res, next) => {
     // ── Admin → User ─────────────────────────────────────────────────────────
     if (req.user.role === 'admin' && receiver) {
       try {
-        const { sendSMS } = require('../utils/sms');
-        const targetUser = await User.findById(receiver).select('name email phone lastActive role');
+        const targetUser = await User.findById(receiver).select('name email');
 
         if (targetUser) {
-          // Always create in-app notification
+          // Always create in-app notification for the user
           await Notification.create({
             userId: receiver,
             title: 'New Support Reply',
@@ -133,16 +117,18 @@ exports.sendMessage = async (req, res, next) => {
             link: '/',
           }).catch(err => console.error('[DB] User notification failed:', err.message));
 
-          // Only send email/SMS if user is offline
-          if (isOffline(targetUser)) {
-            sendEmail(templates.supportReplyToUser(targetUser, content))
-              .catch(err => console.error('[EMAIL] User reply alert failed:', err.message));
-
-            if (targetUser.phone) {
-              sendSMS(targetUser.phone, `[Service Knock] Support replied: "${content.substring(0, 80)}" - Log in to reply`)
-                .catch(err => console.error('[SMS] User reply alert failed:', err.message));
-            }
-          }
+          // Email user if message is still unread after 15s
+          const recipientInfo = { name: targetUser.name, email: targetUser.email };
+          const msgId = message._id;
+          setTimeout(async () => {
+            try {
+              const msg = await Message.findById(msgId).select('isRead');
+              if (msg && !msg.isRead) {
+                sendEmail(templates.supportReplyToUser(recipientInfo, content))
+                  .catch(err => console.error('[EMAIL] User delayed reply failed:', err.message));
+              }
+            } catch (_) {}
+          }, EMAIL_DELAY_MS);
         }
       } catch (err) {
         console.error('[CHAT] Admin→User notification error:', err.message);
