@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: require('path').join(__dirname, 'server', '.env') });
 process.env.TZ = 'Asia/Karachi';
 const express = require('express');
 const cors = require('cors');
