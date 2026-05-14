@@ -8,7 +8,9 @@ const baseURL = Capacitor.isNativePlatform()
 const api = axios.create({
   baseURL,
   headers: { 'Content-Type': 'application/json' },
-  withCredentials: true,
+  // withCredentials only needed on web for same-origin cookie handling;
+  // on native we use JWT Bearer tokens so cookies are irrelevant
+  withCredentials: !Capacitor.isNativePlatform(),
 });
 
 // Attach JWT to every request
