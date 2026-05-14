@@ -3,8 +3,14 @@
   "appName": "Service Knock",
   "webDir": "dist",
   "server": {
-    "cleartext": true,
-    "androidScheme": "http",
-    "allowNavigation": ["serviceknock.com.irfanrashid.net"]
+    "androidScheme": "https",
+    "allowNavigation": ["serviceknock.com.irfanrashid.net", "*.irfanrashid.net"]
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "launchAutoHide": true,
+      "backgroundColor": "#0ea5e9"
+    }
   }
 }
