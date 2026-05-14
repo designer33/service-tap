@@ -4,22 +4,7 @@ import { FiMessageCircle, FiX, FiSend, FiInfo } from 'react-icons/fi';
 import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
-
-function playBeep() {
-  try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.type = 'sine';
-    osc.frequency.value = 880;
-    gain.gain.setValueAtTime(0.3, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.45);
-    osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.45);
-  } catch (_) {}
-}
+import { playBeep } from '../utils/beep';
 
 const ChatWidget = () => {
   const { user } = useAuth();
@@ -33,65 +18,79 @@ const ChatWidget = () => {
 
   const messagesEndRef = useRef(null);
   const prevMsgCountRef = useRef(0);
-  const prevUnreadRef = useRef(0);
   const isOpenRef = useRef(false);
+  const initialLoadRef = useRef(true);
 
-  // Keep ref in sync so interval callbacks always see current value
   isOpenRef.current = isOpen;
 
   const scrollToBottom = useCallback((behavior = 'smooth') => {
     messagesEndRef.current?.scrollIntoView({ behavior });
   }, []);
 
-  const fetchMessages = useCallback(async () => {
+  // bg=1 → background poll, do NOT mark as read on server
+  // no param  → chat is open, mark as read
+  const fetchMessages = useCallback(async (background = false) => {
     if (!user) return;
     try {
-      const { data } = await api.get('/chat/messages');
+      const url = background ? '/chat/messages?bg=1' : '/chat/messages';
+      const { data } = await api.get(url);
       if (!data.success) return;
 
       const msgs = data.messages;
-      const unreadFromSupport = msgs.filter(m => !m.isRead && (m.isAdmin || m.isBot));
-      const currentUnread = unreadFromSupport.length;
 
-      // Beep + badge when NEW admin/bot messages arrive (regardless of open state)
-      if (msgs.length > prevMsgCountRef.current) {
-        const newMsgs = msgs.slice(prevMsgCountRef.current);
-        const hasNewAdminMsg = newMsgs.some(m => m.isAdmin || m.isBot);
-        if (hasNewAdminMsg) {
+      // On background poll: detect new admin/bot messages and beep+badge
+      if (background) {
+        const unreadAdminMsgs = msgs.filter(m => !m.isRead && (m.isAdmin || m.isBot));
+        const newUnread = unreadAdminMsgs.length;
+
+        // Beep when unread count grows (new message arrived since last check)
+        if (!initialLoadRef.current && newUnread > unreadCount) {
           playBeep();
-          if (!isOpenRef.current) {
-            setHasNew(true);
-          }
+          setHasNew(true);
         }
+
+        setUnreadCount(newUnread);
+        initialLoadRef.current = false;
       }
 
-      setUnreadCount(currentUnread);
       prevMsgCountRef.current = msgs.length;
-      prevUnreadRef.current = currentUnread;
       setMessages(msgs);
     } catch (_) {}
-  }, [user]);
+  }, [user, unreadCount]);
 
-  // Always-on background polling — slow when closed, fast when open
+  // Background poll — always active when closed (every 5s)
   useEffect(() => {
-    if (!user) return;
-    fetchMessages();
-    const delay = isOpen ? 5000 : 10000;
-    const id = setInterval(fetchMessages, delay);
+    if (!user || isOpen) return;
+    const id = setInterval(() => fetchMessages(true), 5000);
     return () => clearInterval(id);
-  }, [isOpen, user, fetchMessages]);
+  }, [user, isOpen, fetchMessages]);
+
+  // Fast poll when chat is open (every 3s, marks as read)
+  useEffect(() => {
+    if (!user || !isOpen) return;
+    fetchMessages(false); // immediate fetch + mark as read
+    const id = setInterval(() => fetchMessages(false), 3000);
+    return () => clearInterval(id);
+  }, [user, isOpen]); // eslint-disable-line
+
+  // Reset initial load flag when user changes
+  useEffect(() => {
+    initialLoadRef.current = true;
+  }, [user]);
 
   // Scroll to bottom when messages change and chat is open
   useEffect(() => {
-    if (isOpen) scrollToBottom();
+    if (isOpen && messages.length > 0) scrollToBottom();
   }, [messages, isOpen, scrollToBottom]);
 
-  // Scroll to bottom instantly when opening
-  useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => scrollToBottom('auto'), 50);
-    }
-  }, [isOpen, scrollToBottom]);
+  const handleOpen = () => {
+    setIsOpen(true);
+    setHasNew(false);
+    setUnreadCount(0);
+    // Fetch immediately (marks messages as read)
+    fetchMessages(false);
+    setTimeout(() => scrollToBottom('auto'), 80);
+  };
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
@@ -112,7 +111,7 @@ const ChatWidget = () => {
 
     try {
       await api.post('/chat/messages', { content });
-      fetchMessages();
+      fetchMessages(false);
     } catch (_) {
     } finally {
       setLoading(false);
@@ -208,10 +207,7 @@ const ChatWidget = () => {
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        onClick={() => {
-          setIsOpen(prev => !prev);
-          setHasNew(false);
-        }}
+        onClick={isOpen ? () => setIsOpen(false) : handleOpen}
         className={`w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-shadow relative bg-primary-600 ${
           hasNew && !isOpen ? 'animate-pulse ring-4 ring-primary-500/30' : ''
         }`}

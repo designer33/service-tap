@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect, useCallback, use
 import api from '../api/axios';
 import { useAuth } from './AuthContext';
 import toast from 'react-hot-toast';
+import { playBeep } from '../utils/beep';
 
 const NotificationContext = createContext();
 
@@ -14,7 +15,6 @@ export const NotificationProvider = ({ children }) => {
   const [jobRequestCount, setJobRequestCount] = useState(0);
   const [supportUnreadCount, setSupportUnreadCount] = useState(0);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
-  const audioRef = useRef(new Audio('https://www.soundjay.com/button/sounds/button-3.mp3'));
   const prevUnreadRef = useRef(0);
 
   const fetchNotifications = useCallback(async () => {
@@ -48,7 +48,7 @@ export const NotificationProvider = ({ children }) => {
           });
         }
         
-        audioRef.current.play().catch(() => {});
+        playBeep();
         setRefreshTrigger(prev => prev + 1);
       }
       
@@ -65,7 +65,6 @@ export const NotificationProvider = ({ children }) => {
     
     const poll = async () => {
       if (user) {
-        console.log('[DEBUG] Polling notifications...');
         await fetchNotifications();
         timeoutId = setTimeout(poll, 5000); // Poll every 5s
       }

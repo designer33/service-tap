@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -50,6 +51,7 @@ import { LanguageProvider } from './context/LanguageContext';
 import { Capacitor } from '@capacitor/core';
 import MobileNav from './components/MobileNav';
 import { motion, AnimatePresence } from 'framer-motion';
+import { unlockAudio } from './utils/beep';
 
 const isNative = Capacitor.isNativePlatform();
 
@@ -148,6 +150,17 @@ const getDashboard = (role) => {
 
 export default function App() {
   const Router = isNative ? HashRouter : BrowserRouter;
+
+  // Unlock Web Audio API on first user interaction so beeps work
+  useEffect(() => {
+    const unlock = () => unlockAudio();
+    document.addEventListener('click', unlock, { once: true });
+    document.addEventListener('touchstart', unlock, { once: true });
+    return () => {
+      document.removeEventListener('click', unlock);
+      document.removeEventListener('touchstart', unlock);
+    };
+  }, []);
 
   return (
     <LanguageProvider>

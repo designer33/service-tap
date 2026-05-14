@@ -3,7 +3,7 @@ const User = require('../models/User');
 const Notification = require('../models/Notification');
 const { sendEmail, templates } = require('../utils/email');
 
-const OFFLINE_THRESHOLD_MS = 3 * 60 * 1000; // 3 minutes
+const OFFLINE_THRESHOLD_MS = 60 * 1000; // 1 minute — user gets email/SMS if inactive for 1 min
 
 function isOffline(user) {
   if (!user || !user.lastActive) return true;
@@ -23,16 +23,19 @@ exports.getMessages = async (req, res, next) => {
       .sort({ createdAt: 1 })
       .limit(100);
 
-    if (req.user.role === 'admin' && req.query.userId) {
-      await Message.updateMany(
-        { conversationId: userId, isAdmin: false, isBot: false, isRead: false },
-        { isRead: true }
-      );
-    } else {
-      await Message.updateMany(
-        { conversationId: userId, $or: [{ isAdmin: true }, { isBot: true }], isRead: false },
-        { isRead: true }
-      );
+    // bg=1 means background poll — don't mark as read, preserve unread badge
+    if (!req.query.bg) {
+      if (req.user.role === 'admin' && req.query.userId) {
+        await Message.updateMany(
+          { conversationId: userId, isAdmin: false, isBot: false, isRead: false },
+          { isRead: true }
+        );
+      } else if (req.user.role !== 'admin') {
+        await Message.updateMany(
+          { conversationId: userId, $or: [{ isAdmin: true }, { isBot: true }], isRead: false },
+          { isRead: true }
+        );
+      }
     }
 
     res.json({ success: true, messages });
