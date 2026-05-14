@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const connectDB = require('./config/db');
+const mongoose = require('mongoose');
 const errorHandler = require('./middleware/errorHandler');
 
 // Route imports
@@ -16,7 +16,13 @@ const notificationRoutes = require('./routes/notificationRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 
 // Connect to MongoDB Atlas
-connectDB();
+mongoose.connect(process.env.MONGODB_URI, { serverSelectionTimeoutMS: 5000 })
+  .then(() => {
+    console.log('✅ MongoDB Connected');
+    const { startChatEmailScheduler } = require('./utils/chatEmailScheduler');
+    startChatEmailScheduler();
+  })
+  .catch(err => { console.error('❌ MongoDB error:', err.message); process.exit(1); });
 
 const app = express();
 
@@ -68,7 +74,7 @@ app.use('/api/chat', require('./routes/chatRoutes'));
 
 // Serve Static Files (for production)
 const path = require('path');
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Handle React routing, return all requests to React app
 app.get('*', (req, res, next) => {
@@ -76,7 +82,7 @@ app.get('*', (req, res, next) => {
   if (req.path.startsWith('/api')) {
     return next();
   }
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
 // 404 handler for API

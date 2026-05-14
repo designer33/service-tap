@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const connectDB = require('./server/config/db');
+const mongoose = require('mongoose');
 const errorHandler = require('./server/middleware/errorHandler');
 
 // Route imports
@@ -16,11 +16,14 @@ const notificationRoutes = require('./server/routes/notificationRoutes');
 const contactRoutes = require('./server/routes/contactRoutes');
 
 // Connect to MongoDB Atlas
-connectDB();
-
-// Start chat email scheduler (emails unread support messages after 15s)
-const { startChatEmailScheduler } = require('./server/utils/chatEmailScheduler');
-startChatEmailScheduler();
+mongoose.connect(process.env.MONGODB_URI, { serverSelectionTimeoutMS: 5000 })
+  .then(() => {
+    console.log('✅ MongoDB Connected');
+    // Start scheduler only after DB is ready
+    const { startChatEmailScheduler } = require('./server/utils/chatEmailScheduler');
+    startChatEmailScheduler();
+  })
+  .catch(err => { console.error('❌ MongoDB error:', err.message); process.exit(1); });
 
 const app = express();
 
