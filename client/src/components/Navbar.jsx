@@ -28,16 +28,16 @@ const Navbar = () => {
       { to: '/job-requests', label: t('jobRequests'), icon: Briefcase },
     ],
     admin: [
-      { to: '/admin', label: t('dashboard'), icon: LayoutDashboard },
-      { to: '/admin/bookings', label: t('myBookings'), icon: Briefcase },
+      { to: '/admin', label: t('dashboard'), icon: LayoutDashboard, end: true },
       { to: '/admin/workers', label: t('workers'), icon: User },
+      { to: '/admin/users', label: 'Users', icon: User },
       { to: '/admin/support', label: t('support'), icon: MessageSquare },
     ],
   };
 
   const links = user ? [
     ...(navLinks[user.role] || []),
-    { to: `/profile/${user.slug || user._id}`, label: t('myProfile'), icon: User }
+    ...(user.role !== 'admin' ? [{ to: `/profile/${user.slug || user._id}`, label: t('myProfile'), icon: User }] : []),
   ] : [];
 
   return (
@@ -81,8 +81,8 @@ const Navbar = () => {
                   }>{t('contact')}</NavLink>
                 </>
               )}
-              {links.map(({ to, label, icon: Icon }) => (
-                <NavLink key={to} to={to} className={({ isActive }) =>
+              {links.map(({ to, label, icon: Icon, end }) => (
+                <NavLink key={to} to={to} end={end} className={({ isActive }) =>
                   `flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-colors relative ${isActive ? 'text-primary-600 bg-primary-50' : 'text-slate-600 hover:text-primary-600 hover:bg-slate-50'}`
                 }>
                   <Icon size={15} />
@@ -235,8 +235,8 @@ const Navbar = () => {
                     className="px-4 py-3 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">{t('contact')}</NavLink>
                 </>
               )}
-              {links.map(({ to, label, icon: Icon }) => (
-                <NavLink key={to} to={to} onClick={() => setMenuOpen(false)}
+              {links.map(({ to, label, icon: Icon, end }) => (
+                <NavLink key={to} to={to} end={end} onClick={() => setMenuOpen(false)}
                   className="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">
                   <div className="flex items-center gap-2">
                     <Icon size={16} />
