@@ -59,8 +59,9 @@ app.use(cors({
     'https://serviceknock.com.irfanrashid.net',
     'http://localhost',
     'http://localhost:5173',
-    'capacitor://localhost',
-    'http://localhost:5000'
+    'http://localhost:5000',
+    'capacitor://localhost',  // Capacitor http scheme
+    'https://localhost',      // Capacitor https scheme (androidScheme: "https")
   ],
   credentials: true,
 }));
