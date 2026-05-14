@@ -1,67 +1,97 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMessageCircle, FiX, FiSend, FiUser, FiInfo } from 'react-icons/fi';
+import { FiMessageCircle, FiX, FiSend, FiInfo } from 'react-icons/fi';
 import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 
+function playBeep() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = 'sine';
+    osc.frequency.value = 880;
+    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.45);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.45);
+  } catch (_) {}
+}
+
 const ChatWidget = () => {
   const { user } = useAuth();
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  const messagesEndRef = useRef(null);
-  const pollingRef = useRef(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    if (isOpen) {
-      fetchMessages();
-      scrollToBottom();
-      // Start polling every 5 seconds
-      pollingRef.current = setInterval(fetchMessages, 5000);
-    } else {
-      if (pollingRef.current) clearInterval(pollingRef.current);
-    }
-    return () => {
-      if (pollingRef.current) clearInterval(pollingRef.current);
-    };
-  }, [isOpen]);
-
-  useEffect(scrollToBottom, [messages]);
-
   const [hasNew, setHasNew] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
-  const audioRef = useRef(new Audio('https://www.soundjay.com/button/sounds/button-3.mp3'));
-  const prevMsgCount = useRef(0);
 
-  const fetchMessages = async () => {
+  const messagesEndRef = useRef(null);
+  const prevMsgCountRef = useRef(0);
+  const prevUnreadRef = useRef(0);
+  const isOpenRef = useRef(false);
+
+  // Keep ref in sync so interval callbacks always see current value
+  isOpenRef.current = isOpen;
+
+  const scrollToBottom = useCallback((behavior = 'smooth') => {
+    messagesEndRef.current?.scrollIntoView({ behavior });
+  }, []);
+
+  const fetchMessages = useCallback(async () => {
     if (!user) return;
     try {
       const { data } = await api.get('/chat/messages');
-      if (data.success) {
-        // Find unread messages from admin or bot
-        const unreadFromSupport = data.messages.filter(m => !m.isRead && (m.isAdmin || m.isBot));
-        setUnreadCount(unreadFromSupport.length);
+      if (!data.success) return;
 
-        if (unreadFromSupport.length > 0 && data.messages.length > prevMsgCount.current) {
-          if (!isOpen) {
+      const msgs = data.messages;
+      const unreadFromSupport = msgs.filter(m => !m.isRead && (m.isAdmin || m.isBot));
+      const currentUnread = unreadFromSupport.length;
+
+      // Beep + badge when NEW admin/bot messages arrive (regardless of open state)
+      if (msgs.length > prevMsgCountRef.current) {
+        const newMsgs = msgs.slice(prevMsgCountRef.current);
+        const hasNewAdminMsg = newMsgs.some(m => m.isAdmin || m.isBot);
+        if (hasNewAdminMsg) {
+          playBeep();
+          if (!isOpenRef.current) {
             setHasNew(true);
-            audioRef.current.play().catch(() => {});
           }
         }
-        setMessages(data.messages);
-        prevMsgCount.current = data.messages.length;
       }
-    } catch (err) {
-      console.error('Failed to fetch messages:', err);
+
+      setUnreadCount(currentUnread);
+      prevMsgCountRef.current = msgs.length;
+      prevUnreadRef.current = currentUnread;
+      setMessages(msgs);
+    } catch (_) {}
+  }, [user]);
+
+  // Always-on background polling — slow when closed, fast when open
+  useEffect(() => {
+    if (!user) return;
+    fetchMessages();
+    const delay = isOpen ? 5000 : 10000;
+    const id = setInterval(fetchMessages, delay);
+    return () => clearInterval(id);
+  }, [isOpen, user, fetchMessages]);
+
+  // Scroll to bottom when messages change and chat is open
+  useEffect(() => {
+    if (isOpen) scrollToBottom();
+  }, [messages, isOpen, scrollToBottom]);
+
+  // Scroll to bottom instantly when opening
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => scrollToBottom('auto'), 50);
     }
-  };
+  }, [isOpen, scrollToBottom]);
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
@@ -71,21 +101,19 @@ const ChatWidget = () => {
     const content = newMessage;
     setNewMessage('');
 
-    // Optimistic update
     const tempMessage = {
       _id: Date.now().toString(),
       content,
       sender: user._id,
       createdAt: new Date().toISOString(),
-      isTemp: true
+      isTemp: true,
     };
     setMessages(prev => [...prev, tempMessage]);
 
     try {
       await api.post('/chat/messages', { content });
-      fetchMessages(); // Refresh to get bot response
-    } catch (err) {
-      console.error('Failed to send message:', err);
+      fetchMessages();
+    } catch (_) {
     } finally {
       setLoading(false);
     }
@@ -98,7 +126,7 @@ const ChatWidget = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95, transformOrigin: 'bottom right' }}
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             className="mb-4 w-[350px] sm:w-[400px] h-[500px] bg-white rounded-2xl shadow-2xl border border-slate-100 flex flex-col overflow-hidden"
@@ -122,22 +150,19 @@ const ChatWidget = () => {
               </button>
             </div>
 
-            {/* Messages Area */}
+            {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50">
               {messages.length === 0 && (
                 <div className="text-center py-10 opacity-60">
                   <FiInfo className="mx-auto text-3xl mb-2" />
-                  <p className="text-sm">Hi {user.name.split(' ')[0]}! 👋</p>
+                  <p className="text-sm">Hi {user.name.split(' ')[0]}!</p>
                   <p className="text-xs">{t('howCanWeHelpYou')}</p>
                 </div>
               )}
               {messages.map((msg) => {
                 const isMine = msg.sender === user._id && !msg.isBot && !msg.isAdmin;
                 return (
-                  <div
-                    key={msg._id}
-                    className={`flex ${isMine ? 'justify-end' : 'justify-start'}`}
-                  >
+                  <div key={msg._id} className={`flex ${isMine ? 'justify-end' : 'justify-start'}`}>
                     <div
                       className={`max-w-[80%] p-3 rounded-2xl text-sm ${
                         isMine
@@ -158,7 +183,7 @@ const ChatWidget = () => {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input Area */}
+            {/* Input */}
             <form onSubmit={handleSendMessage} className="p-4 bg-white border-t border-slate-100 flex gap-2">
               <input
                 type="text"
@@ -179,19 +204,20 @@ const ChatWidget = () => {
         )}
       </AnimatePresence>
 
+      {/* Toggle button */}
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => {
-          setIsOpen(!isOpen);
+          setIsOpen(prev => !prev);
           setHasNew(false);
         }}
-        className={`w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-shadow relative ${
-          hasNew && !isOpen ? 'bg-primary-600 animate-pulse ring-4 ring-primary-500/30' : 'bg-primary-600'
+        className={`w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-shadow relative bg-primary-600 ${
+          hasNew && !isOpen ? 'animate-pulse ring-4 ring-primary-500/30' : ''
         }`}
       >
-        {isOpen ? <FiX className="text-2xl" /> : <FiMessageCircle className="text-2xl" />}
-        {(!isOpen && (hasNew || unreadCount > 0)) && (
+        {isOpen ? <FiX className="text-white text-2xl" /> : <FiMessageCircle className="text-white text-2xl" />}
+        {!isOpen && (hasNew || unreadCount > 0) && (
           <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white">
             {unreadCount > 0 ? unreadCount : '!'}
           </span>

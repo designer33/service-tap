@@ -28,6 +28,13 @@ const protect = async (req, res, next) => {
       return res.status(403).json({ message: 'Your account has been blocked. Please contact support.' });
     }
 
+    // Update lastActive at most once per minute (fire-and-forget, non-blocking)
+    const now = new Date();
+    const lastActiveAge = req.user.lastActive ? (now - req.user.lastActive) : Infinity;
+    if (lastActiveAge > 60000) {
+      User.findByIdAndUpdate(req.user._id, { lastActive: now }).exec();
+    }
+
     next();
   } catch (err) {
     return res.status(401).json({ message: 'Not authorized, token invalid or expired' });

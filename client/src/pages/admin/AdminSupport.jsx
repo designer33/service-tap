@@ -1,8 +1,24 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import api from '../../api/axios';
 import { FiMessageSquare, FiSend, FiUser, FiSearch, FiClock } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 import { useLanguage } from '../../context/LanguageContext';
+
+function playBeep() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = 'sine';
+    osc.frequency.value = 880;
+    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.45);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.45);
+  } catch (_) {}
+}
 
 const AdminSupport = () => {
   const { t } = useLanguage();
@@ -12,116 +28,139 @@ const AdminSupport = () => {
   const [newMessage, setNewMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [fetchingConvs, setFetchingConvs] = useState(true);
-  const messagesEndRef = useRef(null);
+  const [searchQuery, setSearchQuery] = useState('');
+
   const messagesContainerRef = useRef(null);
-  const audioRef = useRef(new Audio('https://www.soundjay.com/button/sounds/button-3.mp3'));
-  const prevMsgCount = useRef(0);
+  const messagesEndRef = useRef(null);
+  const prevMsgCountRef = useRef(0);
+  const prevTotalUnreadRef = useRef(0);
   const isInitialLoad = useRef(true);
+  const selectedConvRef = useRef(null);
 
-  useEffect(() => {
-    fetchConversations();
-    const interval = setInterval(fetchConversations, 10000); // Refresh conversation list every 10s
-    return () => clearInterval(interval);
-  }, []);
+  selectedConvRef.current = selectedConv;
 
-  useEffect(() => {
-    if (selectedConv) {
-      // Don't clear messages to prevent layout jump, just mark as initial load for the new conversation
-      isInitialLoad.current = true;
-      prevMsgCount.current = 0;
-      fetchMessages(selectedConv._id);
-      const interval = setInterval(() => fetchMessages(selectedConv._id), 5000);
-      return () => clearInterval(interval);
-    }
-  }, [selectedConv]);
-
-  useEffect(() => {
-    if (messages.length > 0) {
-      const container = messagesContainerRef.current;
-      if (container) {
-        const isNearBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 100;
-        
-        if (isInitialLoad.current || isNearBottom) {
-          // Use targeted scrollTop instead of scrollIntoView to prevent whole page jumping
-          container.scrollTo({
-            top: container.scrollHeight,
-            behavior: isInitialLoad.current ? 'auto' : 'smooth'
-          });
-          isInitialLoad.current = false;
-        }
-      }
-    }
-  }, [messages]);
-
-  const fetchConversations = async () => {
+  // ── Conversations polling (global — detects new messages in ANY conversation) ──
+  const fetchConversations = useCallback(async () => {
     try {
       const { data } = await api.get('/chat/conversations');
-      if (data.success) {
-        setConversations(data.conversations);
+      if (!data.success) return;
+
+      const convs = data.conversations;
+      const totalUnread = convs.reduce((sum, c) => sum + (c.unreadCount || 0), 0);
+
+      // Beep when ANY conversation gets a new unread message from a user
+      if (totalUnread > prevTotalUnreadRef.current) {
+        playBeep();
+        // Show toast only for conversations other than the currently open one
+        const newConvs = convs.filter(c => {
+          const isSelected = selectedConvRef.current?._id === c._id;
+          return !isSelected && c.unreadCount > 0;
+        });
+        if (newConvs.length > 0) {
+          const first = newConvs[0];
+          toast(`New message from ${first.user?.name || 'a user'}`, { icon: '💬' });
+        }
       }
-    } catch (err) {
-      toast.error('Failed to load conversations');
+
+      prevTotalUnreadRef.current = totalUnread;
+      setConversations(convs);
+    } catch (_) {
+      // silent
     } finally {
       setFetchingConvs(false);
     }
-  };
+  }, []);
 
-  const fetchMessages = async (userId) => {
+  useEffect(() => {
+    fetchConversations();
+    const id = setInterval(fetchConversations, 5000);
+    return () => clearInterval(id);
+  }, [fetchConversations]);
+
+  // ── Messages polling for the selected conversation ────────────────────────
+  const fetchMessages = useCallback(async (userId) => {
     try {
       const { data } = await api.get(`/chat/messages?userId=${userId}`);
-      if (data.success) {
-        // Trigger sound if new messages from customer arrived
-        if (data.messages.length > prevMsgCount.current) {
-          const lastMsg = data.messages[data.messages.length - 1];
-          if (lastMsg && !lastMsg.isAdmin && !lastMsg.isBot) {
-            audioRef.current.play().catch(() => {});
-          }
-        }
-        setMessages(data.messages);
-        prevMsgCount.current = data.messages.length;
-      }
-    } catch (err) {
-      console.error('Failed to fetch messages');
-    }
-  };
+      if (!data.success) return;
 
+      const msgs = data.messages;
+
+      // Beep if new message from user arrived in the selected conversation
+      if (msgs.length > prevMsgCountRef.current) {
+        const newMsgs = msgs.slice(prevMsgCountRef.current);
+        const hasNewUserMsg = newMsgs.some(m => !m.isAdmin && !m.isBot);
+        if (hasNewUserMsg) playBeep();
+      }
+
+      prevMsgCountRef.current = msgs.length;
+      setMessages(msgs);
+    } catch (_) {}
+  }, []);
+
+  useEffect(() => {
+    if (!selectedConv) return;
+    isInitialLoad.current = true;
+    prevMsgCountRef.current = 0;
+    fetchMessages(selectedConv._id);
+    const id = setInterval(() => fetchMessages(selectedConv._id), 5000);
+    return () => clearInterval(id);
+  }, [selectedConv, fetchMessages]);
+
+  // ── Auto-scroll ───────────────────────────────────────────────────────────
+  useEffect(() => {
+    if (messages.length === 0) return;
+    const container = messagesContainerRef.current;
+    if (!container) return;
+    const isNearBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 100;
+    if (isInitialLoad.current || isNearBottom) {
+      container.scrollTo({
+        top: container.scrollHeight,
+        behavior: isInitialLoad.current ? 'auto' : 'smooth',
+      });
+      isInitialLoad.current = false;
+    }
+  }, [messages]);
+
+  // ── Send message ──────────────────────────────────────────────────────────
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (!newMessage.trim() || !selectedConv || loading) return;
 
     setLoading(true);
     try {
-      // Need to adjust sendMessage to support admin sending to a specific user
-      await api.post('/chat/messages', { 
-        content: newMessage, 
-        receiver: selectedConv._id, 
-        isAdmin: true 
+      await api.post('/chat/messages', {
+        content: newMessage,
+        receiver: selectedConv._id,
+        isAdmin: true,
       });
       setNewMessage('');
-      // Force targeted scroll to bottom for our own message
-      const container = messagesContainerRef.current;
-      if (container) {
-        container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
-      }
       fetchMessages(selectedConv._id);
-    } catch (err) {
+      const container = messagesContainerRef.current;
+      if (container) container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+    } catch (_) {
       toast.error('Failed to send message');
     } finally {
       setLoading(false);
     }
   };
 
+  const filteredConvs = conversations.filter(conv =>
+    !searchQuery || conv.user?.name?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="bg-slate-50 min-h-[calc(100vh-64px)] flex">
-      {/* Sidebar - Conversation List */}
+      {/* Sidebar */}
       <div className="w-80 bg-white border-r border-slate-200 flex flex-col">
         <div className="p-4 border-b border-slate-200">
           <h2 className="text-xl font-bold text-slate-800">{t('supportChats')}</h2>
           <div className="mt-4 relative">
             <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-            <input 
-              type="text" 
-              placeholder={t('searchUsers')} 
+            <input
+              type="text"
+              placeholder={t('searchUsers')}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2 bg-slate-100 rounded-lg text-sm focus:outline-none"
             />
           </div>
@@ -130,13 +169,16 @@ const AdminSupport = () => {
         <div className="flex-1 overflow-y-auto">
           {fetchingConvs ? (
             <div className="p-10 text-center text-slate-400">Loading...</div>
-          ) : conversations.length === 0 ? (
+          ) : filteredConvs.length === 0 ? (
             <div className="p-10 text-center text-slate-400">No active chats</div>
           ) : (
-            conversations.map((conv) => (
+            filteredConvs.map((conv) => (
               <button
                 key={conv._id}
-                onClick={() => setSelectedConv(conv)}
+                onClick={() => {
+                  setSelectedConv(conv);
+                  prevTotalUnreadRef.current = Math.max(0, prevTotalUnreadRef.current - (conv.unreadCount || 0));
+                }}
                 className={`w-full p-4 flex gap-3 hover:bg-slate-50 transition-colors border-b border-slate-50 ${
                   selectedConv?._id === conv._id ? 'bg-primary-50' : ''
                 }`}
@@ -170,11 +212,10 @@ const AdminSupport = () => {
         </div>
       </div>
 
-      {/* Main Chat Area */}
+      {/* Chat Area */}
       <div className="flex-1 flex flex-col bg-white">
         {selectedConv ? (
           <>
-            {/* Chat Header */}
             <div className="p-4 border-b border-slate-200 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <h3 className="font-bold text-slate-800">{selectedConv.user?.name}</h3>
@@ -184,39 +225,32 @@ const AdminSupport = () => {
                   {selectedConv.user?.role}
                 </span>
               </div>
-              <div className="flex gap-2">
-                <button className="btn-ghost p-2 text-slate-400 hover:text-slate-600"><FiClock /></button>
-              </div>
+              <button className="btn-ghost p-2 text-slate-400 hover:text-slate-600"><FiClock /></button>
             </div>
 
-            {/* Messages */}
-            <div 
+            <div
               ref={messagesContainerRef}
               className="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50/30"
             >
-              {messages.map((msg) => {
-                const isFromAdmin = msg.isAdmin;
-                return (
-                  <div key={msg._id} className={`flex ${isFromAdmin ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`max-w-[70%] p-4 rounded-2xl ${
-                      isFromAdmin 
-                        ? 'bg-slate-800 text-white rounded-tr-none' 
-                        : msg.isBot 
-                        ? 'bg-amber-50 text-amber-900 border border-amber-100'
-                        : 'bg-white shadow-sm border border-slate-100 rounded-tl-none'
-                    }`}>
-                      <p className="text-sm">{msg.content}</p>
-                      <span className="text-[10px] opacity-50 mt-2 block">
-                        {new Date(msg.createdAt).toLocaleString()}
-                      </span>
-                    </div>
+              {messages.map((msg) => (
+                <div key={msg._id} className={`flex ${msg.isAdmin ? 'justify-end' : 'justify-start'}`}>
+                  <div className={`max-w-[70%] p-4 rounded-2xl ${
+                    msg.isAdmin
+                      ? 'bg-slate-800 text-white rounded-tr-none'
+                      : msg.isBot
+                      ? 'bg-amber-50 text-amber-900 border border-amber-100'
+                      : 'bg-white shadow-sm border border-slate-100 rounded-tl-none'
+                  }`}>
+                    <p className="text-sm">{msg.content}</p>
+                    <span className="text-[10px] opacity-50 mt-2 block">
+                      {new Date(msg.createdAt).toLocaleString()}
+                    </span>
                   </div>
-                );
-              })}
+                </div>
+              ))}
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input */}
             <form onSubmit={handleSendMessage} className="p-4 border-t border-slate-200 flex gap-2">
               <input
                 type="text"

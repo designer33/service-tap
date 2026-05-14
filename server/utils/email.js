@@ -271,6 +271,22 @@ const templates = {
     `),
   }),
 
+  // To user — admin replied to their support message
+  supportReplyToUser: (user, content) => ({
+    to: user.email,
+    subject: 'New Support Reply — Service Knock',
+    html: baseTemplate(`
+      <h2>You Have a New Support Reply 💬</h2>
+      <p>Dear <strong>${user.name}</strong>,</p>
+      <p>The Service Knock support team has replied to your message:</p>
+      <div class="info-box">
+        <p>"${content}"</p>
+      </div>
+      <p>Log in to continue the conversation.</p>
+      <a class="btn" href="https://serviceknock.com.irfanrashid.net">Open Support Chat</a>
+    `),
+  }),
+
   // To admin — new support chat message
   supportMessageReceived: (user, content) => ({
     to: ADMIN_EMAIL,
