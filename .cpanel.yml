@@ -1,4 +1,6 @@
 ---
 deployment:
   tasks:
-    - /bin/touch server.js
+    - export PATH=/home/irfanras/nodevenv/service-tap/20/bin:$PATH
+    - cd /home/irfanras/service-tap/server && npm install --production
+    - /bin/touch /home/irfanras/service-tap/tmp/restart.txt
