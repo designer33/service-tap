@@ -2,7 +2,6 @@ const Message = require('../models/Message');
 const User = require('../models/User');
 const Notification = require('../models/Notification');
 const { sendEmail, templates } = require('../utils/email');
-const { sendSMS } = require('../utils/sms');
 
 const OFFLINE_THRESHOLD_MS = 3 * 60 * 1000; // 3 minutes
 
@@ -64,6 +63,7 @@ exports.sendMessage = async (req, res, next) => {
     // ── User → Admin ─────────────────────────────────────────────────────────
     if (req.user.role !== 'admin') {
       try {
+        const { sendSMS } = require('../utils/sms');
         const admins = await User.find({ role: 'admin' }).select('_id phone email lastActive');
 
         for (const admin of admins) {
@@ -117,6 +117,7 @@ exports.sendMessage = async (req, res, next) => {
     // ── Admin → User ─────────────────────────────────────────────────────────
     if (req.user.role === 'admin' && receiver) {
       try {
+        const { sendSMS } = require('../utils/sms');
         const targetUser = await User.findById(receiver).select('name email phone lastActive role');
 
         if (targetUser) {

@@ -29,11 +29,13 @@ const protect = async (req, res, next) => {
     }
 
     // Update lastActive at most once per minute (fire-and-forget, non-blocking)
-    const now = new Date();
-    const lastActiveAge = req.user.lastActive ? (now - req.user.lastActive) : Infinity;
-    if (lastActiveAge > 60000) {
-      User.findByIdAndUpdate(req.user._id, { lastActive: now }).exec().catch(() => {});
-    }
+    try {
+      const now = new Date();
+      const lastActiveAge = req.user.lastActive ? (now - req.user.lastActive) : Infinity;
+      if (lastActiveAge > 60000) {
+        User.findByIdAndUpdate(req.user._id, { lastActive: now }).exec().catch(() => {});
+      }
+    } catch (_) {}
 
     next();
   } catch (err) {
