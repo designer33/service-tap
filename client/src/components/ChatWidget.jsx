@@ -118,7 +118,7 @@ const ChatWidget = () => {
     }
   };
 
-  if (!user) return null;
+  if (!user || user.role === 'admin') return null;
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">

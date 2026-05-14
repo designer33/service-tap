@@ -82,11 +82,14 @@ exports.sendMessage = async (req, res, next) => {
       setTimeout(async () => {
         try {
           const msg = await Message.findById(msgId).select('isRead');
+          console.log(`[CHAT] 15s check (user→admin) msg=${msgId} isRead=${msg?.isRead}`);
           if (msg && !msg.isRead) {
-            sendEmail(templates.supportMessageReceived(senderInfo, content))
-              .catch(err => console.error('[EMAIL] Admin delayed alert failed:', err.message));
+            console.log(`[CHAT] Sending delayed email to admin for msg from ${senderInfo.name}`);
+            await sendEmail(templates.supportMessageReceived(senderInfo, content));
           }
-        } catch (_) {}
+        } catch (err) {
+          console.error('[CHAT] setTimeout (user→admin) error:', err.message);
+        }
       }, EMAIL_DELAY_MS);
 
       // Bot auto-reply
@@ -123,11 +126,14 @@ exports.sendMessage = async (req, res, next) => {
           setTimeout(async () => {
             try {
               const msg = await Message.findById(msgId).select('isRead');
+              console.log(`[CHAT] 15s check (admin→user) msg=${msgId} isRead=${msg?.isRead} to=${recipientInfo.email}`);
               if (msg && !msg.isRead) {
-                sendEmail(templates.supportReplyToUser(recipientInfo, content))
-                  .catch(err => console.error('[EMAIL] User delayed reply failed:', err.message));
+                console.log(`[CHAT] Sending delayed email to ${recipientInfo.email}`);
+                await sendEmail(templates.supportReplyToUser(recipientInfo, content));
               }
-            } catch (_) {}
+            } catch (err) {
+              console.error('[CHAT] setTimeout (admin→user) error:', err.message);
+            }
           }, EMAIL_DELAY_MS);
         }
       } catch (err) {
