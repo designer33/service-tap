@@ -82,7 +82,10 @@ const AppRoutes = () => {
   }
 
   return (
-    <div className={`flex flex-col min-h-screen ${isNative ? 'pb-20' : ''}`}>
+    <div
+      className="flex flex-col min-h-screen"
+      style={isNative ? { paddingBottom: 'calc(4.5rem + env(safe-area-inset-bottom))' } : {}}
+    >
       {!isNative && <Navbar />}
       <VerificationBanner />
       <VerificationPopup />

@@ -35,11 +35,14 @@ const MobileNav = () => {
   const currentTabs = tabs[user.role] || tabs.customer;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-100 px-2 pb-safe pt-2 flex justify-around items-center z-[1000] shadow-[0_-4px_10px_rgba(0,0,0,0.03)]">
+    <div
+      className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-100 px-2 pt-2 flex justify-around items-center z-[1000] shadow-[0_-4px_16px_rgba(0,0,0,0.06)]"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+    >
       {currentTabs.map((tab) => {
         const Icon = tab.icon;
         const active = isActive(tab.path);
-        
+
         if (tab.primary) {
           return (
             <Link
@@ -47,10 +50,10 @@ const MobileNav = () => {
               to={tab.path}
               className="flex flex-col items-center justify-center -mt-8"
             >
-              <div className="w-14 h-14 bg-primary-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-primary-200 border-4 border-white">
-                <Icon size={24} className={language === 'ur' ? 'mt-[5px]' : ''} />
+              <div className="w-14 h-14 bg-primary-600 rounded-full flex items-center justify-center text-white shadow-xl shadow-primary-300 border-4 border-white">
+                <Icon size={24} />
               </div>
-              <span className="text-[10px] font-medium mt-1 text-primary-600">{tab.label}</span>
+              <span className="text-[10px] font-semibold mt-1 text-primary-600">{tab.label}</span>
             </Link>
           );
         }
@@ -59,12 +62,17 @@ const MobileNav = () => {
           <Link
             key={tab.path}
             to={tab.path}
-            className={`flex flex-col items-center justify-center py-1 px-3 rounded-xl transition-all ${
-              active ? 'text-primary-600' : 'text-slate-400 hover:text-slate-600'
-            }`}
+            className="flex flex-col items-center justify-center py-1 px-3 min-w-[56px] relative transition-all"
           >
-            <Icon size={22} strokeWidth={active ? 2.5 : 2} className={language === 'ur' ? 'mt-[5px]' : ''} />
-            <span className={`text-[10px] mt-1 font-medium ${active ? 'opacity-100' : 'opacity-80'}`}>
+            {active && (
+              <span className="absolute top-0 left-1/2 -translate-x-1/2 w-6 h-1 bg-primary-500 rounded-full" />
+            )}
+            <Icon
+              size={22}
+              strokeWidth={active ? 2.5 : 1.8}
+              className={`transition-colors ${active ? 'text-primary-600' : 'text-slate-400'}`}
+            />
+            <span className={`text-[10px] mt-1 font-medium transition-colors ${active ? 'text-primary-600' : 'text-slate-400'}`}>
               {tab.label}
             </span>
           </Link>
