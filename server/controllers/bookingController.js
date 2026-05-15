@@ -106,20 +106,30 @@ const createBooking = async (req, res, next) => {
     try {
       const { sendSMS } = require('../utils/sms');
 
-      // Find verified workers whose serviceTypes include this job's serviceType
-      const matchingWorkers = await Worker.find({
+      // Find all active workers with the right service type (verification not required to receive notifications)
+      const cityRegex = value.city ? new RegExp(`^${value.city.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') : null;
+      const stateRegex = value.state ? new RegExp(`^${value.state.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') : null;
+
+      const allWorkers = await Worker.find({
         serviceTypes: value.serviceType,
-        verified: true,
+        isAvailable: true,
       }).populate({
         path: 'userId',
-        match: { city: value.city }, // Same city as the job
-        select: 'name phone city',
+        select: 'name phone city state',
       });
 
-      // Filter out workers where city didn't match (populate returns null for non-matching)
-      const eligibleWorkers = matchingWorkers.filter(w => w.userId);
+      // Match by city (case-insensitive), fall back to same state
+      const eligibleWorkers = allWorkers.filter(w => {
+        if (!w.userId) return false;
+        const workerCity = w.userId.city || '';
+        const workerState = w.userId.state || '';
+        if (cityRegex && cityRegex.test(workerCity)) return true;
+        if (!cityRegex && stateRegex && stateRegex.test(workerState)) return true;
+        if (cityRegex && !workerCity && stateRegex && stateRegex.test(workerState)) return true;
+        return false;
+      });
 
-      console.log(`[DEBUG] Found ${eligibleWorkers.length} eligible workers for service type: ${value.serviceType} in ${value.city}`);
+      console.log(`[DEBUG] Found ${eligibleWorkers.length} eligible workers for service type: ${value.serviceType} in ${value.city || value.state}`);
 
       if (eligibleWorkers.length > 0) {
         // Create in-app notifications
