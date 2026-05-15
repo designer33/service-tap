@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../../api/axios';
 import { Loader2, Star, Calendar, MapPin, CheckCircle, User as UserIcon, Briefcase, Edit, Camera, X, Phone, AlertTriangle, ShieldCheck, ShieldAlert, Upload, Clock, Lock, LogOut } from 'lucide-react';
@@ -28,6 +28,8 @@ const Profile = () => {
   const [imageToCrop, setImageToCrop] = useState(null);
   const reviewsPerPage = 5;
   const [resetting, setResetting] = useState(false);
+  const profileFileInputRef = useRef(null);
+  const cnicFileInputRef = useRef(null);
 
   const handleResetPassword = async () => {
     if (!currentUser?.email) return;
@@ -515,9 +517,9 @@ const Profile = () => {
                       <form onSubmit={handleVerificationSubmit} className="space-y-4">
                         <div className="space-y-4">
                           <div className="w-full">
-                            <button 
-                              type="button" 
-                              onClick={() => handleCapturePhoto('cnic')}
+                            <button
+                              type="button"
+                              onClick={() => isNative ? handleCapturePhoto('cnic') : cnicFileInputRef.current?.click()}
                               className="w-full btn-outline py-4 text-xs sm:text-sm flex flex-col items-center justify-center gap-2 border-2 border-dashed border-slate-300 hover:border-primary-400 hover:bg-primary-50 transition-all rounded-2xl"
                             >
                               <div className="w-10 h-10 bg-primary-50 rounded-full flex items-center justify-center">
@@ -525,12 +527,13 @@ const Profile = () => {
                               </div>
                               <span className="font-bold">{language === 'ur' ? 'شناختی کارڈ (CNIC) کی تصویر لیں یا منتخب کریں' : 'Take or Choose CNIC Photo'}</span>
                             </button>
-                            <input 
-                              type="file" 
-                              accept="image/*" 
+                            <input
+                              ref={cnicFileInputRef}
+                              type="file"
+                              accept="image/*"
                               onChange={handleCnicChange}
-                              className="hidden" 
-                              id="cnic-upload" 
+                              className="hidden"
+                              id="cnic-upload"
                             />
                           </div>
                           
@@ -677,15 +680,16 @@ const Profile = () => {
                     )}
                   </div>
                   <div className="flex-1">
-                    <button 
-                      type="button" 
-                      onClick={() => handleCapturePhoto('profile')}
+                    <button
+                      type="button"
+                      onClick={() => isNative ? handleCapturePhoto('profile') : profileFileInputRef.current?.click()}
                       className="btn-outline py-2.5 text-xs font-bold flex items-center gap-2"
                     >
                       <Camera size={14} /> {language === 'ur' ? 'تصویر تبدیل کریں' : 'Change Photo'}
                     </button>
-                    <input 
-                      type="file" 
+                    <input
+                      ref={profileFileInputRef}
+                      type="file"
                       accept="image/*"
                       onChange={handleFileChange}
                       className="hidden"
