@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { CheckCircle, ChevronRight, Star, Clock, Shield, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
+import SEO from '../../components/SEO';
 
 const Services = () => {
   const { t, language } = useLanguage();
@@ -91,6 +92,12 @@ const Services = () => {
 
   return (
     <div className="animate-fade-in">
+      <SEO
+        title="Home Services in Pakistan — Electrician, Plumber, AC, Carpenter, Painter"
+        description="Browse all home services available on Service Knock. Book verified electricians, plumbers, AC & fridge technicians, carpenters, painters, masons, tile fixers and more across Pakistan."
+        keywords="electrician service Pakistan, plumber service Pakistan, AC repair Pakistan, carpenter Pakistan, painter Pakistan, mason Pakistan, tile fixing Pakistan, home services booking Pakistan"
+        canonical="/services"
+      />
 
       {/* ── Hero Header ── */}
       <section className="hero-gradient text-white py-20 relative overflow-hidden">

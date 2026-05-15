@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api/axios';
+import SEO from '../../components/SEO';
 import {
   Zap, Wrench, Wind, Star, Shield, Clock, ChevronRight,
   CheckCircle, ArrowRight, Users, Briefcase, TrendingUp,
@@ -53,6 +54,12 @@ const Home = () => {
 
   return (
     <div className="animate-fade-in">
+      <SEO
+        title="Book Trusted Home Services in Pakistan — Electrician, Plumber, AC Repair"
+        description="Service Knock is Pakistan's #1 home services platform. Book CNIC-verified electricians, plumbers, AC technicians, carpenters, painters and more in Lahore, Karachi, Islamabad, Rawalpindi, and across Pakistan. Fast, safe, affordable."
+        keywords="home services Pakistan, electrician Lahore, plumber Karachi, AC repair Islamabad, carpenter Pakistan, painter near me, home repair Pakistan, book electrician online, verified workers Pakistan, Service Knock"
+        canonical="/"
+      />
 
       {/* ── Hero ── */}
       <section className="hero-gradient text-white relative overflow-hidden min-h-[600px]">

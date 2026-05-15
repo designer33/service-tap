@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
+import SEO from '../../components/SEO';
 
 const FAQs = () => {
   const { t, direction } = useLanguage();
@@ -19,6 +20,12 @@ const FAQs = () => {
 
   return (
     <div className="animate-fade-in">
+      <SEO
+        title="Frequently Asked Questions — How Service Knock Works"
+        description="Got questions about booking home services in Pakistan? Find answers about how Service Knock works, pricing, CNIC verification, cancellations, and how to hire verified workers."
+        keywords="Service Knock FAQ, how to book home services Pakistan, CNIC verification, home service pricing Pakistan, cancel booking, verified workers FAQ"
+        canonical="/faqs"
+      />
       {/* Hero */}
       <section className="hero-gradient text-white py-16">
         <div className="page-container text-center">

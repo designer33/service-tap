@@ -1,10 +1,18 @@
 import { useLanguage } from '../../context/LanguageContext';
+import SEO from '../../components/SEO';
 
 const PrivacyPolicy = () => {
   const { t, language } = useLanguage();
 
   return (
     <div className="animate-fade-in bg-surface min-h-screen py-16">
+      <SEO
+        title="Privacy Policy — How We Protect Your Data"
+        description="Read Service Knock's Privacy Policy to understand how we collect, use, and protect your personal data when using our home services platform in Pakistan."
+        keywords="Service Knock privacy policy, data protection Pakistan, user data policy home services"
+        canonical="/privacy"
+        noIndex={false}
+      />
       <div className="page-container max-w-4xl">
         <div className={`card p-10 shadow-sm ${language === 'ur' ? 'text-right' : ''}`}>
           <h1 className="text-3xl font-bold text-dark mb-2">{t('privacyTitle')}</h1>

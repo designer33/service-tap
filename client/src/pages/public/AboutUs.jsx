@@ -1,6 +1,7 @@
 import { Shield, Zap, Star, Users, CheckCircle, ArrowRight, MapPin, Award, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
+import SEO from '../../components/SEO';
 
 const AboutUs = () => {
   const { t, language } = useLanguage();
@@ -42,6 +43,12 @@ const AboutUs = () => {
 
   return (
     <div className={`animate-fade-in bg-white min-h-screen ${language === 'ur' ? 'text-right' : ''}`}>
+      <SEO
+        title="About Us — Pakistan's Trusted Home Services Platform"
+        description="Learn about Service Knock — Pakistan's leading platform connecting homeowners with CNIC-verified electricians, plumbers, AC technicians, carpenters and painters. Our mission is safe, affordable, and reliable home services."
+        keywords="about Service Knock, Pakistan home services company, trusted workers Pakistan, verified electricians Pakistan, home services platform Pakistan"
+        canonical="/about"
+      />
 
       {/* ── Hero ── */}
       <section className="bg-gradient-to-br from-slate-900 via-primary-900 to-slate-900 text-white py-28 relative overflow-hidden">

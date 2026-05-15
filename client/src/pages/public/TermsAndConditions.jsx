@@ -1,10 +1,17 @@
 import { useLanguage } from '../../context/LanguageContext';
+import SEO from '../../components/SEO';
 
 const TermsAndConditions = () => {
   const { t, language } = useLanguage();
 
   return (
     <div className="animate-fade-in bg-surface min-h-screen py-16">
+      <SEO
+        title="Terms & Conditions — Service Knock"
+        description="Review the Terms and Conditions governing your use of Service Knock's home services platform in Pakistan. Understand your rights and responsibilities as a customer or worker."
+        keywords="Service Knock terms and conditions, home services terms Pakistan, user agreement Service Knock"
+        canonical="/terms"
+      />
       <div className="page-container max-w-4xl">
         <div className={`card p-10 shadow-sm ${language === 'ur' ? 'text-right' : ''}`}>
           <h1 className="text-3xl font-bold text-dark mb-2">{t('termsTitle')}</h1>

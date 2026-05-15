@@ -3,6 +3,7 @@ import { Mail, Phone, MapPin, Send, Loader2, Clock, MessageSquare, HelpCircle } 
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import api from '../../api/axios';
+import SEO from '../../components/SEO';
 import toast from 'react-hot-toast';
 
 const ContactUs = () => {
@@ -58,6 +59,12 @@ const ContactUs = () => {
 
   return (
     <div className={`animate-fade-in bg-surface min-h-screen ${language === 'ur' ? 'text-right' : ''}`}>
+      <SEO
+        title="Contact Us — Get Help & Support"
+        description="Contact Service Knock for help with bookings, worker support, or general inquiries. Reach our team via our contact form, email, or phone. We're here to help across all of Pakistan."
+        keywords="contact Service Knock, customer support Pakistan, home services help, Service Knock phone number, Service Knock email"
+        canonical="/contact"
+      />
 
       {/* ── Hero ── */}
       <section className="hero-gradient text-white py-20 relative overflow-hidden">
