@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Zap, Phone, Mail, MapPin, Loader2, Download } from 'lucide-react';
+import { Zap, Phone, Mail, MapPin, Loader2, Download, MonitorSmartphone } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import api from '../api/axios';
+import usePWAInstall from '../hooks/usePWAInstall';
 import toast from 'react-hot-toast';
 
 const Footer = () => {
   const { t, language } = useLanguage();
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
+  const { canInstall, install } = usePWAInstall();
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
@@ -79,23 +81,43 @@ const Footer = () => {
               ))}
             </div>
 
-            {/* Android APK download */}
-            <a
-              href="/Service-Knock.apk"
-              download="Service-Knock.apk"
-              className="inline-flex items-center gap-3 mt-6 bg-slate-800 hover:bg-primary-600 border border-slate-700 hover:border-primary-500 rounded-xl px-4 py-3 transition-all group w-fit"
-            >
-              <div className="bg-primary-500 group-hover:bg-white rounded-lg p-1.5 transition-colors">
-                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white group-hover:fill-primary-600 transition-colors">
-                  <path d="M17.523 15.341 13 9.454V3h-2v6.454l-4.523 5.887A2 2 0 0 0 8.059 18h7.882a2 2 0 0 0 1.582-3.659zM6 20h12v2H6z"/>
-                </svg>
-              </div>
-              <div className="text-left">
-                <div className="text-[10px] text-slate-400 group-hover:text-sky-100 leading-none mb-0.5 transition-colors">Download for</div>
-                <div className="text-sm font-bold text-white leading-none">Android App</div>
-              </div>
-              <Download size={14} className="text-slate-500 group-hover:text-white ml-1 transition-colors" />
-            </a>
+            {/* App download buttons */}
+            <div className="flex flex-wrap gap-3 mt-6">
+              {/* Android APK */}
+              <a
+                href="/Service-Knock.apk"
+                download="Service-Knock.apk"
+                className="inline-flex items-center gap-3 bg-slate-800 hover:bg-primary-600 border border-slate-700 hover:border-primary-500 rounded-xl px-4 py-3 transition-all group"
+              >
+                <div className="bg-primary-500 group-hover:bg-white rounded-lg p-1.5 transition-colors">
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white group-hover:fill-primary-600 transition-colors">
+                    <path d="M17.523 15.341 13 9.454V3h-2v6.454l-4.523 5.887A2 2 0 0 0 8.059 18h7.882a2 2 0 0 0 1.582-3.659zM6 20h12v2H6z"/>
+                  </svg>
+                </div>
+                <div className="text-left">
+                  <div className="text-[10px] text-slate-400 group-hover:text-sky-100 leading-none mb-0.5 transition-colors">Download for</div>
+                  <div className="text-sm font-bold text-white leading-none">Android App</div>
+                </div>
+                <Download size={14} className="text-slate-500 group-hover:text-white ml-1 transition-colors" />
+              </a>
+
+              {/* PWA install */}
+              {canInstall && (
+                <button
+                  onClick={install}
+                  className="inline-flex items-center gap-3 bg-slate-800 hover:bg-emerald-600 border border-slate-700 hover:border-emerald-500 rounded-xl px-4 py-3 transition-all group"
+                >
+                  <div className="bg-emerald-500 group-hover:bg-white rounded-lg p-1.5 transition-colors">
+                    <MonitorSmartphone size={20} className="text-white group-hover:text-emerald-600 transition-colors" />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-[10px] text-slate-400 group-hover:text-emerald-100 leading-none mb-0.5 transition-colors">Install as</div>
+                    <div className="text-sm font-bold text-white leading-none">Web App</div>
+                  </div>
+                  <Download size={14} className="text-slate-500 group-hover:text-white ml-1 transition-colors" />
+                </button>
+              )}
+            </div>
           </div>
 
           {/* Services */}

@@ -1,41 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Download, X } from 'lucide-react';
+import usePWAInstall from '../hooks/usePWAInstall';
 
 const PWAInstallPrompt = () => {
-  const [prompt, setPrompt] = useState(null);
-  const [visible, setVisible] = useState(false);
+  const { canInstall, install } = usePWAInstall();
+  const [dismissed, setDismissed] = useState(!!sessionStorage.getItem('pwa_dismissed'));
   const [installed, setInstalled] = useState(false);
 
-  useEffect(() => {
-    if (window.matchMedia('(display-mode: standalone)').matches) return;
-
-    const handler = (e) => {
-      e.preventDefault();
-      setPrompt(e);
-      const dismissed = sessionStorage.getItem('pwa_dismissed');
-      if (!dismissed) setVisible(true);
-    };
-
-    window.addEventListener('beforeinstallprompt', handler);
-    window.addEventListener('appinstalled', () => { setInstalled(true); setVisible(false); });
-
-    return () => window.removeEventListener('beforeinstallprompt', handler);
-  }, []);
-
   const handleInstall = async () => {
-    if (!prompt) return;
-    prompt.prompt();
-    const { outcome } = await prompt.userChoice;
-    if (outcome === 'accepted') setInstalled(true);
-    setVisible(false);
+    const accepted = await install();
+    if (accepted) setInstalled(true);
   };
 
   const handleDismiss = () => {
     sessionStorage.setItem('pwa_dismissed', '1');
-    setVisible(false);
+    setDismissed(true);
   };
 
-  if (!visible || installed) return null;
+  if (!canInstall || dismissed || installed) return null;
 
   return (
     <div className="fixed bottom-20 left-4 right-4 md:left-auto md:right-6 md:w-80 z-50 animate-fade-in">
