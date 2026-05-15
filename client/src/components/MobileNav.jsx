@@ -1,10 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, ClipboardList, Bell, User, Wrench, PlusCircle } from 'lucide-react';
+import { Home, ClipboardList, User, Wrench, PlusCircle, LogOut } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 
 const MobileNav = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const { t, language } = useLanguage();
   const location = useLocation();
 
@@ -29,6 +29,7 @@ const MobileNav = () => {
       { path: '/admin', label: 'Dashboard', icon: Home },
       { path: '/admin/bookings', label: 'Bookings', icon: ClipboardList },
       { path: '/admin/verifications', label: 'ID Check', icon: Wrench },
+      { action: 'logout', label: t('signOut'), icon: LogOut, danger: true },
     ]
   };
 
@@ -41,6 +42,21 @@ const MobileNav = () => {
     >
       {currentTabs.map((tab) => {
         const Icon = tab.icon;
+
+        // Action tab (e.g. Sign Out) — renders as a button, not a Link
+        if (tab.action === 'logout') {
+          return (
+            <button
+              key="logout"
+              onClick={logout}
+              className="flex flex-col items-center justify-center py-1 px-3 min-w-[56px] transition-all"
+            >
+              <Icon size={22} strokeWidth={1.8} className="text-red-400" />
+              <span className="text-[10px] mt-1 font-medium text-red-400">{tab.label}</span>
+            </button>
+          );
+        }
+
         const active = isActive(tab.path);
 
         if (tab.primary) {

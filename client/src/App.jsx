@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { BrowserRouter, HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { BrowserRouter, HashRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { NotificationProvider } from './context/NotificationContext';
@@ -69,6 +69,16 @@ const PageWrapper = ({ children }) => (
 
 const AppRoutes = () => {
   const { user, loading } = useAuth();
+  const navigate = useNavigate();
+  const prevUserRef = useRef(user);
+
+  // Navigate to Welcome when user logs out from any page
+  useEffect(() => {
+    if (prevUserRef.current && !user) {
+      navigate('/', { replace: true });
+    }
+    prevUserRef.current = user;
+  }, [user, navigate]);
 
   if (loading) {
     return (
