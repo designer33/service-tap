@@ -49,9 +49,18 @@ app.all('/api/deploy', (req, res) => {
 });
 
 // Core Middleware
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false, // required for mobile/WebView compatibility
+}));
 app.use(cors({
-  origin: true,
+  origin: [
+    'https://serviceknock.com.irfanrashid.net',
+    'http://localhost',
+    'http://localhost:5173',
+    'http://localhost:5000',
+    'capacitor://localhost',
+    'https://localhost',
+  ],
   credentials: true,
 }));
 app.use(morgan('dev'));

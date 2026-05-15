@@ -18,9 +18,8 @@ echo "Pulling latest changes from main..." >> $LOG_FILE
 git fetch --all >> $LOG_FILE 2>&1
 git reset --hard origin/main >> $LOG_FILE 2>&1
 
-# Copy pre-built files to server's public folder
-echo "Updating public folder from client/dist..." >> $LOG_FILE
-cp -r client/dist/* public/ >> $LOG_FILE 2>&1
+# public/ is committed to git — git reset already updated it.
+# No cp needed; avoids overwriting new bundles with stale client/dist files.
 
 # Install any new server dependencies
 echo "Installing server dependencies..." >> $LOG_FILE
