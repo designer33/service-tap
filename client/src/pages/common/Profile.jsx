@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../../api/axios';
-import { Loader2, Star, Calendar, MapPin, CheckCircle, User as UserIcon, Briefcase, Edit, Camera, X, Phone, AlertTriangle, ShieldCheck, ShieldAlert, Upload, Clock, Lock, LogOut, Home } from 'lucide-react';
+import { Loader2, Star, Calendar, MapPin, CheckCircle, User as UserIcon, Briefcase, Edit, Camera, X, Phone, AlertTriangle, ShieldCheck, ShieldAlert, Upload, Clock, Lock, LogOut } from 'lucide-react';
 import { PROVINCES, getCities } from '../../utils/pakistanCities';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../context/AuthContext';
@@ -309,24 +309,27 @@ const Profile = () => {
                     </span>
                   </div>
                 )}
-                <div className="flex items-center gap-1.5">
-                  <MapPin size={18} className="text-rose-400 shrink-0" />
-                  <span className="font-medium text-slate-600">
-                    {(user.city || user.state)
-                      ? `${[user.city, user.state].filter(Boolean).join(', ')}, Pakistan`
-                      : <span className="text-slate-400 italic">{language === 'ur' ? 'شہر فراہم نہیں' : 'City not provided'}</span>
-                    }
-                  </span>
-                </div>
-                {/* Full street address visible only to profile owner */}
-                {(currentUser?._id === user._id || currentUser?.slug === id) && (
-                  <div className="flex items-start gap-1.5 w-full sm:w-auto">
-                    <Home size={18} className="text-slate-400 shrink-0 mt-0.5" />
-                    <span className="text-slate-500 text-sm">
-                      {user.address || <span className="italic text-slate-400">{language === 'ur' ? 'پتہ فراہم نہیں' : 'Address not provided'}</span>}
-                    </span>
-                  </div>
-                )}
+                {(() => {
+                  const isOwner = currentUser?._id === user._id || currentUser?.slug === id;
+                  const parts = [
+                    isOwner && user.address ? user.address : null,
+                    user.city || null,
+                    user.state || null,
+                    'Pakistan',
+                  ].filter(Boolean);
+                  const hasAny = isOwner ? (user.address || user.city || user.state) : (user.city || user.state);
+                  return (
+                    <div className="flex items-start gap-1.5 w-full sm:w-auto">
+                      <MapPin size={18} className="text-rose-400 shrink-0 mt-0.5" />
+                      <span className="font-medium text-slate-600 text-sm">
+                        {hasAny
+                          ? parts.join(', ')
+                          : <span className="italic text-slate-400">{language === 'ur' ? 'پتہ فراہم نہیں' : 'Address not provided'}</span>
+                        }
+                      </span>
+                    </div>
+                  );
+                })()}
               </div>
             </div>
           </div>
