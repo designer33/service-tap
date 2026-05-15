@@ -26,24 +26,25 @@ mongoose.connect(process.env.MONGODB_URI, { serverSelectionTimeoutMS: 5000 })
 
 const app = express();
 
-// Auto Deployment Webhook (Moved to top)
-app.all('/api/deploy', (req, res) => {
-  const secret = process.env.DEPLOY_SECRET;
-  const githubSecret = req.headers['x-hub-signature-256'];
+// Auto Deployment Webhook
+app.post('/api/deploy', express.raw({ type: '*/*' }), (req, res) => {
+  const secret    = process.env.DEPLOY_SECRET;
+  const signature = req.headers['x-hub-signature-256'];
 
-  if (!githubSecret || !secret) {
-    return res.status(401).json({ message: 'No secret provided' });
+  if (secret) {
+    if (!signature) return res.status(401).json({ message: 'Missing signature header' });
+    const crypto   = require('crypto');
+    const expected = 'sha256=' + crypto.createHmac('sha256', secret).update(req.body).digest('hex');
+    try {
+      if (!crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected)))
+        return res.status(401).json({ message: 'Invalid signature' });
+    } catch { return res.status(401).json({ message: 'Signature mismatch' }); }
   }
 
-  const { exec } = require('child_process');
   res.status(200).json({ message: 'Deployment triggered' });
-
   console.log('🔄 Deployment triggered by GitHub...');
-  exec('bash ../deploy.sh', (error, stdout, stderr) => {
-    if (error) {
-      console.error(`❌ Deployment Error: ${error}`);
-      return;
-    }
+  require('child_process').exec('bash ../deploy.sh', (error) => {
+    if (error) { console.error('❌ Deployment error:', error.message); return; }
     console.log('✅ Deployment successful!');
   });
 });
