@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../api/axios';
@@ -23,6 +23,8 @@ const Register = () => {
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
   const [imageToCrop, setImageToCrop] = useState(null);
+  const isNative = Capacitor.isNativePlatform();
+  const profileInputRef = useRef(null);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -135,15 +137,16 @@ const Register = () => {
                   )}
                 </div>
                   <div className="flex-1 flex flex-col gap-2">
-                    <button 
-                      type="button" 
-                      onClick={() => handleCapturePhoto('profile')}
+                    <button
+                      type="button"
+                      onClick={() => isNative ? handleCapturePhoto('profile') : profileInputRef.current?.click()}
                       className="btn-outline py-2.5 text-xs font-bold flex items-center justify-center gap-2 bg-white"
                     >
                       <Camera size={14} /> {language === 'ur' ? 'تصویر لیں یا منتخب کریں' : 'Take or Choose Photo'}
                     </button>
-                    <input 
-                      type="file" 
+                    <input
+                      ref={profileInputRef}
+                      type="file"
                       accept="image/*"
                       onChange={handleFileChange}
                       className="hidden"
