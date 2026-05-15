@@ -22,8 +22,8 @@ const {
 } = require('../controllers/bookingController');
 const { protect, authorize, optionalProtect } = require('../middleware/authMiddleware');
 
-// Public routes (optional auth enriches response for logged-in callers)
-router.get('/profile/:id', optionalProtect, getProfileDetails);
+// Requires login — profiles are not public
+router.get('/profile/:id', protect, getProfileDetails);
 router.get('/recent-completed', getRecentCompletedJobs);
 
 // Customer routes

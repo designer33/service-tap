@@ -120,7 +120,11 @@ const AppRoutes = () => {
           />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
-          <Route path="/profile/:id" element={<Profile />} />
+
+          {/* Any authenticated user */}
+          <Route element={<ProtectedRoute allowedRoles={['customer', 'worker', 'admin']} />}>
+            <Route path="/profile/:id" element={<Profile />} />
+          </Route>
 
           {/* Customer */}
           <Route element={<ProtectedRoute allowedRoles={['customer']} />}>
