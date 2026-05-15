@@ -788,6 +788,22 @@ const getProfileDetails = async (req, res, next) => {
     // Include slug in response
     userObj.slug = user.slug;
 
+    // Strip private fields for unauthenticated callers or non-owners
+    const callerId = req.user?._id?.toString();
+    const profileId = user._id.toString();
+    const isOwner = callerId === profileId;
+    const isAdmin = req.user?.role === 'admin';
+
+    if (!isOwner && !isAdmin) {
+      delete userObj.address;
+      delete userObj.phone;
+      delete userObj.email;
+      delete userObj.cnic;
+      delete userObj.cnicImage;
+      delete userObj.passwordResetToken;
+      delete userObj.passwordResetExpires;
+    }
+
     res.json({ success: true, user: userObj, bookings: bookingsWithReviews, reviewsReceived, stats });
   } catch (err) {
     next(err);

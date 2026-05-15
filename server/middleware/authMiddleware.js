@@ -57,4 +57,26 @@ const authorize = (...roles) => {
   };
 };
 
-module.exports = { protect, authorize };
+/**
+ * optionalProtect — Attaches req.user if a valid Bearer token is present, but
+ * does NOT block unauthenticated requests. Use for public routes that show
+ * extra data to logged-in users.
+ */
+const optionalProtect = async (req, res, next) => {
+  try {
+    const authHeader = req.headers.authorization;
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      const token = authHeader.split(' ')[1];
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const user = await User.findById(decoded.id).select('-password');
+      if (user && !user.isBlocked) {
+        req.user = user;
+      }
+    }
+  } catch (_) {
+    // Invalid/expired token — treat as unauthenticated
+  }
+  next();
+};
+
+module.exports = { protect, authorize, optionalProtect };

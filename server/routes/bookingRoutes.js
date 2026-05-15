@@ -20,10 +20,10 @@ const {
   completeJob,
   getRecentCompletedJobs,
 } = require('../controllers/bookingController');
-const { protect, authorize } = require('../middleware/authMiddleware');
+const { protect, authorize, optionalProtect } = require('../middleware/authMiddleware');
 
-// Public routes
-router.get('/profile/:id', getProfileDetails);
+// Public routes (optional auth enriches response for logged-in callers)
+router.get('/profile/:id', optionalProtect, getProfileDetails);
 router.get('/recent-completed', getRecentCompletedJobs);
 
 // Customer routes
