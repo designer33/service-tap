@@ -47,7 +47,7 @@ const register = async (req, res, next) => {
       address: Joi.string().required(),
       city: Joi.string().required(),
       state: Joi.string().required(),
-      zipCode: Joi.string().required(),
+      zipCode: Joi.string().optional().allow(''),
       country: Joi.string().optional(),
     }).unknown(true);
 
