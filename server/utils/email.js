@@ -59,7 +59,7 @@ const baseTemplate = (content) => `
   <div class="container">
     <div class="header"><h1>🔧 Service Knock</h1></div>
     <div class="body">${content}</div>
-    <div class="footer">Service Knock — Connecting Trusted Professionals &bull; <a href="https://serviceknock.com.irfanrashid.net">Visit Site</a></div>
+    <div class="footer">Service Knock — Connecting Trusted Professionals &bull; <a href="https://serviceknock.com">Visit Site</a></div>
   </div>
 </body>
 </html>
@@ -82,7 +82,7 @@ const templates = {
         <p><strong>Service:</strong> ${worker.serviceType}</p>
         <p><strong>City:</strong> ${worker.city}</p>
       </div>
-      <a class="btn" href="https://serviceknock.com.irfanrashid.net/admin/verifications">Review Now</a>
+      <a class="btn" href="https://serviceknock.com/admin/verifications">Review Now</a>
     `),
   }),
 
@@ -99,7 +99,7 @@ const templates = {
         <p><strong>Role:</strong> ${user.role}</p>
         <p><strong>Phone:</strong> ${user.phone}</p>
       </div>
-      <a class="btn" href="https://serviceknock.com.irfanrashid.net/admin/verifications">Review Submission</a>
+      <a class="btn" href="https://serviceknock.com/admin/verifications">Review Submission</a>
     `),
   }),
 
@@ -126,7 +126,7 @@ const templates = {
       <h2>Identity Verified! 🎉</h2>
       <p>Dear <strong>${user.name}</strong>,</p>
       <p>Congratulations! Your CNIC has been successfully verified. A <strong>Verified Badge</strong> now appears on your profile, and you can now post or accept jobs on Service Knock.</p>
-      <a class="btn" href="https://serviceknock.com.irfanrashid.net">Go to Dashboard</a>
+      <a class="btn" href="https://serviceknock.com">Go to Dashboard</a>
     `),
   }),
 
@@ -142,7 +142,7 @@ const templates = {
         <p><strong>Reason:</strong> ${note || 'Your ID document could not be verified. Please resubmit a clear photo.'}</p>
       </div>
       <p>Please log in and resubmit a clear, readable photo of your CNIC to complete verification.</p>
-      <a class="btn" href="https://serviceknock.com.irfanrashid.net/profile/${user.slug}">Resubmit ID</a>
+      <a class="btn" href="https://serviceknock.com/profile/${user.slug}">Resubmit ID</a>
     `),
   }),
 
@@ -161,7 +161,7 @@ const templates = {
         <p><strong>Address:</strong> ${booking.address}, ${booking.city}</p>
       </div>
       <p>You can now see the customer's contact details in your Active Jobs.</p>
-      <a class="btn" href="https://serviceknock.com.irfanrashid.net/active-jobs">View Active Jobs</a>
+      <a class="btn" href="https://serviceknock.com/active-jobs">View Active Jobs</a>
     `),
   }),
 
@@ -179,7 +179,7 @@ const templates = {
         <p><strong>Address:</strong> ${booking.address}, ${booking.city}</p>
       </div>
       <p>Please visit your bookings to see the worker's contact details and coordinate the visit.</p>
-      <a class="btn" href="https://serviceknock.com.irfanrashid.net/my-bookings">View My Bookings</a>
+      <a class="btn" href="https://serviceknock.com/my-bookings">View My Bookings</a>
     `),
   }),
 
@@ -196,7 +196,7 @@ const templates = {
         <p><strong>Service:</strong> ${booking.serviceType}</p>
       </div>
       <p>Please take a moment to leave a review for the worker — your feedback helps maintain our quality standards.</p>
-      <a class="btn" href="https://serviceknock.com.irfanrashid.net/my-bookings">Leave a Review</a>
+      <a class="btn" href="https://serviceknock.com/my-bookings">Leave a Review</a>
     `),
   }),
 
@@ -211,7 +211,7 @@ const templates = {
       <div class="info-box">
         <p><strong>Job:</strong> ${booking.title}</p>
       </div>
-      <a class="btn" href="https://serviceknock.com.irfanrashid.net/worker-profile">View Your Profile</a>
+      <a class="btn" href="https://serviceknock.com/worker-profile">View Your Profile</a>
     `),
   }),
 
@@ -226,7 +226,7 @@ const templates = {
       <div class="info-box">
         <p><strong>Job:</strong> ${booking.title}</p>
       </div>
-      <a class="btn" href="https://serviceknock.com.irfanrashid.net/my-bookings">View Your Bookings</a>
+      <a class="btn" href="https://serviceknock.com/my-bookings">View Your Bookings</a>
     `),
   }),
 
@@ -267,7 +267,7 @@ const templates = {
       <p>Dear <strong>${user.name}</strong>,</p>
       <p>Your account on Service Knock has been blocked. As a result, you will not be able to post or accept any jobs until this is resolved.</p>
       <p>Please contact our support team to resolve this issue.</p>
-      <a class="btn" href="https://serviceknock.com.irfanrashid.net/contact">Contact Support</a>
+      <a class="btn" href="https://serviceknock.com/contact">Contact Support</a>
     `),
   }),
 
@@ -283,7 +283,7 @@ const templates = {
         <p>"${content}"</p>
       </div>
       <p>Log in to continue the conversation.</p>
-      <a class="btn" href="https://serviceknock.com.irfanrashid.net">Open Support Chat</a>
+      <a class="btn" href="https://serviceknock.com">Open Support Chat</a>
     `),
   }),
 
@@ -301,7 +301,7 @@ const templates = {
       </div>
       <p><strong>Message:</strong></p>
       <p>"${content}"</p>
-      <a class="btn" href="https://serviceknock.com.irfanrashid.net/admin/support">Reply to Chat</a>
+      <a class="btn" href="https://serviceknock.com/admin/support">Reply to Chat</a>
     `),
   }),
 };

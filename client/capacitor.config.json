@@ -4,7 +4,7 @@
   "webDir": "dist",
   "server": {
     "androidScheme": "https",
-    "allowNavigation": ["serviceknock.com.irfanrashid.net", "*.irfanrashid.net"]
+    "allowNavigation": ["serviceknock.com"]
   },
   "plugins": {
     "SplashScreen": {

@@ -56,7 +56,7 @@ app.use(helmet({
 }));
 app.use(cors({
   origin: [
-    'https://serviceknock.com.irfanrashid.net',
+    'https://serviceknock.com',
     'http://localhost',
     'http://localhost:5173',
     'http://localhost:5000',

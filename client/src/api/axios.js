@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Capacitor } from '@capacitor/core';
 
 const baseURL = Capacitor.isNativePlatform()
-  ? 'https://serviceknock.com.irfanrashid.net/api'
+  ? 'https://serviceknock.com/api'
   : (import.meta.env.VITE_API_URL || '/api');
 
 const api = axios.create({
