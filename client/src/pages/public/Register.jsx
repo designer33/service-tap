@@ -8,6 +8,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import ImageCropModal from '../../components/ImageCropModal';
 import { pickImage } from '../../utils/imagePicker';
 import { Capacitor } from '@capacitor/core';
+import { PROVINCES, getCities } from '../../utils/pakistanCities';
 
 const Register = () => {
   const { login } = useAuth();
@@ -221,41 +222,27 @@ const Register = () => {
                   className="form-input" />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="form-label text-[11px] uppercase tracking-wide" htmlFor="reg-city">{language === 'ur' ? 'شہر' : 'City'}</label>
-                  <input id="reg-city" type="text" name="city" value={form.city} onChange={handleChange}
-                    placeholder="e.g. Islamabad" required
-                    className="form-input" />
-                </div>
-                <div>
-                  <label className="form-label text-[11px] uppercase tracking-wide" htmlFor="reg-state">{language === 'ur' ? 'صوبہ' : 'State'}</label>
-                  <select id="reg-state" name="state" value={form.state} onChange={handleChange} required
-                    className="form-select">
-                    <option value="">{language === 'ur' ? 'منتخب کریں' : 'Select'}</option>
-                    <option value="Punjab">Punjab</option>
-                    <option value="Sindh">Sindh</option>
-                    <option value="KPK">KPK</option>
-                    <option value="Balochistan">Balochistan</option>
-                    <option value="Islamabad">Islamabad</option>
-                    <option value="AJK">AJK</option>
-                    <option value="Gilgit-Baltistan">Gilgit-Baltistan</option>
-                  </select>
-                </div>
+              <div>
+                <label className="form-label text-[11px] uppercase tracking-wide" htmlFor="reg-state">{language === 'ur' ? 'صوبہ / علاقہ' : 'Province / Region'}</label>
+                <select id="reg-state" name="state" value={form.state}
+                  onChange={(e) => setForm({ ...form, state: e.target.value, city: '' })}
+                  required className="form-select">
+                  <option value="">{language === 'ur' ? 'صوبہ منتخب کریں' : 'Select Province'}</option>
+                  {PROVINCES.map(p => (
+                    <option key={p.value} value={p.value}>{p.label}</option>
+                  ))}
+                </select>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="form-label text-[11px] uppercase tracking-wide" htmlFor="reg-zip">{language === 'ur' ? 'زپ کوڈ' : 'Zip Code'}</label>
-                  <input id="reg-zip" type="text" name="zipCode" value={form.zipCode} onChange={handleChange}
-                    placeholder="44000" required
-                    className="form-input" />
-                </div>
-                <div>
-                  <label className="form-label text-[11px] uppercase tracking-wide" htmlFor="reg-country">{language === 'ur' ? 'ملک' : 'Country'}</label>
-                  <input id="reg-country" type="text" name="country" value={form.country} disabled
-                    className="form-input bg-slate-100 cursor-not-allowed" />
-                </div>
+              <div>
+                <label className="form-label text-[11px] uppercase tracking-wide" htmlFor="reg-city">{language === 'ur' ? 'شہر' : 'City'}</label>
+                <select id="reg-city" name="city" value={form.city} onChange={handleChange}
+                  required disabled={!form.state} className="form-select disabled:opacity-50">
+                  <option value="">{form.state ? (language === 'ur' ? 'شہر منتخب کریں' : 'Select City') : (language === 'ur' ? 'پہلے صوبہ منتخب کریں' : 'Select province first')}</option>
+                  {getCities(form.state).map(city => (
+                    <option key={city} value={city}>{city}</option>
+                  ))}
+                </select>
               </div>
             </div>
 

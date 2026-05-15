@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../../api/axios';
-import { Loader2, Star, Calendar, MapPin, CheckCircle, User as UserIcon, Briefcase, Edit, Camera, X, Phone, AlertTriangle, ShieldCheck, ShieldAlert, Upload, Clock, Lock, LogOut } from 'lucide-react';
+import { Loader2, Star, Calendar, MapPin, CheckCircle, User as UserIcon, Briefcase, Edit, Camera, X, Phone, AlertTriangle, ShieldCheck, ShieldAlert, Upload, Clock, Lock, LogOut, Home } from 'lucide-react';
+import { PROVINCES, getCities } from '../../utils/pakistanCities';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../context/AuthContext';
 import { formatDate } from '../../utils/formatDate';
@@ -20,7 +21,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [editModal, setEditModal] = useState(false);
-  const [editForm, setEditForm] = useState({ name: '', phone: '', profilePic: '', urduName: '' });
+  const [editForm, setEditForm] = useState({ name: '', phone: '', profilePic: '', urduName: '', address: '', state: '', city: '' });
   const [saving, setSaving] = useState(false);
   const [verifying, setVerifying] = useState(false);
   const [cnicPreview, setCnicPreview] = useState(null);
@@ -167,7 +168,10 @@ const Profile = () => {
             name: profileData.user.name,
             phone: profileData.user.phone || '',
             profilePic: profileData.user.profilePic || '',
-            urduName: profileData.user.urduName || ''
+            urduName: profileData.user.urduName || '',
+            address: profileData.user.address || '',
+            state: profileData.user.state || '',
+            city: profileData.user.city || '',
           });
         }
       } catch (err) {
@@ -303,6 +307,21 @@ const Profile = () => {
                     <span className="font-bold text-dark whitespace-nowrap">
                       {t('earningsTotal')}: <span className="text-secondary-600">Rs.{formatCurrency(stats.totalEarnings)}</span>
                     </span>
+                  </div>
+                )}
+                {(user.city || user.state) && (
+                  <div className="flex items-center gap-1.5">
+                    <MapPin size={18} className="text-rose-400 shrink-0" />
+                    <span className="font-medium text-slate-600">
+                      {[user.city, user.state].filter(Boolean).join(', ')}, Pakistan
+                    </span>
+                  </div>
+                )}
+                {/* Full street address visible only to profile owner */}
+                {(currentUser?._id === user._id || currentUser?.slug === id) && user.address && (
+                  <div className="flex items-start gap-1.5 w-full sm:w-auto">
+                    <Home size={18} className="text-slate-400 shrink-0 mt-0.5" />
+                    <span className="text-slate-500 text-sm">{user.address}</span>
                   </div>
                 )}
               </div>
@@ -595,6 +614,52 @@ const Profile = () => {
                   />
                 </div>
               </div>
+              {/* Address */}
+              <div className="pt-1 border-t border-slate-100">
+                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                  <MapPin size={13} /> {language === 'ur' ? 'پتہ' : 'Address'}
+                </p>
+                <div className="space-y-3">
+                  <div>
+                    <label className="form-label text-[11px]">{language === 'ur' ? 'صوبہ / علاقہ' : 'Province / Region'}</label>
+                    <select
+                      value={editForm.state}
+                      onChange={(e) => setEditForm({ ...editForm, state: e.target.value, city: '' })}
+                      className="form-select"
+                    >
+                      <option value="">{language === 'ur' ? 'صوبہ منتخب کریں' : 'Select Province'}</option>
+                      {PROVINCES.map(p => (
+                        <option key={p.value} value={p.value}>{p.label}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="form-label text-[11px]">{language === 'ur' ? 'شہر' : 'City'}</label>
+                    <select
+                      value={editForm.city}
+                      onChange={(e) => setEditForm({ ...editForm, city: e.target.value })}
+                      disabled={!editForm.state}
+                      className="form-select disabled:opacity-50"
+                    >
+                      <option value="">{editForm.state ? (language === 'ur' ? 'شہر منتخب کریں' : 'Select City') : (language === 'ur' ? 'پہلے صوبہ منتخب کریں' : 'Select province first')}</option>
+                      {getCities(editForm.state).map(city => (
+                        <option key={city} value={city}>{city}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="form-label text-[11px]">{language === 'ur' ? 'گھر کا پتہ (گلی، مکان نمبر)' : 'Street Address (House #, Street, Area)'}</label>
+                    <input
+                      type="text"
+                      value={editForm.address}
+                      onChange={(e) => setEditForm({ ...editForm, address: e.target.value })}
+                      placeholder={language === 'ur' ? 'گھر کا نمبر، گلی، محلہ' : 'House #, Street, Mohalla/Area'}
+                      className="form-input"
+                    />
+                  </div>
+                </div>
+              </div>
+
               <div>
                 <label className="form-label">{t('profilePicture')}</label>
                 <div className="flex items-center gap-4">

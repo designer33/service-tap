@@ -2,12 +2,13 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../api/axios';
 import toast from 'react-hot-toast';
-import { 
-  Zap, Wrench, Wind, MapPin, FileText, Calendar, 
-  ArrowRight, Hammer, Paintbrush, Building, Construction, 
-  Users, Grid, Camera, Image as ImageIcon, Search, Mic, Trash2 
+import {
+  Zap, Wrench, Wind, MapPin, FileText, Calendar,
+  ArrowRight, Hammer, Paintbrush, Building, Construction,
+  Users, Grid, Camera, Image as ImageIcon, Search, Mic, Trash2
 } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
+import { PROVINCES, getCities } from '../../utils/pakistanCities';
 import { resizeImage } from '../../utils/imageUtils';
 import ImageCropModal from '../../components/ImageCropModal';
 
@@ -271,41 +272,27 @@ const BookService = () => {
                   className="form-input" />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="form-label text-[11px] uppercase tracking-wide" htmlFor="book-city">{language === 'ur' ? 'شہر' : 'City'}</label>
-                  <input id="book-city" type="text" name="city" value={form.city} onChange={handleChange}
-                    placeholder="e.g. Islamabad" required
-                    className="form-input" />
-                </div>
-                <div>
-                  <label className="form-label text-[11px] uppercase tracking-wide" htmlFor="book-state">{language === 'ur' ? 'صوبہ' : 'State'}</label>
-                  <select id="book-state" name="state" value={form.state} onChange={handleChange} required
-                    className="form-select">
-                    <option value="">{language === 'ur' ? 'منتخب کریں' : 'Select'}</option>
-                    <option value="Punjab">Punjab</option>
-                    <option value="Sindh">Sindh</option>
-                    <option value="KPK">KPK</option>
-                    <option value="Balochistan">Balochistan</option>
-                    <option value="Islamabad">Islamabad</option>
-                    <option value="AJK">AJK</option>
-                    <option value="Gilgit-Baltistan">Gilgit-Baltistan</option>
-                  </select>
-                </div>
+              <div>
+                <label className="form-label text-[11px] uppercase tracking-wide" htmlFor="book-state">{language === 'ur' ? 'صوبہ / علاقہ' : 'Province / Region'}</label>
+                <select id="book-state" name="state" value={form.state}
+                  onChange={(e) => setForm({ ...form, state: e.target.value, city: '' })}
+                  required className="form-select">
+                  <option value="">{language === 'ur' ? 'صوبہ منتخب کریں' : 'Select Province'}</option>
+                  {PROVINCES.map(p => (
+                    <option key={p.value} value={p.value}>{p.label}</option>
+                  ))}
+                </select>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="form-label text-[11px] uppercase tracking-wide" htmlFor="book-zip">{language === 'ur' ? 'زپ کوڈ' : 'Zip Code'}</label>
-                  <input id="book-zip" type="text" name="zipCode" value={form.zipCode} onChange={handleChange}
-                    placeholder="44000" required
-                    className="form-input" />
-                </div>
-                <div>
-                  <label className="form-label text-[11px] uppercase tracking-wide" htmlFor="book-country">{language === 'ur' ? 'ملک' : 'Country'}</label>
-                  <input id="book-country" type="text" name="country" value={form.country} disabled
-                    className="form-input bg-slate-100 cursor-not-allowed" />
-                </div>
+              <div>
+                <label className="form-label text-[11px] uppercase tracking-wide" htmlFor="book-city">{language === 'ur' ? 'شہر' : 'City'}</label>
+                <select id="book-city" name="city" value={form.city} onChange={handleChange}
+                  required disabled={!form.state} className="form-select disabled:opacity-50">
+                  <option value="">{form.state ? (language === 'ur' ? 'شہر منتخب کریں' : 'Select City') : (language === 'ur' ? 'پہلے صوبہ منتخب کریں' : 'Select province first')}</option>
+                  {getCities(form.state).map(city => (
+                    <option key={city} value={city}>{city}</option>
+                  ))}
+                </select>
               </div>
             </div>
 
