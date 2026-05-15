@@ -80,7 +80,7 @@ const Profile = () => {
     try {
       const { data } = await api.patch('/auth/profile', editForm);
       updateUser(data.user);
-      setData(prev => ({ ...prev, user: { ...prev.user, ...data.user } }));
+      setData(prev => ({ ...prev, user: { ...prev.user, ...data.user, address: editForm.address, city: editForm.city, state: editForm.state } }));
       toast.success(t('profileUpdatedToast'));
       setEditModal(false);
     } catch (err) {
@@ -309,19 +309,22 @@ const Profile = () => {
                     </span>
                   </div>
                 )}
-                {(user.city || user.state) && (
-                  <div className="flex items-center gap-1.5">
-                    <MapPin size={18} className="text-rose-400 shrink-0" />
-                    <span className="font-medium text-slate-600">
-                      {[user.city, user.state].filter(Boolean).join(', ')}, Pakistan
-                    </span>
-                  </div>
-                )}
+                <div className="flex items-center gap-1.5">
+                  <MapPin size={18} className="text-rose-400 shrink-0" />
+                  <span className="font-medium text-slate-600">
+                    {(user.city || user.state)
+                      ? `${[user.city, user.state].filter(Boolean).join(', ')}, Pakistan`
+                      : <span className="text-slate-400 italic">{language === 'ur' ? 'شہر فراہم نہیں' : 'City not provided'}</span>
+                    }
+                  </span>
+                </div>
                 {/* Full street address visible only to profile owner */}
-                {(currentUser?._id === user._id || currentUser?.slug === id) && user.address && (
+                {(currentUser?._id === user._id || currentUser?.slug === id) && (
                   <div className="flex items-start gap-1.5 w-full sm:w-auto">
                     <Home size={18} className="text-slate-400 shrink-0 mt-0.5" />
-                    <span className="text-slate-500 text-sm">{user.address}</span>
+                    <span className="text-slate-500 text-sm">
+                      {user.address || <span className="italic text-slate-400">{language === 'ur' ? 'پتہ فراہم نہیں' : 'Address not provided'}</span>}
+                    </span>
                   </div>
                 )}
               </div>

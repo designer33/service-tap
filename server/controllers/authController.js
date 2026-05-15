@@ -288,6 +288,11 @@ const updateProfile = async (req, res, next) => {
         profilePic: user.profilePic,
         urduName: user.urduName,
         slug: user.slug,
+        address: user.address,
+        city: user.city,
+        state: user.state,
+        zipCode: user.zipCode,
+        country: user.country,
         requiresProfilePic: !user.profilePic,
         requiresVerification: user.verificationStatus !== 'pending' && !user.isVerified && !!user.profilePic
       }
