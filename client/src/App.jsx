@@ -47,6 +47,7 @@ import Footer from './components/Footer';
 import VerificationPopup from './components/VerificationPopup';
 import VerificationBanner from './components/VerificationBanner';
 import ChatWidget from './components/ChatWidget';
+import PWAInstallPrompt from './components/PWAInstallPrompt';
 
 import { LanguageProvider } from './context/LanguageContext';
 import { Capacitor } from '@capacitor/core';
@@ -157,6 +158,7 @@ const AppRoutes = () => {
       {!isNative && <Footer />}
       {isNative && <MobileNav />}
       <ChatWidget />
+      {!isNative && <PWAInstallPrompt />}
     </div>
   );
 };
