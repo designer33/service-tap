@@ -262,9 +262,18 @@ const Profile = () => {
                     <AlertTriangle size={14} /> {user.reportedBy?.includes(currentUser._id) ? t('reported') : t('reportProfile')}
                   </button>
                 )}
-                <div className="bg-primary-50 text-primary-700 px-4 py-2 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-widest flex items-center">
-                  {user.role === 'worker' ? (t(user.serviceType) || t('worker')) : t(user.role)}
-                </div>
+                {user.role === 'worker'
+                  ? (user.serviceTypes?.length > 0 ? user.serviceTypes : [user.serviceType]).filter(Boolean).map(st => (
+                      <div key={st} className="bg-primary-50 text-primary-700 px-4 py-2 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-widest flex items-center">
+                        {t(st)}
+                      </div>
+                    ))
+                  : (
+                      <div className="bg-primary-50 text-primary-700 px-4 py-2 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-widest flex items-center">
+                        {t(user.role)}
+                      </div>
+                    )
+                }
               </div>
             </div>
             
