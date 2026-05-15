@@ -2,10 +2,12 @@ import { Link, useLocation } from 'react-router-dom';
 import { Home, ClipboardList, User, Wrench, PlusCircle, LogOut } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
+import { useNotifications } from '../context/NotificationContext';
 
 const MobileNav = () => {
   const { user, logout } = useAuth();
   const { t, language } = useLanguage();
+  const { jobRequestCount, unreadCount } = useNotifications();
   const location = useLocation();
 
   if (!user) return null;
@@ -74,6 +76,10 @@ const MobileNav = () => {
           );
         }
 
+        const badgeCount = tab.path === '/job-requests' ? jobRequestCount
+          : tab.path === '/admin/bookings' ? unreadCount
+          : 0;
+
         return (
           <Link
             key={tab.path}
@@ -83,11 +89,18 @@ const MobileNav = () => {
             {active && (
               <span className="absolute top-0 left-1/2 -translate-x-1/2 w-6 h-1 bg-primary-500 rounded-full" />
             )}
-            <Icon
-              size={22}
-              strokeWidth={active ? 2.5 : 1.8}
-              className={`transition-colors ${active ? 'text-primary-600' : 'text-slate-400'}`}
-            />
+            <div className="relative">
+              <Icon
+                size={22}
+                strokeWidth={active ? 2.5 : 1.8}
+                className={`transition-colors ${active ? 'text-primary-600' : 'text-slate-400'}`}
+              />
+              {badgeCount > 0 && (
+                <span className="absolute -top-1.5 -right-2 bg-red-500 text-white text-[9px] font-black rounded-full min-w-[16px] h-4 flex items-center justify-center px-1 leading-none">
+                  {badgeCount > 99 ? '99+' : badgeCount}
+                </span>
+              )}
+            </div>
             <span className={`text-[10px] mt-1 font-medium transition-colors ${active ? 'text-primary-600' : 'text-slate-400'}`}>
               {tab.label}
             </span>
