@@ -85,7 +85,27 @@ app.use('/api/chat', require('./routes/chatRoutes'));
 
 // Serve Static Files (for production)
 const path = require('path');
-app.use(express.static(path.join(__dirname, '..', 'public')));
+
+// Hashed JS/CSS assets — cache 1 year (filenames change on each build)
+app.use('/assets', express.static(path.join(__dirname, '..', 'public', 'assets'), {
+  maxAge: '1y',
+  immutable: true,
+}));
+
+// Icons — cache 1 month
+app.use('/icons', express.static(path.join(__dirname, '..', 'public', 'icons'), {
+  maxAge: '30d',
+}));
+
+// Everything else — cache 1 week, but never cache HTML
+app.use(express.static(path.join(__dirname, '..', 'public'), {
+  maxAge: '7d',
+  setHeaders(res, filePath) {
+    if (filePath.endsWith('.html') || filePath.endsWith('manifest.webmanifest')) {
+      res.setHeader('Cache-Control', 'no-cache');
+    }
+  },
+}));
 
 // Handle React routing, return all requests to React app
 app.get('*', (req, res, next) => {

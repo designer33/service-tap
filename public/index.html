@@ -90,11 +90,21 @@
   }
   </script>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <!-- LCP preload — hero image loads early for fast paint -->
+  <link rel="preload" as="image" href="/hero.jpg" fetchpriority="high" />
+
+  <!-- Google Fonts — non-render-blocking async load -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/assets/index-hemhuptW.js"></script>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" /></noscript>
+  <script type="module" crossorigin src="/assets/index-CWBgsCtr.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-BYbx6iT9.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-react-B3U-cJh1.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-cap-Cw94Tqv9.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-utils-BuXL1ypv.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-ui-CZBzX7a8.js">
   <link rel="stylesheet" crossorigin href="/assets/index-Cr0Mwm3h.css">
 <link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
 
