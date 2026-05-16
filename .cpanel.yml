@@ -2,6 +2,5 @@
 deployment:
   tasks:
     - export PATH=/home/irfanras/nodevenv/service-tap/20/bin:$PATH
-    - cd /home/irfanras/service-tap/server && npm install --production
     - cd /home/irfanras/service-tap && npm install --production
     - /bin/touch /home/irfanras/service-tap/tmp/restart.txt
