@@ -1,3 +1,4 @@
+const Joi = require('joi');
 const Message = require('../models/Message');
 const User = require('../models/User');
 const Notification = require('../models/Notification');
@@ -42,7 +43,14 @@ exports.getMessages = async (req, res, next) => {
 // @access  Protected
 exports.sendMessage = async (req, res, next) => {
   try {
-    const { content, receiver, isAdmin } = req.body;
+    const { error, value } = Joi.object({
+      content:  Joi.string().trim().min(1).max(2000).required(),
+      receiver: Joi.string().optional().allow(null, ''),
+      isAdmin:  Joi.boolean().optional(),
+    }).validate(req.body);
+    if (error) return res.status(400).json({ message: error.details[0].message });
+
+    const { content, receiver, isAdmin } = value;
 
     const conversationId = (req.user.role === 'admin' && receiver)
       ? receiver

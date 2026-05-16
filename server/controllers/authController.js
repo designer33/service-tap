@@ -304,7 +304,12 @@ const updateProfile = async (req, res, next) => {
 
 const forgotPassword = async (req, res, next) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const { error, value } = Joi.object({
+      email: Joi.string().trim().email().max(254).required(),
+    }).validate(req.body);
+    if (error) return res.status(400).json({ message: error.details[0].message });
+
+    const user = await User.findOne({ email: value.email.toLowerCase() });
     if (!user) return res.status(404).json({ message: 'User not found' });
 
     const resetToken = crypto.randomBytes(32).toString('hex');
@@ -336,6 +341,13 @@ const forgotPassword = async (req, res, next) => {
 
 const resetPassword = async (req, res, next) => {
   try {
+    const { error, value } = Joi.object({
+      password: Joi.string().min(6).max(128).required().messages({
+        'string.min': 'Password must be at least 6 characters',
+      }),
+    }).validate(req.body);
+    if (error) return res.status(400).json({ message: error.details[0].message });
+
     const hashedToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
     const user = await User.findOne({
       passwordResetToken: hashedToken,
@@ -344,7 +356,7 @@ const resetPassword = async (req, res, next) => {
 
     if (!user) return res.status(400).json({ message: 'Token is invalid or has expired' });
 
-    user.password = req.body.password;
+    user.password = value.password;
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save();
