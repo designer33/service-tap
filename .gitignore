@@ -21,3 +21,4 @@ Thumbs.db
 # Server specific
 server/node_modules/
 client/node_modules/
+package-lock.json
