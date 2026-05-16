@@ -43,7 +43,8 @@ app.post('/api/deploy', express.raw({ type: '*/*' }), (req, res) => {
 
   res.status(200).json({ message: 'Deployment triggered' });
   console.log('🔄 Deployment triggered by GitHub...');
-  require('child_process').exec('bash ../deploy.sh', (error) => {
+  const deployScript = require('path').join(__dirname, '..', 'deploy.sh');
+  require('child_process').exec(`bash "${deployScript}"`, (error) => {
     if (error) { console.error('❌ Deployment error:', error.message); return; }
     console.log('✅ Deployment successful!');
   });
