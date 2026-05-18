@@ -1,13 +1,18 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ShieldAlert, ArrowRight, X } from 'lucide-react';
+import { ShieldAlert, ArrowRight, LogOut } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 
 const VerificationPopup = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const { t, language } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const handleSignOut = () => {
+    logout();
+    navigate('/login');
+  };
 
   // Only show for customers/workers who are flagged for verification
   // AND hide it if they are already on the profile page so they can actually verify
@@ -67,17 +72,25 @@ const VerificationPopup = () => {
             
             <p className="text-[11px] text-slate-400 mt-2 italic">
               {isProfilePicStep
-                ? (language === 'ur' 
-                    ? 'آپ کی تصویر آپ کے شناختی کارڈ سے میچ ہونی چاہیے۔' 
+                ? (language === 'ur'
+                    ? 'آپ کی تصویر آپ کے شناختی کارڈ سے میچ ہونی چاہیے۔'
                     : 'Your photo must match your official ID document.')
                 : (user.verificationStatus === 'pending'
-                    ? (language === 'ur' 
-                        ? 'منظوری کے بعد آپ کی تمام سہولیات بحال کر دی جائیں گی۔' 
+                    ? (language === 'ur'
+                        ? 'منظوری کے بعد آپ کی تمام سہولیات بحال کر دی جائیں گی۔'
                         : 'All features will be unlocked once your verification is approved.')
-                    : (language === 'ur' 
-                        ? 'تصدیق کے بغیر آپ درخواستیں پوسٹ یا قبول نہیں کر سکتے۔' 
+                    : (language === 'ur'
+                        ? 'تصدیق کے بغیر آپ درخواستیں پوسٹ یا قبول نہیں کر سکتے۔'
                         : 'You will not be able to post new requests or accept offers until verified.'))}
             </p>
+
+            <button
+              onClick={handleSignOut}
+              className="mt-4 w-full py-2.5 flex items-center justify-center gap-2 rounded-xl border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-700 transition-colors text-sm font-medium"
+            >
+              <LogOut size={16} />
+              {language === 'ur' ? 'سائن آؤٹ' : 'Sign Out'}
+            </button>
           </div>
         </div>
       </div>
