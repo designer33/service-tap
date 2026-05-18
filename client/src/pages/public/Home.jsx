@@ -43,15 +43,6 @@ const Home = () => {
     { icon: TrendingUp, value: '99%',     label: t('satisfactionRateLabel'),color: 'text-pink-600',      bg: 'bg-pink-50' },
   ];
 
-  const testimonials = [
-    { name: t('saraKhan'),      role: t('homeowner'),       rating: 5, text: t('saraTestimonial'),  avatar: 'bg-pink-500' },
-    { name: t('aliHaider'),     role: t('businessOwner'),   rating: 5, text: t('aliTestimonial'),   avatar: 'bg-primary-500' },
-    { name: t('asimIqbal'),     role: t('apartmentTenant'), rating: 5, text: t('asimTestimonial'),  avatar: 'bg-teal-500' },
-    { name: t('bilalSiddiqui'), role: t('interiorDesigner'),rating: 5, text: t('bilalTestimonial'), avatar: 'bg-orange-500' },
-    { name: t('maryamJaved'),   role: t('doctor'),          rating: 5, text: t('maryamTestimonial'),avatar: 'bg-violet-500' },
-    { name: t('zainabRaza'),    role: t('teacher'),         rating: 5, text: t('zainabTestimonial'),avatar: 'bg-secondary-500' },
-  ];
-
   return (
     <div className="animate-fade-in">
       <SEO
@@ -324,7 +315,7 @@ const Home = () => {
         </section>
       )}
 
-      {/* ── Testimonials ── */}
+      {/* ── Google Reviews ── */}
       <section className="bg-slate-50 py-24">
         <div className="page-container">
           <div className="text-center mb-14">
@@ -334,30 +325,7 @@ const Home = () => {
             <h2 className="section-title">{t('whatCustomersSay')}</h2>
             <p className="section-subtitle">{t('trustedHomeowners')}</p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.map(({ name, role, rating, text, avatar }) => (
-              <div key={name} className="card hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
-                {/* Quote mark decoration */}
-                <div className="absolute top-4 right-5 text-6xl font-serif text-slate-100 leading-none select-none">"</div>
-                <div className="flex gap-0.5 mb-4">
-                  {[...Array(rating)].map((_, i) => (
-                    <Star key={i} size={14} className="text-accent-500 fill-accent-500" />
-                  ))}
-                </div>
-                <p className="text-slate-600 text-sm leading-relaxed mb-5 italic relative z-10">"{text}"</p>
-                <div className="flex items-center gap-3 pt-4 border-t border-slate-50">
-                  <div className={`w-10 h-10 ${avatar} rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-md`}>
-                    {name.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="font-bold text-dark text-sm">{name}</p>
-                    <p className="text-xs text-slate-400">{role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <div id="featurable-d2921338-aebc-42e7-9be4-85047923d76e" data-featurable-async></div>
         </div>
       </section>
 
