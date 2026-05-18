@@ -21,6 +21,17 @@ const Home = () => {
       .catch(() => {});
   }, []);
 
+  useEffect(() => {
+    const existing = document.querySelector('script[src*="featurable.com"]');
+    if (existing) existing.remove();
+    const script = document.createElement('script');
+    script.src = 'https://featurable.com/assets/bundle.js';
+    script.charset = 'UTF-8';
+    script.async = true;
+    document.body.appendChild(script);
+    return () => script.remove();
+  }, []);
+
   const services = [
     { emoji: '⚡', icon: Zap,       label: t('electrician'),    color: 'from-amber-400 to-orange-500',  bg: 'bg-amber-50',   text: 'text-amber-600',  border: 'border-amber-100' },
     { emoji: '🔧', icon: Wrench,    label: t('plumber'),        color: 'from-blue-400 to-blue-600',     bg: 'bg-blue-50',    text: 'text-blue-600',   border: 'border-blue-100' },
