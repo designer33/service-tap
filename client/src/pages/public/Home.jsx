@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api/axios';
 import SEO from '../../components/SEO';
+import GoogleReviewsSlider from '../../components/GoogleReviewsSlider';
 import {
   Zap, Wrench, Wind, Star, Shield, Clock, ChevronRight,
   CheckCircle, ArrowRight, Users, Briefcase, TrendingUp,
@@ -360,6 +361,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* ── Google Reviews ── */}
+      <GoogleReviewsSlider language={language} />
 
       {/* ── Why Choose Us ── */}
       <section className="bg-white py-20">
