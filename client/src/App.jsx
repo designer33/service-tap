@@ -49,6 +49,7 @@ import VerificationPopup from './components/VerificationPopup';
 import VerificationBanner from './components/VerificationBanner';
 import ChatWidget from './components/ChatWidget';
 import PWAInstallPrompt from './components/PWAInstallPrompt';
+import ScrollToTop from './components/ScrollToTop';
 
 import { LanguageProvider } from './context/LanguageContext';
 import { Capacitor } from '@capacitor/core';
@@ -98,6 +99,7 @@ const AppRoutes = () => {
       className="flex flex-col min-h-screen"
       style={isNative ? { paddingBottom: 'calc(4.5rem + env(safe-area-inset-bottom))' } : {}}
     >
+      <ScrollToTop />
       {!isNative && <Navbar />}
       <VerificationBanner />
       <VerificationPopup />
