@@ -8,11 +8,13 @@ const axios = require('axios');
 const sendSMS = async (to, message) => {
   try {
     // Clean up the phone number (ensure it's in 92... format)
-    let formattedPhone = to;
-    if (to.startsWith('0')) {
-      formattedPhone = '92' + to.substring(1);
-    } else if (!to.startsWith('92')) {
-      formattedPhone = '92' + to;
+    let formattedPhone = to.replace(/\s+/g, '');
+    if (formattedPhone.startsWith('0')) {
+      formattedPhone = '+92' + formattedPhone.substring(1);
+    } else if (formattedPhone.startsWith('92')) {
+      formattedPhone = '+' + formattedPhone;
+    } else if (!formattedPhone.startsWith('+92')) {
+      formattedPhone = '+92' + formattedPhone;
     }
 
     console.log(`[SMS ATTEMPT] To: ${formattedPhone} | Msg: ${message}`);

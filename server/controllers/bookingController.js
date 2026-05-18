@@ -148,7 +148,7 @@ const createBooking = async (req, res, next) => {
           if (w.userId && w.userId.phone) {
             sendSMS(
               w.userId.phone,
-              `Hi ${w.userId.name}! New ${value.serviceType.replace(/_/g, ' ')} job in ${value.city}: "${value.title}". Open the Service Knock app to apply!`
+              `Hi ${w.userId.name}! New ${value.serviceType.replace(/_/g, ' ')} job in ${value.city}: "${value.title}". View & apply: https://serviceknock.com/job-requests`
             ).catch(err => console.error('[SMS ERROR] Worker notification failed:', err.message));
           }
         }
