@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://serviceknock.com/sitemap.xml
