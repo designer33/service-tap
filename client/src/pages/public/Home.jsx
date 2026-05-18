@@ -5,7 +5,7 @@ import SEO from '../../components/SEO';
 import {
   Zap, Wrench, Wind, Star, Shield, Clock, ChevronRight,
   CheckCircle, ArrowRight, Users, Briefcase, TrendingUp,
-  Hammer, MapPin, Paintbrush, Building2, HardHat, Layers
+  Hammer, MapPin, Paintbrush, Building2
 } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { formatDate } from '../../utils/formatDate';
