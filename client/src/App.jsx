@@ -15,6 +15,7 @@ import PrivacyPolicy from './pages/public/PrivacyPolicy';
 import TermsAndConditions from './pages/public/TermsAndConditions';
 import FAQs from './pages/public/FAQs';
 import Blog from './pages/public/Blog';
+import BlogPost from './pages/public/BlogPost';
 import Welcome from './pages/public/Welcome';
 import ForgotPassword from './pages/public/ForgotPassword';
 import ResetPassword from './pages/public/ResetPassword';
@@ -111,6 +112,7 @@ const AppRoutes = () => {
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/faqs" element={<FAQs />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route
             path="/login"
             element={user ? <Navigate to={getDashboard(user.role)} replace /> : <Login />}
