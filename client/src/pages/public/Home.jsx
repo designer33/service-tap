@@ -336,7 +336,10 @@ const Home = () => {
             <h2 className="section-title">{t('whatCustomersSay')}</h2>
             <p className="section-subtitle">{t('trustedHomeowners')}</p>
           </div>
-          <div id="featurable-d2921338-aebc-42e7-9be4-85047923d76e" data-featurable-async></div>
+          <div className="relative">
+            <div id="featurable-d2921338-aebc-42e7-9be4-85047923d76e" data-featurable-async></div>
+            <div style={{ width: '195px', height: '35px', background: '#F8FAFC', position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', zIndex: 10 }} />
+          </div>
         </div>
       </section>
 
