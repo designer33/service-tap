@@ -5,7 +5,7 @@ import SEO from '../../components/SEO';
 import {
   Zap, Wrench, Wind, Star, Shield, Clock, ChevronRight,
   CheckCircle, ArrowRight, Users, Briefcase, TrendingUp,
-  Hammer, MapPin, Paintbrush, Building2, Layers, HardHat, LayoutGrid
+  Hammer, MapPin, Paintbrush, Building2
 } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { formatDate } from '../../utils/formatDate';
@@ -33,15 +33,12 @@ const Home = () => {
   }, []);
 
   const services = [
-    { emoji: '⚡', icon: Zap,        label: t('electrician'),     color: 'from-amber-400 to-orange-500',  bg: 'bg-amber-50',   text: 'text-amber-600',  border: 'border-amber-100' },
-    { emoji: '🔧', icon: Wrench,     label: t('plumber'),         color: 'from-blue-400 to-blue-600',     bg: 'bg-blue-50',    text: 'text-blue-600',   border: 'border-blue-100' },
-    { emoji: '❄️', icon: Wind,       label: t('ac_fridge_repair'), color: 'from-cyan-400 to-sky-600',     bg: 'bg-cyan-50',    text: 'text-cyan-600',   border: 'border-cyan-100' },
-    { emoji: '🔨', icon: Hammer,     label: t('carpenter'),       color: 'from-orange-400 to-red-500',    bg: 'bg-orange-50',  text: 'text-orange-600', border: 'border-orange-100' },
-    { emoji: '🎨', icon: Paintbrush, label: t('painter'),         color: 'from-pink-400 to-rose-500',     bg: 'bg-pink-50',    text: 'text-pink-600',   border: 'border-pink-100' },
-    { emoji: '🧱', icon: Building2,  label: t('mason'),           color: 'from-slate-400 to-slate-600',   bg: 'bg-slate-50',   text: 'text-slate-600',  border: 'border-slate-200' },
-    { emoji: '🏗️', icon: Layers,    label: t('steel_fixer'),     color: 'from-gray-400 to-gray-600',     bg: 'bg-gray-50',    text: 'text-gray-600',   border: 'border-gray-200' },
-    { emoji: '👷', icon: HardHat,    label: t('labour'),          color: 'from-red-400 to-rose-600',      bg: 'bg-red-50',     text: 'text-red-600',    border: 'border-red-100' },
-    { emoji: '🟦', icon: LayoutGrid, label: t('tile_fixer'),      color: 'from-teal-400 to-emerald-500',  bg: 'bg-teal-50',    text: 'text-teal-600',   border: 'border-teal-100' },
+    { emoji: '⚡', icon: Zap,       label: t('electrician'),     color: 'from-amber-400 to-orange-500',  bg: 'bg-amber-50',   text: 'text-amber-600',  border: 'border-amber-100' },
+    { emoji: '🔧', icon: Wrench,    label: t('plumber'),         color: 'from-blue-400 to-blue-600',     bg: 'bg-blue-50',    text: 'text-blue-600',   border: 'border-blue-100' },
+    { emoji: '❄️', icon: Wind,      label: t('ac_fridge_repair'), color: 'from-cyan-400 to-sky-600',    bg: 'bg-cyan-50',    text: 'text-cyan-600',   border: 'border-cyan-100' },
+    { emoji: '🔨', icon: Hammer,    label: t('carpenter'),       color: 'from-orange-400 to-red-500',    bg: 'bg-orange-50',  text: 'text-orange-600', border: 'border-orange-100' },
+    { emoji: '🎨', icon: Paintbrush,label: t('painter'),         color: 'from-pink-400 to-rose-500',     bg: 'bg-pink-50',    text: 'text-pink-600',   border: 'border-pink-100' },
+    { emoji: '🧱', icon: Building2, label: t('mason'),           color: 'from-slate-400 to-slate-600',   bg: 'bg-slate-50',   text: 'text-slate-600',  border: 'border-slate-200' },
   ];
 
   const steps = [
@@ -208,7 +205,7 @@ const Home = () => {
             <p className="section-subtitle max-w-xl mx-auto">{t('servicesSubtitle')}</p>
           </div>
 
-          <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-9 gap-4 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-6xl mx-auto">
             {services.map(({ emoji, icon: Icon, label, color, bg, text, border }) => (
               <Link to="/register" key={label}
                 className={`group card border ${border} flex flex-col items-center text-center py-6 px-3 hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}>
