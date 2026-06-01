@@ -345,10 +345,10 @@ const Home = () => {
                     </svg>
                   ))}
                 </div>
-                <p className="text-sm font-bold text-dark mt-0.5">4.8 <span className="font-normal text-slate-500">on Google</span></p>
+                <p className="text-sm font-bold text-dark mt-0.5">5.0 <span className="font-normal text-slate-500">on Google</span></p>
               </div>
             </div>
-            <a href="https://g.page/r/CXx_qOJJIYItEAI/review" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.google.com.pk/search?trk=https://c.gle/AOExmq3k_kAmQvxExEJDMrW4OjwAxt772B44jAo7Xn61qMOLsDjIH4GMjWl7L_GFguIS2_LK_VS1MBGiT7ShqxXAVGCOQfCEDaeLEK_URMOFnZziJShre1_tXq-GZlW65vDO&q=Service+Knock&ludocid=13049355235583222140&lsig=AB86z5Vqh-Jc0Ya3j-FYvtaUC7Rr" target="_blank" rel="noopener noreferrer"
               className="text-sm text-primary-600 font-semibold hover:underline">
               Leave a Review ↗
             </a>
@@ -358,35 +358,39 @@ const Home = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                name: 'Muhammad Asif',
-                initial: 'MA',
+                name: 'ManiWeber Technologies',
+                initial: 'MT',
                 color: 'bg-blue-500',
-                date: '2 weeks ago',
-                text: 'Booked an electrician through Service Knock and he arrived within 40 minutes. Very professional, fixed the wiring issue and explained everything clearly. CNIC verification gave me full confidence. Highly recommended!',
+                badge: 'Local Guide',
+                date: 'a week ago',
+                text: "I've used Service Knock multiple times now for different home needs — electrician for some wiring issues, plumber for a leakage, AC technician for servicing before summer, and a carpenter for minor fixes. What I appreciate most is how easy the whole process is: I book through their platform, get a quick response, and a verified worker shows up ready to do the job properly. The workers are skilled and respectful, charges are reasonable and clearly communicated upfront. Service Knock has really filled a gap in Pakistan's home services space. Strongly recommend.",
                 stars: 5,
               },
               {
-                name: 'Ayesha Tariq',
-                initial: 'AT',
-                color: 'bg-pink-500',
-                date: '1 month ago',
-                text: 'Excellent service! The AC technician was on time, polite, and very skilled. He topped up the gas and cleaned the unit thoroughly. The price was exactly what was quoted — no hidden charges at all.',
-                stars: 5,
-              },
-              {
-                name: 'Usman Farooq',
-                initial: 'UF',
+                name: 'Muhammad Basit',
+                initial: 'MB',
                 color: 'bg-green-500',
-                date: '1 month ago',
-                text: 'Got a plumber booked in under 10 minutes. The app is very easy to use. Worker was verified and did a great job fixing a burst pipe. Service Knock is the best platform for home services in Lahore.',
+                badge: null,
+                date: 'a week ago',
+                text: 'Great initiative! Loved the idea of having electricians, plumbers, painters all in one platform. The booking process was smooth and pricing was transparent.',
                 stars: 5,
               },
               {
-                name: 'Sadia Noor',
-                initial: 'SN',
+                name: 'Kazmi Syed',
+                initial: 'KS',
                 color: 'bg-purple-500',
-                date: '3 weeks ago',
-                text: 'I have used Service Knock twice now — once for a carpenter and once for a painter. Both times the workers were professional and the work quality was excellent. Will definitely keep using this service!',
+                badge: null,
+                date: '2 weeks ago',
+                text: 'Very good platform for customers and workers. I have used it for electrician and found it very well.',
+                stars: 5,
+              },
+              {
+                name: 'Mairaj Khan',
+                initial: 'MK',
+                color: 'bg-amber-500',
+                badge: null,
+                date: 'a week ago',
+                text: 'A very good platform launched in Pakistan. This is something will go viral for sure as there is no idea like that in the market.',
                 stars: 5,
               },
             ].map((r) => (
@@ -399,7 +403,7 @@ const Home = () => {
                     </div>
                     <div>
                       <p className="font-semibold text-dark text-sm leading-tight">{r.name}</p>
-                      <p className="text-xs text-slate-400">{r.date}</p>
+                      <p className="text-xs text-slate-400">{r.badge ? `${r.badge} · ` : ''}{r.date}</p>
                     </div>
                   </div>
                   {/* Google icon */}
