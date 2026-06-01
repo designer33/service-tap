@@ -363,7 +363,7 @@ const Home = () => {
                 color: 'bg-blue-500',
                 badge: 'Local Guide',
                 date: 'a week ago',
-                text: "I've used Service Knock multiple times now for different home needs — electrician for some wiring issues, plumber for a leakage, AC technician for servicing before summer, and a carpenter for minor fixes. What I appreciate most is how easy the whole process is: I book through their platform, get a quick response, and a verified worker shows up ready to do the job properly. The workers are skilled and respectful, charges are reasonable and clearly communicated upfront. Service Knock has really filled a gap in Pakistan's home services space. Strongly recommend.",
+                text: "I've used Service Knock multiple times now for different home needs — electrician for some wiring issues, plumber for a leakage, AC technician for servicing before summer, and a carpenter for minor fixes.",
                 stars: 5,
               },
               {
