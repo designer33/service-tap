@@ -23,3 +23,7 @@ Thumbs.db
 server/node_modules/
 client/node_modules/
 package-lock.json
+
+# Internal docs — not for production
+prompt.md
+MOBILE_SETUP.md

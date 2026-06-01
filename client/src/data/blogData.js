@@ -832,4 +832,135 @@ export const blogPosts = [
       <p><a href="/register">Book a CNIC-verified pest control professional through Service Knock</a> and get competitive quotes from trusted technicians in your city. You can also explore our full range of <a href="/services">home services across Pakistan</a>, or <a href="/contact">contact our team</a> if you are unsure which treatment your home needs.</p>
     `,
   },
+
+  {
+    id: 12,
+    slug: 'home-cleaning-services-pakistan-complete-guide',
+    title: 'Home Cleaning Services in Pakistan: Complete Guide to Costs, Types & Hiring the Right Cleaner',
+    excerpt: 'From deep cleaning before Eid to regular weekly housekeeping, home cleaning services in Pakistan have grown rapidly. This guide covers every type of cleaning service, realistic costs in Lahore, Karachi, and Islamabad, and how to hire a trustworthy, vetted cleaner.',
+    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80',
+    author: 'Service Knock Team',
+    date: 'June 01, 2026',
+    category: 'Guides',
+    readTime: '7 min',
+    metaTitle: 'Home Cleaning Services in Pakistan 2026 — Costs, Types & How to Hire | Service Knock',
+    metaDescription: 'Complete guide to home cleaning services in Pakistan. Discover types of cleaning, realistic costs in Lahore, Karachi, and Islamabad, what to expect from a professional cleaner, and how to hire a CNIC-verified domestic worker.',
+    keywords: 'home cleaning services Pakistan, house cleaning Lahore, cleaning service Karachi, deep cleaning Pakistan, domestic worker Pakistan, maid service Islamabad, home cleaner near me, Eid cleaning Pakistan, professional cleaning cost Pakistan',
+    content: `
+      <p>A clean home is not just about appearance — it directly affects the health, mood, and productivity of every person who lives in it. Yet for millions of working Pakistani families, finding the time for thorough cleaning is a genuine challenge. Between long work hours, children's schedules, and the demands of daily life, the house often gets only the minimum attention it needs.</p>
+
+      <p>Professional home cleaning services in Pakistan have grown significantly over the past few years, driven by urbanisation, dual-income households, and rising awareness of hygiene — especially following the COVID-19 pandemic. Whether you need a one-time deep clean before Eid, a regular weekly cleaner, or a post-construction cleanup after renovation, qualified, trustworthy cleaning professionals are now available through platforms like <a href="/services">Service Knock</a>.</p>
+
+      <p>This guide covers everything you need to know: the types of cleaning services available, realistic pricing across Pakistan's major cities, what to look for when hiring, and how to ensure your cleaner is safe and reliable to have in your home.</p>
+
+      <h2>Types of Home Cleaning Services in Pakistan</h2>
+
+      <h3>Regular / Routine Cleaning</h3>
+      <p>This is the most common type — a standard clean covering the tasks you would normally do yourself but either lack the time or prefer to delegate. A routine clean typically includes sweeping and mopping all floors, dusting surfaces and furniture, cleaning bathrooms and toilets, wiping kitchen counters and the stovetop, and taking out rubbish. Most Pakistani families who hire a regular cleaner schedule this daily, every other day, or weekly.</p>
+      <p>A live-out domestic helper (often called a <em>kaam waali bai</em> in Urdu) hired directly from a reference typically charges Rs. 8,000–20,000 per month for daily visits (2–4 hours per day) in a standard three-bedroom home, depending on the city and scope of work. Through a professional cleaning service agency or platform, expect to pay Rs. 1,200–3,000 per session for a 3–4 hour visit.</p>
+
+      <h3>Deep Cleaning</h3>
+      <p>A deep clean goes far beyond routine maintenance. It covers everything that accumulates over months of normal use: scrubbing grout and tile joints in bathrooms, cleaning inside kitchen cupboards and behind appliances, washing walls and skirting boards, descaling taps and showerheads, washing windows inside and out, cleaning fans and light fixtures, and sanitising often-neglected areas like under-sink cabinets and inside the refrigerator.</p>
+      <p>Most Pakistani households schedule a deep clean once or twice a year — most commonly before Eid ul Fitr, before Eid ul Adha, before a wedding or major event, or at the start of a new season. A full deep clean of a three-bedroom home typically takes 6–10 hours and requires a team of two or more cleaners.</p>
+      <p><strong>Cost in Pakistan:</strong> Rs. 4,000–12,000 for a standard deep clean, depending on the size of the home, the level of cleaning required, and the city.</p>
+
+      <h3>Post-Construction / Renovation Cleaning</h3>
+      <p>After any construction, renovation, or plastering work, a home is left with fine cement dust, paint splatter, silicone and adhesive residue, sawdust, and construction debris that ordinary cleaning cannot adequately address. Post-construction cleaning requires specialised equipment including industrial vacuums, scrubbing machines, and chemicals designed to remove construction residues from tiles, glass, and fixtures.</p>
+      <p>This type of cleaning is non-negotiable before moving into a renovated space. Cement dust, in particular, is highly abrasive and alkaline — leaving it on tiles, glass, or finished surfaces for an extended period permanently damages them. Post-construction cleaning is almost always best done by professionals.</p>
+      <p><strong>Cost in Pakistan:</strong> Rs. 8,000–30,000 depending on the scope of construction and the size of the property.</p>
+
+      <h3>Carpet and Upholstery Cleaning</h3>
+      <p>Pakistan's culture of sitting on floor cushions, using large carpets in living and dining rooms, and investing in quality upholstered furniture means that carpet and sofa cleaning is a significant sub-category on its own. Professional carpet cleaning uses hot-water extraction (steam cleaning) or dry-cleaning methods to remove embedded dirt, dust mites, pet dander, and stains that vacuum cleaners cannot reach.</p>
+      <p>Regular professional carpet cleaning — ideally every 6–12 months — significantly extends the life of expensive rugs and carpets. It also dramatically reduces dust and allergen levels in the home, which is particularly beneficial for family members with asthma or allergies.</p>
+      <p><strong>Cost in Pakistan:</strong> Rs. 50–150 per square foot for carpet cleaning; Rs. 1,500–5,000 per sofa seat for upholstery cleaning.</p>
+
+      <h3>Window Cleaning</h3>
+      <p>In Pakistan's dusty environment, windows accumulate grime rapidly. For homes with large windows, high-rise apartments, or multi-storey houses, professional window cleaning — including outside surfaces — requires equipment and safety knowledge that most homeowners do not have. Professional window cleaners use water-fed pole systems, squeegees, and appropriate cleaning solutions to leave glass streak-free.</p>
+      <p><strong>Cost in Pakistan:</strong> Rs. 100–300 per window, depending on size and access difficulty.</p>
+
+      <h3>Water Tank Cleaning</h3>
+      <p>One of the most important but most frequently neglected cleaning tasks in Pakistan is the rooftop or underground water storage tank. Uncleaned tanks develop algae, sediment, and bacteria over time — directly contaminating the drinking and cooking water supply to the entire house. Health experts recommend cleaning water tanks at least every six months.</p>
+      <p>Professional tank cleaning involves draining the tank, physical scrubbing of all interior surfaces, disinfection with chlorine solution, and flushing. It is a dirty and often physically demanding job that is best left to professionals.</p>
+      <p><strong>Cost in Pakistan:</strong> Rs. 2,000–8,000 depending on tank capacity and type (rooftop plastic vs underground concrete).</p>
+
+      <h2>Home Cleaning Costs Across Pakistan's Major Cities (2026)</h2>
+
+      <p>Cleaning service pricing varies by city, primarily due to differences in labour costs and cost of living. Below are realistic market rates for the most common cleaning services in 2026.</p>
+
+      <h3>Lahore</h3>
+      <ul>
+        <li>Routine cleaning session (3–4 hours): Rs. 1,200–2,500</li>
+        <li>Deep cleaning (full home, team of 2): Rs. 5,000–12,000</li>
+        <li>Post-construction cleaning: Rs. 10,000–25,000</li>
+        <li>Carpet cleaning per square foot: Rs. 60–130</li>
+        <li>Water tank cleaning: Rs. 2,500–6,000</li>
+        <li>Monthly domestic helper (daily visits): Rs. 10,000–18,000</li>
+      </ul>
+
+      <h3>Karachi</h3>
+      <ul>
+        <li>Routine cleaning session: Rs. 1,000–2,200</li>
+        <li>Deep cleaning: Rs. 4,500–10,000</li>
+        <li>Post-construction cleaning: Rs. 9,000–22,000</li>
+        <li>Carpet cleaning per square foot: Rs. 50–120</li>
+        <li>Water tank cleaning: Rs. 2,000–5,500</li>
+        <li>Monthly domestic helper: Rs. 9,000–16,000</li>
+      </ul>
+
+      <h3>Islamabad / Rawalpindi</h3>
+      <ul>
+        <li>Routine cleaning session: Rs. 1,500–3,000</li>
+        <li>Deep cleaning: Rs. 6,000–14,000</li>
+        <li>Post-construction cleaning: Rs. 12,000–30,000</li>
+        <li>Carpet cleaning per square foot: Rs. 70–150</li>
+        <li>Water tank cleaning: Rs. 3,000–8,000</li>
+        <li>Monthly domestic helper: Rs. 12,000–20,000</li>
+      </ul>
+
+      <h2>What to Expect from a Professional Home Cleaning Service</h2>
+
+      <p>When you hire through a reputable platform or agency, a professional cleaning visit follows a structured process:</p>
+      <ul>
+        <li><strong>Arrival on time with equipment:</strong> A professional cleaner should arrive with their own cleaning supplies and equipment — including mops, brushes, cloths, and appropriate cleaning agents — unless you have agreed otherwise. You should not need to provide anything beyond access.</li>
+        <li><strong>A walkthrough before starting:</strong> The cleaner should confirm the scope of work with you — which rooms, which tasks, and any specific instructions or areas to avoid.</li>
+        <li><strong>Systematic room-by-room cleaning:</strong> Professional cleaners work in a logical sequence to avoid cross-contaminating clean areas with dirty ones. Bathrooms and kitchens are typically cleaned last.</li>
+        <li><strong>Safe handling of valuables:</strong> A professional will move items carefully, not haphazardly, and will not open drawers, cabinets, or personal storage unless specifically instructed.</li>
+        <li><strong>A final walkthrough with you:</strong> Before leaving, the cleaner should invite you to inspect the work. This is standard practice at any quality service provider.</li>
+      </ul>
+
+      <h2>How to Hire a Trustworthy Cleaner in Pakistan</h2>
+
+      <p>Hiring a domestic worker or cleaning professional in Pakistan requires more care than hiring a tradesperson for a one-off job. This person will be inside your home, often when you or other family members are present, and may have access to valuables. Trust and accountability are paramount.</p>
+
+      <ul>
+        <li><strong>Always verify CNIC identity.</strong> Never allow anyone into your home for cleaning or domestic work without first confirming their CNIC (National Identity Card). This is the minimum standard of accountability. All domestic workers and cleaners available through <a href="/register">Service Knock are CNIC-verified</a> before their profiles go live on our platform.</li>
+        <li><strong>Check references.</strong> Ask for contact details of at least two previous employers. A worker with nothing to hide will readily provide references.</li>
+        <li><strong>Be clear about scope and payment upfront.</strong> Define exactly what tasks are included, how long the session will last, and what the payment is — before the worker arrives. This prevents misunderstandings and disputes.</li>
+        <li><strong>Secure valuables and sensitive documents.</strong> Even with a fully trustworthy worker, it is good practice to keep jewellery, cash, and sensitive documents locked away or in a designated secure location during cleaning visits.</li>
+        <li><strong>Hire through a platform, not random classifieds.</strong> Random classified adverts on OLX or social media offer no accountability, no background checks, and no recourse if something goes wrong. Using a structured platform like <a href="/register">Service Knock</a> gives you a verified worker profile, ratings from previous customers, and a formal booking record.</li>
+      </ul>
+
+      <h2>Cleaning Checklist: Before the Cleaner Arrives</h2>
+
+      <p>To get the most out of a professional cleaning session, a few simple preparations make a significant difference:</p>
+      <ul>
+        <li>Pick up and store items from floors and surfaces so the cleaner can access them properly</li>
+        <li>Move any fragile or particularly valuable items to a safe location</li>
+        <li>Inform the cleaner of any surfaces requiring special care (antique furniture, marble floors, specific finishes)</li>
+        <li>Make sure the cleaner has access to water and a power socket for their equipment</li>
+        <li>Specify any areas that are off-limits (a home office, a child's room, personal storage)</li>
+      </ul>
+
+      <h2>Eid Cleaning: Pakistan's Annual Deep-Clean Tradition</h2>
+
+      <p>In Pakistan, the weeks before Eid ul Fitr are the peak season for home cleaning. The tradition of thoroughly cleaning, repainting, and refreshing the home before Eid is deeply embedded in Pakistani culture — part of welcoming guests and celebrating the occasion with a fresh, beautiful home.</p>
+      <p>Because of this concentrated demand, professional cleaning services book up quickly in the two to three weeks before Eid. If you are planning an Eid deep clean, book your cleaning service at least two weeks in advance. <a href="/register">Post your cleaning requirement on Service Knock</a> early to secure a vetted cleaner before the rush.</p>
+
+      <h2>Final Thoughts</h2>
+
+      <p>A clean home is one of the simplest and most impactful improvements you can make to your quality of life. For Pakistani families managing busy schedules, delegating cleaning to a professional — whether for regular visits or a seasonal deep clean — is an investment that pays back in time, health, and peace of mind.</p>
+
+      <p>Whether you need a one-time deep clean before Eid, a regular weekly cleaner, a post-renovation cleanup, or a water tank service, <a href="/register">Service Knock connects you with CNIC-verified cleaning professionals</a> in your city. All workers are rated by previous customers, so you can book with confidence. You can also explore our full range of <a href="/services">home services across Pakistan</a>, or <a href="/contact">contact our team</a> with any questions.</p>
+    `,
+  },
 ];
