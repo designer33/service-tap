@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-const SEO = ({ title, description, keywords, canonical, ogImage, noIndex }) => {
+const SEO = ({ title, description, keywords, focusKeywords, canonical, ogImage, noIndex }) => {
   const siteName = 'Service Knock';
   const defaultImage = 'https://serviceknock.com/hero.jpg';
   const fullTitle = title ? `${title} | ${siteName}` : `${siteName} — Book Trusted Home Services in Pakistan`;
@@ -10,6 +10,7 @@ const SEO = ({ title, description, keywords, canonical, ogImage, noIndex }) => {
       <title>{fullTitle}</title>
       {description && <meta name="description" content={description} />}
       {keywords && <meta name="keywords" content={keywords} />}
+      {(focusKeywords || keywords) && <meta name="focus_keywords" content={focusKeywords || keywords} />}
       {canonical && <link rel="canonical" href={`https://serviceknock.com${canonical}`} />}
       {noIndex && <meta name="robots" content="noindex, nofollow" />}
 

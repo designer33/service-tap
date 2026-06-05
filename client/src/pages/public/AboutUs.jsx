@@ -46,7 +46,8 @@ const AboutUs = () => {
       <SEO
         title="About Us — Pakistan's Trusted Home Services Platform"
         description="Learn about Service Knock — Pakistan's leading platform connecting homeowners with CNIC-verified electricians, plumbers, AC technicians, carpenters and painters. Our mission is safe, affordable, and reliable home services."
-        keywords="about Service Knock, Pakistan home services company, trusted workers Pakistan, verified electricians Pakistan, home services platform Pakistan"
+        keywords="about Service Knock, Pakistan home services company, trusted home workers Pakistan, verified electricians Pakistan, verified plumbers Pakistan, verified AC technicians Pakistan, CNIC verified workers Pakistan, home services platform Lahore, home services platform Karachi, home services platform Islamabad, home services platform Rawalpindi, reliable home services Pakistan, affordable home repair Pakistan"
+        focusKeywords="about Service Knock, Pakistan home services company, trusted verified workers Pakistan, CNIC verified home services Pakistan"
         canonical="/about"
       />
 

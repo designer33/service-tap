@@ -23,7 +23,8 @@ const FAQs = () => {
       <SEO
         title="Frequently Asked Questions — How Service Knock Works"
         description="Got questions about booking home services in Pakistan? Find answers about how Service Knock works, pricing, CNIC verification, cancellations, and how to hire verified workers."
-        keywords="Service Knock FAQ, how to book home services Pakistan, CNIC verification, home service pricing Pakistan, cancel booking, verified workers FAQ"
+        keywords="Service Knock FAQ, how to book home services Pakistan, how to book electrician Lahore, how to book electrician Karachi, how to book plumber Pakistan, CNIC verification home services, home service pricing Pakistan, home service pricing Lahore, home service pricing Karachi, home service pricing Islamabad, home service pricing Rawalpindi, cancel booking home services, verified workers Pakistan, trustworthy home services Pakistan"
+        focusKeywords="how to book home services Pakistan, CNIC verification home services, home service pricing Pakistan, book electrician plumber near me"
         canonical="/faqs"
       />
       {/* Hero */}

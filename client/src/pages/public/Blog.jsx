@@ -9,7 +9,8 @@ const Blog = () => {
       <SEO
         title="Home Services Blog — Tips, Guides & Advice for Pakistani Homeowners"
         description="Expert home maintenance tips, seasonal guides, pricing breakdowns, and how-to articles for Pakistani homeowners. Learn about electricians, plumbers, AC repair, carpentry, painting and more."
-        keywords="home services blog Pakistan, electrician tips Pakistan, plumber guide Pakistan, AC maintenance Pakistan, home maintenance Lahore Karachi Islamabad, carpenter tips, painter guide Pakistan"
+        keywords="home services blog Pakistan, electrician tips Lahore, electrician tips Karachi, electrician tips Islamabad, plumber guide Pakistan, AC maintenance Lahore, AC maintenance Karachi, AC repair guide Pakistan, home maintenance Lahore, home maintenance Karachi, home maintenance Islamabad, home maintenance Rawalpindi, carpenter tips Pakistan, painter guide Pakistan, tile installation guide Pakistan, home cleaning tips Pakistan, pest control guide Pakistan, home renovation Pakistan"
+        focusKeywords="home services blog Pakistan, electrician tips Pakistan, plumber guide Pakistan, AC maintenance Pakistan, home maintenance Lahore Karachi Islamabad"
         canonical="/blog"
       />
 

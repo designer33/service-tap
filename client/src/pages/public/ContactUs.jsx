@@ -62,7 +62,8 @@ const ContactUs = () => {
       <SEO
         title="Contact Us — Get Help & Support"
         description="Contact Service Knock for help with bookings, worker support, or general inquiries. Reach our team via our contact form, email, or phone. We're here to help across all of Pakistan."
-        keywords="contact Service Knock, customer support Pakistan, home services help, Service Knock phone number, Service Knock email"
+        keywords="contact Service Knock, customer support Pakistan, home services support Lahore, home services support Karachi, home services support Islamabad, home services support Rawalpindi, Service Knock phone number, Service Knock email, book electrician Pakistan, book plumber Pakistan, hire home worker Pakistan, home services helpline Pakistan"
+        focusKeywords="contact Service Knock, customer support Pakistan, book home services Pakistan"
         canonical="/contact"
       />
 
