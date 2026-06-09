@@ -30,6 +30,10 @@ echo "Installing server dependencies..." >> $LOG_FILE
 cd $PROJECT_DIR/server && npm install --production >> $LOG_FILE 2>&1
 cd $PROJECT_DIR
 
+# Run database connectivity diagnostics
+echo "Running database connectivity diagnostics..." >> $LOG_FILE
+node $PROJECT_DIR/server/test_connectivity.js >> $LOG_FILE 2>&1
+
 # Restart the Node.js app (cPanel Passenger method)
 echo "Restarting Node.js app..." >> $LOG_FILE
 mkdir -p $PROJECT_DIR/tmp
