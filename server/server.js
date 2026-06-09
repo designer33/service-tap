@@ -1,4 +1,6 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 process.env.TZ = 'Asia/Karachi';
 const express = require('express');
 const cors = require('cors');
@@ -33,6 +35,9 @@ const connectDB = () => {
 connectDB();
 
 const app = express();
+
+// Trust reverse proxy (cPanel, Nginx, Cloudflare, Passenger)
+app.set('trust proxy', 1);
 
 // Auto Deployment Webhook
 app.post('/api/deploy', express.raw({ type: '*/*' }), (req, res) => {
@@ -101,7 +106,6 @@ app.use('/api/contact', contactRoutes);
 app.use('/api/chat', require('./routes/chatRoutes'));
 
 // Serve Static Files (for production)
-const path = require('path');
 
 // Hashed JS/CSS assets — cache 1 year (filenames change on each build)
 app.use('/assets', express.static(path.join(__dirname, '..', 'public', 'assets'), {

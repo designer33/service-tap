@@ -33,9 +33,8 @@ const errorHandler = (err, req, res, next) => {
     message = 'Token expired';
   }
 
-  if (process.env.NODE_ENV === 'development') {
-    console.error(`[ERROR] ${statusCode}: ${message}`, err.stack);
-  }
+  // Log error to console in all environments so they appear in logs (e.g. stderr.log)
+  console.error(`[ERROR] ${statusCode}: ${message}\n`, err.stack || err);
 
   res.status(statusCode).json({
     success: false,

@@ -138,10 +138,11 @@ const login = async (req, res, next) => {
       return res.status(400).json({ message: 'Email/Phone and password are required' });
     }
 
+    const searchEmail = String(email).trim();
     const users = await User.find({ 
       $or: [
-        { email: email.toLowerCase() },
-        { phone: email }
+        { email: searchEmail.toLowerCase() },
+        { phone: searchEmail }
       ]
     }).select('+password +profilePic');
 
