@@ -19,7 +19,6 @@ const contactRoutes = require('./routes/contactRoutes');
 const connectDB = () => {
   mongoose.connect(process.env.MONGODB_URI, {
     serverSelectionTimeoutMS: 8000,
-    bufferCommands: false,   // fail fast instead of buffering ops for 10s
   })
     .then(() => {
       console.log('✅ MongoDB Connected');
@@ -81,6 +80,15 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', version: '1.0.5', message: 'Service Knock API is running 🚀' });
+});
+
+// Reject API requests if DB is not yet connected
+app.use('/api', (req, res, next) => {
+  if (req.path === '/health' || req.path.startsWith('/deploy')) return next();
+  if (mongoose.connection.readyState !== 1) {
+    return res.status(503).json({ message: 'Server is starting up. Please try again in a few seconds.' });
+  }
+  next();
 });
 
 // API Routes
