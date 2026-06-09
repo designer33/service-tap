@@ -17,18 +17,35 @@ const adminRoutes = require('./routes/adminRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 
+// Startup diagnostics — helps debug cPanel env loading issues
+console.log('📋 ENV CHECK — MONGODB_URI loaded:', process.env.MONGODB_URI ? '✅ YES (length=' + process.env.MONGODB_URI.length + ')' : '❌ NO — .env file missing or not loaded!');
+console.log('📋 ENV CHECK — JWT_SECRET loaded:', process.env.JWT_SECRET ? '✅ YES' : '❌ NO');
+console.log('📋 ENV CHECK — NODE_ENV:', process.env.NODE_ENV || 'not set');
+
 // Connect to MongoDB Atlas with retry — never kill the process on failure
+let retryCount = 0;
 const connectDB = () => {
+  if (!process.env.MONGODB_URI) {
+    console.error('❌ FATAL: MONGODB_URI is not defined. Check that /home/irfanras/service-tap/server/.env exists on the server!');
+    setTimeout(connectDB, 15000);
+    return;
+  }
   mongoose.connect(process.env.MONGODB_URI, {
-    serverSelectionTimeoutMS: 8000,
+    serverSelectionTimeoutMS: 10000,
   })
     .then(() => {
+      retryCount = 0;
       console.log('✅ MongoDB Connected');
       const { startChatEmailScheduler } = require('./utils/chatEmailScheduler');
       startChatEmailScheduler();
     })
     .catch(err => {
-      console.error('❌ MongoDB connection failed:', err.message, '— retrying in 15s');
+      retryCount++;
+      const isPortBlock = err.message && err.message.includes('Could not connect');
+      console.error(`❌ MongoDB connection failed (attempt ${retryCount}):`, err.message);
+      if (isPortBlock) {
+        console.error('💡 DIAGNOSIS: This is likely a FIREWALL block on port 27017 by your cPanel host — not an IP whitelist issue. Contact your hosting provider and ask them to open outbound port 27017.');
+      }
       setTimeout(connectDB, 15000);
     });
 };
