@@ -17,7 +17,10 @@ const contactRoutes = require('./routes/contactRoutes');
 
 // Connect to MongoDB Atlas with retry — never kill the process on failure
 const connectDB = () => {
-  mongoose.connect(process.env.MONGODB_URI, { serverSelectionTimeoutMS: 8000 })
+  mongoose.connect(process.env.MONGODB_URI, {
+    serverSelectionTimeoutMS: 8000,
+    bufferCommands: false,   // fail fast instead of buffering ops for 10s
+  })
     .then(() => {
       console.log('✅ MongoDB Connected');
       const { startChatEmailScheduler } = require('./utils/chatEmailScheduler');
