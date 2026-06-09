@@ -21,9 +21,14 @@ git reset --hard origin/main >> $LOG_FILE 2>&1
 # public/ is committed to git — git reset already updated it.
 # No cp needed; avoids overwriting new bundles with stale client/dist files.
 
-# Install dependencies (root app.js needs packages at root level)
-echo "Installing dependencies..." >> $LOG_FILE
+# Install root dependencies
+echo "Installing root dependencies..." >> $LOG_FILE
 cd $PROJECT_DIR && npm install --production >> $LOG_FILE 2>&1
+
+# Install server dependencies
+echo "Installing server dependencies..." >> $LOG_FILE
+cd $PROJECT_DIR/server && npm install --production >> $LOG_FILE 2>&1
+cd $PROJECT_DIR
 
 # Restart the Node.js app (cPanel Passenger method)
 echo "Restarting Node.js app..." >> $LOG_FILE

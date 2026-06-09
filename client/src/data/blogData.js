@@ -963,4 +963,136 @@ export const blogPosts = [
       <p>Whether you need a one-time deep clean before Eid, a regular weekly cleaner, a post-renovation cleanup, or a water tank service, <a href="/register">Service Knock connects you with CNIC-verified cleaning professionals</a> in your city. All workers are rated by previous customers, so you can book with confidence. You can also explore our full range of <a href="/services">home services across Pakistan</a>, or <a href="/contact">contact our team</a> with any questions.</p>
     `,
   },
+
+  {
+    id: 13,
+    slug: 'geyser-repair-installation-guide-pakistan',
+    title: 'Geyser Repair & Installation in Pakistan: Complete Guide to Costs, Types & Troubleshooting (2026)',
+    excerpt: 'Is your geyser not heating water, leaking, or making strange noises? This complete guide covers every type of water heater used in Pakistan, common problems and their fixes, installation costs in Lahore, Karachi and Islamabad, and when to call a professional.',
+    image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=800&q=80',
+    author: 'Technical Team',
+    date: 'June 09, 2026',
+    category: 'Maintenance',
+    readTime: '7 min',
+    metaTitle: 'Geyser Repair & Installation Pakistan 2026 — Costs, Types & Troubleshooting | Service Knock',
+    metaDescription: 'Complete guide to geyser repair and installation in Pakistan. Covers gas, electric and solar water heaters, common faults, repair vs replacement, and 2026 costs in Lahore, Karachi, Islamabad and Rawalpindi.',
+    keywords: 'geyser repair Pakistan, geyser not working Lahore, geyser installation Karachi, water heater repair Pakistan, geyser repair Islamabad, geyser repair Rawalpindi, gas geyser Pakistan, electric geyser Pakistan, geyser leaking Pakistan, geyser cost Pakistan, instant geyser Pakistan, storage geyser Pakistan, plumber geyser repair Pakistan',
+    content: `
+      <p>The geyser is one of the most essential appliances in a Pakistani home — and one of the most taken for granted, until it stops working. Whether it is a gas geyser, an electric water heater, or an instant geyser mounted in the bathroom, a fault during winter or during a busy morning can bring an entire household to a halt.</p>
+
+      <p>Pakistan's diverse geography, water quality, and gas supply conditions mean that geysers face unique challenges here — hard water scaling in most cities, inconsistent gas pressure in residential areas, and extreme summer heat followed by cold winters all affect performance and lifespan. This guide from <a href="/services">Service Knock</a> covers everything homeowners need to know about geyser types, common problems, repair costs across Pakistan's major cities, and when to repair vs replace.</p>
+
+      <h2>Types of Geysers Used in Pakistan</h2>
+
+      <h3>1. Gas Storage Geysers</h3>
+      <p>The most common type in Pakistani homes outside Karachi. A large cylindrical tank (typically 15 to 45 litres) stores hot water heated by a gas burner. Gas storage geysers are relatively inexpensive to run, provide a large volume of hot water, and work well for families. The main drawbacks are slow recovery time (waiting for the tank to reheat after it empties) and the risk of sediment build-up in hard water areas.</p>
+      <p><strong>Common brands in Pakistan:</strong> Nasgas, Super Asia, EWU, Waves, Rinnai</p>
+      <p><strong>Typical lifespan:</strong> 8–12 years with regular maintenance</p>
+
+      <h3>2. Gas Instant / Tankless Geysers</h3>
+      <p>Heat water on demand as it flows through the unit — no storage tank. Instant geysers provide continuous hot water and are more energy-efficient than storage models since they do not keep a tank heated around the clock. They require a stable gas supply and adequate water pressure to function correctly. Increasingly popular in modern apartments and renovated homes.</p>
+      <p><strong>Common brands:</strong> Rinnai, Junkers, Paloma, Nasgas Instant</p>
+
+      <h3>3. Electric Water Heaters</h3>
+      <p>Used primarily in Karachi (where gas supply to homes is limited) and in areas without gas connections. Electric geysers heat water using an immersion element and are available in both storage (10–50 litre) and instant (4–6 litre point-of-use) versions. They are more expensive to run than gas models due to Pakistan's electricity tariffs, but require no gas line and are simple to install.</p>
+      <p><strong>Common brands:</strong> Gaba National, Osaka, Kenwood, SuperAsia Electric</p>
+
+      <h3>4. Solar Water Heaters</h3>
+      <p>Growing in popularity due to Pakistan's abundant sunlight and rising gas and electricity costs. A solar water heater uses rooftop panels to heat water stored in an insulated tank. Suitable for the 8–9 months of the year when sunlight is strong; a backup gas or electric element handles overcast days and winter months. High upfront cost but very low running costs over the system's 15–20 year lifespan.</p>
+
+      <h2>Common Geyser Problems and What They Mean</h2>
+
+      <h3>No Hot Water at All</h3>
+      <p>The most common complaint. Possible causes:</p>
+      <ul>
+        <li><strong>Pilot light is out (gas geyser):</strong> Relight the pilot light following the manufacturer's instructions. If it will not stay lit, the thermocouple is likely faulty — this is a simple and inexpensive repair.</li>
+        <li><strong>Gas supply interrupted:</strong> Check whether other gas appliances in the home are working. If not, the issue is with the gas supply, not the geyser.</li>
+        <li><strong>Heating element failed (electric geyser):</strong> The element needs to be replaced. A straightforward job for a qualified technician.</li>
+        <li><strong>Thermostat has tripped or failed:</strong> Check the reset button on the geyser. If it trips repeatedly, the thermostat needs replacement.</li>
+      </ul>
+
+      <h3>Water Not Hot Enough</h3>
+      <ul>
+        <li>Thermostat set too low — turn it up gradually (recommended maximum: 60°C to prevent scalding)</li>
+        <li>Sediment build-up in the tank reducing heating efficiency — the tank needs flushing</li>
+        <li>Low gas pressure reducing burner output</li>
+        <li>Heating element partially failed (electric models)</li>
+      </ul>
+
+      <h3>Geyser Is Leaking</h3>
+      <p>A leaking geyser should be addressed immediately — water damage to walls, ceilings, and electrical fittings can be expensive to repair. Common leak points:</p>
+      <ul>
+        <li><strong>Pressure relief valve:</strong> Dripping from this valve can indicate normal pressure release or a faulty valve. If it drips continuously, the valve needs replacement.</li>
+        <li><strong>Tank corrosion:</strong> If the tank itself is leaking, the geyser needs replacement — a corroded tank cannot be repaired safely.</li>
+        <li><strong>Inlet/outlet pipe connections:</strong> Loose or corroded fittings can usually be tightened or resealed by a plumber.</li>
+      </ul>
+
+      <h3>Strange Noises (Rumbling, Popping, Hissing)</h3>
+      <p>Rumbling or popping sounds from a storage geyser almost always indicate sediment build-up on the tank floor. Hot water bubbling through a thick layer of scale makes these sounds. A full tank flush removes the sediment and usually eliminates the noise. Left unaddressed, heavy scale reduces efficiency and shortens the tank's life significantly.</p>
+
+      <h3>Geyser Taking Too Long to Heat</h3>
+      <p>Usually caused by scale on the heating element (electric) or burner (gas), reduced gas pressure, or a failing thermostat. Annual servicing prevents this from developing.</p>
+
+      <h2>Geyser Repair Costs Across Pakistan (2026)</h2>
+
+      <h3>Lahore</h3>
+      <ul>
+        <li>Thermocouple replacement: Rs. 500–1,200</li>
+        <li>Thermostat replacement: Rs. 800–2,000</li>
+        <li>Heating element replacement (electric): Rs. 1,000–2,500</li>
+        <li>Tank flush / descaling: Rs. 1,500–3,000</li>
+        <li>Pressure relief valve replacement: Rs. 600–1,500</li>
+        <li>Full service (gas geyser): Rs. 1,500–3,500</li>
+      </ul>
+
+      <h3>Karachi</h3>
+      <ul>
+        <li>Thermocouple replacement: Rs. 400–1,000</li>
+        <li>Heating element replacement: Rs. 800–2,000</li>
+        <li>Tank flush / descaling: Rs. 1,200–2,500</li>
+        <li>Full service (electric geyser): Rs. 1,500–3,000</li>
+      </ul>
+
+      <h3>Islamabad / Rawalpindi</h3>
+      <ul>
+        <li>Thermocouple replacement: Rs. 600–1,500</li>
+        <li>Thermostat replacement: Rs. 1,000–2,500</li>
+        <li>Tank flush / descaling: Rs. 2,000–4,000</li>
+        <li>Full service (gas geyser): Rs. 2,000–4,500</li>
+      </ul>
+
+      <h2>Geyser Installation Costs in Pakistan</h2>
+      <p>Installation costs depend on whether the gas line or electrical connection already exists, the location (ground floor vs rooftop), and the type of geyser.</p>
+      <ul>
+        <li><strong>Gas storage geyser installation:</strong> Rs. 2,000–5,000 (labour only, existing gas line)</li>
+        <li><strong>Gas instant geyser installation:</strong> Rs. 2,500–6,000</li>
+        <li><strong>Electric geyser installation:</strong> Rs. 1,500–4,000</li>
+        <li><strong>New gas line extension:</strong> Rs. 3,000–10,000+ depending on distance</li>
+        <li><strong>Solar water heater installation:</strong> Rs. 15,000–40,000 (full system including panels)</li>
+      </ul>
+
+      <h2>Should You Repair or Replace Your Geyser?</h2>
+      <p>A useful rule of thumb: if the repair cost exceeds 50% of the replacement cost, and the geyser is more than 7 years old, replacement is usually the better financial decision. Specific situations that strongly favour replacement:</p>
+      <ul>
+        <li>The tank is corroding or leaking from the tank body (not fittings)</li>
+        <li>The geyser is more than 10 years old and requires a second major repair</li>
+        <li>Energy bills have increased significantly without a change in usage</li>
+        <li>You are constantly running out of hot water (the tank is undersized for your household)</li>
+      </ul>
+      <p>Situations where repair makes sense: the unit is less than 5 years old, the fault is a single identifiable component (thermocouple, element, thermostat), and the tank itself is in good condition.</p>
+
+      <h2>Geyser Maintenance Tips for Pakistani Homes</h2>
+      <ul>
+        <li><strong>Annual servicing:</strong> Have your geyser professionally serviced once a year — before winter in most of Pakistan. This includes checking the burner or element, thermostat, pressure relief valve, and flushing sediment from the tank.</li>
+        <li><strong>Hard water protection:</strong> Most Pakistani cities have hard water. A simple inline water filter or scale inhibitor on the cold water inlet significantly extends tank life and heating efficiency.</li>
+        <li><strong>Set the right temperature:</strong> 55–60°C is the recommended range — hot enough to prevent bacterial growth (Legionella dies above 55°C) but not so hot as to cause scalding or accelerate tank corrosion.</li>
+        <li><strong>Turn off when away:</strong> If you are away for more than a few days, turn the geyser off completely. There is no benefit to keeping water heated in an empty home, and it reduces wear on the thermostat.</li>
+        <li><strong>Check the anode rod every 3 years:</strong> Gas storage geysers have a sacrificial anode rod that protects the tank from corrosion. When it is depleted, the tank starts to corrode. Replacing it (Rs. 800–2,000 for a good quality rod) can double the remaining life of the tank.</li>
+      </ul>
+
+      <h2>Final Thoughts</h2>
+      <p>A well-maintained geyser is a reliable geyser. Most Pakistani homeowners only think about their geyser when it breaks down — but annual servicing and simple precautions like scale inhibitors and correct temperature settings can prevent the majority of common faults and add years to the unit's life.</p>
+      <p>If your geyser is not heating, leaking, or making unusual noises, <a href="/register">book a CNIC-verified plumber or gas technician through Service Knock</a> for a same-day assessment anywhere in Pakistan. Our technicians diagnose the fault, give you an honest repair vs replace recommendation, and carry the most common spare parts to fix the issue on the first visit. Explore our full range of <a href="/services">home services across Pakistan</a> or <a href="/contact">contact our team</a> with any questions.</p>
+    `,
+  },
 ];
