@@ -1,662 +1,610 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur" dir="rtl">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=390, initial-scale=1.0"/>
-<title>Service Knock — App Preview</title>
+<title>Service Knock — Tamam Khidmatein</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Inter:wght@700;900&display=swap"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{width:390px;height:635px;overflow:hidden;background:#000;font-family:'Inter',-apple-system,sans-serif;}
-
+:root{
+  --W:390px;--H:635px;
+  --pu:#7c3aed;--pu2:#6d28d9;--pu3:#4c1d95;
+  --blue:#0ea5e9;--blue2:#0369a1;
+  --green:#22c55e;--green2:#16a34a;
+  --gold:#fbbf24;--dark:#0f172a;--rose:#f43f5e;
+}
+html,body{width:var(--W);height:var(--H);overflow:hidden;background:#000;
+  font-family:'Noto Nastaliq Urdu',serif;direction:rtl;}
+.sc{position:absolute;inset:0;width:var(--W);height:var(--H);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .7s ease;overflow:hidden;padding:18px 20px;}
+.sc.on{opacity:1;pointer-events:all;}
+#prog{position:fixed;bottom:0;left:0;right:0;height:3px;background:var(--pu);
+  width:0%;z-index:999;box-shadow:0 0 8px var(--pu);}
+.fu{opacity:0;transform:translateY(22px);transition:all .55s ease;}
+.fu.in{opacity:1;transform:none;}
+.si{opacity:0;transform:scale(.65);transition:all .55s cubic-bezier(.34,1.56,.64,1);}
+.si.in{opacity:1;transform:none;}
+.sl{opacity:0;transform:translateX(28px);transition:all .45s ease;}
+.sl.in{opacity:1;transform:none;}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes pulse-b{0%{box-shadow:0 0 0 0 rgba(14,165,233,.6)}100%{box-shadow:0 0 0 18px rgba(14,165,233,0)}}
-@keyframes pulsedot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.35)}}
-@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes shake{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse-p{0%{box-shadow:0 0 0 0 rgba(124,58,237,.6)}100%{box-shadow:0 0 0 18px rgba(124,58,237,0)}}
+@keyframes pulse-g{0%{box-shadow:0 0 0 0 rgba(34,197,94,.6)}100%{box-shadow:0 0 0 18px rgba(34,197,94,0)}}
+@keyframes glow{0%,100%{text-shadow:0 0 20px rgba(124,58,237,.8)}50%{text-shadow:0 0 40px rgba(124,58,237,1),0 0 80px rgba(124,58,237,.4)}}
+@keyframes spin-slow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes ring{0%,100%{transform:rotate(0)}20%{transform:rotate(-15deg)}40%{transform:rotate(15deg)}60%{transform:rotate(-10deg)}80%{transform:rotate(10deg)}}
+@keyframes checkpop{0%{transform:scale(0) rotate(-10deg)}60%{transform:scale(1.2) rotate(5deg)}100%{transform:scale(1) rotate(0)}}
 
-/* ── Tap to start ── */
-#tap{position:fixed;inset:0;background:linear-gradient(135deg,#0c4a6e 0%,#0369a1 40%,#0ea5e9 100%);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:9999;cursor:pointer;}
-#tap .t-em{font-size:54px;animation:float 2s ease infinite;}
-#tap .t-nm{font-size:30px;font-weight:900;color:white;letter-spacing:-1px;}
-#tap .t-sub{font-size:11px;color:rgba(255,255,255,.65);background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:4px 16px;}
-#tap .t-btn{background:white;color:#0369a1;border:none;border-radius:999px;padding:13px 40px;
-  font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;animation:pulse-b 1.5s ease infinite;}
+/* TAP */
+#tap{position:fixed;inset:0;background:linear-gradient(160deg,var(--pu3),var(--pu2),var(--pu));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:14px;z-index:9999;cursor:pointer;}
+#tap .t-logo{font-size:56px;animation:float 2s ease infinite;}
+#tap .t-name{font-family:'Inter',sans-serif;font-size:32px;font-weight:900;
+  color:white;direction:ltr;letter-spacing:-1px;}
+#tap .t-tag{font-size:12px;color:rgba(255,255,255,.8);background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:4px 14px;}
+#tap .t-sub{font-size:14px;color:rgba(255,255,255,.65);text-align:center;
+  line-height:1.9;padding:0 28px;}
+#tap .t-btn{background:white;color:var(--pu2);border:none;border-radius:999px;
+  padding:13px 40px;font-size:16px;font-weight:700;font-family:'Noto Nastaliq Urdu',serif;
+  cursor:pointer;animation:pulse-p 1.5s ease infinite;}
+#tap .t-hint{font-size:11px;color:rgba(255,255,255,.35);}
 
-/* ── Replay ── */
-#rplay{position:fixed;inset:0;background:rgba(0,0,0,.87);display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:16px;z-index:9998;opacity:0;pointer-events:none;transition:opacity .4s;}
+/* REPLAY */
+#rplay{position:fixed;inset:0;background:rgba(0,0,0,.87);display:flex;
+  flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  z-index:9998;opacity:0;pointer-events:none;transition:opacity .5s;}
 #rplay.on{opacity:1;pointer-events:all;}
-#rplay button{background:#0ea5e9;color:white;border:none;border-radius:999px;padding:13px 40px;
-  font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
-#rplay p{font-size:11px;color:rgba(255,255,255,.4);}
+#rplay button{background:var(--pu);color:white;border:none;border-radius:999px;
+  padding:14px 40px;font-size:16px;font-weight:700;font-family:'Noto Nastaliq Urdu',serif;cursor:pointer;}
+#rplay p{color:rgba(255,255,255,.45);font-size:11px;font-family:'Inter',sans-serif;}
 
-/* ── Progress ── */
-#prog{position:fixed;bottom:0;left:0;right:0;height:3px;background:#0ea5e9;
-  width:0%;z-index:997;box-shadow:0 0 8px #0ea5e9;}
+/* PHONE */
+.pw{width:210px;background:white;border-radius:30px;padding:10px;
+  box-shadow:0 24px 60px rgba(0,0,0,.55);}
+.ps{background:#f8fafc;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;}
+.pbar{padding:9px 12px;display:flex;align-items:center;justify-content:space-between;direction:rtl;}
+.pbar.p{background:var(--pu);}
+.pbar.g{background:var(--green2);}
+.pbar.b{background:var(--blue2);}
+.pbt{font-size:10px;font-weight:700;color:white;}
+.pbav{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.25);
+  display:flex;align-items:center;justify-content:center;font-size:10px;}
+.pcnt{padding:10px;display:flex;flex-direction:column;gap:7px;}
+.pfield{background:white;border:1.5px solid #e2e8f0;border-radius:8px;
+  padding:8px 10px;font-size:9px;color:#64748b;direction:rtl;
+  display:flex;align-items:center;gap:5px;}
+.pfi{font-size:12px;flex-shrink:0;}
+.pbtn{color:white;border-radius:8px;padding:9px;text-align:center;
+  font-size:10px;font-weight:700;font-family:'Noto Nastaliq Urdu',serif;}
 
-/* ── Dots ── */
-#dots{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:998;}
-.dot{width:6px;height:6px;border-radius:999px;background:rgba(255,255,255,.3);transition:all .3s;}
-.dot.on{background:white;width:18px;}
+/* Service grid */
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;width:100%;}
+.scard{background:white;border-radius:10px;padding:7px 4px;text-align:center;
+  opacity:0;transform:scale(.7);transition:all .3s cubic-bezier(.34,1.56,.64,1);}
+.scard.in{opacity:1;transform:none;}
+.scard .se{font-size:18px;}
+.scard .sn{font-size:7px;color:#374151;margin-top:3px;line-height:1.5;}
 
-/* ── Screen base ── */
-.sc{position:absolute;inset:0;overflow:hidden;
-  transform:translateX(100%);
-  transition:transform .55s cubic-bezier(0.4,0,0.2,1);
-  will-change:transform;}
-.sc.active{transform:translateX(0);}
-.sc.prev{transform:translateX(-100%);}
+/* Worker offer cards */
+.wcard{background:white;border-radius:10px;padding:8px 10px;direction:rtl;
+  display:flex;align-items:center;gap:8px;
+  opacity:0;transform:translateX(24px);transition:all .4s ease;}
+.wcard.in{opacity:1;transform:none;}
+.wavt{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex-shrink:0;}
+.winfo{flex:1;}
+.wname{font-size:9px;font-weight:700;color:#0f172a;}
+.wmeta{font-size:8px;color:#64748b;margin-top:1px;}
+.wpr{font-size:11px;font-weight:700;font-family:'Inter',sans-serif;flex-shrink:0;}
+.wbadge{font-size:7px;background:#dcfce7;color:#15803d;padding:2px 6px;border-radius:999px;display:inline-block;margin-top:2px;}
 
-/* ── Status bar ── */
-.sbar{height:26px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;}
-.sbar.lt{color:white;}
-.sbar.dk{color:#0f172a;background:white;}
-.sbar-t{font-size:12px;font-weight:700;}
-.sbar-r{font-size:10px;display:flex;align-items:center;gap:3px;font-weight:600;}
+/* Trust badges */
+.tbadge{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:10px 14px;width:100%;
+  opacity:0;transform:translateY(16px);transition:all .45s ease;}
+.tbadge.in{opacity:1;transform:none;}
+.tbicon{font-size:22px;flex-shrink:0;}
+.tbtext{flex:1;}
+.tbtitle{font-size:11px;font-weight:700;color:white;}
+.tbsub{font-size:10px;color:rgba(255,255,255,.55);margin-top:2px;}
 
-/* ── App Nav ── */
-.anav{height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;}
-.anav.tr{color:white;}
-.anav.wh{background:white;border-bottom:1px solid #e2e8f0;color:#0f172a;}
-.anav-logo{font-size:17px;font-weight:800;letter-spacing:-.5px;}
-.anav-icons{display:flex;gap:10px;font-size:17px;}
-.anav-back{font-size:13px;font-weight:600;display:flex;align-items:center;gap:5px;color:#0369a1;}
+/* Payment success */
+.paybox{background:white;border-radius:16px;padding:16px;text-align:center;
+  box-shadow:0 8px 32px rgba(0,0,0,.15);}
+.paycheck{font-size:52px;margin-bottom:8px;display:block;
+  opacity:0;transform:scale(0) rotate(-10deg);
+  transition:all .5s cubic-bezier(.34,1.56,.64,1);}
+.paycheck.in{opacity:1;transform:none;}
 
-/* ════════════════════════════════
-   S1 — HOME HERO
-   ════════════════════════════════ */
-#s1{background:linear-gradient(135deg,#0c4a6e 0%,#0369a1 40%,#0ea5e9 100%);}
-.s1-dotbg{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.08) 1px,transparent 1px);background-size:28px 28px;}
-.s1-body{position:relative;z-index:2;padding:4px 18px 0;}
-.s1-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);
+/* Stars */
+.rs{font-size:20px;opacity:0;transform:scale(0);transition:all .3s cubic-bezier(.34,1.56,.64,1);}
+.rs.in{opacity:1;transform:none;}
+
+/* ── S1 ── */
+#s1{background:linear-gradient(160deg,#1e293b,#0f172a);}
+.hg{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;margin-bottom:20px;}
+.hc{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);
+  border-radius:16px;padding:16px 12px;text-align:center;
+  opacity:0;transform:translateY(24px);transition:all .45s ease;}
+.hc.in{opacity:1;transform:none;}
+.hc .e{font-size:34px;margin-bottom:7px;display:block;animation:shake .9s ease infinite;}
+.hc .lb{font-size:12px;color:rgba(255,255,255,.58);line-height:1.6;}
+.s1q{font-size:18px;font-weight:700;color:white;text-align:center;line-height:1.8;max-width:320px;}
+.s1s{font-size:12px;color:rgba(255,255,255,.42);text-align:center;margin-top:8px;line-height:1.8;}
+
+/* ── S2 ── */
+#s2{background:linear-gradient(160deg,var(--pu3),var(--pu2),var(--pu));overflow:hidden;}
+.s2bg{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.07) 1px,transparent 1px);background-size:24px 24px;}
+.s2c{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 20px;width:100%;}
+
+/* ── S3 ── */
+#s3{background:#f5f3ff;padding:16px 18px;}
+
+/* ── S4 ── */
+#s4{background:linear-gradient(160deg,var(--pu3),var(--pu2) 60%,var(--pu));}
+.snum{display:inline-flex;align-items:center;background:rgba(255,255,255,.14);
   border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:5px 14px;
-  font-size:11px;font-weight:600;color:white;margin-bottom:12px;}
-.s1-pdot{width:7px;height:7px;background:#4ade80;border-radius:50%;animation:pulsedot 2s ease infinite;}
-.s1-h1{font-size:26px;font-weight:900;color:white;line-height:1.2;letter-spacing:-.5px;margin-bottom:10px;}
-.s1-h1 .yel{color:#fde68a;display:block;}
-.s1-sub{font-size:11.5px;color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:14px;}
-.s1-btns{display:flex;flex-direction:column;gap:8px;margin-bottom:13px;}
-.s1-bw{background:white;color:#0369a1;border:none;border-radius:13px;padding:11px 16px;
-  font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:space-between;font-family:'Inter';}
-.s1-bo{background:transparent;border:1.5px solid rgba(255,255,255,.4);color:white;
-  border-radius:13px;padding:10px 16px;font-size:13px;font-weight:600;text-align:center;font-family:'Inter';}
-.s1-trust{display:flex;gap:10px;flex-wrap:wrap;}
-.s1-ti{font-size:10px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:4px;}
-.s1-ti .ck{color:#4ade80;}
-.svc-strip{background:white;padding:9px 16px 11px;margin-top:10px;}
-.svc-strip-lbl{font-size:9px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
-.svc-strip-row{display:flex;gap:7px;}
-.svc-chip{display:flex;flex-direction:column;align-items:center;gap:2px;
-  background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:6px 9px;flex-shrink:0;}
-.svc-chip em{font-size:16px;}
-.svc-chip span{font-size:8px;font-weight:600;color:#374151;}
+  font-size:11px;color:rgba(255,255,255,.9);font-weight:700;margin-bottom:10px;}
+.sh{font-size:24px;font-weight:700;color:white;text-align:center;line-height:1.6;
+  margin-bottom:8px;max-width:300px;}
+.sp{font-size:12px;color:rgba(255,255,255,.65);text-align:center;line-height:1.9;
+  max-width:290px;margin-bottom:14px;}
 
-/* ════════════════════════════════
-   S2 — SERVICES PAGE
-   ════════════════════════════════ */
-#s2{background:#f8fafc;}
-.s2-body{padding:10px 14px;overflow:hidden;}
-.sec-title{font-size:17px;font-weight:800;color:#0f172a;margin-bottom:2px;}
-.sec-sub{font-size:11px;color:#64748b;margin-bottom:10px;}
-.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.svc-card{background:white;border-radius:14px;overflow:hidden;border:1px solid #e2e8f0;box-shadow:0 1px 4px rgba(0,0,0,.06);}
-.svc-card-top{height:56px;display:flex;align-items:center;justify-content:center;font-size:26px;}
-.svc-card-body{padding:7px 10px 9px;}
-.svc-card-name{font-size:12px;font-weight:700;color:#0f172a;margin-bottom:2px;}
-.svc-card-rat{font-size:10px;color:#64748b;display:flex;align-items:center;gap:3px;margin-bottom:4px;}
-.svc-card-rat .s{color:#f59e0b;}
-.svc-feat{font-size:9px;color:#64748b;display:flex;align-items:center;gap:3px;margin-bottom:1px;}
-.svc-feat .ck{color:#22c55e;}
-.svc-book-btn{background:#0ea5e9;color:white;border:none;border-radius:8px;padding:6px;
-  font-size:10px;font-weight:700;width:100%;font-family:'Inter';margin-top:5px;}
+/* ── S5 ── */
+#s5{background:linear-gradient(160deg,var(--pu3),var(--pu2) 60%,var(--pu));}
 
-/* ════════════════════════════════
-   S3 — BOOK SERVICE
-   ════════════════════════════════ */
-#s3{background:white;}
-.s3-body{padding:8px 16px;overflow:hidden;}
-.s3-svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:10px;}
-.s3-svc{border:1.5px solid #e2e8f0;border-radius:10px;padding:8px 4px;text-align:center;background:#fafafa;}
-.s3-svc.sel{border-color:#0ea5e9;background:#f0f9ff;}
-.s3-svc em{font-size:18px;display:block;margin-bottom:3px;}
-.s3-svc span{font-size:9px;font-weight:600;color:#374151;}
-.s3-svc.sel span{color:#0369a1;}
-.s3-field{border:1.5px solid #e2e8f0;border-radius:12px;padding:9px 12px;margin-bottom:7px;
-  display:flex;align-items:flex-start;gap:8px;}
-.s3-field .fi{font-size:14px;flex-shrink:0;margin-top:1px;}
-.s3-field .ft{flex:1;font-size:11.5px;line-height:1.5;}
-.s3-field .fp{color:#94a3b8;}
-.s3-field .fv{color:#374151;}
-.s3-submit{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:white;border:none;
-  border-radius:14px;padding:13px 16px;font-size:13px;font-weight:700;width:100%;
-  display:flex;align-items:center;justify-content:space-between;font-family:'Inter';}
+/* ── S6 trust ── */
+#s6{background:var(--dark);}
 
-/* ════════════════════════════════
-   S4 — OFFERS RECEIVED
-   ════════════════════════════════ */
-#s4{background:#f8fafc;}
-.s4-body{padding:8px 14px;overflow:hidden;}
-.bkng-preview{background:white;border-radius:14px;border:1px solid #e2e8f0;
-  padding:10px 12px;margin-bottom:9px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
-.bp-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
-.bp-title{font-size:13px;font-weight:700;color:#0f172a;}
-.bp-badge{background:#dcfce7;color:#15803d;font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;}
-.bp-meta{font-size:10px;color:#64748b;display:flex;align-items:center;gap:8px;}
-.s4-sec{font-size:12px;font-weight:700;color:#0f172a;margin-bottom:7px;}
-.offer-card{background:white;border-radius:12px;border:1px solid #e2e8f0;
-  padding:9px 10px;margin-bottom:6px;display:flex;align-items:center;gap:9px;
-  box-shadow:0 1px 3px rgba(0,0,0,.05);}
-.offer-card.top-pick{border-color:#0ea5e9;box-shadow:0 0 0 1.5px #bae6fd,0 2px 8px rgba(14,165,233,.12);}
-.offer-avt{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;
-  justify-content:center;font-size:13px;font-weight:800;color:white;flex-shrink:0;}
-.offer-info{flex:1;min-width:0;}
-.offer-name{font-size:11px;font-weight:700;color:#0f172a;}
-.offer-meta{font-size:9px;color:#64748b;margin-top:2px;}
-.offer-cnic{font-size:8px;background:#dcfce7;color:#15803d;padding:2px 6px;
-  border-radius:999px;margin-top:3px;display:inline-block;}
-.offer-r{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;}
-.offer-price{font-size:13px;font-weight:800;color:#15803d;}
-.offer-btn{background:#0ea5e9;color:white;border:none;border-radius:8px;
-  padding:5px 10px;font-size:9px;font-weight:700;font-family:'Inter';white-space:nowrap;}
-.offer-btn.ghost{background:#f1f5f9;color:#64748b;}
+/* ── S7 tracking ── */
+#s7{background:linear-gradient(160deg,#0f172a,#1e293b);}
+.track{background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.3);
+  border-radius:16px;padding:14px;width:100%;}
+.track-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;direction:rtl;}
+.track-icon{font-size:28px;animation:bounce .8s ease infinite;}
+.track-title{font-size:12px;font-weight:700;color:var(--pu);}
+.track-sub{font-size:10px;color:rgba(255,255,255,.55);line-height:1.7;}
+.eta{display:flex;gap:6px;margin-top:10px;}
+.eta-box{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;padding:8px;text-align:center;}
+.eta-val{font-size:14px;font-weight:700;font-family:'Inter',sans-serif;}
+.eta-lbl{font-size:8px;color:rgba(255,255,255,.45);margin-top:2px;}
 
-/* ════════════════════════════════
-   S5 — BOOKING CONFIRMED
-   ════════════════════════════════ */
-#s5{background:white;}
-.s5-banner{background:linear-gradient(135deg,#0369a1,#0ea5e9);padding:13px 16px;}
-.s5-banner-in{display:flex;align-items:center;gap:10px;}
-.s5-b-icon{font-size:26px;}
-.s5-b-title{font-size:14px;font-weight:800;color:white;}
-.s5-b-sub{font-size:11px;color:rgba(255,255,255,.8);margin-top:2px;}
-.s5-body{padding:11px 16px;overflow:hidden;}
-.s5-worker{background:#f0f9ff;border:1.5px solid #bae6fd;border-radius:14px;
-  padding:11px 13px;margin-bottom:9px;display:flex;align-items:center;gap:10px;}
-.s5-avt{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#0369a1,#0ea5e9);
-  display:flex;align-items:center;justify-content:center;color:white;
-  font-size:17px;font-weight:800;flex-shrink:0;}
-.s5-winfo{flex:1;}
-.s5-wname{font-size:13px;font-weight:800;color:#0f172a;}
-.s5-wtrade{font-size:11px;color:#64748b;margin-top:2px;}
-.s5-wrat{font-size:10px;color:#64748b;margin-top:3px;display:flex;align-items:center;gap:4px;}
-.s5-wrat .s{color:#f59e0b;}
-.s5-wcnic{font-size:9px;background:#dcfce7;color:#15803d;padding:2px 8px;
-  border-radius:999px;margin-top:4px;display:inline-block;}
-.s5-status{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;
-  padding:9px 12px;margin-bottom:9px;display:flex;align-items:flex-start;gap:8px;}
-.s5-sdot{width:8px;height:8px;background:#22c55e;border-radius:50%;flex-shrink:0;
-  margin-top:3px;animation:pulsedot 1.5s ease infinite;}
-.s5-stxt{font-size:12px;font-weight:700;color:#15803d;}
-.s5-ssub{font-size:10px;color:#64748b;margin-top:2px;}
-.s5-details{display:flex;flex-direction:column;gap:6px;margin-bottom:11px;}
-.s5-row{display:flex;align-items:center;gap:8px;font-size:11px;color:#374151;}
-.s5-ri{font-size:13px;flex-shrink:0;}
-.s5-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.s5-chat{background:#0ea5e9;color:white;border:none;border-radius:12px;padding:10px;
-  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:5px;font-family:'Inter';}
-.s5-call{background:#f0fdf4;border:1.5px solid #bbf7d0;color:#15803d;border-radius:12px;
-  padding:10px;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:5px;}
+/* ── S8 payment ── */
+#s8{background:#f0fdf4;}
 
-/* ════════════════════════════════
-   S6 — WORKER DASHBOARD
-   ════════════════════════════════ */
-#s6{background:#f8fafc;}
-.s6-body{padding:8px 14px;overflow:hidden;}
-.s6-greeting{font-size:13px;font-weight:700;color:#0f172a;margin-bottom:2px;}
-.s6-sub{font-size:10px;color:#64748b;margin-bottom:10px;}
-.s6-earn{background:linear-gradient(135deg,#0369a1,#0ea5e9);border-radius:14px;
-  padding:13px 16px;margin-bottom:9px;display:flex;align-items:center;justify-content:space-between;}
-.s6-earn-l{}
-.s6-earn-lbl{font-size:10px;color:rgba(255,255,255,.7);}
-.s6-earn-val{font-size:24px;font-weight:800;color:white;letter-spacing:-.5px;}
-.s6-earn-sub{font-size:10px;color:rgba(255,255,255,.65);margin-top:2px;}
-.s6-earn-r{text-align:right;}
-.s6-earn-stat{font-size:9px;color:rgba(255,255,255,.7);margin-bottom:4px;}
-.s6-earn-n{font-size:18px;font-weight:800;color:white;}
-.s6-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:9px;}
-.s6-stat{background:white;border:1px solid #e2e8f0;border-radius:11px;padding:8px 6px;text-align:center;}
-.s6-stat-val{font-size:15px;font-weight:800;}
-.s6-stat-lbl{font-size:8px;color:#64748b;margin-top:2px;line-height:1.4;}
-.s6-sec{font-size:12px;font-weight:700;color:#0f172a;margin-bottom:7px;}
-.job-card{background:white;border-radius:12px;border:1px solid #e2e8f0;
-  padding:9px 11px;margin-bottom:6px;box-shadow:0 1px 3px rgba(0,0,0,.05);}
-.jc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
-.jc-title{font-size:12px;font-weight:700;color:#0f172a;display:flex;align-items:center;gap:5px;}
-.jc-title em{font-size:14px;}
-.jc-price{font-size:12px;font-weight:800;color:#22c55e;}
-.jc-meta{font-size:10px;color:#64748b;display:flex;align-items:center;gap:8px;}
-.jc-btn{background:#0ea5e9;color:white;border:none;border-radius:8px;padding:5px 12px;
-  font-size:10px;font-weight:700;font-family:'Inter';margin-top:6px;}
+/* ── S9 CTA ── */
+#s9{background:linear-gradient(160deg,var(--pu3),var(--pu2) 50%,var(--pu));overflow:hidden;}
+.dbg{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.1) 1px,transparent 1px);background-size:28px 28px;}
+.ci{position:relative;z-index:2;text-align:center;padding:0 24px;width:100%;}
+.cem{font-size:58px;display:block;margin-bottom:12px;animation:float 2.5s ease infinite;}
+.chn{font-family:'Inter',sans-serif;font-size:38px;font-weight:900;color:white;
+  direction:ltr;letter-spacing:-1.5px;margin-bottom:8px;}
+.csb{font-size:13px;color:rgba(255,255,255,.68);line-height:1.9;margin-bottom:18px;}
+.cbs{display:flex;flex-direction:column;gap:10px;width:100%;}
+.bw{background:white;color:var(--pu2);border:none;border-radius:14px;padding:12px;
+  font-size:14px;font-weight:700;font-family:'Noto Nastaliq Urdu',serif;cursor:pointer;width:100%;}
+.bo{background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.3);
+  color:white;border-radius:14px;padding:12px;font-size:14px;font-weight:700;
+  font-family:'Noto Nastaliq Urdu',serif;cursor:pointer;width:100%;}
+.cu{font-size:14px;color:rgba(255,255,255,.45);margin-top:12px;line-height:1.9;}
 </style>
 </head>
 <body>
 
 <div id="prog"></div>
-<div id="dots">
-  <div class="dot on" id="d0"></div>
-  <div class="dot" id="d1"></div>
-  <div class="dot" id="d2"></div>
-  <div class="dot" id="d3"></div>
-  <div class="dot" id="d4"></div>
-  <div class="dot" id="d5"></div>
-</div>
 
 <!-- TAP -->
 <div id="tap" onclick="tapStart()">
-  <div class="t-em">🏠</div>
-  <div class="t-nm">Service Knock</div>
-  <div class="t-sub">App Preview — 30 sec</div>
-  <button class="t-btn">▶ Play</button>
+  <div class="t-logo">🏠</div>
+  <div class="t-name">Service Knock</div>
+  <div class="t-tag">تمام گھریلو خدمات</div>
+  <div class="t-sub">الیکٹریشن، پلمبر، AC، کارپینٹر — ایک جگہ</div>
+  <button class="t-btn">▶ شروع کریں</button>
+  <div class="t-hint">اردو آواز کے ساتھ</div>
 </div>
 
 <!-- REPLAY -->
 <div id="rplay">
-  <div style="font-size:48px">🏠</div>
-  <button onclick="tapStart()">▶ Replay</button>
-  <p>Service Knock — App Preview</p>
+  <div style="font-size:50px">🏠</div>
+  <button onclick="tapStart()">▶ دوبارہ دیکھیں</button>
+  <p>Service Knock — All Home Services</p>
 </div>
 
-<!-- ══════════════════════════
-     S1: HOME HERO
-     ══════════════════════════ -->
-<div class="sc" id="s1">
-  <div class="s1-dotbg"></div>
-  <!-- Status bar -->
-  <div class="sbar lt"><span class="sbar-t">9:41</span><span class="sbar-r">▲▼ 5G 🔋</span></div>
-  <!-- Nav -->
-  <div class="anav tr">
-    <div style="font-size:17px;">☰</div>
-    <div class="anav-logo">Service Knock</div>
-    <div class="anav-icons"><span>🌐</span><span>🔔</span></div>
+<!-- S1: Hook — Problems at home -->
+<div id="s1" class="sc">
+  <div class="hg">
+    <div class="hc" id="hc1"><span class="e">❄️</span><div class="lb">AC خراب ہو گیا</div></div>
+    <div class="hc" id="hc2"><span class="e">💧</span><div class="lb">پائپ لیک ہے</div></div>
+    <div class="hc" id="hc3"><span class="e">⚡</span><div class="lb">بجلی کا مسئلہ</div></div>
+    <div class="hc" id="hc4"><span class="e">🔨</span><div class="lb">دروازہ ٹوٹا ہے</div></div>
   </div>
-  <!-- Hero -->
-  <div class="s1-body">
-    <div class="s1-badge"><div class="s1-pdot"></div> Fast Booking • All Pakistan</div>
-    <h1 class="s1-h1">Book Trusted<span class="yel">Home Services</span>in Pakistan</h1>
-    <p class="s1-sub">CNIC-verified workers. Fast response. Rated &amp; reviewed.</p>
-    <div class="s1-btns">
-      <button class="s1-bw">Book a Service <span>→</span></button>
-      <button class="s1-bo">Browse Services</button>
-    </div>
-    <div class="s1-trust">
-      <div class="s1-ti"><span class="ck">✓</span> Verified Workers</div>
-      <div class="s1-ti"><span class="ck">✓</span> 5★ Rated</div>
-      <div class="s1-ti"><span class="ck">✓</span> Fast Response</div>
-    </div>
-  </div>
-  <!-- Services strip -->
-  <div class="svc-strip">
-    <div class="svc-strip-lbl">Available Services</div>
-    <div class="svc-strip-row">
-      <div class="svc-chip"><em>⚡</em><span>Electrician</span></div>
-      <div class="svc-chip"><em>🔧</em><span>Plumber</span></div>
-      <div class="svc-chip"><em>❄️</em><span>AC Repair</span></div>
-      <div class="svc-chip"><em>🔨</em><span>Carpenter</span></div>
-      <div class="svc-chip"><em>🎨</em><span>Painter</span></div>
-      <div class="svc-chip"><em>🧱</em><span>Mason</span></div>
+  <div class="s1q fu" id="s1q">گھر میں مسئلہ؟ پریشان نہ ہوں!</div>
+  <div class="s1s fu" id="s1s">سروس ناک — گھر کی ہر تکلیف کا حل</div>
+</div>
+
+<!-- S2: Intro — One App All Services -->
+<div id="s2" class="sc">
+  <div class="s2bg"></div>
+  <div class="s2c">
+    <div style="font-size:54px;margin-bottom:10px;animation:float 2s ease infinite;" class="si" id="s2em">🏠</div>
+    <div style="font-family:'Inter',sans-serif;font-size:36px;font-weight:900;color:white;direction:ltr;letter-spacing:-1px;margin-bottom:6px;" class="fu" id="s2nm">Service Knock</div>
+    <div style="background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 18px;font-size:11px;color:rgba(255,255,255,.9);margin-bottom:12px;" class="fu" id="s2tg">پاکستان کا پہلا ہوم سروسز پلیٹ فارم</div>
+    <div style="font-size:14px;color:rgba(255,255,255,.7);line-height:2;margin-bottom:16px;" class="fu" id="s2sub">ایک ایپ — سب مسائل حل<br/>جب چاہیں، جہاں چاہیں</div>
+    <div style="display:flex;gap:16px;justify-content:center;" class="fu" id="s2stats">
+      <div style="text-align:center;">
+        <div style="font-size:22px;font-weight:700;color:white;font-family:'Inter';direction:ltr;">۱۰+</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.55);">خدمات</div>
+      </div>
+      <div style="width:1px;background:rgba(255,255,255,.15);"></div>
+      <div style="text-align:center;">
+        <div style="font-size:22px;font-weight:700;color:white;font-family:'Inter';direction:ltr;">⭐ 5.0</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.55);">گوگل ریٹنگ</div>
+      </div>
+      <div style="width:1px;background:rgba(255,255,255,.15);"></div>
+      <div style="text-align:center;">
+        <div style="font-size:22px;font-weight:700;color:white;font-family:'Inter';direction:ltr;">۵+</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.55);">شہر</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════
-     S2: SERVICES PAGE
-     ══════════════════════════ -->
-<div class="sc" id="s2">
-  <div class="sbar dk"><span class="sbar-t">9:41</span><span class="sbar-r" style="color:#0f172a;">▲▼ 5G 🔋</span></div>
-  <div class="anav wh">
-    <div class="anav-back">← Back</div>
-    <div class="anav-logo" style="font-size:15px;">Our Services</div>
-    <div style="font-size:17px;color:#64748b;">⊙</div>
+<!-- S3: Services Grid -->
+<div id="s3" class="sc">
+  <div style="font-size:20px;font-weight:700;color:var(--pu2);text-align:center;line-height:1.7;margin-bottom:4px;" class="fu" id="s3t">ہماری خدمات</div>
+  <div style="font-size:11px;color:#6b7280;text-align:center;margin-bottom:14px;" class="fu" id="s3s">تمام گھریلو کام ایک جگہ بک کریں</div>
+  <div class="sgrid" id="svc-grid">
+    <div class="scard" id="sv1"><div class="se">⚡</div><div class="sn">الیکٹریشن</div></div>
+    <div class="scard" id="sv2"><div class="se">🔧</div><div class="sn">پلمبر</div></div>
+    <div class="scard" id="sv3"><div class="se">❄️</div><div class="sn">AC ٹیکنیشن</div></div>
+    <div class="scard" id="sv4"><div class="se">🪚</div><div class="sn">کارپینٹر</div></div>
+    <div class="scard" id="sv5"><div class="se">🎨</div><div class="sn">پینٹر</div></div>
+    <div class="scard" id="sv6"><div class="se">🧱</div><div class="sn">میسن</div></div>
+    <div class="scard" id="sv7"><div class="se">🧹</div><div class="sn">صفائی</div></div>
+    <div class="scard" id="sv8"><div class="se">🔥</div><div class="sn">گیزر</div></div>
   </div>
-  <div class="s2-body">
-    <div class="sec-title">Our Services</div>
-    <div class="sec-sub">Verified professionals for every home need</div>
-    <div class="svc-grid">
-      <!-- Electrician -->
-      <div class="svc-card">
-        <div class="svc-card-top" style="background:linear-gradient(135deg,#fbbf24,#f97316);">⚡</div>
-        <div class="svc-card-body">
-          <div class="svc-card-name">Electrician</div>
-          <div class="svc-card-rat"><span class="s">★</span> 4.9 · 180+ workers</div>
-          <div class="svc-feat"><span class="ck">✓</span> Fault diagnosis</div>
-          <div class="svc-feat"><span class="ck">✓</span> Wiring & rewiring</div>
-          <div class="svc-feat"><span class="ck">✓</span> Panel upgrades</div>
-          <button class="svc-book-btn">Book Now →</button>
-        </div>
-      </div>
-      <!-- Plumber -->
-      <div class="svc-card">
-        <div class="svc-card-top" style="background:linear-gradient(135deg,#38bdf8,#2563eb);">🔧</div>
-        <div class="svc-card-body">
-          <div class="svc-card-name">Plumber</div>
-          <div class="svc-card-rat"><span class="s">★</span> 4.8 · 130+ workers</div>
-          <div class="svc-feat"><span class="ck">✓</span> Leak repairs</div>
-          <div class="svc-feat"><span class="ck">✓</span> Drain cleaning</div>
-          <div class="svc-feat"><span class="ck">✓</span> Pipe installation</div>
-          <button class="svc-book-btn">Book Now →</button>
-        </div>
-      </div>
-      <!-- AC -->
-      <div class="svc-card">
-        <div class="svc-card-top" style="background:linear-gradient(135deg,#22d3ee,#0369a1);">❄️</div>
-        <div class="svc-card-body">
-          <div class="svc-card-name">AC / Fridge Repair</div>
-          <div class="svc-card-rat"><span class="s">★</span> 4.7 · 95+ workers</div>
-          <div class="svc-feat"><span class="ck">✓</span> Deep cleaning</div>
-          <div class="svc-feat"><span class="ck">✓</span> Gas refilling</div>
-          <div class="svc-feat"><span class="ck">✓</span> Installation</div>
-          <button class="svc-book-btn">Book Now →</button>
-        </div>
-      </div>
-      <!-- Carpenter -->
-      <div class="svc-card">
-        <div class="svc-card-top" style="background:linear-gradient(135deg,#fb923c,#ef4444);">🔨</div>
-        <div class="svc-card-body">
-          <div class="svc-card-name">Carpenter</div>
-          <div class="svc-card-rat"><span class="s">★</span> 4.8 · 110+ workers</div>
-          <div class="svc-feat"><span class="ck">✓</span> Furniture repair</div>
-          <div class="svc-feat"><span class="ck">✓</span> Door & window fix</div>
-          <div class="svc-feat"><span class="ck">✓</span> Custom woodwork</div>
-          <button class="svc-book-btn">Book Now →</button>
+  <div style="font-size:11px;color:#7c3aed;font-weight:700;margin-top:10px;" class="fu" id="s3more">+ مزید خدمات اضافہ ہو رہی ہیں</div>
+</div>
+
+<!-- S4: Post a Job -->
+<div id="s4" class="sc">
+  <div class="snum fu" id="s4b">مرحلہ ۱ — کام پوسٹ کریں</div>
+  <div class="sh fu" id="s4h">اپنا مسئلہ بتائیں</div>
+  <div class="sp fu" id="s4p">خدمت چنیں، مسئلہ لکھیں اور وقت بتائیں — بس اتنا کافی ہے</div>
+  <div class="si" id="s4ph">
+    <div class="pw">
+      <div class="ps">
+        <div class="pbar p"><div class="pbt">نئی بکنگ</div><div class="pbav">📋</div></div>
+        <div class="pcnt">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+            <div style="background:#f5f3ff;border:2px solid var(--pu);border-radius:8px;padding:6px;text-align:center;">
+              <div style="font-size:14px;">❄️</div>
+              <div style="font-size:7px;font-weight:700;color:var(--pu2);">AC ✓</div>
+            </div>
+            <div style="background:white;border:1.5px solid #e2e8f0;border-radius:8px;padding:6px;text-align:center;opacity:.5;">
+              <div style="font-size:14px;">⚡</div>
+              <div style="font-size:7px;color:#64748b;">الیکٹریشن</div>
+            </div>
+          </div>
+          <div class="pfield"><span class="pfi">📝</span><span>AC ٹھنڈا نہیں کر رہا</span></div>
+          <div class="pfield"><span class="pfi">📍</span><span>گلبرگ، لاہور</span></div>
+          <div class="pfield"><span class="pfi">🕐</span><span>آج — دوپہر ۲ بجے</span></div>
+          <div class="pbtn" id="s4btn" style="background:var(--pu);">کام پوسٹ کریں ✓</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════
-     S3: BOOK SERVICE
-     ══════════════════════════ -->
-<div class="sc" id="s3">
-  <div class="sbar dk"><span class="sbar-t">9:41</span><span class="sbar-r" style="color:#0f172a;">▲▼ 5G 🔋</span></div>
-  <div class="anav wh">
-    <div class="anav-back">← Back</div>
-    <div class="anav-logo" style="font-size:15px;">Book a Service</div>
-    <div></div>
-  </div>
-  <div class="s3-body">
-    <!-- Service picker -->
-    <div style="font-size:12px;font-weight:700;color:#0f172a;margin-bottom:7px;">Select Service</div>
-    <div class="s3-svc-grid">
-      <div class="s3-svc sel"><em>❄️</em><span>AC Repair</span></div>
-      <div class="s3-svc"><em>⚡</em><span>Electrician</span></div>
-      <div class="s3-svc"><em>🔧</em><span>Plumber</span></div>
-      <div class="s3-svc"><em>🔨</em><span>Carpenter</span></div>
-      <div class="s3-svc"><em>🎨</em><span>Painter</span></div>
-      <div class="s3-svc"><em>🧱</em><span>Mason</span></div>
+<!-- S5: Offers come in -->
+<div id="s5" class="sc">
+  <div class="snum fu" id="s5b">مرحلہ ۲ — آفر موصول</div>
+  <div class="sh fu" id="s5h">کاریگر خود آفر بھیجتے ہیں!</div>
+  <div class="sp fu" id="s5p">قریبی تصدیق شدہ کاریگر آپ کو اپنی قیمت بھیجتے ہیں</div>
+  <div style="width:100%;display:flex;flex-direction:column;gap:8px;" id="w-offers">
+    <div class="wcard" id="wc1">
+      <div class="wavt" style="background:#dbeafe;">🔧</div>
+      <div class="winfo">
+        <div class="wname">احمد علی — AC ٹیکنیشن</div>
+        <div class="wmeta">⭐ 4.9 · ۱۲۳ کام · ۲.۳ کلومیٹر</div>
+        <div class="wbadge">✅ CNIC تصدیق شدہ</div>
+      </div>
+      <div class="wpr" style="color:var(--green2);">Rs. 800</div>
     </div>
-    <!-- Issue field -->
-    <div class="s3-field" style="align-items:flex-start;min-height:62px;">
-      <div class="fi">📝</div>
-      <div class="ft fv">AC is not cooling properly. Making loud noise since yesterday. Need urgent repair.</div>
+    <div class="wcard" id="wc2">
+      <div class="wavt" style="background:#dcfce7;">❄️</div>
+      <div class="winfo">
+        <div class="wname">خالد حسین — AC ٹیکنیشن</div>
+        <div class="wmeta">⭐ 4.8 · ۸۷ کام · ۳.۱ کلومیٹر</div>
+        <div class="wbadge">✅ CNIC تصدیق شدہ</div>
+      </div>
+      <div class="wpr" style="color:var(--green2);">Rs. 750</div>
     </div>
-    <!-- Location -->
-    <div class="s3-field">
-      <div class="fi">📍</div>
-      <div class="ft fv">Gulberg III, Lahore</div>
+    <div class="wcard" id="wc3">
+      <div class="wavt" style="background:#f5f3ff;">🛠️</div>
+      <div class="winfo">
+        <div class="wname">عمر فاروق — AC ٹیکنیشن</div>
+        <div class="wmeta">⭐ 5.0 · ۲۰۱ کام · ۴.۵ کلومیٹر</div>
+        <div class="wbadge">🏆 ٹاپ ریٹڈ</div>
+      </div>
+      <div class="wpr" style="color:var(--green2);">Rs. 900</div>
     </div>
-    <!-- Date/time -->
-    <div class="s3-field">
-      <div class="fi">📅</div>
-      <div class="ft fv">Today — 2:00 PM</div>
-    </div>
-    <!-- Price estimate -->
-    <div class="s3-field">
-      <div class="fi">💰</div>
-      <div class="ft fp">Price estimate (optional)</div>
-    </div>
-    <button class="s3-submit">Submit Request <span>→</span></button>
   </div>
 </div>
 
-<!-- ══════════════════════════
-     S4: OFFERS RECEIVED
-     ══════════════════════════ -->
-<div class="sc" id="s4">
-  <div class="sbar dk"><span class="sbar-t">9:41</span><span class="sbar-r" style="color:#0f172a;">▲▼ 5G 🔋</span></div>
-  <div class="anav wh">
-    <div class="anav-back">← Back</div>
-    <div class="anav-logo" style="font-size:15px;">My Bookings</div>
-    <div style="font-size:17px;color:#0ea5e9;">+</div>
-  </div>
-  <div class="s4-body">
-    <!-- Booking card -->
-    <div class="bkng-preview">
-      <div class="bp-top">
-        <div class="bp-title">❄️ AC Repair — Gulberg, Lahore</div>
-        <div class="bp-badge">3 Offers ✓</div>
-      </div>
-      <div class="bp-meta"><span>📅 Today 2:00 PM</span><span>💰 Rs. 750–900</span></div>
-    </div>
-    <!-- Offers heading -->
-    <div class="s4-sec">Choose a Worker</div>
-    <!-- Worker 1 — top pick -->
-    <div class="offer-card top-pick">
-      <div class="offer-avt" style="background:linear-gradient(135deg,#0369a1,#0ea5e9);">AA</div>
-      <div class="offer-info">
-        <div class="offer-name">Ahmad Ali</div>
-        <div class="offer-meta">⭐ 4.9 · 123 jobs · 2.3 km</div>
-        <div class="offer-cnic">✅ CNIC Verified · 🏆 Top Rated</div>
-      </div>
-      <div class="offer-r">
-        <div class="offer-price">Rs. 800</div>
-        <button class="offer-btn">Accept</button>
+<!-- S6: Trust & Safety -->
+<div id="s6" class="sc">
+  <div style="font-size:20px;font-weight:700;color:white;text-align:center;line-height:1.7;margin-bottom:6px;" class="fu" id="s6t">قابل اعتماد کاریگر</div>
+  <div style="font-size:12px;color:rgba(255,255,255,.5);text-align:center;margin-bottom:16px;" class="fu" id="s6s">سروس ناک پر ہر کاریگر تصدیق شدہ ہے</div>
+  <div style="width:100%;display:flex;flex-direction:column;gap:8px;">
+    <div class="tbadge" id="tb1">
+      <div class="tbicon">🪪</div>
+      <div class="tbtext">
+        <div class="tbtitle">CNIC تصدیق</div>
+        <div class="tbsub">ہر کاریگر کا شناختی کارڈ جانچا جاتا ہے</div>
       </div>
     </div>
-    <!-- Worker 2 -->
-    <div class="offer-card">
-      <div class="offer-avt" style="background:linear-gradient(135deg,#16a34a,#22c55e);">KH</div>
-      <div class="offer-info">
-        <div class="offer-name">Khalid Hussain</div>
-        <div class="offer-meta">⭐ 4.8 · 87 jobs · 3.1 km</div>
-        <div class="offer-cnic">✅ CNIC Verified</div>
-      </div>
-      <div class="offer-r">
-        <div class="offer-price">Rs. 750</div>
-        <button class="offer-btn ghost">Accept</button>
+    <div class="tbadge" id="tb2">
+      <div class="tbicon">⭐</div>
+      <div class="tbtext">
+        <div class="tbtitle">گاہک ریٹنگ</div>
+        <div class="tbsub">ہر کام کے بعد گاہک ریٹنگ دیتے ہیں</div>
       </div>
     </div>
-    <!-- Worker 3 -->
-    <div class="offer-card">
-      <div class="offer-avt" style="background:linear-gradient(135deg,#7c3aed,#a855f7);">UF</div>
-      <div class="offer-info">
-        <div class="offer-name">Umar Farooq</div>
-        <div class="offer-meta">⭐ 5.0 · 201 jobs · 4.5 km</div>
-        <div class="offer-cnic">✅ CNIC Verified</div>
+    <div class="tbadge" id="tb3">
+      <div class="tbicon">💬</div>
+      <div class="tbtext">
+        <div class="tbtitle">براہ راست چیٹ</div>
+        <div class="tbsub">کاریگر سے بکنگ کے اندر بات کریں</div>
       </div>
-      <div class="offer-r">
-        <div class="offer-price">Rs. 900</div>
-        <button class="offer-btn ghost">Accept</button>
+    </div>
+    <div class="tbadge" id="tb4">
+      <div class="tbicon">🔒</div>
+      <div class="tbtext">
+        <div class="tbtitle">محفوظ ادائیگی</div>
+        <div class="tbsub">کام مکمل ہو جائے تو ادائیگی کریں</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════
-     S5: BOOKING CONFIRMED
-     ══════════════════════════ -->
-<div class="sc" id="s5">
-  <div class="sbar lt" style="background:linear-gradient(135deg,#0369a1,#0ea5e9);">
-    <span class="sbar-t">9:41</span><span class="sbar-r">▲▼ 5G 🔋</span>
-  </div>
-  <!-- Banner -->
-  <div class="s5-banner">
-    <div class="s5-banner-in">
-      <div class="s5-b-icon">✅</div>
+<!-- S7: Worker On Way -->
+<div id="s7" class="sc">
+  <div style="font-size:20px;font-weight:700;color:white;text-align:center;margin-bottom:14px;line-height:1.7;" class="fu" id="s7t">مرحلہ ۳ — کاریگر آ رہا ہے!</div>
+  <div class="track fu" id="s7box">
+    <div class="track-head">
+      <div class="track-icon">🏍️</div>
       <div>
-        <div class="s5-b-title">Booking Confirmed!</div>
-        <div class="s5-b-sub">Ahmad Ali is on the way</div>
+        <div class="track-title">احمد علی آپ کی طرف روانہ ہے</div>
+        <div class="track-sub">AC ٹیکنیشن · ⭐ 4.9 · CNIC ✅</div>
       </div>
     </div>
-  </div>
-  <div class="s5-body">
-    <!-- Worker card -->
-    <div class="s5-worker">
-      <div class="s5-avt">AA</div>
-      <div class="s5-winfo">
-        <div class="s5-wname">Ahmad Ali</div>
-        <div class="s5-wtrade">AC Technician</div>
-        <div class="s5-wrat"><span class="s">★★★★★</span> 4.9 (123 reviews)</div>
-        <div class="s5-wcnic">✅ CNIC Verified · 🏆 Top Rated</div>
+    <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:8px 10px;direction:rtl;">
+      <div style="font-size:9px;color:rgba(255,255,255,.5);margin-bottom:6px;">سفری راستہ</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:9px;color:rgba(255,255,255,.7);">
+        <span>📍 گلبرگ</span>
+        <span style="flex:1;border-top:1px dashed rgba(124,58,237,.5);"></span>
+        <span style="background:var(--pu);padding:2px 8px;border-radius:999px;font-size:8px;color:white;">🏍️ ← ← ←</span>
+        <span style="flex:1;border-top:1px dashed rgba(124,58,237,.5);"></span>
+        <span>🏠 آپ</span>
       </div>
     </div>
-    <!-- Status -->
-    <div class="s5-status">
-      <div class="s5-sdot"></div>
-      <div>
-        <div class="s5-stxt">Worker is on the way</div>
-        <div class="s5-ssub">ETA: 15 minutes · 2.3 km away</div>
+    <div class="eta">
+      <div class="eta-box">
+        <div class="eta-val" style="color:var(--pu);">۱۵</div>
+        <div class="eta-lbl">منٹ میں آئے گا</div>
       </div>
-    </div>
-    <!-- Details -->
-    <div class="s5-details">
-      <div class="s5-row"><span class="s5-ri">🔧</span> AC Repair — Not cooling, loud noise</div>
-      <div class="s5-row"><span class="s5-ri">📍</span> Gulberg III, Lahore</div>
-      <div class="s5-row"><span class="s5-ri">📅</span> Today — 2:00 PM</div>
-      <div class="s5-row"><span class="s5-ri">💰</span> <strong style="color:#15803d;">Rs. 800</strong> — Agreed price</div>
-    </div>
-    <!-- Buttons -->
-    <div class="s5-btns">
-      <button class="s5-chat">💬 Chat</button>
-      <button class="s5-call">📞 Call</button>
+      <div class="eta-box">
+        <div class="eta-val" style="color:var(--gold);">۲.۳</div>
+        <div class="eta-lbl">کلومیٹر</div>
+      </div>
+      <div class="eta-box">
+        <div class="eta-val" style="color:var(--green);">Rs.800</div>
+        <div class="eta-lbl">متعین قیمت</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════
-     S6: WORKER DASHBOARD
-     ══════════════════════════ -->
-<div class="sc" id="s6">
-  <div class="sbar dk"><span class="sbar-t">9:41</span><span class="sbar-r" style="color:#0f172a;">▲▼ 5G 🔋</span></div>
-  <div class="anav wh">
-    <div style="font-size:17px;">☰</div>
-    <div class="anav-logo">Service Knock</div>
-    <div class="anav-icons" style="color:#0ea5e9;"><span>🔔</span><span>👷</span></div>
+<!-- S8: Complete + Rate + Pay -->
+<div id="s8" class="sc">
+  <div style="font-size:20px;font-weight:700;color:var(--pu2);text-align:center;margin-bottom:14px;" class="fu" id="s8t">کام مکمل — ادائیگی محفوظ</div>
+  <div class="paybox fu" id="s8box">
+    <span class="paycheck" id="pcheck">✅</span>
+    <div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:4px;direction:rtl;">AC مرمت مکمل!</div>
+    <div style="font-size:10px;color:#64748b;margin-bottom:10px;direction:rtl;">احمد علی · گلبرگ، لاہور · آج</div>
+    <div style="display:flex;justify-content:center;gap:4px;margin-bottom:10px;">
+      <span class="rs" id="rs1">⭐</span><span class="rs" id="rs2">⭐</span>
+      <span class="rs" id="rs3">⭐</span><span class="rs" id="rs4">⭐</span><span class="rs" id="rs5">⭐</span>
+    </div>
+    <div style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:10px;padding:10px;">
+      <div style="font-size:10px;color:#15803d;font-weight:700;direction:rtl;">✅ ادائیگی مکمل — Rs. 800</div>
+      <div style="font-size:8px;color:#64748b;margin-top:3px;direction:rtl;">کام مکمل ہونے کے بعد ادائیگی</div>
+    </div>
   </div>
-  <div class="s6-body">
-    <div class="s6-greeting">Good morning, Ahmad! 👋</div>
-    <div class="s6-sub">You have 5 new job requests nearby</div>
-    <!-- Earnings -->
-    <div class="s6-earn">
-      <div class="s6-earn-l">
-        <div class="s6-earn-lbl">Today's Earnings</div>
-        <div class="s6-earn-val">Rs. 3,200</div>
-        <div class="s6-earn-sub">3 jobs completed</div>
-      </div>
-      <div class="s6-earn-r">
-        <div class="s6-earn-stat">This Week</div>
-        <div class="s6-earn-n">Rs. 18,400</div>
-        <div style="font-size:9px;color:rgba(255,255,255,.6);margin-top:2px;">12 jobs</div>
-      </div>
+</div>
+
+<!-- S9: CTA -->
+<div id="s9" class="sc">
+  <div class="dbg"></div>
+  <div class="ci">
+    <span class="cem si" id="s9e">🏠</span>
+    <div class="chn fu" id="s9h">Service Knock</div>
+    <div class="csb fu" id="s9s">گھر بیٹھے بکنگ کریں<br/>پاکستان میں کہیں بھی</div>
+    <div class="cbs fu" id="s9b">
+      <button class="bw">📲 ابھی بکنگ کریں</button>
+      <button class="bo">🌐 serviceknock.com</button>
     </div>
-    <!-- Stats -->
-    <div class="s6-stats">
-      <div class="s6-stat">
-        <div class="s6-stat-val" style="color:#0ea5e9;">5</div>
-        <div class="s6-stat-lbl">New Requests</div>
-      </div>
-      <div class="s6-stat">
-        <div class="s6-stat-val" style="color:#f59e0b;">⭐ 4.9</div>
-        <div class="s6-stat-lbl">Rating</div>
-      </div>
-      <div class="s6-stat">
-        <div class="s6-stat-val" style="color:#22c55e;">47</div>
-        <div class="s6-stat-lbl">Jobs Done</div>
-      </div>
-    </div>
-    <!-- Available jobs -->
-    <div class="s6-sec">Available Nearby</div>
-    <div class="job-card">
-      <div class="jc-top">
-        <div class="jc-title"><em>❄️</em> AC Repair</div>
-        <div class="jc-price">Rs. 800</div>
-      </div>
-      <div class="jc-meta"><span>📍 Gulberg · 2.3 km</span><span>📅 Today 2 PM</span></div>
-      <button class="jc-btn">Send Offer →</button>
-    </div>
-    <div class="job-card">
-      <div class="jc-top">
-        <div class="jc-title"><em>⚡</em> Electrician</div>
-        <div class="jc-price">Rs. 600</div>
-      </div>
-      <div class="jc-meta"><span>📍 Model Town · 4.1 km</span><span>📅 Today 4 PM</span></div>
-      <button class="jc-btn">Send Offer →</button>
-    </div>
+    <div class="cu fu" id="s9u">"آپ کا گھر، ہماری ذمہ داری"</div>
   </div>
 </div>
 
 <script>
-const SCREENS = 6;
-const DURATION = 5000; // ms per screen
-let cur = 0, timers = [], running = false;
+const VO = [
+  'گھر میں AC خراب، پائپ لیک، بجلی کا مسئلہ یا دروازہ ٹوٹا ہو۔ پریشان نہ ہوں — سروس ناک میں سب کا حل ہے',
+  'سروس ناک پاکستان کی پہلی ایپ ہے جہاں گھر کی تمام خدمات ایک جگہ ملتی ہیں۔ پانچ اعشاریہ صفر گوگل ریٹنگ',
+  'الیکٹریشن، پلمبر، اے سی ٹیکنیشن، کارپینٹر، پینٹر، میسن، صفائی، گیزر — جو چاہیں، جب چاہیں',
+  'اپنی خدمت چنیں، مسئلہ لکھیں اور وقت بتائیں۔ بس اتنا کافی ہے۔ کام پوسٹ کریں',
+  'قریبی تصدیق شدہ کاریگر آپ کو اپنی قیمت بھیجیں گے۔ جو بہتر لگے وہ چنیں',
+  'ہر کاریگر کا شناختی کارڈ جانچا جاتا ہے۔ گاہک ریٹنگ، براہ راست چیٹ اور محفوظ ادائیگی',
+  'کاریگر آپ کے گھر آئے گا۔ قیمت پہلے سے طے، نہ انتظار نہ پریشانی',
+  'کام مکمل ہو جائے تو ادائیگی کریں اور ریٹنگ دیں۔ پیشگی ادائیگی نہیں',
+  'سروس ناک پر ابھی بکنگ کریں۔ آپ کا گھر، ہماری ذمہ داری'
+];
 
-const sc = i => document.getElementById('s' + (i + 1));
-const dot = i => document.getElementById('d' + i);
+const TTS = 'https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=ur&ttsspeed=0.75&q=';
+const ttsCache = VO.map(t => { const a = new Audio(TTS + encodeURIComponent(t)); a.volume=1; a.preload='auto'; return a; });
+let ttsAudio = null;
 
-function setDots(i) {
-  for (let j = 0; j < SCREENS; j++) {
-    dot(j).classList.toggle('on', j === i);
+function unlockTTS() {
+  ttsCache.forEach(a => a.play().then(()=>{a.pause();a.currentTime=0;}).catch(()=>{}));
+}
+
+let cachedVoice = null;
+function loadVoices() {
+  const vs = speechSynthesis.getVoices();
+  cachedVoice = vs.find(v=>/urdu/i.test(v.name)&&/online|neural/i.test(v.name)) ||
+                vs.find(v=>v.lang.startsWith('ur')) ||
+                vs.find(v=>/urdu/i.test(v.name)) ||
+                vs.find(v=>v.lang.startsWith('hi')&&/female/i.test(v.name)) ||
+                vs.find(v=>v.lang.startsWith('hi')) || null;
+}
+speechSynthesis.onvoiceschanged = loadVoices; loadVoices();
+
+function webSpeak(text, onDone) {
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    if (cachedVoice) { u.voice=cachedVoice; u.lang=cachedVoice.lang; } else u.lang='ur-PK';
+    u.volume=1; u.rate=0.82; u.pitch=1.05;
+    if (onDone) u.onend=onDone;
+    speechSynthesis.speak(u);
+  } catch(e) { if(onDone) setTimeout(onDone,3500); }
+}
+
+let actx=null, bgOn=false;
+function startMusic() {
+  if(bgOn) return; bgOn=true;
+  actx = new (window.AudioContext||window.webkitAudioContext)();
+  const master=actx.createGain(); master.gain.value=0.12; master.connect(actx.destination);
+  [261.63,329.63,392,523.25].forEach(f=>{
+    const o=actx.createOscillator(),g=actx.createGain();
+    o.type='sine'; o.frequency.value=f; g.gain.value=0.04;
+    o.connect(g); g.connect(master); o.start();
+  });
+  const mel=[523.25,659.25,783.99,880,783.99,659.25,523.25,440];
+  let t=actx.currentTime+0.4;
+  const play=()=>{
+    mel.forEach(f=>{
+      const o=actx.createOscillator(),g=actx.createGain();
+      o.type='triangle'; o.frequency.value=f;
+      g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(0.07,t+.05); g.gain.linearRampToValueAtTime(0,t+.4);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t+.5); t+=.5;
+    });
+  };
+  play(); setInterval(play, mel.length*500);
+}
+
+const SCENES = Array.from({length:9},(_,i)=>({id:'s'+(i+1)}));
+let timers=[], cur=-1, sceneActive=false;
+const T=(fn,ms)=>timers.push(setTimeout(fn,ms));
+const add=(id,...c)=>{const e=document.getElementById(id);if(e)e.classList.add(...c);};
+
+function anim(i) {
+  if(i===0){
+    ['hc1','hc2','hc3','hc4'].forEach((id,j)=>T(()=>add(id,'in'),250+j*180));
+    T(()=>add('s1q','in'),1200); T(()=>add('s1s','in'),1700);
+  } else if(i===1){
+    T(()=>add('s2em','in'),200); T(()=>add('s2nm','in'),600);
+    T(()=>add('s2tg','in'),1000); T(()=>add('s2sub','in'),1400);
+    T(()=>add('s2stats','in'),1900);
+  } else if(i===2){
+    T(()=>add('s3t','in'),200); T(()=>add('s3s','in'),500);
+    ['sv1','sv2','sv3','sv4','sv5','sv6','sv7','sv8'].forEach((id,j)=>T(()=>add(id,'in'),700+j*120));
+    T(()=>add('s3more','in'),2200);
+  } else if(i===3){
+    T(()=>add('s4b','in'),200); T(()=>add('s4h','in'),550);
+    T(()=>add('s4p','in'),900); T(()=>add('s4ph','in'),1200);
+    T(()=>{const b=document.getElementById('s4btn');if(b)b.style.background='var(--pu2)';},2400);
+  } else if(i===4){
+    T(()=>add('s5b','in'),200); T(()=>add('s5h','in'),550);
+    T(()=>add('s5p','in'),900);
+    ['wc1','wc2','wc3'].forEach((id,j)=>T(()=>add(id,'in'),1200+j*380));
+  } else if(i===5){
+    T(()=>add('s6t','in'),200); T(()=>add('s6s','in'),550);
+    ['tb1','tb2','tb3','tb4'].forEach((id,j)=>T(()=>add(id,'in'),800+j*300));
+  } else if(i===6){
+    T(()=>add('s7t','in'),200); T(()=>add('s7box','in'),600);
+  } else if(i===7){
+    T(()=>add('s8t','in'),200); T(()=>add('s8box','in'),500);
+    T(()=>add('pcheck','in'),900);
+    ['rs1','rs2','rs3','rs4','rs5'].forEach((id,j)=>T(()=>add(id,'in'),1500+j*180));
+  } else if(i===8){
+    T(()=>add('s9e','in'),200);
+    ['s9h','s9s','s9b','s9u'].forEach((id,j)=>T(()=>add(id,'in'),400+j*280));
   }
 }
 
 function animBar(from, to, ms) {
-  const bar = document.getElementById('prog');
-  bar.style.transition = 'none';
-  bar.style.width = from + '%';
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    bar.style.transition = `width ${ms}ms linear`;
-    bar.style.width = to + '%';
+  const bar=document.getElementById('prog');
+  bar.style.transition='none'; bar.style.width=from+'%';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    bar.style.transition=`width ${ms}ms linear`; bar.style.width=to+'%';
   }));
 }
 
-function showScreen(i) {
-  if (!running) return;
-  if (i >= SCREENS) {
-    running = false;
-    document.getElementById('rplay').classList.add('on');
-    return;
-  }
+function showScene(i) {
+  if(!sceneActive) return;
+  if(i>=SCENES.length){ document.getElementById('rplay').classList.add('on'); return; }
+  if(cur>=0) document.getElementById(SCENES[cur].id).classList.remove('on');
+  cur=i;
+  document.getElementById(SCENES[i].id).classList.add('on');
+  anim(i);
 
-  // Transition
-  if (i > 0) {
-    sc(i - 1).classList.remove('active');
-    sc(i - 1).classList.add('prev');
-  }
-  sc(i).classList.remove('prev');
-  sc(i).classList.add('active');
-  setDots(i);
-  cur = i;
-
-  const sp = (i / SCREENS) * 100;
-  const ep = ((i + 1) / SCREENS) * 100;
-  animBar(sp, ep, DURATION - 100);
-
-  timers.push(setTimeout(() => showScreen(i + 1), DURATION));
+  const advance=()=>{ if(!sceneActive) return; setTimeout(()=>showScene(i+1),500); };
+  const sp=i/SCENES.length*100, ep=(i+1)/SCENES.length*100;
+  const a=ttsCache[i];
+  if(!a){ animBar(sp,ep,4000); setTimeout(advance,4000); return; }
+  a.onended=null; a.onerror=null;
+  ttsAudio=a; a.currentTime=0;
+  const tryBar=()=>{
+    if(a.duration>0){ animBar(sp,ep,a.duration*1000); }
+    else { a.addEventListener('loadedmetadata',()=>animBar(sp,ep,a.duration*1000),{once:true}); animBar(sp,ep,5500); }
+  };
+  a.onended=advance;
+  a.onerror=()=>{ animBar(sp,ep,5500); webSpeak(VO[i],advance); };
+  a.play().then(tryBar).catch(()=>{ animBar(sp,ep,5500); webSpeak(VO[i],advance); });
 }
 
 function resetAll() {
-  running = false;
-  timers.forEach(clearTimeout); timers = [];
-  for (let i = 0; i < SCREENS; i++) {
-    sc(i).classList.remove('active', 'prev');
-  }
+  sceneActive=false;
+  timers.forEach(clearTimeout); timers=[];
+  if(ttsAudio){ ttsAudio.onended=null; ttsAudio.onerror=null; ttsAudio.pause(); ttsAudio.currentTime=0; ttsAudio=null; }
+  try{ speechSynthesis.cancel(); }catch(e){}
+  SCENES.forEach(s=>document.getElementById(s.id).classList.remove('on'));
+  document.querySelectorAll('.fu,.si,.hc,.wcard,.tbadge,.scard,.rs,.paycheck').forEach(e=>e.classList.remove('in'));
   document.getElementById('rplay').classList.remove('on');
-  const bar = document.getElementById('prog');
-  bar.style.transition = 'none'; bar.style.width = '0%';
-  setDots(0);
+  const bar=document.getElementById('prog'); bar.style.transition='none'; bar.style.width='0%';
+  const btn=document.getElementById('s4btn'); if(btn) btn.style.background='var(--pu)';
+  cur=-1;
 }
 
+function startVideo(){ resetAll(); sceneActive=true; setTimeout(()=>showScene(0),100); }
+
 function tapStart() {
-  const tap = document.getElementById('tap');
-  tap.style.transition = 'opacity .4s';
-  tap.style.opacity = '0';
-  setTimeout(() => tap.style.display = 'none', 400);
-  resetAll();
-  running = true;
-  setTimeout(() => showScreen(0), 200);
+  const tap=document.getElementById('tap');
+  tap.style.transition='opacity .5s'; tap.style.opacity='0';
+  setTimeout(()=>tap.style.display='none',500);
+  unlockTTS(); startMusic(); loadVoices();
+  setTimeout(startVideo, 600);
 }
 </script>
 </body>
