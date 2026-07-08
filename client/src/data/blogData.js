@@ -1482,5 +1482,190 @@ export const blogPosts = [
       <p><a href="/register">Book a CNIC-verified plumber through Service Knock</a> anywhere in Pakistan. We cover Lahore, Karachi, Islamabad, Rawalpindi, Faisalabad, Multan, Gujranwala, Sialkot, Peshawar, and more — with plumbers rated by real customers in your specific neighbourhood. You can also <a href="/contact">contact our team</a> if you are unsure which type of plumbing professional you need for your specific situation.</p>
     `,
   },
+
+  {
+    id: 17,
+    slug: 'electrician-near-me-lahore-karachi-islamabad-rawalpindi-2026',
+    title: 'Electrician Near Me in Lahore, Karachi, Islamabad & Rawalpindi — Find a Reliable Electrician Fast (2026)',
+    excerpt: 'Searching for an electrician near you in Pakistan? This city-by-city guide covers how to find a trustworthy electrician in Lahore, Karachi, Islamabad and Rawalpindi — with neighbourhood-level costs, monsoon electrical safety tips, and what to check before any electrical work begins.',
+    image: 'https://images.unsplash.com/photo-1504707748692-419802cf939d?auto=format&fit=crop&w=800&q=80',
+    author: 'Technical Team',
+    date: 'July 08, 2026',
+    category: 'Guides',
+    readTime: '9 min',
+    metaTitle: 'Electrician Near Me in Lahore, Karachi, Islamabad & Rawalpindi — 2026 Cost & Hiring Guide',
+    metaDescription: 'Find a reliable electrician near you in Pakistan. 2026 guide with neighbourhood-level costs in Lahore (DHA, Gulberg, Johar Town), Karachi (DHA, Clifton, Gulshan), Islamabad (F-7, G-11, Bahria Town) and Rawalpindi. Monsoon electrical safety tips included.',
+    keywords: 'electrician near me Lahore, electrician near me Karachi, electrician near me Islamabad, electrician near me Rawalpindi, emergency electrician Lahore, electrician DHA Lahore, electrician Gulberg Lahore, electrician Johar Town Lahore, electrician Bahria Town Lahore, electrician DHA Karachi, electrician Clifton Karachi, electrician Gulshan-e-Iqbal Karachi, electrician F-7 Islamabad, electrician Bahria Town Islamabad, electrician G-11 Islamabad, electrician Satellite Town Rawalpindi, electrician Bahria Town Rawalpindi, بجلی مستری لاہور, بجلی مستری کراچی, emergency electrician Pakistan, electrician cost Pakistan 2026, best electrician in Lahore, best electrician in Karachi, monsoon electrical safety Pakistan',
+    content: `
+      <p>A tripped circuit breaker at midnight. A spark from a wall socket after heavy monsoon rain. A ceiling fan that suddenly stops working during a 45°C July heatwave. These are not minor inconveniences — in Pakistan's electrical environment, with ageing wiring, fluctuating voltages, and the very real dangers that come when water infiltrates electrical systems during monsoon season, they can be life-threatening emergencies.</p>
+
+      <p>July and August are statistically the most dangerous months for electrical incidents in Pakistan. Monsoon rains cause water seepage into walls that conceals live wiring, overloaded circuits trip at their highest frequency as ACs and fans run continuously, and power restoration surges after load shedding damage appliances and stress already-weakened electrical connections. This is exactly when finding a skilled, honest, <em>available</em> electrician near you matters most.</p>
+
+      <p>This guide — compiled from service data collected by <a href="/services">Service Knock's verified electricians</a> across Pakistan's major cities — gives you neighbourhood-level pricing, red flags to avoid, monsoon-specific electrical safety guidance, and the fastest way to book a reliable electrician wherever you are in Pakistan.</p>
+
+      <h2>Why Electrical Calls Spike in Monsoon — Pakistan-Specific Risks</h2>
+      <p>Pakistan's monsoon season creates electrical hazards that most homeowners underestimate:</p>
+      <ul>
+        <li><strong>Water in walls reaches concealed wiring:</strong> Roof seepage and wall dampness (seepage/سیپیج) conduct electricity. In homes with inadequate waterproofing — the majority of older construction in Lahore, Rawalpindi, and Karachi — water can reach live wiring inside walls and create shock hazards at wet switches and damp wall surfaces. This is the leading cause of monsoon electrocution deaths in Pakistan.</li>
+        <li><strong>Earthing failures become lethal:</strong> Most Pakistani homes built before 2000 have inadequate or absent earthing systems. During dry weather this is a latent hazard. During monsoon, when water makes surfaces conductive, it becomes immediately dangerous. Touching a faulty appliance on a damp floor can be fatal if earthing is absent.</li>
+        <li><strong>Power restoration surges damage wiring:</strong> WAPDA/LESCO/HESCO load shedding is at its longest in summer. Each restoration event sends a surge through the distribution network. In homes with thin, old wiring and no surge protection, these surges cause insulation to crack, connections to arc, and in worst cases, fires to start inside walls.</li>
+        <li><strong>AC circuits overload during peak summer:</strong> A 1.5-ton split AC draws 7–10 amperes continuously. In many Pakistani homes, ACs are connected to general circuits rather than dedicated circuits — sharing load with fans, televisions, and sockets. This causes breakers to trip repeatedly, and in homes without proper MCBs, wiring to overheat.</li>
+      </ul>
+      <p>For a complete electrical safety guide for Pakistani homes, read our dedicated <a href="/blog/electrical-safety-guide-pakistan-homes">electrical safety article</a>. The rest of this guide focuses on finding the right electrician in your city and neighbourhood.</p>
+
+      <h2>Electrician Costs in Lahore — 2026</h2>
+      <p>Lahore has Pakistan's largest pool of electricians, from master electricians with formal training to unskilled helpers who call themselves wiremen. Prices vary enormously — not just between areas, but between skill levels. The cheapest electrician in DHA is still more expensive than an unqualified wireman in Johar Town, but the work quality difference justifies the gap for anything more than a simple bulb socket replacement.</p>
+
+      <h3>Common Electrical Jobs — Lahore Price Guide</h3>
+      <ul>
+        <li><strong>Call-out / visit charge:</strong> Rs. 500–1,500</li>
+        <li><strong>Single socket / switch replacement:</strong> Rs. 300–800 per point</li>
+        <li><strong>Ceiling fan installation (existing wiring):</strong> Rs. 500–1,200</li>
+        <li><strong>Ceiling fan installation (new point + wiring):</strong> Rs. 1,500–3,500</li>
+        <li><strong>Circuit breaker (MCB) replacement:</strong> Rs. 500–1,800</li>
+        <li><strong>Dedicated AC circuit installation:</strong> Rs. 3,500–9,000</li>
+        <li><strong>Earthing system installation:</strong> Rs. 6,000–18,000</li>
+        <li><strong>Surge protector / AVR installation:</strong> Rs. 1,500–4,000</li>
+        <li><strong>Whole-home electrical inspection:</strong> Rs. 2,500–6,000</li>
+        <li><strong>Full home rewiring (3-bed):</strong> Rs. 35,000–90,000</li>
+        <li><strong>DB board upgrade / replacement:</strong> Rs. 8,000–25,000</li>
+      </ul>
+
+      <h3>Lahore — Neighbourhood-Level Notes</h3>
+      <ul>
+        <li><strong>DHA Lahore (Phase 1–8), Cantt:</strong> Premium area with premium rates — expect 30–50% above base Lahore prices. DHA construction is generally newer with better wiring standards, but Phase 1–3 bungalows are now 30–40 years old and many need full rewiring. Electricians servicing DHA typically carry better tools and are familiar with quality DB boards (Schneider, ABB, Hager).</li>
+        <li><strong>Gulberg I–V, Garden Town, Mall Road corridor:</strong> Mix of converted commercial buildings and residential. Older bungalows converted to offices often have dangerously overloaded wiring — too many ACs and computers on circuits designed for residential loads. Electrical inspection before buying or renting any property here is strongly advised.</li>
+        <li><strong>Johar Town, Faisal Town, Allama Iqbal Town:</strong> High-density residential with competitive electrician availability. Rates are 15–25% lower than DHA. The most common calls are fan installation, socket replacement, and tripped breaker restoration. Good area to find a regular reliable electrician through word of mouth — or through <a href="/register">Service Knock</a>.</li>
+        <li><strong>Bahria Town Lahore:</strong> Modern construction with standardised electrical systems. Most electrical work involves AC circuit additions, smart home wiring, and CCTV/intercom systems. Electricians familiar with Bahria's wiring standards available through Service Knock.</li>
+        <li><strong>Model Town, Shadman, Mozang:</strong> Older colony housing — some properties have original 1960s–70s wiring. Aluminium conductors are still found in some of these older properties and are significantly more dangerous than copper. Any purchase or long-term rental here should include a full electrical audit.</li>
+        <li><strong>Old Lahore / Walled City (Data Darbar, Androon Shehar):</strong> Very old construction, often multi-generational additions to original structures. Electrical systems are frequently ad-hoc and dangerous. Only book a senior, experienced electrician for work here — not a basic wireman.</li>
+      </ul>
+
+      <h2>Electrician Costs in Karachi — 2026</h2>
+      <p>Karachi's electrical landscape has unique characteristics: the city is served by K-Electric (a private utility) rather than WAPDA, meaning load shedding schedules and voltage characteristics differ from other cities. Karachi also has a much higher proportion of high-rise apartment buildings, where electrical work often involves coordination with building management. The absence of gas supply in most areas also means electric geysers and induction cooktops are more common — increasing electrical load compared to other Pakistani cities.</p>
+
+      <h3>Common Electrical Jobs — Karachi Price Guide</h3>
+      <ul>
+        <li><strong>Call-out / visit charge:</strong> Rs. 500–1,200</li>
+        <li><strong>Socket / switch replacement:</strong> Rs. 400–1,000 per point</li>
+        <li><strong>Ceiling fan installation:</strong> Rs. 600–1,500</li>
+        <li><strong>MCB / circuit breaker replacement:</strong> Rs. 600–2,000</li>
+        <li><strong>Dedicated AC circuit:</strong> Rs. 3,000–8,000</li>
+        <li><strong>Earthing installation:</strong> Rs. 5,000–15,000</li>
+        <li><strong>Electric geyser wiring:</strong> Rs. 1,500–4,000</li>
+        <li><strong>Whole-home inspection:</strong> Rs. 2,000–5,500</li>
+        <li><strong>Full rewiring (3-bed apartment):</strong> Rs. 30,000–80,000</li>
+        <li><strong>DB board upgrade:</strong> Rs. 7,000–22,000</li>
+      </ul>
+
+      <h3>Karachi — Neighbourhood-Level Notes</h3>
+      <ul>
+        <li><strong>DHA Karachi (Phase 1–8), Defence View, Clifton:</strong> Premium residential area. K-Electric supply to DHA is relatively more stable than other Karachi areas. Most electrical calls involve AC circuits, smart home additions, and solar net metering wiring. Expect premium rates — 25–40% above city average.</li>
+        <li><strong>Clifton Blocks 1–9, Bath Island:</strong> High-rise apartments dominate. Electrical work in apartment buildings is often subject to building management rules — always check before any work involving the DB board. Individual apartment wiring work (fan, socket, MCB) follows standard rates.</li>
+        <li><strong>Gulshan-e-Iqbal (all blocks), Gulshan-e-Hadeed:</strong> Very large middle-class residential area — the highest volume of electrician calls in Karachi. Good availability of local electricians at competitive rates. Common calls: fan installation, socket replacement, tripped MCBs, and AC wiring for new split AC installations.</li>
+        <li><strong>North Nazimabad, Federal B Area, Liaquatabad:</strong> Dense older housing. Many properties here have 1970s–80s wiring. Earth leakage and shock incidents are more common. Strongly recommend an electrical inspection if you are renting or buying in this area. Earthing installation is a priority.</li>
+        <li><strong>PECHS, Bahadurabad, Tariq Road:</strong> Mix of residential and commercial. High electrical load areas due to shops and commercial use. Dedicated DB boards for commercial premises are common. Electricians experienced in commercial wiring available through Service Knock.</li>
+        <li><strong>Surjani Town, Orangi, Korangi, Landhi:</strong> Budget-conscious areas. Wiring quality varies enormously. Basic electrician rates apply from Rs. 400 per call. Be particularly cautious during monsoon — flooding in these low-lying areas brings severe electrical hazards. Do not use any electrical appliances in a flooded room.</li>
+      </ul>
+
+      <h2>Electrician Costs in Islamabad — 2026</h2>
+      <p>Islamabad is Pakistan's best-planned city and has the most modern electrical infrastructure of any major Pakistani urban area. IESCO (Islamabad Electric Supply Company) supply is relatively stable. However, Islamabad's heavy monsoon rainfall — intensified by the Margalla Hills — creates significant seepage risks that bring their own electrical hazards, and the city's cold winters mean electric heating is common in upper-sector houses.</p>
+
+      <h3>Common Electrical Jobs — Islamabad Price Guide</h3>
+      <ul>
+        <li><strong>Call-out / visit charge:</strong> Rs. 700–1,800</li>
+        <li><strong>Socket / switch replacement:</strong> Rs. 500–1,200 per point</li>
+        <li><strong>Ceiling fan installation:</strong> Rs. 700–1,800</li>
+        <li><strong>MCB replacement:</strong> Rs. 700–2,200</li>
+        <li><strong>Dedicated AC circuit:</strong> Rs. 4,000–11,000</li>
+        <li><strong>Earthing system installation:</strong> Rs. 7,000–20,000</li>
+        <li><strong>Whole-home inspection:</strong> Rs. 3,000–7,500</li>
+        <li><strong>Full rewiring (3-bed house):</strong> Rs. 45,000–110,000</li>
+        <li><strong>DB board upgrade:</strong> Rs. 10,000–30,000</li>
+        <li><strong>Solar inverter wiring:</strong> Rs. 5,000–15,000</li>
+      </ul>
+
+      <h3>Islamabad — Neighbourhood-Level Notes</h3>
+      <ul>
+        <li><strong>F-6, F-7, F-8 (Diplomatic Enclave area):</strong> Oldest sector housing in Islamabad — some original CDA construction from the 1960s–70s. Original aluminium wiring is still present in a small number of very old F-sector properties. Any F-6 or F-7 property over 40 years old should have a full electrical audit before purchase. Premium electrician rates apply — Rs. 50–80% above city base.</li>
+        <li><strong>F-10, F-11 Markaz and residential, F-17:</strong> Well-maintained sector housing with generally good wiring standards. Most calls are fan installation, socket addition, and AC circuit work for new inverter ACs. Good availability of quality electricians.</li>
+        <li><strong>G-9, G-10, G-11 (Karachi Company, Abpara area):</strong> Dense residential with older and newer construction mixed. G-9 and G-10 have some very old government colony housing. Monsoon season brings seepage-related electrical problems here — have a damp-related electrical inspection done every July.</li>
+        <li><strong>Bahria Town Islamabad (Phase 1–8), DHA Islamabad:</strong> Modern planned communities with standardised electrical systems. Solar inverter installation, EV charging point wiring, and smart home systems are increasingly common. Specialist electricians for these systems available through <a href="/register">Service Knock</a>.</li>
+        <li><strong>E-11, PWD Colony, Naval Anchorage:</strong> Mix of modern housing and older government quarters. Standard rates. Common calls are fan, socket, and MCB work.</li>
+        <li><strong>Blue Area, I-9 Industrial:</strong> Commercial wiring predominates. Electricians experienced in three-phase wiring and commercial DB boards required. Available through Service Knock with relevant experience verified.</li>
+      </ul>
+
+      <h2>Electrician Costs in Rawalpindi — 2026</h2>
+      <p>Rawalpindi shares IESCO supply with Islamabad in many areas but has significantly older and denser housing. The city's older colonies (Satellite Town, Raja Bazar) have pre-1980 wiring in many properties, making electrical hazards more common. Rawalpindi electrician rates are typically 15–20% lower than Islamabad for equivalent work.</p>
+
+      <h3>Common Electrical Jobs — Rawalpindi Price Guide</h3>
+      <ul>
+        <li><strong>Socket / switch replacement:</strong> Rs. 400–1,000 per point</li>
+        <li><strong>Ceiling fan installation:</strong> Rs. 600–1,500</li>
+        <li><strong>MCB replacement:</strong> Rs. 500–1,800</li>
+        <li><strong>Dedicated AC circuit:</strong> Rs. 3,000–9,000</li>
+        <li><strong>Earthing installation:</strong> Rs. 5,000–16,000</li>
+        <li><strong>Whole-home inspection:</strong> Rs. 2,500–6,500</li>
+        <li><strong>Full rewiring (3-bed):</strong> Rs. 35,000–90,000</li>
+        <li><strong>DB board upgrade:</strong> Rs. 8,000–22,000</li>
+      </ul>
+
+      <h3>Rawalpindi — Neighbourhood-Level Notes</h3>
+      <ul>
+        <li><strong>Bahria Town Rawalpindi (Phase 1–8), Gulraiz:</strong> Modern construction with standardised wiring. Solar inverter installation and EV point wiring are increasingly in demand. Rates at the higher end of Rawalpindi pricing but still 15–20% below Islamabad.</li>
+        <li><strong>Satellite Town, Chaklala Scheme 1–3:</strong> Established residential areas. Mix of wiring ages — Chaklala Scheme 1 properties from the 1970s may need full rewiring. Good electrician availability. Standard Rawalpindi rates.</li>
+        <li><strong>Westridge, Askari 1–14:</strong> Military housing colonies — generally well-maintained with regular electrical inspections. For private wiring work (fan, socket, AC circuit), standard rates apply with CNIC verification mandatory.</li>
+        <li><strong>Raja Bazar, Saddar, Commercial Market:</strong> Commercial wiring is dominant in Saddar. Raja Bazar has very old residential and commercial wiring — some properties are over 70 years old. Only experienced senior electricians should work here. Electrical fires are more common in this area than anywhere else in Rawalpindi.</li>
+        <li><strong>Adyala Road, Chakri Road (peri-urban):</strong> New housing schemes with mixed wiring quality. Some developers cut corners on wiring — have an independent electrical inspection done on any new-build property before occupying. Electrician availability is limited; book through <a href="/register">Service Knock</a> to ensure a verified professional.</li>
+      </ul>
+
+      <h2>Monsoon Electrical Safety — What Every Pakistani Family Must Know Right Now</h2>
+      <p>With Pakistan's 2026 monsoon already delivering heavy rainfall across all four major cities, this section is the most urgent part of this guide. Electrical risks spike sharply in July and August:</p>
+      <ul>
+        <li><strong>Never touch any switch, socket, or appliance with wet hands or while standing on a wet floor.</strong> Even a mild shock on a wet floor can be fatal due to the lower electrical resistance of wet skin and the good contact with earth that a wet surface provides.</li>
+        <li><strong>If your wall surface feels warm near a socket or switch, switch off that circuit at the DB board immediately</strong> and call an electrician before using it again. Warm walls near electrical points indicate arcing inside the wall — a fire risk.</li>
+        <li><strong>Check that all outdoor sockets, garden lights, and any wiring near exterior walls are properly weatherproofed.</strong> Exterior fittings that allow water ingress are a common cause of monsoon electrical faults.</li>
+        <li><strong>In a flood situation — even partial flooding of a ground floor — switch off your main electricity supply at the meter board before water contacts any electrical point.</strong> Do not wade through water to reach the meter board if water is already near sockets — cut power from outside the building if possible.</li>
+        <li><strong>If your electricity trips during rain and the breaker will not reset, do not keep trying.</strong> Call an electrician — a breaker that trips in rain and will not reset indicates that a live conductor has come into contact with water somewhere in your home.</li>
+      </ul>
+      <p>Read our full <a href="/blog/electrical-safety-guide-pakistan-homes">electrical safety guide for Pakistani homes</a> for year-round safety protocols. For monsoon-specific home protection including waterproofing and drainage, see our <a href="/blog/monsoon-home-maintenance-checklist-pakistan">monsoon home maintenance checklist</a>.</p>
+
+      <h2>How to Identify a Qualified Electrician in Pakistan</h2>
+      <p>The term "electrician" in Pakistan covers everyone from a formally trained master electrician to an unskilled person who has watched others work. For simple jobs like a fan installation or socket replacement, the skill gap matters less. For anything involving your DB board, earthing, concealed wiring, or AC circuits, hiring an unqualified person is a safety risk that can cost you your home or your life.</p>
+      <ul>
+        <li><strong>A qualified electrician works with the circuit switched OFF.</strong> Anyone who works on live wiring routinely — rather than just for brief testing — is either reckless or untrained. Both are dangerous.</li>
+        <li><strong>They use insulated tools.</strong> Proper electrician's screwdrivers, pliers, and wire strippers are insulated to 1,000V. Look at their toolkit before they start.</li>
+        <li><strong>They test before and after.</strong> A professional uses a voltage tester or multimeter to confirm circuits are dead before working and live after completion. If they never test anything, they are guessing.</li>
+        <li><strong>They provide a written scope before starting.</strong> Any work above Rs. 3,000 should have a written job description and price agreed before work begins. All electricians on <a href="/register">Service Knock</a> provide pre-work quotes as standard.</li>
+        <li><strong>They are CNIC-verified.</strong> Anyone working inside your home's electrical system should be accountable with a verified identity. This is non-negotiable. All electricians on Service Knock are CNIC-verified and rated by previous customers.</li>
+      </ul>
+
+      <h2>When Is It an Emergency? Call Immediately If You See These Signs</h2>
+      <ul>
+        <li>✅ Burning smell from any socket, switch plate, or DB board</li>
+        <li>✅ Scorch marks or blackening around any electrical point</li>
+        <li>✅ Sparking from a socket when nothing is plugged in</li>
+        <li>✅ Circuit breaker that trips repeatedly within minutes of resetting</li>
+        <li>✅ Shock felt when touching any appliance, tap, or metal surface</li>
+        <li>✅ Flickering lights throughout the house (not just one circuit)</li>
+        <li>✅ Any electrical point that is wet or has water running near it</li>
+      </ul>
+      <p>In any of these situations: <strong>switch off the affected circuit at the DB board</strong>, do not use the affected points, and <a href="/register">book an emergency electrician through Service Knock</a>. Do not attempt to diagnose or repair these faults yourself.</p>
+
+      <h2>Saving on Electricity While Getting Better Service</h2>
+      <p>A professional electrician visit is also a good opportunity to improve your home's electrical efficiency. Ask your electrician to:</p>
+      <ul>
+        <li>Install a dedicated circuit for each 1.5-ton or 2-ton AC — this prevents tripping and reduces wiring wear</li>
+        <li>Check and tighten all connections in the DB board — loose connections cause energy loss and heat build-up</li>
+        <li>Advise on BLDC fan upgrades — these save 60% electricity per fan versus conventional motors</li>
+        <li>Assess your earthing system — an absent or failed earth is both a safety and efficiency issue</li>
+      </ul>
+      <p>For a complete guide to reducing your electricity bill this summer, read our <a href="/blog/how-to-reduce-electricity-bill-pakistan-summer-2026">electricity saving guide for Pakistan 2026</a>.</p>
+
+      <h2>Final Thoughts</h2>
+      <p>In July 2026, with monsoon rains falling across Pakistan and electricity bills at their annual peak, the quality of your home's electrical installation and the skill of the electrician who works on it matter more than ever. An unqualified wireman who leaves a loose connection or skips earthing can cause a fire or a fatality — not immediately, but during the next rain event when a damp wall makes a live conductor accessible.</p>
+      <p><a href="/register">Book a CNIC-verified electrician through Service Knock</a> in Lahore, Karachi, Islamabad, Rawalpindi, Faisalabad, Multan, Gujranwala, and across Pakistan. Every electrician on our platform has a verified identity, customer ratings from real jobs in your area, and a formal booking record. You can also <a href="/contact">contact our team</a> to describe your electrical issue and get advice on which type of professional you need before booking.</p>
+    `,
+  },
 ];
 
