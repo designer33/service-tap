@@ -1667,5 +1667,142 @@ export const blogPosts = [
       <p><a href="/register">Book a CNIC-verified electrician through Service Knock</a> in Lahore, Karachi, Islamabad, Rawalpindi, Faisalabad, Multan, Gujranwala, and across Pakistan. Every electrician on our platform has a verified identity, customer ratings from real jobs in your area, and a formal booking record. You can also <a href="/contact">contact our team</a> to describe your electrical issue and get advice on which type of professional you need before booking.</p>
     `,
   },
+
+  {
+    id: 18,
+    slug: 'ac-repair-near-me-lahore-karachi-islamabad-rawalpindi-2026',
+    title: 'AC Repair Near Me in Lahore, Karachi, Islamabad & Rawalpindi — Book a Verified AC Technician (2026)',
+    excerpt: 'Is your AC not cooling during the peak of summer? This city-by-city guide explains how to find a reliable AC technician in Lahore, Karachi, Islamabad, and Rawalpindi. We cover 2026 repair costs, common inverter AC problems, and how to avoid AC gas (refrigerant) scams.',
+    image: 'https://images.unsplash.com/photo-1590483864434-75eb9b9f71c4?auto=format&fit=crop&w=800&q=80',
+    author: 'Service Knock Team',
+    date: 'July 13, 2026',
+    category: 'Guides',
+    readTime: '8 min',
+    metaTitle: 'AC Repair Near Me in Lahore, Karachi, Islamabad & Rawalpindi — 2026 Guide',
+    metaDescription: 'Find a reliable AC technician near you in Pakistan. 2026 guide with neighbourhood-level costs in Lahore (DHA, Gulberg), Karachi (DHA, Clifton), Islamabad (F-7, G-11) and Rawalpindi. Avoid AC gas scams and fix inverter AC errors.',
+    keywords: 'AC repair near me Lahore, AC repair near me Karachi, AC repair near me Islamabad, AC repair Rawalpindi, AC mechanic near me, AC technician near me, AC service DHA Lahore, AC service Gulberg Lahore, AC repair Johar Town, AC repair DHA Karachi, AC repair Clifton Karachi, AC technician Gulshan-e-Iqbal, AC repair F-7 Islamabad, AC repair Bahria Town, inverter AC repair Pakistan, AC gas filling cost 2026 Pakistan, اے سی مکینک, اے سی ریپیئر, best AC technician Lahore, best AC technician Karachi',
+    content: `
+      <p>It’s July in Pakistan. Temperatures are pushing past 40°C, humidity is climbing, and your air conditioner has just started blowing warm air. Or perhaps it’s tripping your circuit breaker. Or maybe water is dripping from the indoor unit onto your expensive flooring. Whatever the issue, an AC breakdown in peak summer is an emergency that demands an immediate fix.</p>
+
+      <p>But finding a reliable AC technician (commonly referred to as an "AC mechanic") when everyone else’s AC is also breaking down can be incredibly frustrating. This is the time of year when unverified technicians charge exorbitant rates, and the infamous "gas leak" scam is at its peak.</p>
+
+      <p>This guide — compiled from thousands of successful AC service and repair bookings on <a href="/services">Service Knock</a> — provides you with a realistic, neighbourhood-level cost breakdown for Lahore, Karachi, Islamabad, and Rawalpindi for 2026. It also gives you the knowledge you need to protect yourself from common scams and how to book a verified professional instantly.</p>
+
+      <h2>The "Gas Need Hogi" Scam — What Every Pakistani Should Know</h2>
+      <p>The most common phrase an unverified AC mechanic will tell you is: <em>"Sir, AC ki gas khatam ho gayi hai"</em> (Sir, the AC is out of gas). This is the easiest way for a dishonest technician to turn a simple Rs. 1,500 service call into a Rs. 10,000 "gas filling" charge.</p>
+      <ul>
+        <li><strong>AC gas (refrigerant) is not consumed like fuel in a car.</strong> An air conditioner is a closed system. If the gas level is low, it means there is a physical leak in the copper piping, the joints, or the coils.</li>
+        <li><strong>Filling gas without fixing the leak is useless.</strong> The new gas will simply leak out again — sometimes within days, sometimes over a few months. A professional technician will <em>always</em> find and braze (weld) the leak before recharging the system.</li>
+        <li><strong>Often, the AC just needs a deep clean.</strong> A heavily clogged indoor evaporator coil or outdoor condenser coil restricts airflow and heat transfer, making the AC blow warm air. A proper chemical wash will often restore cooling completely without a single drop of gas being added.</li>
+        <li><strong>Check the amp draw before agreeing to a gas recharge.</strong> A technician should use a clamp meter to measure the amperes the AC is drawing. If it’s drawing its rated current (e.g., 6-7 amps for a 1.5-ton non-inverter), the compressor is working and gas levels are likely fine.</li>
+      </ul>
+      <p>All AC technicians on <a href="/register">Service Knock</a> are strictly monitored for up-selling and are required to show you the physical leak or the pressure gauge reading before recommending a gas recharge.</p>
+
+      <h2>AC Repair & Service Costs in Lahore — 2026</h2>
+      <p>Lahore’s intense heat and dust mean ACs here require frequent servicing. The shift to inverter ACs is nearly complete in newer areas, meaning technicians must now understand electronic PCB repairs as much as traditional mechanical cooling cycles.</p>
+
+      <h3>Common AC Jobs — Lahore Price Guide</h3>
+      <ul>
+        <li><strong>Standard AC Service (Wash & Clean):</strong> Rs. 1,500–2,500</li>
+        <li><strong>Master / Deep Service (Unit removal & chemical wash):</strong> Rs. 3,000–4,500</li>
+        <li><strong>AC Gas Recharging (R410a / R32) including minor leak fix:</strong> Rs. 6,000–12,000 (depending on ton capacity)</li>
+        <li><strong>Capacitor Replacement (Non-inverter):</strong> Rs. 1,500–2,500</li>
+        <li><strong>Inverter PCB Repair (Circuit board):</strong> Rs. 6,000–15,000</li>
+        <li><strong>AC Installation (New split unit):</strong> Rs. 4,000–6,000 (excluding copper pipe material)</li>
+        <li><strong>AC Dismantling / Removal:</strong> Rs. 1,500–2,500</li>
+      </ul>
+
+      <h3>Lahore — Neighbourhood-Level Notes</h3>
+      <ul>
+        <li><strong>DHA Lahore (Phase 1–8), Cantt:</strong> High concentration of inverter ACs. Technicians here are familiar with premium brands (Daikin, Mitsubishi). Expect to pay at the higher end of the range. Master services are very popular here to maintain indoor air quality.</li>
+        <li><strong>Gulberg, Model Town, Garden Town:</strong> Older properties often have complex outdoor unit placements (e.g., on steep roofs or multi-story walls). Technicians may charge extra for difficult or dangerous access.</li>
+        <li><strong>Johar Town, Wapda Town, Faisal Town:</strong> Very competitive market with fast response times. Standard service rates are strictly adhered to. Ideal for quick, reliable service bookings through <a href="/register">Service Knock</a>.</li>
+        <li><strong>Bahria Town Lahore:</strong> Standardized construction makes AC installation and servicing straightforward. However, travel distances for technicians outside the society can affect availability. Local Bahria Town-based technicians are available on our platform.</li>
+      </ul>
+
+      <h2>AC Repair & Service Costs in Karachi — 2026</h2>
+      <p>Karachi's coastal environment creates a unique problem for air conditioners: severe corrosion. The salty, humid air rusts outdoor unit casings, corrodes copper coils (causing micro-leaks), and degrades electrical contacts faster than in any other Pakistani city.</p>
+
+      <h3>Common AC Jobs — Karachi Price Guide</h3>
+      <ul>
+        <li><strong>Standard AC Service:</strong> Rs. 1,200–2,000</li>
+        <li><strong>Master / Deep Service:</strong> Rs. 2,500–4,000</li>
+        <li><strong>AC Gas Recharging (including leak fix):</strong> Rs. 7,000–14,000 (Leaks are more frequent and harder to braze due to corrosion)</li>
+        <li><strong>Outdoor Condenser Coil Replacement (Copper):</strong> Rs. 12,000–22,000</li>
+        <li><strong>Capacitor Replacement:</strong> Rs. 1,200–2,200</li>
+        <li><strong>Inverter PCB Repair:</strong> Rs. 5,000–14,000</li>
+        <li><strong>AC Installation:</strong> Rs. 3,500–5,500</li>
+      </ul>
+
+      <h3>Karachi — Neighbourhood-Level Notes</h3>
+      <ul>
+        <li><strong>DHA Karachi, Clifton:</strong> Highest impact of sea breeze corrosion. Outdoor units here have significantly shorter lifespans unless treated with anti-corrosion sprays (which many premium technicians now offer). Coil replacements due to multiple micro-leaks are the most common major repair.</li>
+        <li><strong>Gulshan-e-Iqbal, Federal B Area, North Nazimabad:</strong> High-density apartment living means outdoor units are often hung from precarious brackets. Make sure the technician you hire has proper safety gear and ladders. Standard rates apply.</li>
+        <li><strong>PECHS, Tariq Road:</strong> High commercial AC usage (shops, offices). Technicians here are often experienced with larger 2-ton and 4-ton cabinet/floor-standing units as well as standard wall splits.</li>
+        <li><strong>Surjani Town, Orangi, Korangi:</strong> Budget-conscious areas where non-inverter ACs are still very common. Lower service rates apply, but beware of technicians using substandard, unbranded refrigerant gas which can damage the compressor.</li>
+      </ul>
+
+      <h2>AC Repair & Service Costs in Islamabad — 2026</h2>
+      <p>Islamabad's climate features high summer temperatures and significant monsoon humidity. The city has a higher adoption rate of high-end inverter ACs (due to higher electricity tariffs and purchasing power). AC usage drops completely in winter, meaning spring/summer startup issues are common.</p>
+
+      <h3>Common AC Jobs — Islamabad Price Guide</h3>
+      <ul>
+        <li><strong>Standard AC Service:</strong> Rs. 1,800–2,800</li>
+        <li><strong>Master / Deep Service:</strong> Rs. 3,500–5,000</li>
+        <li><strong>AC Gas Recharging (including leak fix):</strong> Rs. 7,000–13,000</li>
+        <li><strong>Inverter PCB Repair:</strong> Rs. 7,000–16,000</li>
+        <li><strong>Water Dropping / Drainage Unblocking:</strong> Rs. 1,000–2,000</li>
+        <li><strong>AC Installation:</strong> Rs. 4,500–7,000</li>
+      </ul>
+
+      <h3>Islamabad — Neighbourhood-Level Notes</h3>
+      <ul>
+        <li><strong>F-6, F-7, F-8, E-7:</strong> Premium rates apply. Many properties have concealed copper piping installed during construction. If a leak occurs in concealed piping, repair is highly complex and expensive. Technicians in these sectors must be highly skilled in leak detection.</li>
+        <li><strong>F-10, F-11, G-10, G-11:</strong> High volume of standard AC servicing. "Water dropping inside the room" is a very common complaint during the humid monsoon months, usually fixed by a quick drain pipe unblocking or a master service.</li>
+        <li><strong>Bahria Town Islamabad, DHA Islamabad:</strong> Modern housing with designated AC outdoor unit ledges. Easy access for technicians. Strong demand for scheduled maintenance. Local technicians are available on <a href="/register">Service Knock</a>.</li>
+        <li><strong>I-8, I-9, I-10:</strong> Older sector housing. Standard Islamabad pricing applies. Good availability of technicians.</li>
+      </ul>
+
+      <h2>AC Repair & Service Costs in Rawalpindi — 2026</h2>
+      <p>Rawalpindi shares the climate of Islamabad but has denser housing and more dust, meaning AC filters and coils clog faster. Rates are generally 15-20% lower than in Islamabad.</p>
+
+      <h3>Common AC Jobs — Rawalpindi Price Guide</h3>
+      <ul>
+        <li><strong>Standard AC Service:</strong> Rs. 1,500–2,200</li>
+        <li><strong>Master / Deep Service:</strong> Rs. 2,800–4,000</li>
+        <li><strong>AC Gas Recharging:</strong> Rs. 6,000–11,000</li>
+        <li><strong>Capacitor Replacement:</strong> Rs. 1,200–2,000</li>
+        <li><strong>AC Installation:</strong> Rs. 3,500–5,500</li>
+      </ul>
+
+      <h3>Rawalpindi — Neighbourhood-Level Notes</h3>
+      <ul>
+        <li><strong>Satellite Town, Commercial Market, Chaklala:</strong> High dust areas require more frequent servicing. Many homeowners opt for a mid-season service in July to keep cooling efficient.</li>
+        <li><strong>Bahria Town Rawalpindi:</strong> Premium Rawalpindi rates. High concentration of DC inverter units requiring specialized electronic troubleshooting rather than just mechanical repair.</li>
+        <li><strong>Raja Bazar, Saddar, Westridge:</strong> Dense commercial/residential mix. Technicians here are accustomed to working in tight spaces. Budget rates apply.</li>
+      </ul>
+
+      <h2>Inverter ACs vs. Non-Inverter ACs: Repair Differences</h2>
+      <p>If you have upgraded to an inverter AC to save on your electricity bill (as recommended in our <a href="/blog/how-to-reduce-electricity-bill-pakistan-summer-2026">summer electricity saving guide</a>), you need to know that repairs are different:</p>
+      <ul>
+        <li><strong>Electronic vs Mechanical:</strong> Non-inverters usually fail mechanically (compressor, capacitor, fan motor). Inverters often fail electronically (the PCB circuit board).</li>
+        <li><strong>PCB Repairs take time:</strong> If your inverter AC shows an error code (like E1, F3, etc.), the technician will usually need to remove the PCB and take it to a specialized electronics lab for repair. This can take 1-3 days. Very few technicians can repair a complex PCB on-site.</li>
+        <li><strong>Gas Types:</strong> Older non-inverters use R22 gas. Newer inverters use R410a or R32. R32 is mildly flammable and requires specific handling. <strong>Never</strong> let a technician mix different types of refrigerant gases.</li>
+      </ul>
+
+      <h2>How to Identify a Professional AC Technician</h2>
+      <ul>
+        <li><strong>They use a pressure gauge and clamp meter.</strong> An AC mechanic who guesses the gas level without attaching a manifold gauge or checks the compressor without a clamp meter is not a professional.</li>
+        <li><strong>They clean up after a service.</strong> A proper indoor unit service involves attaching a specialized waterproof cover (service bag) to catch the dirty water. They shouldn't leave your walls or floors stained.</li>
+        <li><strong>They don't rush the vacuuming process.</strong> When installing a new inverter AC or after a major gas leak repair, the system MUST be vacuumed using a vacuum pump to remove air and moisture before new gas is added. If they skip this (or just purge it with gas), your compressor's lifespan will be halved.</li>
+        <li><strong>They are CNIC-verified.</strong> For your family's safety, never let an unverified stranger into your home. All AC technicians on <a href="/register">Service Knock</a> are fully CNIC-verified.</li>
+      </ul>
+
+      <h2>Final Thoughts</h2>
+      <p>When the temperature hits 42°C, you don't have time to experiment with unknown mechanics from the local market. You need someone who will arrive promptly, diagnose the issue honestly without inventing a "gas leak," and charge a fair market rate.</p>
+      <p><a href="/register">Book a CNIC-verified AC technician through Service Knock</a> in Lahore, Karachi, Islamabad, Rawalpindi, and other major Pakistani cities. Our platform connects you with highly-rated professionals who understand both traditional and modern inverter AC systems. Don't sweat through the summer — get your AC fixed properly today. You can also <a href="/contact">contact our support team</a> if you need help understanding an error code on your AC before booking.</p>
+    `,
+  },
 ];
+
 
