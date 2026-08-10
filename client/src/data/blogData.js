@@ -2118,6 +2118,109 @@ export const blogPosts = [
       <p><a href="/register">Book a CNIC-verified, expert fridge technician through Service Knock</a> today. Whether you have a traditional direct-cool fridge in Rawalpindi, a rusting deep freezer in Karachi, or a complex inverter refrigerator displaying an error code in Lahore, our vetted professionals have the skills and tools to diagnose the problem accurately and fix it fairly. Keep your food safe and your appliances running efficiently all summer long.</p>
     `,
   },
+
+  {
+    id: 22,
+    slug: 'washing-machine-repair-near-me-lahore-karachi-islamabad-rawalpindi-2026',
+    title: 'Washing Machine Repair Near Me: 2026 Guide for Pakistan',
+    excerpt: 'Is your automatic washing machine not draining, making loud noises, or showing an error code? This city-by-city guide covers the cost of professional washing machine repair services in Lahore, Karachi, Islamabad, and Rawalpindi, covering both fully automatic and twin-tub models.',
+    image: 'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=800&q=80',
+    author: 'Service Knock Team',
+    date: 'August 10, 2026',
+    category: 'Guides',
+    readTime: '6 min',
+    metaTitle: 'Washing Machine Repair Services in Lahore, Karachi, Islamabad (2026)',
+    metaDescription: 'Find reliable washing machine repair services near you. 2026 cost guide for Lahore (DHA, Johar Town), Karachi (Clifton, Gulshan), Islamabad and Rawalpindi. Top-load, front-load, and twin-tub repairs.',
+    keywords: 'washing machine repair near me, automatic washing machine repair Lahore, washing machine mechanic Karachi, front load repair Islamabad, washing machine service Rawalpindi, washing machine repair DHA Lahore, washing machine repair Clifton Karachi, washing machine mechanic Gulshan-e-Iqbal, washing machine repair Bahria Town, washing machine repair F-7 Islamabad, appliance repair Pakistan, واشنگ مشین ریپیئر, best washing machine technician',
+    content: `
+      <p>August in Pakistan means peak monsoon humidity. Clothes take days to dry on the line, and families rely heavily on their washing machines and spin dryers. A breakdown now means piles of damp, sour-smelling laundry piling up almost immediately.</p>
+
+      <p>As more Pakistani households upgrade from traditional twin-tub semi-automatics to fully automatic top-load and front-load machines (brands like Haier, Dawlance, Pel, Samsung, and LG), the complexity of repairs has increased. You can no longer rely on a general roadside electrician; modern machines require technicians who understand complex PCBs, water inlet valves, and digital error codes.</p>
+
+      <p>This comprehensive guide, based on 2026 repair data from <a href="/services">Service Knock’s verified appliance technicians</a>, outlines the realistic costs of washing machine repairs across Lahore, Karachi, Islamabad, and Rawalpindi, and helps you identify common issues before booking.</p>
+
+      <h2>Fully Automatic vs. Semi-Automatic Repairs</h2>
+      <p>The repair landscape in Pakistan is sharply divided between these two types of machines:</p>
+      <ul>
+        <li><strong>Semi-Automatic (Twin Tub):</strong> These are purely mechanical. Common failures are the wash motor burning out (usually due to overloading), the spin dryer seal leaking water onto the spin motor (a major safety hazard), or the drain cable snapping. Repairs are generally cheap and can often be done on-site.</li>
+        <li><strong>Fully Automatic (Top/Front Load):</strong> These are electronically controlled. Common failures include water inlet valves not opening (due to silt from water tanks), drain pumps failing, or the main PCB getting fried by voltage fluctuations. Front-load machines are the most complex and expensive to repair.</li>
+      </ul>
+
+      <h2>Washing Machine Repair Costs in Lahore — 2026</h2>
+      <p>Lahore has a massive adoption rate of automatic top-load machines. The hard water in many areas of Lahore also causes significant scale buildup on internal heating elements (in front-load machines) and drum scaling.</p>
+
+      <h3>Common Services — Lahore Price Guide</h3>
+      <ul>
+        <li><strong>Diagnostic / Visit Charge:</strong> Rs. 500–1,000</li>
+        <li><strong>Automatic Main PCB Repair/Replacement:</strong> Rs. 3,500–8,000 (Depends heavily on brand)</li>
+        <li><strong>Water Inlet Valve Replacement:</strong> Rs. 1,500–3,000</li>
+        <li><strong>Drain Pump Replacement (Automatic):</strong> Rs. 2,000–4,000</li>
+        <li><strong>Wash Motor Rewinding (Twin Tub):</strong> Rs. 1,500–2,500</li>
+        <li><strong>Spin Motor Replacement (Twin Tub):</strong> Rs. 2,500–4,000</li>
+        <li><strong>Deep Tub Cleaning (Descaling Service):</strong> Rs. 2,000–3,500</li>
+      </ul>
+
+      <h3>Lahore — Neighbourhood Notes</h3>
+      <ul>
+        <li><strong>DHA Lahore, Cantt:</strong> High concentration of expensive front-load machines (Bosch, Siemens, Samsung). Technicians must be highly specialized. Expect premium rates for front-load diagnostics.</li>
+        <li><strong>Johar Town, Wapda Town:</strong> Top-load automatic machines dominate here. High availability of technicians who can quickly replace inlet valves and drain pumps on-site.</li>
+        <li><strong>Old Lahore:</strong> Twin-tub repairs are still the most common request. Motor rewinding is a frequent and highly competitive service in this area.</li>
+      </ul>
+
+      <h2>Washing Machine Repair Costs in Karachi — 2026</h2>
+      <p>Karachi faces two unique challenges: severe coastal corrosion (rusting out the metal bodies of older machines) and extremely silty water delivered via tankers, which clogs the fine mesh filters on automatic machine water inlet valves.</p>
+
+      <h3>Common Services — Karachi Price Guide</h3>
+      <ul>
+        <li><strong>Diagnostic / Visit Charge:</strong> Rs. 500–1,000</li>
+        <li><strong>Water Inlet Valve Cleaning/Replacement:</strong> Rs. 1,500–3,000 (Highest frequency repair in Karachi)</li>
+        <li><strong>Drain Pump Replacement:</strong> Rs. 2,000–3,500</li>
+        <li><strong>Suspension Rod Replacement (Fixing severe vibration):</strong> Rs. 2,500–4,500</li>
+        <li><strong>Main PCB Repair:</strong> Rs. 3,000–7,000</li>
+        <li><strong>Body Rust Repair & Painting:</strong> Rs. 3,000–6,000</li>
+      </ul>
+
+      <h3>Karachi — Neighbourhood Notes</h3>
+      <ul>
+        <li><strong>DHA Karachi, Clifton:</strong> Rust is the primary enemy here. Many residents book body restoration services or require PCB replacements due to salty air corroding electronic contacts.</li>
+        <li><strong>Gulshan-e-Iqbal, North Nazimabad:</strong> High volume of "machine not filling with water" complaints. This is almost always due to tanker water silt blocking the inlet filter. A simple cleaning service often fixes this.</li>
+        <li><strong>Apartment Complexes (Tariq Road, PECHS):</strong> Machine vibration noise is a major issue in apartments. If your machine "walks" or bangs loudly during the spin cycle, the suspension rods need replacing.</li>
+      </ul>
+
+      <h2>Washing Machine Repair Costs in Islamabad & Rawalpindi — 2026</h2>
+      <p>The twin cities experience frequent thunderstorms in August, leading to sudden voltage spikes that frequently fry the sensitive PCBs of automatic washing machines. The use of front-load machines with built-in heaters is also higher here due to colder winters.</p>
+
+      <h3>Common Services — Islamabad/Rawalpindi Price Guide</h3>
+      <ul>
+        <li><strong>Diagnostic Charge:</strong> Rs. 700–1,200 (Isb) / Rs. 500–800 (Rwp)</li>
+        <li><strong>Main PCB Repair (Voltage Damage):</strong> Rs. 4,000–9,000</li>
+        <li><strong>Heater Element Replacement (Front Load):</strong> Rs. 3,000–6,000</li>
+        <li><strong>Door Seal / Gasket Replacement (Front Load):</strong> Rs. 3,500–7,000</li>
+        <li><strong>Drain Pump Replacement:</strong> Rs. 2,500–4,500</li>
+        <li><strong>Spin Motor Replacement (Twin Tub):</strong> Rs. 2,500–3,500</li>
+      </ul>
+
+      <h3>Islamabad & Rawalpindi — Neighbourhood Notes</h3>
+      <ul>
+        <li><strong>Islamabad Sectors (F-7, F-8, E-7):</strong> Premium front-load machines are standard. Leaking door seals (gaskets) are a common repair. Technicians here charge premium rates but are generally well-trained on imported brands.</li>
+        <li><strong>Bahria Town (Isb/Rwp) & DHA:</strong> High demand for fast, reliable service. Residents heavily utilize online booking platforms to find verified professionals rather than relying on local markets.</li>
+        <li><strong>Rawalpindi (Satellite Town, Commercial Market):</strong> A mix of automatic and twin-tub machines. Budget-friendly repairs are available, but always ensure the technician uses copper wire if rewinding a motor, not cheaper aluminium.</li>
+      </ul>
+
+      <h2>Troubleshooting Common Error Codes</h2>
+      <p>Before calling a technician, look at the digital display on your automatic machine:</p>
+      <ul>
+        <li><strong>E1 / 4E (Water Supply Error):</strong> The machine isn't getting water. Check if the tap is open, the hose isn't kinked, and the mesh filter at the back of the machine where the hose connects isn't blocked by dirt.</li>
+        <li><strong>E2 / 5E (Drain Error):</strong> The machine cannot empty the water. Check the drain filter (usually at the bottom front of a front-loader, or inside the drum of a top-loader) for coins, lint, or hairpins blocking the pump.</li>
+        <li><strong>E3 / UE (Unbalanced Load Error):</strong> The clothes are tangled on one side. Pause the machine, redistribute the wet clothes evenly, and restart.</li>
+        <li><strong>E4 / dE (Door Error):</strong> The lid or door isn't closed properly. If it is closed, the door lock switch might be faulty and requires a technician.</li>
+      </ul>
+
+      <h2>Final Thoughts</h2>
+      <p>A broken washing machine during the humid monsoon season is a household emergency. However, handing over a Rs. 80,000 automatic machine to an untrained local mechanic can result in a permanently damaged PCB or mismatched parts.</p>
+      <p><a href="/register">Book a CNIC-verified washing machine technician through Service Knock</a>. Whether you need a simple inlet valve cleaned in Karachi, a complex front-load PCB repaired in Lahore, or a twin-tub motor replaced in Rawalpindi, our vetted professionals have the specific brand experience required. Don't let the laundry pile up — get your machine fixed by a trusted expert today.</p>
+    `,
+  },
 ];
 
 
