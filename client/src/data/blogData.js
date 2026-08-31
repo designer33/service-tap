@@ -2321,6 +2321,104 @@ export const blogPosts = [
       <p><a href="/register">Book a verified solar maintenance team through Service Knock</a> today. Whether you need salt-grime removal in Karachi, a post-monsoon electrical check in Islamabad, or a monthly cleaning contract in Lahore, our vetted professionals have the right tools (de-ionized water, rotary brushes, thermal cameras) to keep your system performing at 100%.</p>
     `,
   },
+
+  {
+    id: 24,
+    slug: 'water-pump-motor-repair-near-me-lahore-karachi-islamabad-2026',
+    title: 'Water Pump & Motor Repair Near Me: 2026 Guide for Pakistan',
+    excerpt: 'Is your water pump making a grinding noise, leaking, or failing to lift water to your overhead tank? This city-by-city guide covers the cost of professional motor winding, seal replacement, and pump repair (Kharad) services in Lahore, Karachi, Islamabad, and Rawalpindi.',
+    image: 'https://images.unsplash.com/photo-1574883494799-a864d4b3df2a?auto=format&fit=crop&w=800&q=80',
+    author: 'Service Knock Team',
+    date: 'August 31, 2026',
+    category: 'Guides',
+    readTime: '6 min',
+    metaTitle: 'Water Pump & Motor Repair Services in Lahore, Karachi, Islamabad (2026)',
+    metaDescription: 'Find reliable water pump and motor repair services near you. 2026 cost guide for Lahore (DHA, Johar Town), Karachi (Clifton, Gulshan), Islamabad and Rawalpindi. Motor winding, seal fixing, and bearing replacement.',
+    keywords: 'water pump repair near me, motor winding Lahore, water motor repair Karachi, donkey pump repair Islamabad, water pump mechanic Rawalpindi, water motor repair DHA Lahore, pump repair Clifton Karachi, motor winding Gulshan-e-Iqbal, water pump repair Bahria Town, motor repair F-7 Islamabad, kharad mechanic Pakistan, پانی کی موٹر ریپیئر, best plumber technician',
+    content: `
+      <p>In Pakistan, a functioning water pump is the lifeline of any household. Whether you rely on a suction pump (colloquially known as a "Donkey Pump") to pull water from the municipal line, a mono-block motor to lift water from an underground tank to the roof, or a deep-well submersible pump, a breakdown means your home instantly runs dry.</p>
+
+      <p>During the late summer and post-monsoon period, water motors face extreme stress. Power fluctuations cause motors to burn out, while sediment and mud in the water supply (especially after heavy rains) ruin the mechanical seals and impellers. Getting a burnt motor repaired quickly and honestly is a major challenge.</p>
+
+      <p>Based on August 2026 data from <a href="/services">Service Knock’s verified plumbers and electro-mechanical technicians</a>, this guide breaks down the true cost of water pump repairs, motor winding, and lathe (Kharad) work across Lahore, Karachi, Islamabad, and Rawalpindi.</p>
+
+      <h2>The "Aluminium Wire" Motor Winding Scam</h2>
+      <p>The most common major repair for a water pump is "rewinding" the motor after it has burnt out due to voltage fluctuations or running dry. However, the market is full of mechanics who cut corners:</p>
+      <ul>
+        <li><strong>Copper vs. Aluminium:</strong> Original motors use 100% copper wire, which handles heat well. Unverified mechanics often rewind the motor using cheaper aluminium wire, painted to look like copper. Aluminium heats up much faster, meaning the motor will likely burn out again within a few months.</li>
+        <li><strong>The Bearing Check:</strong> When a motor burns out, the heat often damages the bearings. A good technician will always replace the bearings (Rs. 400-600) during a rewind to ensure the motor runs silently and smoothly. If they skip this, the motor will vibrate loudly.</li>
+      </ul>
+      <p>Technicians on <a href="/register">Service Knock</a> are strictly vetted and guarantee the use of 100% copper wire for all motor rewinding services.</p>
+
+      <h2>Water Pump Repair Costs in Lahore — 2026</h2>
+      <p>Lahore relies heavily on municipal water supply and deep boreholes. Donkey pumps are very common in older areas, while mono-block and submersible pumps dominate DHA and newer societies.</p>
+
+      <h3>Common Services — Lahore Price Guide</h3>
+      <ul>
+        <li><strong>Diagnostic / Visit Charge (Plumber):</strong> Rs. 500–1,000</li>
+        <li><strong>Mono-block Motor Winding (1 HP - Copper):</strong> Rs. 3,500–5,000</li>
+        <li><strong>Donkey Pump Leather/Seal Replacement:</strong> Rs. 1,500–2,500</li>
+        <li><strong>Water Seal & Bearing Replacement (Mono-block):</strong> Rs. 2,000–3,500</li>
+        <li><strong>Capacitor Replacement:</strong> Rs. 800–1,500</li>
+      </ul>
+
+      <h3>Lahore — Neighbourhood Notes</h3>
+      <ul>
+        <li><strong>DHA Lahore, Cantt:</strong> Deep-well submersible pumps are standard here. If a submersible pump fails, it must be pulled out of the borehole using a winch, which incurs extra labor costs (Rs. 3,000-5,000 just for extraction) before repair costs are calculated.</li>
+        <li><strong>Johar Town, Wapda Town:</strong> High density of standard mono-block pumps used to lift water to overhead tanks. Capacitor failures are extremely common here due to summer voltage drops.</li>
+        <li><strong>Old Lahore / Walled City:</strong> Donkey pumps are heavily relied upon to pull water during specific supply hours. Mechanics here are highly skilled in rapid on-site seal replacements.</li>
+      </ul>
+
+      <h2>Water Pump Repair Costs in Karachi — 2026</h2>
+      <p>Karachi faces acute water scarcity. Residents rely on water tankers, emptying them into underground tanks, and then pumping the water to the roof. The heavy reliance on tanker water means pumps suck up a lot of silt, sand, and even small stones, which destroys impellers.</p>
+
+      <h3>Common Services — Karachi Price Guide</h3>
+      <ul>
+        <li><strong>Diagnostic / Visit Charge:</strong> Rs. 500–1,000</li>
+        <li><strong>Motor Winding (1 HP - Copper):</strong> Rs. 4,000–6,000 (Slightly higher due to transport logistics)</li>
+        <li><strong>Impeller Replacement (Brass):</strong> Rs. 2,500–4,000</li>
+        <li><strong>Kharad Work (Resurfacing the pump housing):</strong> Rs. 2,000–3,500</li>
+        <li><strong>Automatic Water Level Controller Installation:</strong> Rs. 3,500–5,500</li>
+      </ul>
+
+      <h3>Karachi — Neighbourhood Notes</h3>
+      <ul>
+        <li><strong>DHA Karachi, Clifton:</strong> Residents frequently install automatic water level controllers (float switches) to prevent motors from running dry when the underground tank is empty. Repairing these switches is a high-demand service.</li>
+        <li><strong>Gulshan-e-Iqbal, North Nazimabad:</strong> High silt content in tanker water destroys the brass impellers inside the pump. If your motor is running but no water is lifting, the impeller likely needs replacement.</li>
+        <li><strong>Apartment Complexes (PECHS, Tariq Road):</strong> Heavy-duty 3-phase motors are used to pump water to high-rise roofs. These require specialized commercial electricians for repair.</li>
+      </ul>
+
+      <h2>Water Pump Repair Costs in Islamabad & Rawalpindi — 2026</h2>
+      <p>Islamabad's varying topography means water pressure fluctuates wildly. Residents use powerful suction pumps to pull from the CDA line. Rawalpindi relies heavily on private boreholes and deep submersible pumps.</p>
+
+      <h3>Common Services — Islamabad/Rawalpindi Price Guide</h3>
+      <ul>
+        <li><strong>Diagnostic Charge:</strong> Rs. 700–1,200 (Isb) / Rs. 500–800 (Rwp)</li>
+        <li><strong>Submersible Pump Motor Winding:</strong> Rs. 6,000–10,000 (Requires specialized waterproof winding)</li>
+        <li><strong>Mono-block Motor Winding (1 HP):</strong> Rs. 3,500–5,500</li>
+        <li><strong>Pressure Switch Replacement (for auto-pumps):</strong> Rs. 1,500–3,000</li>
+        <li><strong>Bearing Replacement (Noise reduction):</strong> Rs. 1,500–2,500</li>
+      </ul>
+
+      <h3>Islamabad & Rawalpindi — Neighbourhood Notes</h3>
+      <ul>
+        <li><strong>Islamabad Sectors (F-7, F-8, E-7, G-10):</strong> Many homes use pressure-pump systems to ensure high water pressure for rain-showers. When these pumps rapidly click on and off, the pressure switch or the pressure tank bladder needs replacing.</li>
+        <li><strong>Bahria Town (Isb/Rwp) & DHA:</strong> High demand for fast, reliable plumbers who can also handle the electrical side of pump repair without needing to call a separate electrician.</li>
+        <li><strong>Rawalpindi (Satellite Town, Commercial Market):</strong> Deep boreholes are standard. A common issue is the foot-valve failing at the bottom of the pipe, causing the pump to lose its "prime."</li>
+      </ul>
+
+      <h2>Troubleshooting: Before Calling a Mechanic</h2>
+      <ul>
+        <li><strong>Motor hums but doesn't spin:</strong> This is almost always a blown capacitor (a cylindrical part on top of the motor). This is a cheap, Rs. 1,000 fix. Do not let a mechanic tell you the motor needs rewinding!</li>
+        <li><strong>Motor runs but no water lifts:</strong> Check if the pump needs "priming" (pouring water into the top nut to remove air). If it's primed but still not lifting, the water seal or impeller is broken.</li>
+        <li><strong>Motor is screaming/grinding loudly:</strong> The bearings are shot. Turn it off immediately. If you keep running it, the friction will generate enough heat to burn the copper winding.</li>
+      </ul>
+
+      <h2>Final Thoughts</h2>
+      <p>A broken water motor disrupts everything from cooking to bathing. Finding a mechanic who won't cheat you on copper wire or invent fake problems is crucial.</p>
+      <p><a href="/register">Book a verified water pump and motor technician through Service Knock</a> today. Whether you need a mono-block rewound in Lahore, an impeller replaced in Karachi, or a submersible pump extracted in Rawalpindi, our vetted professionals offer transparent pricing and guaranteed work. Keep the water flowing in your home without the stress of being scammed.</p>
+    `,
+  },
 ];
 
 
