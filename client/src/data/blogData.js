@@ -2517,6 +2517,100 @@ export const blogPosts = [
       <p><a href="/register">Book a verified professional painter through Service Knock</a> today. Whether you need rising damp treated in Lahore, a weather-shield applied in Karachi, or basement waterproofing in Islamabad, our vetted professionals use proper chemicals and premium paints to ensure a long-lasting, beautiful finish.</p>
     `,
   },
+
+  {
+    id: 26,
+    slug: 'carpenter-services-furniture-repair-near-me-lahore-karachi-islamabad-2026',
+    title: 'Carpenter Services Near Me: Door Fixing & Furniture Repair 2026',
+    excerpt: 'Are your wooden doors jammed after the monsoon humidity? Do your kitchen cabinets need new hinges, or is your sofa frame sinking? This city-by-city guide covers the cost of professional carpenter (Tarkhan) services in Lahore, Karachi, Islamabad, and Rawalpindi.',
+    image: 'https://images.unsplash.com/photo-1540638349517-3abd5afc5f70?auto=format&fit=crop&w=800&q=80',
+    author: 'Service Knock Team',
+    date: 'September 10, 2026',
+    category: 'Guides',
+    readTime: '6 min',
+    metaTitle: 'Carpenter & Furniture Repair Services in Lahore, Karachi, Islamabad (2026)',
+    metaDescription: 'Find reliable carpenter services near you. 2026 cost guide for Lahore (DHA, Johar Town), Karachi (Clifton, Gulshan), Islamabad and Rawalpindi. Door shaving, lock replacement, and cabinet repair.',
+    keywords: 'carpenter near me, furniture repair Lahore, carpenter services Karachi, door repair Islamabad, woodwork Rawalpindi, carpenter DHA Lahore, carpenter Clifton Karachi, woodwork Gulshan-e-Iqbal, furniture repair Bahria Town, carpenter F-7 Islamabad, tarkhan Pakistan, بڑھئی, best carpenter',
+    content: `
+      <p>By September, the intense humidity of the Pakistani monsoon has deeply penetrated the woodwork in our homes. The most obvious sign? That annoying bathroom door that suddenly won't close properly, or kitchen cabinet hinges that have rusted and snapped. Additionally, this is the time when termite (deemak) damage from the wet season becomes painfully obvious in wooden door frames.</p>
+
+      <p>Finding a skilled carpenter (Tarkhan) for minor repairs—like shaving a swollen door, replacing a mortise lock, or fixing a wobbly dining chair—can be incredibly frustrating. Many carpenters prefer large contract jobs and will ignore calls for small home repairs, or they will quote exorbitant "visit charges" just to fix a single lock.</p>
+
+      <p>Based on September 2026 data from <a href="/services">Service Knock’s verified professional carpenters</a>, this guide breaks down the true cost of common woodwork and furniture repair services across Lahore, Karachi, Islamabad, and Rawalpindi.</p>
+
+      <h2>The "Swollen Door" Problem</h2>
+      <p>Wood absorbs moisture from the air and expands. In Pakistan, solid wood doors (like Diyar or Ash wood) and MDF press-doors swell significantly during July and August. Attempting to force a swollen door closed damages the frame, breaks the hinges, and ruins the lock alignment.</p>
+      <p><strong>The Fix:</strong> A professional carpenter will remove the door from its hinges, use an electric planer to shave a few millimeters off the sticking edge, reseal the exposed wood with lacquer or polish to prevent future moisture absorption, and rehang it perfectly. This simple job saves the door from permanent damage.</p>
+
+      <h2>Carpenter Service Costs in Lahore — 2026</h2>
+      <p>Lahore has a rich tradition of solid wood craftsmanship (Chiniot style), but modern homes in newer societies heavily utilize engineered wood (Lasani/MDF) for wardrobes and kitchens, which require delicate handling.</p>
+
+      <h3>Common Services — Lahore Price Guide</h3>
+      <ul>
+        <li><strong>Door Shaving (Fixing jammed door):</strong> Rs. 800–1,200 per door</li>
+        <li><strong>Lock Replacement (Standard Cylinder/Mortise):</strong> Rs. 500–800 (Labor only)</li>
+        <li><strong>Kitchen Cabinet Hinge Replacement:</strong> Rs. 150–250 per hinge</li>
+        <li><strong>Sofa Frame Repair (Opening base fabric and fixing broken wood):</strong> Rs. 2,500–4,000</li>
+        <li><strong>Custom Wardrobe Shelving (Lasani Board):</strong> Rs. 350–500 per sq ft</li>
+      </ul>
+
+      <h3>Lahore — Neighbourhood Notes</h3>
+      <ul>
+        <li><strong>DHA Lahore, Cantt:</strong> High demand for premium hardware installation (soft-close hinges, digital smart locks). Carpenters here must be familiar with imported Turkish and German fittings.</li>
+        <li><strong>Johar Town, Wapda Town:</strong> Termite damage in door frames (chokhats) is a frequent issue. Carpenters often work alongside pest control teams to replace the hollowed-out bottoms of wooden frames.</li>
+        <li><strong>Old Lahore:</strong> Restoration of older, solid-wood antique furniture is a highly sought-after, specialized skill in this area.</li>
+      </ul>
+
+      <h2>Carpenter Service Costs in Karachi — 2026</h2>
+      <p>Karachi's coastal humidity is relentless. Particleboard and low-quality MDF swell and disintegrate rapidly here. Iron nails and cheap hinges rust within months, causing cabinet doors to sag or fall off entirely.</p>
+
+      <h3>Common Services — Karachi Price Guide</h3>
+      <ul>
+        <li><strong>Door Shaving/Adjustment:</strong> Rs. 800–1,500 per door</li>
+        <li><strong>Rust-Proof Stainless Steel Hinge Installation:</strong> Rs. 200–350 per hinge (Labor + basic material)</li>
+        <li><strong>Bed Frame Creaking Repair (Tightening joints/adding supports):</strong> Rs. 1,500–3,000</li>
+        <li><strong>Fixing Sagging Drawers (Channel replacement):</strong> Rs. 600–1,000 per drawer</li>
+        <li><strong>Smart Door Lock Installation:</strong> Rs. 2,000–3,500</li>
+      </ul>
+
+      <h3>Karachi — Neighbourhood Notes</h3>
+      <ul>
+        <li><strong>DHA Karachi, Clifton:</strong> Marine-grade plywood is practically mandatory for any new woodwork here due to the sea breeze. Upgrading old kitchen cabinets with rust-proof hydraulic hinges is a top requested service.</li>
+        <li><strong>Gulshan-e-Iqbal, North Nazimabad:</strong> High density of apartment living means space-saving custom furniture modifications (like adding hidden storage under beds) are very popular.</li>
+        <li><strong>Saddar (Furniture Markets):</strong> While you can buy furniture here, residents prefer booking verified home-visit carpenters for repairs rather than dealing with the hassle of transporting broken furniture to the market.</li>
+      </ul>
+
+      <h2>Carpenter Service Costs in Islamabad & Rawalpindi — 2026</h2>
+      <p>The twin cities experience extreme temperature variations between summer and winter, causing wood to constantly expand and contract. This takes a heavy toll on wooden flooring, outdoor pergolas, and solid wood doors.</p>
+
+      <h3>Common Services — Islamabad/Rawalpindi Price Guide</h3>
+      <ul>
+        <li><strong>Door Adjustment/Shaving:</strong> Rs. 1,000–1,500 per door</li>
+        <li><strong>Wooden Floor Skirting Repair:</strong> Rs. 60–100 per running foot</li>
+        <li><strong>Dining Chair Regluing & Clamping (Fixing wobble):</strong> Rs. 500–800 per chair</li>
+        <li><strong>Door Closer (Hydraulic) Installation:</strong> Rs. 800–1,200</li>
+        <li><strong>Termite Damaged Frame Patching:</strong> Rs. 2,000–4,000</li>
+      </ul>
+
+      <h3>Islamabad & Rawalpindi — Neighbourhood Notes</h3>
+      <ul>
+        <li><strong>Islamabad Sectors (F-7, F-8, E-7, G-10):</strong> Many homes feature extensive exterior woodwork (pergolas, wooden decks). Post-monsoon repairs and weather-sealing/polishing of this outdoor wood is a major maintenance task.</li>
+        <li><strong>Bahria Town (Isb/Rwp) & DHA:</strong> High demand for precise, clean carpenters who don't leave sawdust all over the house. Hanging heavy items (like large mirrors or decorative floating shelves) properly on drywall is a frequent request.</li>
+        <li><strong>Rawalpindi (Satellite Town, Commercial Market):</strong> A strong preference for repairing and reinforcing heavy, traditional solid wood beds and wardrobes rather than replacing them.</li>
+      </ul>
+
+      <h2>Tips for Hiring a Carpenter</h2>
+      <ul>
+        <li><strong>Buy Your Own Hardware:</strong> Unless specified, it is usually cheaper and safer to buy your own door locks, handles, and hinges (opt for brass or stainless steel) and just pay the carpenter for the labor (mazdoori).</li>
+        <li><strong>Check for Termites First:</strong> If a door frame is crumbling like paper, you don't just need a carpenter; you need pest control first, otherwise, the termites will eat the new wood.</li>
+        <li><strong>Ask About Cleanup:</strong> Planing wood creates a massive amount of fine dust. Ensure your carpenter uses a dust-bag on their electric planer or covers your furniture before they start.</li>
+      </ul>
+
+      <h2>Final Thoughts</h2>
+      <p>A jammed door is a daily annoyance, and a broken cabinet hinge can quickly lead to a smashed glass plate. Don't wait for minor woodwork issues to become major replacements.</p>
+      <p><a href="/register">Book a verified professional carpenter through Service Knock</a> today. Whether you need a simple lock changed in Karachi, a swollen door shaved in Lahore, or custom kitchen shelves built in Islamabad, our vetted Tarkhans bring the right tools and expertise directly to your doorstep.</p>
+    `,
+  },
 ];
 
 
