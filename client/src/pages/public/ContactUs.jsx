@@ -29,8 +29,8 @@ const ContactUs = () => {
     {
       emoji: '📞', icon: Phone,
       title: t('callUs'),
-      line1: '03438485818',
-      link: 'tel:03438485818',
+      line1: '03436228041',
+      link: 'tel:03436228041',
       line2: t('monFri'),
       color: 'text-primary-600', bg: 'bg-primary-50', border: 'border-primary-100',
     },
