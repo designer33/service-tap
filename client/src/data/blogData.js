@@ -2707,6 +2707,191 @@ export const blogPosts = [
       <p><a href="/register">Book a verified, mechanized water tank cleaning team through Service Knock</a> today. Whether you need heavy mud vacuumed in Karachi, hard water scale removed in Lahore, or a standard hygienic wash in Islamabad, our vetted professionals use high-pressure washers and food-safe sanitizers to ensure your water is crystal clear and completely safe.</p>
     `,
   },
+
+  {
+    id: 28,
+    slug: 'sofa-carpet-cleaning-services-near-me-lahore-karachi-islamabad-2026',
+    title: 'Sofa & Carpet Cleaning Near Me: Pre-Winter Guide 2026',
+    excerpt: 'As the weather cools down, it is time to roll out the heavy carpets and prep your home for the festive winter season. This city-by-city guide covers the true cost of professional sofa dry cleaning, carpet shampooing, and mattress sanitation in Lahore, Karachi, Islamabad, and Rawalpindi.',
+    image: 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=800&q=80',
+    author: 'Service Knock Team',
+    date: 'September 21, 2026',
+    category: 'Guides',
+    readTime: '6 min',
+    metaTitle: 'Sofa & Carpet Cleaning Services in Lahore, Karachi, Islamabad (2026)',
+    metaDescription: 'Find reliable sofa and carpet dry cleaning services near you. 2026 cost guide for Lahore (DHA, Johar Town), Karachi (Clifton, Gulshan), Islamabad and Rawalpindi. Remove deep stains and odors.',
+    keywords: 'sofa cleaning near me, carpet cleaning Lahore, sofa dry clean Karachi, mattress cleaning Islamabad, carpet wash Rawalpindi, sofa wash DHA Lahore, carpet cleaner Clifton Karachi, sofa cleaning Gulshan-e-Iqbal, upholstery cleaning Bahria Town, carpet washing F-7 Islamabad, deep cleaning Pakistan, صوفہ کی صفائی, best cleaning technician',
+    content: `
+      <p>Late September in Pakistan brings a slight dip in the evening temperatures, signaling the start of the transition to autumn. Families begin bringing out their heavy woolen carpets from storage and preparing their drawing rooms for the upcoming winter wedding and festive season. However, stored carpets often smell musty, and sofas have accumulated months of summer sweat and monsoon humidity.</p>
+
+      <p>Vacuuming is not enough to remove the deep-seated dust mites, dead skin cells, and absorbed odors trapped inside upholstery. You need professional extraction.</p>
+
+      <p>Based on September 2026 data from <a href="/services">Service Knock’s verified upholstery cleaning teams</a>, this guide breaks down the true cost of mechanized sofa dry cleaning, carpet shampooing, and mattress sanitation across Lahore, Karachi, Islamabad, and Rawalpindi.</p>
+
+      <h2>The "Wipe and Wet" Mistake</h2>
+      <p>Many local cleaners will simply spray your sofa with soapy water and aggressively scrub it with a hard plastic brush. This is a disaster for three reasons:</p>
+      <ul>
+        <li><strong>Fabric Damage:</strong> Hard scrubbing ruins the pile of velvet, suede, and jute fabrics, leaving permanent bald patches.</li>
+        <li><strong>Trapped Moisture:</strong> If the soapy water sinks deep into the foam and isn't extracted mechanically, the sofa will take days to dry. In the meantime, it will develop a terrible mildew smell (fungus).</li>
+        <li><strong>The Professional Method:</strong> True upholstery cleaning requires an "Injection & Extraction" machine (like Karcher). It injects a specialized, low-moisture cleaning foam and immediately vacuums it out along with the deep dirt, leaving the sofa 90% dry within an hour.</li>
+      </ul>
+      <p>All cleaning teams on <a href="/register">Service Knock</a> use imported extraction machines and fabric-safe upholstery shampoos.</p>
+
+      <h2>Upholstery Cleaning Costs in Lahore — 2026</h2>
+      <p>Lahore's dusty environment means carpets and sofas get dirty incredibly fast. With the wedding season approaching, the demand for premium drawing room cleaning in DHA and Bahria Town skyrockets.</p>
+
+      <h3>Common Services — Lahore Price Guide</h3>
+      <ul>
+        <li><strong>Sofa Cleaning (Standard 5-Seater):</strong> Rs. 2,500–4,000</li>
+        <li><strong>Carpet Shampooing (Per Square Foot):</strong> Rs. 15–25</li>
+        <li><strong>Mattress Deep Cleaning (Double/King Size):</strong> Rs. 2,000–3,500</li>
+        <li><strong>Dining Chairs Cleaning (Set of 6):</strong> Rs. 1,200–2,000</li>
+      </ul>
+
+      <h3>Lahore — Neighbourhood Notes</h3>
+      <ul>
+        <li><strong>DHA Lahore, Cantt:</strong> Very high demand for delicate fabric cleaning (like pure silk carpets or velvet Chesterfield sofas). Professional teams here use specialized pH-neutral chemicals to prevent color bleeding.</li>
+        <li><strong>Johar Town, Wapda Town:</strong> Heavy foot traffic areas require aggressive stain removal (tea, coffee, and food spills). Mechanized rotary brushing is highly requested for wall-to-wall carpets.</li>
+        <li><strong>Old Lahore:</strong> Frequent requests for cleaning heavy, traditional heavily-carved Chinioti furniture, which requires careful hand-detailing around the woodwork.</li>
+      </ul>
+
+      <h2>Upholstery Cleaning Costs in Karachi — 2026</h2>
+      <p>Karachi's high humidity means any spill on a sofa or carpet immediately becomes a magnet for mold and a breeding ground for dust mites. Odor removal is the most requested service here.</p>
+
+      <h3>Common Services — Karachi Price Guide</h3>
+      <ul>
+        <li><strong>Sofa Cleaning (Standard 5-Seater):</strong> Rs. 3,000–4,500</li>
+        <li><strong>Carpet Shampooing (Per Square Foot):</strong> Rs. 20–30</li>
+        <li><strong>Mattress Sanitation & Dust Mite Treatment:</strong> Rs. 2,500–4,000</li>
+        <li><strong>Car Interior / Seat Deep Cleaning:</strong> Rs. 2,500–4,000</li>
+      </ul>
+
+      <h3>Karachi — Neighbourhood Notes</h3>
+      <ul>
+        <li><strong>DHA Karachi, Clifton:</strong> Removing the sticky, salty sea-breeze residue from expensive upholstery requires specialized enzyme cleaners. Residents also frequently book car interior cleaning alongside sofa cleaning.</li>
+        <li><strong>Gulshan-e-Iqbal, North Nazimabad:</strong> High density of apartments means limited sunlight for natural drying. It is critical that the cleaning company uses high-powered industrial extractors so sofas dry quickly indoors.</li>
+        <li><strong>PECHS, Tariq Road:</strong> Many commercial offices book weekend carpet shampooing to remove coffee stains and office traffic dirt before Monday morning.</li>
+      </ul>
+
+      <h2>Upholstery Cleaning Costs in Islamabad & Rawalpindi — 2026</h2>
+      <p>The twin cities have a high volume of wall-to-wall carpeting to combat the colder winters. As people prepare for October, having these large carpets professionally shampooed and sanitized is a priority.</p>
+
+      <h3>Common Services — Islamabad/Rawalpindi Price Guide</h3>
+      <ul>
+        <li><strong>Sofa Cleaning (Standard 5-Seater):</strong> Rs. 2,500–4,000 (Isb) / Rs. 2,000–3,500 (Rwp)</li>
+        <li><strong>Wall-to-Wall Carpet Cleaning (Per Sq Ft):</strong> Rs. 15–25</li>
+        <li><strong>Persian/Woolen Rug Hand-Washing:</strong> Rs. 30–50 per sq ft (Highly specialized)</li>
+        <li><strong>Mattress Deep Cleaning:</strong> Rs. 2,000–3,000</li>
+      </ul>
+
+      <h3>Islamabad & Rawalpindi — Neighbourhood Notes</h3>
+      <ul>
+        <li><strong>Islamabad Sectors (F-7, F-8, E-7, G-10):</strong> Many expatriates and diplomats live here, possessing expensive, authentic Persian or Afghan rugs. These cannot be machine-washed and require expert, color-fast hand washing with specialized wool shampoos.</li>
+        <li><strong>Bahria Town (Isb/Rwp) & DHA:</strong> High demand for complete package deals (e.g., 7-seater sofa + 3 carpets + 2 mattresses) as homeowners do a full autumn spring-clean.</li>
+        <li><strong>Rawalpindi (Satellite Town, Commercial Market):</strong> A strong preference for cleaning heavy, traditional plush sofas. Customers expect to see the "dirty water extract" to prove the job was done properly.</li>
+      </ul>
+
+      <h2>Why You Must Clean Your Mattress</h2>
+      <p>We spend a third of our lives on our mattresses. Over a year, a mattress absorbs liters of sweat and sheds pounds of dead skin cells—the primary food source for dust mites. If you wake up with unexplained allergies, a blocked nose, or itchy skin, your mattress is likely infested. A professional deep extraction removes these allergens and sanitizes the bed completely.</p>
+
+      <h2>Final Thoughts</h2>
+      <p>Don't wait until guests arrive for a winter wedding to realize your drawing room sofa has a massive tea stain or smells like damp monsoon air.</p>
+      <p><a href="/register">Book a verified upholstery cleaning team through Service Knock</a> today. Whether you need an expensive rug hand-washed in Islamabad, a mildew-smelling sofa extracted in Karachi, or wall-to-wall carpets shampooed in Lahore, our vetted professionals use industrial extraction machines to leave your furniture looking—and smelling—brand new.</p>
+    `,
+  },
+
+  {
+    id: 29,
+    slug: 'geyser-repair-service-installation-near-me-lahore-karachi-islamabad-2026',
+    title: 'Geyser Repair & Service Near Me: Pre-Winter Preparation Guide 2026',
+    excerpt: 'With winter approaching across Pakistan, testing and servicing your gas, electric, or instant geyser is essential before the cold rush and gas load-shedding begin. Here is your complete 2026 city-by-city guide to geyser repair, descaling, installation costs, and safety precautions in Lahore, Karachi, Islamabad, and Rawalpindi.',
+    image: 'https://images.unsplash.com/photo-1585338107529-13afc5f02586?auto=format&fit=crop&w=800&q=80',
+    author: 'Service Knock Team',
+    date: 'October 24, 2026',
+    category: 'Guides',
+    readTime: '7 min',
+    metaTitle: 'Geyser Repair, Service & Installation in Lahore, Karachi, Islamabad (2026)',
+    metaDescription: 'Find certified geyser repair technicians near you. 2026 pricing for instant gas, electric, and storage geyser servicing, descaling, and installation in Lahore (DHA, Johar Town), Karachi, Islamabad, and Rawalpindi.',
+    keywords: 'geyser repair near me, geyser service Lahore, instant geyser repair Karachi, electric geyser installation Islamabad, geyser technician Rawalpindi, geyser leak repair DHA Lahore, instant gas geyser service Gulshan Karachi, geyser thermostat replacement Bahria Town, gas geyser servicing Pakistan, گیزر کی مرمت, گیزر سروس, winter geyser maintenance',
+    content: `
+      <p>As late October sets in, morning and evening temperatures begin to plummet across Punjab and Islamabad, while Karachi readies for its breezy winter season. Every year, millions of Pakistani households turn on their geysers for the first time in seven months, only to be met with dead pilot lights, icy water, strange knocking sounds, or dangerous gas smells.</p>
+
+      <p>Waiting until mid-November—when winter is in full swing and gas load shedding begins—means competing with thousands of callers for overbooked technicians. Early servicing protects your family from gas asphyxiation hazards, saves massive Sui gas bills, and ensures reliable hot water all season long.</p>
+
+      <p>Based on October 2026 field data from <a href="/services">Service Knock’s verified plumbers and geyser specialists</a>, this guide outlines realistic repair rates, city-specific winter challenges, and critical safety rules for instant and storage geysers.</p>
+
+      <h2>The Most Common Early-Winter Geyser Failures</h2>
+      <p>After sitting idle in humid summer conditions, geysers commonly suffer from these preventable defects:</p>
+      <ul>
+        <li><strong>Clogged Pilot & Main Burners:</strong> Spiders, dust, and rust accumulate in burner jets, causing orange/yellow flames that waste gas and produce toxic carbon monoxide. A healthy flame must always be sharp blue.</li>
+        <li><strong>Calcium / Limescale Tank Buildup:</strong> Pakistan’s hard groundwater leaves thick mineral deposits at the bottom of storage tanks. This acts as an insulating blanket between the burner flame and the water, doubling the gas needed to heat your bath.</li>
+        <li><strong>Defective Thermocouple or Gas Valve:</strong> The thermocouple is the essential safety valve that automatically cuts gas flow when the flame goes out. Summer oxidation often causes it to fail, preventing the pilot from staying lit.</li>
+        <li><strong>Instant Geyser Micro-Switch & Diaphragm Failure:</strong> Instant gas geysers depend on a rubber water diaphragm and a magnetic ignition switch. After summer dormancy, low water pressure or brittle rubber stops the geyser from sparking.</li>
+        <li><strong>Burnt Electric Heating Elements:</strong> In hybrid (gas + electric) units, turning on the electric element before the tank is completely primed with water instantly fries the coil.</li>
+      </ul>
+
+      <h2>Geyser Repair & Service Rates in Pakistan — 2026 Price Guide</h2>
+      <p>Transparent pricing keeps you protected from roadside overcharging. Below are realistic labor estimates across major Pakistani metro areas:</p>
+
+      <table className="w-full text-left border-collapse my-6">
+        <thead>
+          <tr className="border-b border-gray-300 dark:border-gray-700">
+            <th className="py-2 font-semibold">Service Type</th>
+            <th className="py-2 font-semibold">Estimated Cost (PKR)</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
+          <tr>
+            <td className="py-2">Instant Gas Geyser Basic Service & Burner Clean</td>
+            <td className="py-2">Rs. 1,500 – 2,500</td>
+          </tr>
+          <tr>
+            <td className="py-2">Storage Gas Geyser Chemical Descaling & Tank Wash</td>
+            <td className="py-2">Rs. 2,500 – 4,500</td>
+          </tr>
+          <tr>
+            <td className="py-2">Thermocouple / Safety Sensor Replacement</td>
+            <td className="py-2">Rs. 1,800 – 3,000</td>
+          </tr>
+          <tr>
+            <td className="py-2">Electric Geyser Heating Element & Thermostat Replacement</td>
+            <td className="py-2">Rs. 2,000 – 3,500</td>
+          </tr>
+          <tr>
+            <td className="py-2">New Geyser Installation (Mounting, PPRC Piping & Gas Line)</td>
+            <td className="py-2">Rs. 3,500 – 6,000</td>
+          </tr>
+          <tr>
+            <td className="py-2">Old Geyser Dismantling & Leak Welding</td>
+            <td className="py-2">Rs. 2,000 – 3,500</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>City-by-City Insights & Local Realities</h2>
+
+      <h3>Lahore (DHA, Cantt, Johar Town, Wapda Town)</h3>
+      <p>Lahore’s deep bore groundwater is notorious for intense mineral hardness. By October, an unserviced 35-gallon storage geyser in Johar Town or Model Town can easily harbor 10 to 15 kg of calcified scale. Furthermore, low Sui gas pressure in DHA Phases 5 to 9 during peak winter mornings requires homeowners to either install an electric hybrid booster coil or replace aging units with efficient low-pressure instant geysers.</p>
+
+      <h3>Karachi (Clifton, DHA, Gulshan-e-Iqbal, North Nazimabad)</h3>
+      <p>While Karachi winters are milder, coastal salt humidity is brutal on metal casings, causing rapid exterior corrosion and pilot rust. In high-rise apartments across Gulshan and Clifton, space constraints make instant gas or compact electric geysers the norm. However, tankless water heaters in Karachi frequently suffer from low municipal water pressure; a dedicated mini booster pump is often wired alongside the geyser to ensure consistent ignition.</p>
+
+      <h3>Islamabad & Rawalpindi (F-Sectors, Bahria Town, Satellite Town)</h3>
+      <p>Twin City winters bring bitter cold snaps, with nighttime temperatures nearing freezing. In sectors like F-7, F-10, G-11, and Bahria Town, gas heating operates virtually 24/7. When temperatures drop, uninsulated rooftop PPRC pipes frequently burst or freeze. Certified twin-cities technicians focus heavily on pipe insulation and replacing worn magnesium anode rods, which stop acidic cold mountain water from eating through steel tank walls.</p>
+
+      <h2>Critical Geyser Safety Rules Every Pakistani Family Must Follow</h2>
+      <p>Every winter, Pakistani emergency services report tragic carbon monoxide poisoning cases caused by faulty instant geyser setups. Always enforce these three life-saving rules:</p>
+      <ul>
+        <li><strong>NEVER Install an Instant Gas Geyser Inside a Closed Bathroom:</strong> Instant geysers consume massive volumes of oxygen in seconds. If the bathroom door is closed and exhaust is inadequate, oxygen depletion causes fainting within minutes. Always mount the unit in an open balcony, laundry area, or exterior wall.</li>
+        <li><strong>Ensure an Exhaust Chimney:</strong> If a storage geyser is installed in an indoor shaft or corridor, a stainless steel exhaust pipe must direct toxic fumes completely outside the structure.</li>
+        <li><strong>Smell Gas? Never Strike a Match:</strong> If you detect the sulfur odor of leaking gas, immediately shut off the main brass gas cock, open all windows, and do not switch any electric lights or fans on or off. Book a certified technician immediately.</li>
+      </ul>
+
+      <h2>Why Choose Service Knock for Your Winter Geyser Service?</h2>
+      <p>Roadside handymen often bypass safety thermostats, use dangerous open flames to test for gas leaks, or strip delicate copper threads on gas regulators. With <a href="/register">Service Knock</a>, your home is serviced by background-checked, insured plumbers equipped with digital gas leak detectors and pressure testing gauges.</p>
+      <p>Beat the November winter rush. <a href="/services">Book your pre-winter geyser service and safety inspection on Service Knock</a> today and enjoy warm, safe, hassle-free showers all winter long.</p>
+    `,
+  },
 ];
 
 
